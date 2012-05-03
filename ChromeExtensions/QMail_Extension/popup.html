@@ -1,0 +1,10 @@
+<html>
+<head>
+<script>
+  function open() {
+    chrome.tabs.create({"url":"http://mail.qq.com", "selected":true});
+  }
+  chrome.browserAction.onClicked.addListener(open);
+</script>
+</head>
+</html>

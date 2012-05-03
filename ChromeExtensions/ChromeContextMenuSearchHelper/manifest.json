@@ -1,0 +1,10 @@
+{
+	"name": "Chrome搜索助手",
+	"version": "0.3",
+	"description": "通过自定义的右键菜单搜索选中文字（支持常用Douban/Baidu/Bing）",
+	"permissions": ["contextMenus"],
+	"background": {
+		"scripts": ["SearchHelper.js"]
+	},
+	"manifest_version": 2
+}	
