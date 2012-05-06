@@ -1,7 +1,9 @@
 #!/usr/bin/python
 #coding:utf-8
 
-import ConfigParser
+#Author: Dan Lin
+#Date: 	 2012/5/6
+#Helper class to send message with WAP fetion 
 import os
 import sys
 import string
@@ -13,12 +15,10 @@ import re
 url_login = 'http://f.10086.cn/im/login/inputpasssubmit1.action'
 url_logout = 'http://f.10086.cn//im/index/logoutsubmit.action?t='
 url_msg = 'http://f.10086.cn/im/user/sendMsgToMyselfs.action'
-# user = '15900477006'
-# password = 'Furture67'
 loginstatus = '4' #隐身模式
 arg_t = ''
 
-class fetion(object):
+class Fetion(object):
 	def __init__ (self):
 		cj = cookielib.LWPCookieJar()
 		self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
@@ -40,10 +40,11 @@ class fetion(object):
 		
 	def LogIn(self):
 		args = {'pass':self.pwd, 'm':self.phone,'loginstatus':self.loginstatus}
-		print 'Logining...'
+		print '登录中...'
 		req = urllib2.Request(url_login, urllib.urlencode(args))
 		jump = self.opener.open(req)
 		page = jump.read();
+		# print "page:" + page
 		url = re.compile(r'<card id="start".*?ontimer="(.*?);').findall(page)[0]             
 		self.arg_t = re.compile(r't=(\d*)').findall(page)[0]
 		if url == '/im/login/login.action':                                                   
@@ -51,7 +52,7 @@ class fetion(object):
 			raw_input('Press any key to exit.')
 			return False
 		else:
-			print 'Login Successfully!'
+			print '登录成果!'
 			return True
 	
 	def SendMe(self, msg):
@@ -86,13 +87,12 @@ class fetion(object):
 		print '未找到该手机号的好友'
 		return -1
 		
-	def SendWithId(self,FriendId,Msg):
-		# print "FriendId:",FriendId
+	def SendWithId(self,friendId,msg):
 		if self.arg_t==-1:
 			print '请先登录...'
 			return False
 		params={'msg':msg.decode('gbk').encode('utf-8')}
-		url = "http://f.10086.cn/im/chat/sendMsg.action?touserid="+FriendId
+		url = "http://f.10086.cn/im/chat/sendMsg.action?touserid="+friendId
 		req = urllib2.Request(url,urllib.urlencode(params))
 		jump = self.opener.open(req)
 		page = jump.read()
@@ -113,24 +113,17 @@ class fetion(object):
 		response = self.opener.open(req)
 		print '注销成功'
 		return True
-
-cfg = ConfigParser.ConfigParser()
-cfg.read("fetion.ini")
-user = cfg.get("Source", "user")
-pwd = cfg.get("Source", "pwd")
-sendto = cfg.get("Target", "sendto")
-msg = cfg.get("Target", "message")	
-
-fetion = fetion()
-#隐身登录 --- 1
-loginstatus=1
-fetion.SetInfo(user, pwd, loginstatus)
-if fetion.LogIn():
-	if user == sendto:
-		fetion.SendMe(msg)
-	else:
-		friendId = fetion.GetFriendId(sendto)
-		if -1 != friendId:
-			fetion.SendWithId(friendId, msg)
-fetion.LogOut()
-
+		
+def SendMessage(user, pwd, sendto, msg):
+	fetion = Fetion()
+	#隐身登录 --- 1
+	loginstatus=1
+	fetion.SetInfo(user, pwd, loginstatus)
+	if fetion.LogIn():
+		if user == sendto:
+			fetion.SendMe(msg)
+		else:
+			friendId = fetion.GetFriendId(sendto)
+			if -1 != friendId:
+				fetion.SendWithId(friendId, msg)
+	fetion.LogOut()
