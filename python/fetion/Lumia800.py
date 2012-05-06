@@ -3,10 +3,12 @@
 
 import urllib2
 import re
-import fetion
 import ConfigParser
 import getopt
 import sys
+
+import fetion
+import fetionini
 
 URL_HQ = 'http://bbs.hq1388.com/forum.php?mod=viewthread&tid=15525&extra=page%3D1'
 LUMIA_PATTERN = r"Nokia Lumia 800"
@@ -43,16 +45,14 @@ def usage():
 	print 'python Lumia800.py -s 输出Lumia800当日价格并发送短信' 
 	print 'python Lumia800.py -h 帮助' 
 
-def send_msg(msg):
-	cfg = ConfigParser.ConfigParser()
-	cfg.read("fetion.ini")
-	user = cfg.get("Source", "user")
-	pwd = cfg.get("Source", "pwd")
-	fetion.SendMessage(user, pwd, 'XXX', msg)
-	fetion.SendMessage(user, pwd, 'XXX', msg)
-	
-opts, args = getopt.getopt(sys.argv[1:], "sh", ["help"])
-need_send_message = False
+need_send_message = False	
+try:	
+	opts, args = getopt.getopt(sys.argv[1:], "sh", ["help"])
+except getopt.GetoptError, err:
+	# print help information and exit:
+	print str(err) # will print something like "option -a not recognized"
+	usage()
+	sys.exit(2)	
 for o,v in opts:
 	if o.lower() == '-s':
 		need_send_message = True
@@ -63,4 +63,4 @@ for o,v in opts:
 msg = get_lumia_prices()
 print msg
 if need_send_message:
-	send_msg(msg)
+	fetionini.fetionINI(msg)
