@@ -1,4 +1,4 @@
-#coding:utf-8
+ï»¿#coding:utf-8
 import urllib2
 from xml.dom import minidom
 import getopt
@@ -6,7 +6,7 @@ import sys
 import fetionini
 
  # The google weather api is not official may close in the future but it's simple.
-GOOGLE_WEATHER_URL = 'http://www.google.com/ig/api?weather=ÉÏº£&hl=zh-cn'
+GOOGLE_WEATHER_URL = 'http://www.google.com/ig/api?weather=Shanghai&hl=zh-cn'
  
 def getweather():
 	proc = lambda tnlist, conds : [
@@ -14,28 +14,29 @@ def getweather():
 		for tagname in (tnlist) ]
 
 	# Note: the encoding is important to parse correctly
-	data = urllib2.urlopen(GOOGLE_WEATHER_URL.decode('gbk').encode('utf-8')).read().decode('gbk').encode('utf-8')
+	data = urllib2.urlopen(GOOGLE_WEATHER_URL).read().decode('gbk').encode('utf-8')
 	xmldoc = minidom.parseString(data)
-	curconds = xmldoc.getElementsByTagName("current_conditions")
-	(t, h, c, w) = proc(('temp_c', 'humidity', 'condition', 'wind_condition'), curconds[0])
-	print t
-	print h
-	print c
-	print w
+	
+	# so far the current conditions are not expected
+	# curconds = xmldoc.getElementsByTagName("current_conditions")
+	# (t, h, c, w) = proc(('temp_c', 'humidity', 'condition', 'wind_condition'), curconds[0])
+	# print t
+	# print h
+	# print c
+	# print w
 	 
 	msg = ''
 	for cond in xmldoc.getElementsByTagName("forecast_conditions"):
 		(d, l, h, c) = proc(('day_of_week', 'low', 'high', 'condition'), cond)
 		# print '%s: %s/%s %s' % (d, l, h, c)
 		msg += '%s: %s/%s %s' % (d, l, h, c) + '\n'
-	print msg	
 	return msg
 
 def usage():
 	file = sys.argv[0]
-	print 'python ' + file + ' Êä³ö½á¹ûµ½µ±Ç°ÆÁÄ»' 
-	print 'python ' + file + ' -s Êä³ö½á¹ûµ½µ±Ç°ÆÁÄ»²¢·¢ËÍ¶ÌĞÅ' 
-	print 'python ' + file + ' -h °ïÖú'
+	print 'python ' + file + u' è¾“å‡ºç»“æœåˆ°å½“å‰å±å¹•' 
+	print 'python ' + file + u' -s è¾“å‡ºç»“æœåˆ°å½“å‰å±å¹•å¹¶å‘é€çŸ­ä¿¡' 
+	print 'python ' + file + u' -h å¸®åŠ©'
 
 def run():
 	need_send_message = False	
@@ -52,7 +53,8 @@ def run():
 		if o.lower() in ('-h','--help'):
 			usage()
 			sys.exit()
-	msg = getweather().decode('utf-8').encode('gbk')
+	msg = getweather().encode('gbk')
+	print msg
 	if need_send_message:
 		fetionini.fetionINI(msg)
 	

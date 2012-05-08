@@ -52,7 +52,7 @@ class Fetion(object):
 			raw_input('Press any key to exit.')
 			return False
 		else:
-			print '登录成果!'
+			print '登录成功!'
 			return True
 	
 	def SendMe(self, msg):
