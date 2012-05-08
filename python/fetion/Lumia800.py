@@ -1,4 +1,4 @@
-#!user/bin/python
+ï»¿#!user/bin/python
 #coding:utf-8
 
 import urllib2
@@ -6,14 +6,15 @@ import re
 import ConfigParser
 import getopt
 import sys
+import logging
 
 import fetion
 import fetionini
 
 URL_HQ = 'http://bbs.hq1388.com/forum.php?mod=viewthread&tid=15525&extra=page%3D1'
 LUMIA_PATTERN = r"Nokia Lumia 800"
-PRICE_PATTERN = '<td><strong>(.+)£¤(.*?)<.+'
-FINISH_PATTERN = r'µã»÷Í¼Æ¬²é¿´ÏêÇé'
+PRICE_PATTERN = r'<td><strong>(.+)ï¿¥(.*?)<.+'
+FINISH_PATTERN = r'ç‚¹å‡»å›¾ç‰‡æŸ¥çœ‹è¯¦æƒ…'
 
 # Python has no build-in enum type.
 # It's a simple workaround here.
@@ -23,27 +24,39 @@ class ParseState:
 def get_lumia_prices():	
 	state = ParseState.Start
 	prices = {}
+	logger = logging.getLogger()
+	logFileName = sys.argv[0] + 'log.txt'
+	handler = logging.FileHandler(logFileName)
+	logger.addHandler(handler)
+	logger.setLevel(logging.DEBUG)
 	for line in urllib2.urlopen(URL_HQ):
+		logger.debug(line)
+		# regular expression match can only match the UTF-8 
+		# if source code is UTF-8 encoding
+		line = line.decode('gbk').encode('utf-8')
 		if ParseState.Start == state:
 			if re.search(LUMIA_PATTERN, line, re.I):	
 				state =  ParseState.Find
 		elif ParseState.Find == state:
 			m = re.match(PRICE_PATTERN, line, re.I)
 			if m:
-				prices[m.group(1).strip()] = m.group(2).strip()
+				key = m.group(1).strip().decode('utf-8')
+				value = m.group(2).strip().decode('utf-8')
+				prices[key] = value
 			elif re.search(FINISH_PATTERN, line):
 				state =  ParseState.Finish
 				break
 				
-	msg = LUMIA_PATTERN	+ 'µ±Ìì¼Û¸ñ--'	
+	msg = u'Nokia Lumia 800å½“å¤©ä»·æ ¼--'	
 	for key, value in prices.iteritems():
-		msg += key + ':' + value + " "
+		logger.debug(key + u":" + value)
+		msg += key + u':' + value + u" "
 	return msg
 
 def usage():
-	print 'python Lumia800.py Êä³öLumia800µ±ÈÕ¼Û¸ñ' 
-	print 'python Lumia800.py -s Êä³öLumia800µ±ÈÕ¼Û¸ñ²¢·¢ËÍ¶ÌÐÅ' 
-	print 'python Lumia800.py -h °ïÖú' 
+	print u'python Lumia800.py è¾“å‡ºLumia800å½“æ—¥ä»·æ ¼'
+	print u'python Lumia800.py -s è¾“å‡ºLumia800å½“æ—¥ä»·æ ¼å¹¶å‘é€çŸ­ä¿¡' 
+	print u'python Lumia800.py -h å¸®åŠ©' 
 
 need_send_message = False	
 try:	
@@ -63,4 +76,4 @@ for o,v in opts:
 msg = get_lumia_prices()
 print msg
 if need_send_message:
-	fetionini.fetionINI(msg)
+	fetionini.fetionINI(msg.encode('gbk'))
