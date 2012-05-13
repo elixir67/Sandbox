@@ -16,7 +16,6 @@
 using namespace std;
 
 #include <gtest\gtest.h>
-
 class Vector;
 // n Order Matrics
 class Matrix
@@ -108,7 +107,7 @@ Vector * Matrix::Multiply(const Vector & v)
     if(m_order != v.m_order)
         return NULL;
 
-    int * r = new int[m_order];
+    unique_ptr<int[]> r(new int[m_order]);
     for(int i = 0; i < m_order; ++i)
         r[i] = 0;
     for(int row = 0; row < m_order; ++row)
@@ -119,7 +118,7 @@ Vector * Matrix::Multiply(const Vector & v)
     for(int i = 0; i < m_order; ++i)
         cout << r[i] << endl;
 
-    Vector * rv = new Vector(r, m_order);
+    Vector * rv = new Vector(r.get(), m_order);
     return rv;
 }
 
