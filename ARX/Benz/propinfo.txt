@@ -1,0 +1,21 @@
+Category: General, Visiblity:0, Weight:0
+		Property: Color, Type: VT_PTR (), Visibility: 1, Weight:0
+		Property: Layer, Type: VT_BSTR (), Visibility: 1, Weight:0
+		Property: Linetype, Type: VT_BSTR (), Visibility: 1, Weight:0
+		Property: Linetype scale, Type: VT_USERDEFINED (), Visibility: 0, Weight:0
+		Property: Plot style, Type: VT_BSTR (), Visibility: 0, Weight:0
+		Property: Lineweight, Type: VT_USERDEFINED (), Visibility: 0, Weight:0
+		Property: Hyperlink, Type: VT_PTR (), Visibility: 0, Weight:0
+		Property: Material, Type: VT_BSTR (), Visibility: 0, Weight:0
+		Property: Class Name, Type: VT_BSTR (), Visibility: 0, Weight:-1
+Category: General, Visiblity:1, Weight:0
+		Property: Class Name, Type: VT_BSTR (), Visibility: 0, Weight:-1
+		Property: Color, Type: VT_PTR (), Visibility: 1, Weight:0
+		Property: Layer, Type: VT_BSTR (), Visibility: 1, Weight:0
+		Property: Linetype, Type: VT_BSTR (), Visibility: 1, Weight:0
+		Property: Linetype scale, Type: VT_USERDEFINED (), Visibility: 0, Weight:0
+		Property: Plot style, Type: VT_BSTR (), Visibility: 0, Weight:0
+		Property: Lineweight, Type: VT_USERDEFINED (), Visibility: 0, Weight:0
+		Property: Hyperlink, Type: VT_PTR (), Visibility: 0, Weight:0
+Category: 3D Visualization, Visiblity:0, Weight:0
+		Property: Material, Type: VT_BSTR (), Visibility: 0, Weight:0
