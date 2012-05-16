@@ -1,4 +1,4 @@
-﻿#coding:utf-8
+#coding:utf-8
 
 import shutil
 import os
@@ -103,11 +103,11 @@ def updatenpp():
     npplocal = path.join(path.join(appdata, NPP), NPPCONFIG)    
     bakuptocloud = confirm(prompt='Bakup local settings to cloud otherwise override local settings from cloud?', resp=True)        
     if bakuptocloud:
-        CopySettings(npplocal, nppcloud)
+        copysettings(npplocal, nppcloud)
     else:
-        CopySettings(nppcloud, npplocal)
+        copysettings(nppcloud, npplocal)
         
-print getcloudbakupfolder()
+updatenpp()
         
 
     
