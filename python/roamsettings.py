@@ -1,22 +1,45 @@
-#coding:utf-8
+﻿#coding:utf-8
 
 import shutil
 import os
 import filecmp
 from os import path 
 from time import gmtime, strftime
+import re
+import codecs
 
 NPP = 'Notepad++'
 NPPCONFIG = 'config.xml'
-
-bakup = r'D:\Dan\SkyDrive\bakup'
-nppcloud = path.join(path.join(bakup, NPP),NPPCONFIG)
-
-# Roam Notepad++ settings
+# PERSONAL = r'?.+ Me personal (.+)'
+PERSONAL = r'.+Me personal(.+)'
 appdata = os.environ['APPDATA']
-npplocal = path.join(path.join(appdata, NPP), NPPCONFIG)
 
-def CopySettings(src, dst):
+# The file encoding for sky drive folder is unknown and wide characters.
+# Which made problems, so I change the ini encoding to UTF-8 for testing
+def getskydrivefolder():
+    SKYDRIVESETTING = 'Microsoft\SkyDrive\settings\c70d54b352fed7b1.ini'
+    skydrivesetting = path.join(os.environ['LOCALAPPDATA'], SKYDRIVESETTING)
+    if path.exists(skydrivesetting):
+        with codecs.open(skydrivesetting, encoding='utf-8') as f:
+            for line in f:
+                uline = line.encode('utf-8')
+                m = re.match(PERSONAL, line)
+                if m:
+                    cloudfolder = m.group(1).strip()
+                    cloudfolder = cloudfolder.replace('\"','').strip()
+                    return cloudfolder
+    else:
+        print 'No Skydrive settings found!'
+    return "";
+
+def getcloudbakupfolder():
+    skydrivefolder = getskydrivefolder()
+    bakup = 'bakup'
+    if path.exists(skydrivefolder):
+        bakup = path.join(skydrivefolder, 'bakup')
+    return bakup
+
+def copysettings(src, dst):
     print "src:" + src
     print "dst:" + dst
     if path.exists(dst) and not filecmp.cmp(src,dst):
@@ -73,14 +96,18 @@ def confirm(prompt=None, resp=False):
         if ans == 'n' or ans == 'N':
             return False
      
-
-bakuptocloud = confirm(prompt='Bakup local settings to cloud otherwise override local settings from cloud?', resp=True)        
-if bakuptocloud:
-    CopySettings(npplocal, nppcloud)
-else:
-    CopySettings(nppcloud, npplocal)
-    
-
+def updatenpp():    
+    cloudbakup = getcloudbakupfolder()    
+    nppcloud = path.join(path.join(cloudbakup, NPP),NPPCONFIG)
+    # Roam Notepad++ settings
+    npplocal = path.join(path.join(appdata, NPP), NPPCONFIG)    
+    bakuptocloud = confirm(prompt='Bakup local settings to cloud otherwise override local settings from cloud?', resp=True)        
+    if bakuptocloud:
+        CopySettings(npplocal, nppcloud)
+    else:
+        CopySettings(nppcloud, npplocal)
+        
+print getcloudbakupfolder()
         
 
     
