@@ -6,12 +6,23 @@
 
 #include <iostream>
 
-#define OFFSET 5
+
 namespace
 {
     void OutputPos(const QPoint & pos)
     {
         std::wcout << "pos:" << pos.x() << ";"<< pos.y() << std::endl;
+    }
+
+    QMainWindow * FindWindow(QWidget *pWidget)
+    {
+        if(!pWidget)
+            return NULL;
+        QMainWindow *pWindow= qobject_cast<QMainWindow*>(pWidget);
+        if(pWindow)
+            return pWindow;
+        else
+            return FindWindow(pWidget->parentWidget());
     }
 }
 
@@ -36,32 +47,28 @@ void MainWindow::ActiveDescription()
 
 void MainWindow::handleClick()
 {
-    NewProposalsPopup * popup = new NewProposalsPopup(ui->pushButton);
+    QWidget * parent = ui->pushButton;
+    NewProposalsPopup * popup = new NewProposalsPopup(parent);
 
-    QPoint pos = ui->pushButton->pos();
-    OutputPos(pos);
+    int height = popup->height();
+    int width = popup->width();
 
-    QPoint pg, pp, ppg;
-    pg = ui->pushButton->mapToGlobal(pos);
-    OutputPos(pg);
+    const int HORIZONTAL_OFFSET = 5;
+    const int VERTICAL_OFFSET = 50;
 
-    int pHeight = popup->height();
-    int pWidth = popup->width();
+    QPoint relativePos = QPoint(0, - height-VERTICAL_OFFSET);
+    relativePos = popup->mapToParent(relativePos);
+    QPoint globalPos = parent->mapToGlobal(relativePos);
 
-    QPoint p = QPoint(OFFSET, - pHeight-OFFSET);
-    pp = popup->mapToParent(p);
-    OutputPos(pp);
-    ppg = ui->pushButton->mapToGlobal(pp);
-    OutputPos(ppg);
+    QMainWindow * pWindow = FindWindow(parent);
+    QRect rect = pWindow->geometry();
+    if(globalPos.x() + width > rect.bottomRight().x())
+    {
+        int x = rect.bottomRight().x() - width - HORIZONTAL_OFFSET ;
+        globalPos = QPoint(x, globalPos.y());
+    }
 
-    QPoint pos0 = popup->pos();
-    QPoint pos1 = popup->pos();
-    OutputPos(pos1);
-
+    popup->move(globalPos);
     popup->setFocus();
     popup->show();
-    popup->move(ppg);
-
-    QPoint pos2 = popup->pos();
-    OutputPos(pos2);
 }

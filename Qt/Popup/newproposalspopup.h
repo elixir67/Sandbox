@@ -15,7 +15,9 @@ class NewProposalsPopup : public QWidget
 public:
     explicit NewProposalsPopup(QWidget *parent = 0);
     ~NewProposalsPopup();
+
 protected Q_SLOTS:
+    void OnCreateClicked();
     
 private:
     Ui::NewProposalsPopup *ui;

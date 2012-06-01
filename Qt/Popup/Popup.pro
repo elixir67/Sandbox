@@ -12,14 +12,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    newproposalspopup.cpp \
-    texteditwithplaceholdertext.cpp
+    TextEditWithPlaceHolderText.cpp \
+    NewProposalsPopup.cpp
 
 HEADERS  += mainwindow.h \
-    newproposalspopup.h \
-    texteditwithplaceholdertext.h
+    TextEditWithPlaceHolderText.h \
+    NewProposalsPopup.h
 
 FORMS    += mainwindow.ui \
-    newproposalspopup.ui
+    NewProposalsPopup.ui
 
 OTHER_FILES +=
