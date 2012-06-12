@@ -18,21 +18,24 @@ namespace CatapultGame
 
             // Create our menu entries.
             MenuEntry startGameMenuEntry = new MenuEntry("Play");
+            MenuEntry selectBackgroundMusic = new MenuEntry("Select Background Music");
+            MenuEntry shareMenuEntry = new MenuEntry("Tell a Friend");
             MenuEntry exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             startGameMenuEntry.Selected += StartGameMenuEntrySelected;
+            selectBackgroundMusic.Selected += SelectBackgroundMusicMenuEntrySelected;
+            shareMenuEntry.Selected += ShareMenuEntrySelected;
+
             exitMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(startGameMenuEntry);
-            MenuEntries.Add(exitMenuEntry);
-
-            MenuEntry selectBackgroundMusic = new MenuEntry("Select Background Music");
-            selectBackgroundMusic.Selected += SelectBackgroundMusicMenuEntrySelected;
             MenuEntries.Add(selectBackgroundMusic);
-
+            MenuEntries.Add(shareMenuEntry);
+            MenuEntries.Add(exitMenuEntry);
         }
+
 
         // Handles "Play" menu item selection
         void StartGameMenuEntrySelected(object sender, EventArgs e)
@@ -71,5 +74,15 @@ namespace CatapultGame
             ScreenManager.AddScreen(new MusicSelectionScreen(backgroundScreen), null);
         }
 
+        /// <summary>
+        /// Handler "Share" menu item selection
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ShareMenuEntrySelected(object sender, EventArgs e)
+        {
+            //Execute a task defined in the game class
+            ((CatapultGame)(ScreenManager.Game)).ExecuteTask();
+        }
     }
 }

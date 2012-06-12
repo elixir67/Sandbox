@@ -16,6 +16,7 @@ using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
 using System.Xml.Serialization;
 using System.IO;
+using Microsoft.Phone.Tasks;
 #endregion
 
 
@@ -29,6 +30,8 @@ namespace CatapultGame
         GraphicsDeviceManager graphics;
         ScreenManager screenManager;
         string fileName = "Catapult.dat";
+        PhoneNumberChooserTask phoneNumberChooserTask;
+        SmsComposeTask smsComposeTask;
 
         public CatapultGame()
         {
@@ -45,10 +48,12 @@ namespace CatapultGame
             //Switch to full screen for best game experience
             graphics.IsFullScreen = true;
 
-            //Add main menu and background
+            //Add two new screens
             screenManager.AddScreen(new BackgroundScreen(), null);
             screenManager.AddScreen(new MainMenuScreen(), null);
 
+            //Create Chooser and Launcher
+            InitializeChooserAndLauncher();
 
             AudioManager.Initialize(this);
             InitializePhoneServices();
@@ -68,7 +73,32 @@ namespace CatapultGame
             PhoneApplicationService.Current.Launching += new EventHandler<LaunchingEventArgs>(GameLaunching);
         }
 
+        private void InitializeChooserAndLauncher()
+        {
+            phoneNumberChooserTask = new PhoneNumberChooserTask();
+            smsComposeTask = new SmsComposeTask();
+            phoneNumberChooserTask.Completed += new EventHandler<PhoneNumberResult>(PhoneNumberChooserTaskCompleted);
+        }
+
         #region Event Handlers
+        /// <summary>
+        /// Occurs when the Phone Number Chooser task completes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        void PhoneNumberChooserTaskCompleted(object sender, PhoneNumberResult args)
+        {
+            // If user provided the requested info
+            if (args.TaskResult == TaskResult.OK)
+            {
+                // Create, initialize and show SMS composer launcher
+                smsComposeTask.To = args.PhoneNumber;
+                smsComposeTask.Body =
+                    "Hello! Just discovered very good game called Catapult Wars. Try it by yourself and see!";
+                smsComposeTask.Show();
+            }
+        }
+
         /// <summary>
         /// Occurs when the game class (and application) launched
         /// </summary>
@@ -279,6 +309,13 @@ namespace CatapultGame
             PhoneApplicationService.Current.State.Add("HumanScore", gameplayScreen.player.Score);
             PhoneApplicationService.Current.State.Add("PhoneScore", gameplayScreen.computer.Score);
             PhoneApplicationService.Current.State.Add("isHumanTurn", gameplayScreen.isHumanTurn);
+        }
+        #endregion
+
+        #region Public Interface
+        public void ExecuteTask()
+        {
+            phoneNumberChooserTask.Show();
         }
         #endregion
 
