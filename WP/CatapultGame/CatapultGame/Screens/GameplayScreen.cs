@@ -11,7 +11,7 @@ using System.IO;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using GameStateManagement;
-
+using Microsoft.Phone.Shell;
 
 namespace CatapultGame
 {
@@ -39,11 +39,11 @@ namespace CatapultGame
         Vector2 windArrowPosition;
 
         // Gameplay members
-        Human player;
-        AI computer;
+        public Human player;
+        public AI computer;
         Vector2 wind;
         bool changeTurn;
-        bool isHumanTurn;
+        public bool isHumanTurn;
         bool gameOver;
         Random random;
         const int minWind = 0;
@@ -64,8 +64,7 @@ namespace CatapultGame
         public void LoadAssets()
         {
             // Load textures
-            foregroundTexture =
-                Load<Texture2D>("Textures/Backgrounds/gameplay_screen");
+            foregroundTexture = Load<Texture2D>("Textures/Backgrounds/gameplay_screen");
             cloud1Texture = Load<Texture2D>("Textures/Backgrounds/cloud1");
             cloud2Texture = Load<Texture2D>("Textures/Backgrounds/cloud2");
             mountainTexture = Load<Texture2D>("Textures/Backgrounds/mountain");
@@ -96,10 +95,28 @@ namespace CatapultGame
             computer.Initialize();
             computer.Name = "Phone";
 
-            // Initialize enemy definitions
+            // Identify enemies
             player.Enemy = computer;
             computer.Enemy = player;
+
+            base.LoadContent();
+
+            if (PhoneApplicationService.Current.StartupMode ==
+         StartupMode.Activate)
+            {
+                player.Score = int.Parse(PhoneApplicationService.Current.State["playerScore"].ToString());
+                computer.Score = int.Parse(PhoneApplicationService.Current.State["computerScore"].ToString());
+                isHumanTurn = !bool.Parse(PhoneApplicationService.Current.State["isHumanTurn"].ToString());
+
+                wind = Vector2.Zero;
+                changeTurn = true;
+                computer.Catapult.CurrentState = CatapultState.Reset;
+            }
+            else
+                // Start the game
+                Start();
         }
+
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
@@ -260,11 +277,8 @@ namespace CatapultGame
 
         public override void LoadContent()
         {
-            // LoadAssets();
-
+            LoadAssets();
             base.LoadContent();
-
-            Start();
         }
 
         private void Start()
