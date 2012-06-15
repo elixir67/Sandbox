@@ -52,6 +52,8 @@
     <XnaCompressContent>false</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Devices.Sensors, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework" />
     <Reference Include="Microsoft.Xna.Framework.Game" />
     <Reference Include="Microsoft.Xna.Framework.Graphics" />
@@ -65,6 +67,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Misc\Accelerometer.cs" />
     <Compile Include="Objects\Camera.cs" />
     <Compile Include="Objects\DrawableComponent3D.cs" />
     <Compile Include="Objects\Marble.cs" />

@@ -9,6 +9,7 @@ using GameStateManagement;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Devices;
 
 namespace MarbleMazeGame
 {
@@ -17,6 +18,8 @@ namespace MarbleMazeGame
         Maze maze;
         Marble marble;
         Camera camera;
+        readonly float angularVelocity = MathHelper.ToRadians(1.5f);
+        Vector3? accelerometerState = Vector3.Zero;
 
         public GameplayScreen()
         {
@@ -27,7 +30,7 @@ namespace MarbleMazeGame
         public override void LoadContent()
         {
             LoadAssets();
-
+            Accelerometer.Initialize();
             base.LoadContent();
         }
 
@@ -58,12 +61,12 @@ namespace MarbleMazeGame
 
         private void InitializeMarble()
         {
-            marble = new Marble(ScreenManager.Game)
+            marble = new Marble(ScreenManager.Game as MarbleMazeGame)
             {
-                Position = Vector3.Zero,
-                Camera = camera
+                Position = new Vector3(100, 0, 0),
+                Camera = camera,
+                Maze = maze
             };
-
             marble.Initialize();
         }
 
@@ -94,6 +97,53 @@ namespace MarbleMazeGame
             ScreenManager.SpriteBatch.End();
             base.Draw(gameTime);
         }
+
+        public override void HandleInput(InputState input)
+        {
+            if (input == null)
+                throw new ArgumentNullException("input");
+
+            // Rotate the maze according to accelerometer data
+            Vector3 currentAccelerometerState = Accelerometer.GetState().Acceleration;
+
+            if (Microsoft.Devices.Environment.DeviceType == DeviceType.Device)
+            {
+                //Change the velocity according to acceleration reading
+                maze.Rotation.Z = (float)Math.Round(MathHelper.ToRadians(currentAccelerometerState.Y * 30), 2);
+                maze.Rotation.X = -(float)Math.Round(MathHelper.ToRadians(currentAccelerometerState.X * 30), 2);
+            }
+            else if (Microsoft.Devices.Environment.DeviceType == DeviceType.Emulator)
+            {
+                Vector3 Rotation = Vector3.Zero;
+
+                if (currentAccelerometerState.X != 0)
+                {
+                    if (currentAccelerometerState.X > 0)
+                        Rotation += new Vector3(0, 0, -angularVelocity);
+                    else
+                        Rotation += new Vector3(0, 0, angularVelocity);
+                }
+
+                if (currentAccelerometerState.Y != 0)
+                {
+                    if (currentAccelerometerState.Y > 0)
+                        Rotation += new Vector3(-angularVelocity, 0, 0);
+                    else
+                        Rotation += new Vector3(angularVelocity, 0, 0);
+                }
+
+                // Limit the rotation of the maze to 30 degrees
+                maze.Rotation.X =
+                    MathHelper.Clamp(maze.Rotation.X + Rotation.X,
+                    MathHelper.ToRadians(-30), MathHelper.ToRadians(30));
+
+                maze.Rotation.Z =
+                    MathHelper.Clamp(maze.Rotation.Z + Rotation.Z,
+                    MathHelper.ToRadians(-30), MathHelper.ToRadians(30));
+
+            }
+        }
+
 
     }
 }

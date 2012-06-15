@@ -11,6 +11,7 @@ namespace MarbleMazeGame
     class Marble : DrawableComponent3D
     {
         private Texture2D m_marbleTexture;
+        public Maze Maze { get; set; }
 
         public Marble(Game game)
             : base(game, "marble")
@@ -57,6 +58,16 @@ namespace MarbleMazeGame
 
             // Return to the original state
             GraphicsDevice.SamplerStates[0] = originalSamplerState;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            // Make the camera follow the marble
+            Camera.ObjectToFollow = Vector3.Transform(Position,
+                Matrix.CreateFromYawPitchRoll(Maze.Rotation.Y,
+                Maze.Rotation.X, Maze.Rotation.Z));
         }
 
     }
