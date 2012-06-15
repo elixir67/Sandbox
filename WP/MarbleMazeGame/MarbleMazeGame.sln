@@ -3,22 +3,52 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleMazeGame", "MarbleMazeGame\MarbleMazeGame\MarbleMazeGame.csproj", "{54A88A83-7275-4039-B739-03E0F1540364}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "MarbleMazeGameContent", "MarbleMazeGame\MarbleMazeGameContent\MarbleMazeGameContent.contentproj", "{7275084D-B43A-432D-BA46-36E09BD54AC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleMazeGameContent", "MarbleMazeGame\MarbleMazeGameContent\MarbleMazeGameContent.contentproj", "{7275084D-B43A-432D-BA46-36E09BD54AC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarbleMazePipeline", "MarbleMazePipeline\MarbleMazePipeline.csproj", "{FD08C402-FA32-412E-BB8A-4D41438DC19A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Mixed Platforms = Debug|Mixed Platforms
 		Debug|Windows Phone = Debug|Windows Phone
+		Debug|x86 = Debug|x86
+		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|Windows Phone = Release|Windows Phone
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54A88A83-7275-4039-B739-03E0F1540364}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Phone
+		{54A88A83-7275-4039-B739-03E0F1540364}.Debug|Mixed Platforms.Build.0 = Debug|Windows Phone
+		{54A88A83-7275-4039-B739-03E0F1540364}.Debug|Mixed Platforms.Deploy.0 = Debug|Windows Phone
 		{54A88A83-7275-4039-B739-03E0F1540364}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
 		{54A88A83-7275-4039-B739-03E0F1540364}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
 		{54A88A83-7275-4039-B739-03E0F1540364}.Debug|Windows Phone.Deploy.0 = Debug|Windows Phone
+		{54A88A83-7275-4039-B739-03E0F1540364}.Debug|x86.ActiveCfg = Debug|Windows Phone
+		{54A88A83-7275-4039-B739-03E0F1540364}.Release|Mixed Platforms.ActiveCfg = Release|Windows Phone
+		{54A88A83-7275-4039-B739-03E0F1540364}.Release|Mixed Platforms.Build.0 = Release|Windows Phone
+		{54A88A83-7275-4039-B739-03E0F1540364}.Release|Mixed Platforms.Deploy.0 = Release|Windows Phone
 		{54A88A83-7275-4039-B739-03E0F1540364}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
 		{54A88A83-7275-4039-B739-03E0F1540364}.Release|Windows Phone.Build.0 = Release|Windows Phone
 		{54A88A83-7275-4039-B739-03E0F1540364}.Release|Windows Phone.Deploy.0 = Release|Windows Phone
+		{54A88A83-7275-4039-B739-03E0F1540364}.Release|x86.ActiveCfg = Release|Windows Phone
+		{7275084D-B43A-432D-BA46-36E09BD54AC5}.Debug|Mixed Platforms.ActiveCfg = Debug|Windows Phone
 		{7275084D-B43A-432D-BA46-36E09BD54AC5}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{7275084D-B43A-432D-BA46-36E09BD54AC5}.Debug|x86.ActiveCfg = Debug|Windows Phone
+		{7275084D-B43A-432D-BA46-36E09BD54AC5}.Release|Mixed Platforms.ActiveCfg = Release|Windows Phone
 		{7275084D-B43A-432D-BA46-36E09BD54AC5}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{7275084D-B43A-432D-BA46-36E09BD54AC5}.Release|x86.ActiveCfg = Release|Windows Phone
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Debug|Windows Phone.ActiveCfg = Debug|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Debug|Windows Phone.Build.0 = Debug|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Debug|x86.ActiveCfg = Debug|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Debug|x86.Build.0 = Debug|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Release|Mixed Platforms.Build.0 = Release|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Release|Windows Phone.ActiveCfg = Release|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Release|Windows Phone.Build.0 = Release|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Release|x86.ActiveCfg = Release|x86
+		{FD08C402-FA32-412E-BB8A-4D41438DC19A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

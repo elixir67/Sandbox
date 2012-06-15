@@ -102,13 +102,19 @@
     <Compile Include="Models\marble.FBX">
       <Name>marble</Name>
       <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
+      <Processor>MarbleMazeProcessor</Processor>
     </Compile>
     <Compile Include="Models\maze1.FBX">
       <Name>maze1</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MarbleMazePipeline\MarbleMazePipeline.csproj">
+      <Project>{FD08C402-FA32-412E-BB8A-4D41438DC19A}</Project>
+      <Name>MarbleMazePipeline</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

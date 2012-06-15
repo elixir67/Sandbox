@@ -9,19 +9,34 @@ using System.Collections.Generic;
 
 namespace MarbleMazeGame
 {
+    [Flags]
+    public enum Axis
+    {
+        X = 0x1,
+        Y = 0x2,
+        Z = 0x4
+    }
+
     public abstract class DrawableComponent3D : DrawableGameComponent
     {
+        public const float gravity = 100 * 9.81f;
+        public const float wallFriction = 100 * 0.8f;
+
         string modelName;
         protected bool preferPerPixelLighting = false;
         public Model Model = null;
-        public Camera Camera;
+        protected IntersectDetails intersectDetails = new IntersectDetails();
+        protected float staticGroundFriction = 0.1f;
 
         public Vector3 Position = Vector3.Zero;
         public Vector3 Rotation = Vector3.Zero;
+        public Vector3 Velocity = Vector3.Zero;
+        public Vector3 Acceleration = Vector3.Zero;
 
         public Matrix[] AbsoluteBoneTransforms;
         public Matrix FinalWorldTransforms;
         public Matrix OriginalWorldTransforms = Matrix.Identity;
+        public Camera Camera;
 
         public DrawableComponent3D(Game game, string modelName)
             : base(game)
@@ -66,15 +81,6 @@ namespace MarbleMazeGame
             base.Draw(gameTime);
         }
 
-        public override void Update(GameTime gameTime)
-        {
-            // Update the final transformation to properly place the component in the
-            // game world.
-            UpdateFinalWorldTransform();
-
-            base.Update(gameTime);
-        }
-
         protected virtual void UpdateFinalWorldTransform()
         {
             FinalWorldTransforms = Matrix.Identity *
@@ -83,6 +89,33 @@ namespace MarbleMazeGame
                     Matrix.CreateTranslation(Position);
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            // Perform physics calculations
+            CalcPhysics(gameTime);
+
+            // Update the final transformation to properly place the component in the
+            // game world.
+            UpdateFinalWorldTransform();
+
+            base.Update(gameTime);
+        }
+
+        protected virtual void CalcPhysics(GameTime gameTime)
+        {
+            CalculateCollisions();
+            CalculateAcceleration();
+            CalculateFriction();
+            CalculateVelocityAndPosition(gameTime);
+        }
+
+        protected abstract void CalculateFriction();
+
+        protected abstract void CalculateAcceleration();
+
+        protected abstract void CalculateVelocityAndPosition(GameTime gameTime);
+
+        protected abstract void CalculateCollisions();
     }
 }
 

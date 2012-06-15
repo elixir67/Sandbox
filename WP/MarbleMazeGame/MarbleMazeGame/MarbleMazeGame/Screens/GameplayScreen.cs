@@ -20,6 +20,10 @@ namespace MarbleMazeGame
         Camera camera;
         readonly float angularVelocity = MathHelper.ToRadians(1.5f);
         Vector3? accelerometerState = Vector3.Zero;
+        bool gameOver = false;
+        LinkedListNode<Vector3> lastCheackpointNode;
+        SpriteFont timeFont;
+        TimeSpan gameTime;
 
         public GameplayScreen()
         {
@@ -30,6 +34,7 @@ namespace MarbleMazeGame
         public override void LoadContent()
         {
             LoadAssets();
+            timeFont = ScreenManager.Game.Content.Load<SpriteFont>(@"Fonts\MenuFont");
             Accelerometer.Initialize();
             base.LoadContent();
         }
@@ -57,13 +62,16 @@ namespace MarbleMazeGame
             };
 
             maze.Initialize();
+
+            // Save the last checkpoint
+            lastCheackpointNode = maze.Checkpoints.First;
         }
 
         private void InitializeMarble()
         {
             marble = new Marble(ScreenManager.Game as MarbleMazeGame)
             {
-                Position = new Vector3(100, 0, 0),
+                Position = maze.StartPoistion,
                 Camera = camera,
                 Maze = maze
             };
@@ -72,10 +80,62 @@ namespace MarbleMazeGame
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
+            // Calculate the time from the start of the game
+            this.gameTime += gameTime.ElapsedGameTime;
+
+            CheckFallInPit();
+            UpdateLastCheackpoint();
+
             // Update all the component of the game
             maze.Update(gameTime);
             marble.Update(gameTime);
             camera.Update(gameTime);
+
+            CheckGameFinish();
+
+            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+
+        }
+
+        private void UpdateLastCheackpoint()
+        {
+            BoundingSphere marblePosition = marble.BoundingSphereTransformed;
+
+            var tmp = lastCheackpointNode;
+            while (tmp.Next != null)
+            {
+                // If the marble is close to a checkpoint save the checkpoint
+                if (Math.Abs(Vector3.Distance(marblePosition.Center, tmp.Next.Value))
+                    <= marblePosition.Radius * 3)
+                {
+                    lastCheackpointNode = tmp.Next;
+                    return;
+                }
+                tmp = tmp.Next;
+            }
+        }
+
+        private void CheckFallInPit()
+        {
+            if (marble.Position.Y < -150)
+            {
+                marble.Position = lastCheackpointNode.Value;
+                maze.Rotation = Vector3.Zero;
+                marble.Acceleration = Vector3.Zero;
+                marble.Velocity = Vector3.Zero;
+            }
+        }
+
+        private void CheckGameFinish()
+        {
+            BoundingSphere marblePosition = marble.BoundingSphereTransformed;
+
+            if (Math.Abs(Vector3.Distance(marblePosition.Center, maze.End)) <=
+                marblePosition.Radius * 3)
+            {
+                gameOver = true;
+                return;
+            }
         }
 
         public override void Draw(GameTime gameTime)
@@ -83,20 +143,27 @@ namespace MarbleMazeGame
             ScreenManager.GraphicsDevice.Clear(Color.Black);
             ScreenManager.SpriteBatch.Begin();
 
+            // Draw the elapsed time
+            ScreenManager.SpriteBatch.DrawString(timeFont,
+                String.Format("{0:00}:{1:00}", this.gameTime.Minutes,
+                this.gameTime.Seconds), new Vector2(20, 20), Color.YellowGreen);
+
             // Drawing sprites changes some render states around, which don't play
             // nicely with 3d models. 
             // In particular, we need to enable the depth buffer.
             DepthStencilState depthStensilState =
-         new DepthStencilState() { DepthBufferEnable = true };
+                new DepthStencilState() { DepthBufferEnable = true };
             ScreenManager.GraphicsDevice.DepthStencilState = depthStensilState;
 
             // Draw all the game components
             maze.Draw(gameTime);
             marble.Draw(gameTime);
 
+
             ScreenManager.SpriteBatch.End();
             base.Draw(gameTime);
         }
+
 
         public override void HandleInput(InputState input)
         {
@@ -144,6 +211,6 @@ namespace MarbleMazeGame
             }
         }
 
-
     }
+
 }
