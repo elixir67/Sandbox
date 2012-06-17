@@ -1,0 +1,40 @@
+﻿#coding:utf-8
+
+import shutil
+import os
+import filecmp
+from os import path 
+from time import gmtime, strftime
+import re
+import codecs
+
+PERSONAL = r'.+Me personal(.+)'
+# line =r'1 4 C70D54B352FED7B1!604 1336793737 "SkyDrive" Me personal "D:\Dan\SkyDrive"  ' 
+line = r'library = 1 4 C70D54B352FED7B1!604 1336793737 "SkyDrive" Me personal "D:\Dan\SkyDrive"'
+# m = re.match(PERSONAL, line)  
+# print m.group(1)
+
+# idx = line.find('Me personal')
+# print 'idx:' + str(idx)
+
+# # PERSONAL = r'?.+ Me personal (.+)'
+# PERSONAL = r'.+Me personal(.+)'
+# appdata = os.environ['APPDATA']
+
+def getskydrivefolder():
+    SKYDRIVESETTING = 'Microsoft\SkyDrive\settings\c70d54b352fed7b1.ini'
+    skydrivesetting = path.join(os.environ['LOCALAPPDATA'], SKYDRIVESETTING)
+    if path.exists(skydrivesetting):
+        with codecs.open(skydrivesetting, encoding='ascii') as f:
+            for line in f:
+                if len(line.strip())>0:
+                    # print line
+                    print type(line)
+                    idx = line.find('Me personal')
+                    print 'idx:' + str(idx)
+    else:
+        print 'No Skydrive settings found!'
+    return "";
+    
+print getskydrivefolder()
+  
