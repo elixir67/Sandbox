@@ -84,7 +84,53 @@ namespace MarbleMazeGame
             Camera.ObjectToFollow = Vector3.Transform(Position,
                 Matrix.CreateFromYawPitchRoll(Maze.Rotation.Y,
                 Maze.Rotation.X, Maze.Rotation.Z));
+
+            PlaySounds();
         }
+
+        private void PlaySounds()
+        {
+            // Calculate the pitch by the velocity
+            float volumeX = MathHelper.Clamp(Math.Abs(Velocity.X) / 400,
+                               0, 1);
+            float volumeZ = MathHelper.Clamp(Math.Abs(Velocity.Z) / 400,
+                               0, 1);
+            float volume = Math.Max(volumeX, volumeZ);
+            float pitch = volume - 1.0f;
+
+            // Play the roll sound only if the marble roll on maze
+            if (intersectDetails.IntersectWithGround &&
+                (Velocity.X != 0 || Velocity.Z != 0))
+            {
+                if (AudioManager.Instance["rolling"].State !=
+                    SoundState.Playing)
+                    AudioManager.PlaySound("rolling", true);
+
+                // Update the volume & pitch by the velocity
+                AudioManager.Instance["rolling"].Volume =
+                    Math.Max(volumeX, volumeZ);
+                AudioManager.Instance["rolling"].Pitch = pitch;
+            }
+            else
+            {
+                AudioManager.StopSound("rolling");
+            }
+
+            // Play fall sound when fall
+            if (Position.Y < -50)
+            {
+                AudioManager.PlaySound("pit");
+            }
+
+            // Play collision sound when collide with walls
+            if (intersectDetails.IntersectWithWalls)
+            {
+                AudioManager.PlaySound("collision");
+                AudioManager.Instance["collision"].Volume =
+                    Math.Max(volumeX, volumeZ);
+            }
+        }
+
 
         protected override void UpdateFinalWorldTransform()
         {

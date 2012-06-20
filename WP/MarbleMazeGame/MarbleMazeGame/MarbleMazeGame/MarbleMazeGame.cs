@@ -27,7 +27,18 @@ namespace MarbleMazeGame
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
  
             screenManager.AddScreen(new GameplayScreen(),null);
+
+            // Initialize sound system
+            AudioManager.Initialize(this);
         }
+
+        protected override void LoadContent()
+        {
+            AudioManager.LoadSounds();
+
+            base.LoadContent();
+        }
+
     }
 }
 

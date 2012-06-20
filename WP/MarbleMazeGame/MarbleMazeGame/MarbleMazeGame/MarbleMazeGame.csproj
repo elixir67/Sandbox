@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Misc\Accelerometer.cs" />
+    <Compile Include="Misc\AudioManager.cs" />
     <Compile Include="Misc\IntersectDetails.cs" />
     <Compile Include="Misc\TriangleSphereCollisionDetection.cs" />
     <Compile Include="Objects\Camera.cs" />

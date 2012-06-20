@@ -108,6 +108,7 @@ namespace MarbleMazeGame
                 if (Math.Abs(Vector3.Distance(marblePosition.Center, tmp.Next.Value))
                     <= marblePosition.Radius * 3)
                 {
+                    AudioManager.PlaySound("checkpoint");
                     lastCheackpointNode = tmp.Next;
                     return;
                 }
