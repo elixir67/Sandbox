@@ -107,7 +107,7 @@
     <Compile Include="Models\maze1.FBX">
       <Name>maze1</Name>
       <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
+      <Processor>MarbleMazeProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
