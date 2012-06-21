@@ -33,7 +33,7 @@ namespace MarbleMazeGame
 
         public override void LoadContent()
         {
-            LoadAssets();
+            //LoadAssets();
             timeFont = ScreenManager.Game.Content.Load<SpriteFont>(@"Fonts\MenuFont");
             Accelerometer.Initialize();
             base.LoadContent();

@@ -25,8 +25,10 @@ namespace MarbleMazeGame
             graphics.IsFullScreen = true;
  
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
- 
-            screenManager.AddScreen(new GameplayScreen(),null);
+
+            // Add two new screens
+            screenManager.AddScreen(new BackgroundScreen(), null);
+            screenManager.AddScreen(new MainMenuScreen(), null);
 
             // Initialize sound system
             AudioManager.Initialize(this);
@@ -35,7 +37,7 @@ namespace MarbleMazeGame
         protected override void LoadContent()
         {
             AudioManager.LoadSounds();
-
+            HighScoreScreen.LoadHighscore();
             base.LoadContent();
         }
 

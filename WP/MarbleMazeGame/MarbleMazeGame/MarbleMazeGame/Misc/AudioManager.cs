@@ -88,7 +88,7 @@ namespace MarbleMazeGame
 				{"MarbleRoll", "rolling"}, 
 				{"MarbleHit", "collision"},
 				{"MarbleFall", "pit"},
-				{"Checkpoint", "checkpoint"}
+				{"tada", "checkpoint"}
             };
 
             audioManager.soundBank = new Dictionary<string, SoundEffectInstance>();
