@@ -24,6 +24,9 @@ namespace MarbleMazeGame
         LinkedListNode<Vector3> lastCheackpointNode;
         SpriteFont timeFont;
         TimeSpan gameTime;
+        bool startScreen = true;
+        TimeSpan startScreenTime = TimeSpan.FromSeconds(4);
+
         public bool IsActive { get; set; }
 
         public GameplayScreen()
@@ -83,21 +86,37 @@ namespace MarbleMazeGame
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            // Calculate the time from the start of the game
-            this.gameTime += gameTime.ElapsedGameTime;
+            if (IsActive && !gameOver)
+            {
+                if (!startScreen)
+                {
+                    // Calculate the time from the start of the game
+                    this.gameTime += gameTime.ElapsedGameTime;
 
-            CheckFallInPit();
-            UpdateLastCheackpoint();
+                    CheckFallInPit();
+                    UpdateLastCheackpoint();
+                }
 
-            // Update all the component of the game
-            maze.Update(gameTime);
-            marble.Update(gameTime);
-            camera.Update(gameTime);
+                // Update all the component of the game
+                maze.Update(gameTime);
+                marble.Update(gameTime);
+                camera.Update(gameTime);
 
-            CheckGameFinish();
+                CheckGameFinish();
 
-            base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
-
+                base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
+            }
+            if (startScreen)
+            {
+                if (startScreenTime.Ticks > 0)
+                {
+                    startScreenTime -= gameTime.ElapsedGameTime;
+                }
+                else
+                {
+                    startScreen = false;
+                }
+            }
         }
 
         private void UpdateLastCheackpoint()
@@ -146,28 +165,39 @@ namespace MarbleMazeGame
         {
             ScreenManager.GraphicsDevice.Clear(Color.Black);
             ScreenManager.SpriteBatch.Begin();
+            if (startScreen)
+            {
+                DrawStartGame(gameTime);
+            }
+            if (IsActive)
+            {
+                // Draw the elapsed time
+                ScreenManager.SpriteBatch.DrawString(timeFont,
+                    String.Format("{0:00}:{1:00}", this.gameTime.Minutes,
+                    this.gameTime.Seconds), new Vector2(20, 20),
+                    Color.YellowGreen);
 
-            // Draw the elapsed time
-            ScreenManager.SpriteBatch.DrawString(timeFont,
-                String.Format("{0:00}:{1:00}", this.gameTime.Minutes,
-                this.gameTime.Seconds), new Vector2(20, 20), Color.YellowGreen);
+                // Drawing sprites changes some render states around, which don't
+                // play nicely with 3d models. 
+                // In particular, we need to enable the depth buffer.
+                DepthStencilState depthStensilState =
+                    new DepthStencilState() { DepthBufferEnable = true };
+                ScreenManager.GraphicsDevice.DepthStencilState = depthStensilState;
 
-            // Drawing sprites changes some render states around, which don't play
-            // nicely with 3d models. 
-            // In particular, we need to enable the depth buffer.
-            DepthStencilState depthStensilState =
-                new DepthStencilState() { DepthBufferEnable = true };
-            ScreenManager.GraphicsDevice.DepthStencilState = depthStensilState;
-
-            // Draw all the game components
-            maze.Draw(gameTime);
-            marble.Draw(gameTime);
-
+                // Draw all the game components
+                maze.Draw(gameTime);
+                marble.Draw(gameTime);
+            }
+            if (gameOver)
+            {
+                AudioManager.StopSounds();
+                DrawEndGame(gameTime);
+            }
 
             ScreenManager.SpriteBatch.End();
             base.Draw(gameTime);
-        }
 
+        }
 
         public override void HandleInput(InputState input)
         {
@@ -182,7 +212,7 @@ namespace MarbleMazeGame
                     FinishCurrentGame();
             }
 
-            if (IsActive)
+            if (IsActive && !startScreen)
             {
                 if (input.Gestures.Count > 0)
                 {
@@ -255,6 +285,8 @@ namespace MarbleMazeGame
             IsActive = true;
             gameOver = false;
             gameTime = TimeSpan.Zero;
+            startScreen = true;
+            startScreenTime = TimeSpan.FromSeconds(4);
             lastCheackpointNode = maze.Checkpoints.First;
         }
 
@@ -299,6 +331,34 @@ namespace MarbleMazeGame
             ScreenManager.AddScreen(new BackgroundScreen(), null);
             ScreenManager.AddScreen(new HighScoreScreen(), null);
         }
+
+        private void DrawEndGame(GameTime gameTime)
+        {
+            string text = HighScoreScreen.IsInHighscores(this.gameTime) ?
+                "    You got a High Score!" : "          Game Over";
+            text += "\nTouch the screen to continue";
+            Vector2 size = timeFont.MeasureString(text);
+            Vector2 textPosition = (new
+                Vector2(ScreenManager.GraphicsDevice.Viewport.Width,
+                ScreenManager.GraphicsDevice.Viewport.Height) - size) / 2f;
+
+            ScreenManager.SpriteBatch.DrawString(timeFont, text,
+                textPosition, Color.White);
+        }
+
+        private void DrawStartGame(GameTime gameTime)
+        {
+            string text = (startScreenTime.Seconds == 0) ? "Go!" :
+                startScreenTime.Seconds.ToString();
+            Vector2 size = timeFont.MeasureString(text);
+            Vector2 textPosition = (new
+                Vector2(ScreenManager.GraphicsDevice.Viewport.Width,
+                ScreenManager.GraphicsDevice.Viewport.Height) - size) / 2f;
+
+            ScreenManager.SpriteBatch.DrawString(timeFont, text, textPosition,
+            Color.White);
+        }
+
 
     }
 
