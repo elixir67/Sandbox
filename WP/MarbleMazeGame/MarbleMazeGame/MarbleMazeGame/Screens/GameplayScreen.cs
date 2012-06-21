@@ -26,6 +26,7 @@ namespace MarbleMazeGame
         TimeSpan gameTime;
         bool startScreen = true;
         TimeSpan startScreenTime = TimeSpan.FromSeconds(4);
+        public Vector3 AccelerometerCalibrationData;
 
         public bool IsActive { get; set; }
 
@@ -34,7 +35,7 @@ namespace MarbleMazeGame
             TransitionOnTime = TimeSpan.FromSeconds(0.0);
             TransitionOffTime = TimeSpan.FromSeconds(0.0);
 
-            EnabledGestures = GestureType.Tap;
+            EnabledGestures = GestureType.Tap | GestureType.DoubleTap;;
         }
 
         public override void LoadContent()
@@ -227,10 +228,27 @@ namespace MarbleMazeGame
 
                 if (!gameOver)
                 {
+                    if (Microsoft.Devices.Environment.DeviceType == DeviceType.Device)
+                    {
+                        // Calibrate the accelerometer upon a double tap
+                        if (input.Gestures.Count > 0)
+                        {
+                            GestureSample sample = input.Gestures[0];
+                            if (sample.GestureType == GestureType.DoubleTap)
+                            {
+                                CalibrateGame();
+
+                                input.Gestures.Clear();
+                            }
+                        }
+                    }
                     // Rotate the maze according to accelerometer data
                     Vector3 currentAccelerometerState =
-                            Accelerometer.GetState().Acceleration;
+                        Accelerometer.GetState().Acceleration;
 
+                    currentAccelerometerState.X -= AccelerometerCalibrationData.X;
+                    currentAccelerometerState.Y -= AccelerometerCalibrationData.Y;
+                    currentAccelerometerState.Z -= AccelerometerCalibrationData.Z;
 
                     if (Microsoft.Devices.Environment.DeviceType == DeviceType.Device)
                     {
@@ -274,6 +292,7 @@ namespace MarbleMazeGame
                 }
             }
         }
+
 
 
         internal void Restart()
@@ -359,7 +378,14 @@ namespace MarbleMazeGame
             Color.White);
         }
 
+        private void CalibrateGame()
+        {
+            IsActive = false;
+            // Pause the sounds
+            AudioManager.PauseResumeSounds(false);
 
+            ScreenManager.AddScreen(new BackgroundScreen(), null);
+            ScreenManager.AddScreen(new CalibrationScreen(this), null);
+        }
     }
-
 }
