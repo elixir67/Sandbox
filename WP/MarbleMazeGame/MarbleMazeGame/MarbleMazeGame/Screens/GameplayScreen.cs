@@ -24,11 +24,14 @@ namespace MarbleMazeGame
         LinkedListNode<Vector3> lastCheackpointNode;
         SpriteFont timeFont;
         TimeSpan gameTime;
+        public bool IsActive { get; set; }
 
         public GameplayScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.0);
             TransitionOffTime = TimeSpan.FromSeconds(0.0);
+
+            EnabledGestures = GestureType.Tap;
         }
 
         public override void LoadContent()
@@ -171,45 +174,130 @@ namespace MarbleMazeGame
             if (input == null)
                 throw new ArgumentNullException("input");
 
-            // Rotate the maze according to accelerometer data
-            Vector3 currentAccelerometerState = Accelerometer.GetState().Acceleration;
-
-            if (Microsoft.Devices.Environment.DeviceType == DeviceType.Device)
+            if (input.IsPauseGame(null))
             {
-                //Change the velocity according to acceleration reading
-                maze.Rotation.Z = (float)Math.Round(MathHelper.ToRadians(currentAccelerometerState.Y * 30), 2);
-                maze.Rotation.X = -(float)Math.Round(MathHelper.ToRadians(currentAccelerometerState.X * 30), 2);
+                if (!gameOver)
+                    PauseCurrentGame();
+                else
+                    FinishCurrentGame();
             }
-            else if (Microsoft.Devices.Environment.DeviceType == DeviceType.Emulator)
-            {
-                Vector3 Rotation = Vector3.Zero;
 
-                if (currentAccelerometerState.X != 0)
+            if (IsActive)
+            {
+                if (input.Gestures.Count > 0)
                 {
-                    if (currentAccelerometerState.X > 0)
-                        Rotation += new Vector3(0, 0, -angularVelocity);
-                    else
-                        Rotation += new Vector3(0, 0, angularVelocity);
+                    GestureSample sample = input.Gestures[0];
+                    if (sample.GestureType == GestureType.Tap)
+                    {
+                        if (gameOver)
+                            FinishCurrentGame();
+                    }
                 }
 
-                if (currentAccelerometerState.Y != 0)
+
+                if (!gameOver)
                 {
-                    if (currentAccelerometerState.Y > 0)
-                        Rotation += new Vector3(-angularVelocity, 0, 0);
-                    else
-                        Rotation += new Vector3(angularVelocity, 0, 0);
+                    // Rotate the maze according to accelerometer data
+                    Vector3 currentAccelerometerState =
+                            Accelerometer.GetState().Acceleration;
+
+
+                    if (Microsoft.Devices.Environment.DeviceType == DeviceType.Device)
+                    {
+                        //Change the velocity according to acceleration reading
+                        maze.Rotation.Z = (float)Math.Round(MathHelper.ToRadians(
+                            currentAccelerometerState.Y * 30), 2);
+                        maze.Rotation.X = -(float)Math.Round(MathHelper.ToRadians(
+                            currentAccelerometerState.X * 30), 2);
+                    }
+                    else if (Microsoft.Devices.Environment.DeviceType ==
+                        DeviceType.Emulator)
+                    {
+                        Vector3 Rotation = Vector3.Zero;
+
+                        if (currentAccelerometerState.X != 0)
+                        {
+                            if (currentAccelerometerState.X > 0)
+                                Rotation += new Vector3(0, 0, -angularVelocity);
+                            else
+                                Rotation += new Vector3(0, 0, angularVelocity);
+                        }
+
+                        if (currentAccelerometerState.Y != 0)
+                        {
+                            if (currentAccelerometerState.Y > 0)
+                                Rotation += new Vector3(-angularVelocity, 0, 0);
+                            else
+                                Rotation += new Vector3(angularVelocity, 0, 0);
+                        }
+
+                        // Limit the rotation of the maze to 30 degrees
+                        maze.Rotation.X =
+                            MathHelper.Clamp(maze.Rotation.X + Rotation.X,
+                            MathHelper.ToRadians(-30), MathHelper.ToRadians(30));
+
+                        maze.Rotation.Z =
+                            MathHelper.Clamp(maze.Rotation.Z + Rotation.Z,
+                            MathHelper.ToRadians(-30), MathHelper.ToRadians(30));
+
+                    }
                 }
-
-                // Limit the rotation of the maze to 30 degrees
-                maze.Rotation.X =
-                    MathHelper.Clamp(maze.Rotation.X + Rotation.X,
-                    MathHelper.ToRadians(-30), MathHelper.ToRadians(30));
-
-                maze.Rotation.Z =
-                    MathHelper.Clamp(maze.Rotation.Z + Rotation.Z,
-                    MathHelper.ToRadians(-30), MathHelper.ToRadians(30));
-
             }
+        }
+
+
+        internal void Restart()
+        {
+            marble.Position = maze.StartPoistion;
+            marble.Velocity = Vector3.Zero;
+            marble.Acceleration = Vector3.Zero;
+            maze.Rotation = Vector3.Zero;
+            IsActive = true;
+            gameOver = false;
+            gameTime = TimeSpan.Zero;
+            lastCheackpointNode = maze.Checkpoints.First;
+        }
+
+        private void PauseCurrentGame()
+        {
+            IsActive = false;
+            // Pause the sounds
+            AudioManager.PauseResumeSounds(false);
+
+            ScreenManager.AddScreen(new BackgroundScreen(), null);
+            ScreenManager.AddScreen(new PauseScreen(), null);
+        }
+
+        private void FinishCurrentGame()
+        {
+            IsActive = false;
+
+            foreach (GameScreen screen in ScreenManager.GetScreens())
+                screen.ExitScreen();
+
+            if (HighScoreScreen.IsInHighscores(gameTime))
+            {
+                // Show the device's keyboard
+                Guide.BeginShowKeyboardInput(PlayerIndex.One,
+                "Player Name", "Enter your name (max 15 characters)", "Player",
+                (r) =>
+                {
+                    string playerName = Guide.EndShowKeyboardInput(r);
+
+                    if (playerName != null && playerName.Length > 15)
+                        playerName = playerName.Substring(0, 15);
+
+                    HighScoreScreen.PutHighScore(playerName, gameTime);
+
+                    ScreenManager.AddScreen(new BackgroundScreen(), null);
+                    ScreenManager.AddScreen(new HighScoreScreen(), null);
+
+                }, null);
+                return;
+            }
+
+            ScreenManager.AddScreen(new BackgroundScreen(), null);
+            ScreenManager.AddScreen(new HighScoreScreen(), null);
         }
 
     }
