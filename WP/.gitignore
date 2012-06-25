@@ -4,5 +4,6 @@
 bin/
 obj/
 *.suo
-.cachefile
+*.cachefile
 *.user
+_ReSharper.*

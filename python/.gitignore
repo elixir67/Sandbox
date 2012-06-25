@@ -1,0 +1,4 @@
+#ignore .metadata, do not hide .gitignore file
+#.gitignore
+#ignore pyc file for python
+*.pyc
