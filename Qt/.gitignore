@@ -1,0 +1,15 @@
+#ignore .metadata, do not hide .gitignore file
+#.gitignore
+#ignore obj and lib file
+bin/
+obj/
+debug/
+release/
+ipch/
+*.sdf
+*.suo
+.cachefile
+*.user
+*.pdb
+ui_*
+
