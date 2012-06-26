@@ -7,6 +7,9 @@ Debug/
 ipch/
 *.sdf
 *.suo
-.cachefile
+*.exe
+*.obj
+*.cachefile
 *.user
 _ReSharper.*
+
