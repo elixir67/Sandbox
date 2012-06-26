@@ -1,4 +1,4 @@
-#coding:utf-8
+﻿#coding:utf-8
 
 import shutil
 import os
@@ -8,10 +8,6 @@ from time import gmtime, strftime
 import re
 import codecs
 
-NPP = 'Notepad++'
-NPPCONFIG = 'config.xml'
-# PERSONAL = r'?.+ Me personal (.+)'
-PERSONAL = r'.+Me personal(.+)'
 appdata = os.environ['APPDATA']
 
 # The file encoding for sky drive folder is unknown and wide characters.
@@ -19,11 +15,11 @@ appdata = os.environ['APPDATA']
 def getskydrivefolder():
     SKYDRIVESETTING = 'Microsoft\SkyDrive\settings\c70d54b352fed7b1.ini'
     skydrivesetting = path.join(os.environ['LOCALAPPDATA'], SKYDRIVESETTING)
+    PERSONAL_PATTERN = r'.+ Me personal (.+)'
     if path.exists(skydrivesetting):
-        with codecs.open(skydrivesetting, encoding='utf-8') as f:
+        with codecs.open(skydrivesetting, encoding='utf-16 LE') as f:
             for line in f:
-                uline = line.encode('utf-8')
-                m = re.match(PERSONAL, line)
+                m = re.match(PERSONAL_PATTERN, line)                
                 if m:
                     cloudfolder = m.group(1).strip()
                     cloudfolder = cloudfolder.replace('\"','').strip()
@@ -96,7 +92,9 @@ def confirm(prompt=None, resp=False):
         if ans == 'n' or ans == 'N':
             return False
      
-def updatenpp():    
+def updatenpp():  
+    NPP = 'Notepad++'
+    NPPCONFIG = 'config.xml'  
     cloudbakup = getcloudbakupfolder()    
     nppcloud = path.join(path.join(cloudbakup, NPP),NPPCONFIG)
     # Roam Notepad++ settings
@@ -108,6 +106,7 @@ def updatenpp():
         copysettings(nppcloud, npplocal)
         
 updatenpp()
+#print getskydrivefolder()
         
 
     
