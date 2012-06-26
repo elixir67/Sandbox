@@ -1,0 +1,139 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="TelerikToDo.EditTask"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="False"
+     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:phoneMaps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
+    xmlns:local="clr-namespace:TelerikToDo"
+    >
+    <phone:PhoneApplicationPage.Resources>
+        <local:EnumViewModel x:Name="TaskPriorities" EnumType="TelerikToDo.TaskPriority"/>
+        <local:EnumViewModel x:Name="TaskRecurrences" EnumType="TelerikToDo.TaskRecurrence"/>
+    </phone:PhoneApplicationPage.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource InnerPageBackground}">
+        <Image Style="{StaticResource InnerPageLogoStyle}"/>
+
+        <TextBlock Style="{StaticResource PageTitleStyle}" Margin="24,82,0,0" Text="TASK DETAILS" />
+
+        <ScrollViewer Margin="12,142,12,0">
+            <StackPanel>
+                <TextBlock Text="Name" Style="{StaticResource TextBoxHeaderStyle}"/>
+                <TextBox x:Name="TaskName" MaxLength="50" Text="{Binding Name, Mode=TwoWay}"/>
+                <StackPanel Orientation="Horizontal" x:Name="CategoryPresenter" Margin="12,12,0,0">
+                    <Image Source="{Binding Id, Converter={StaticResource CategoryToImageSourceConverter}}"/>
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Top" Style="{StaticResource TextBlockHeaderStyle}" Text="{Binding Name}"/>
+                </StackPanel>
+                <TextBlock Text="Project" Style="{StaticResource ListPickerHeaderStyle}"/>
+                <telerikInput:RadListPicker x:Name="ProjectPicker" DisplayMemberPath="Name"/>
+
+                <TextBlock Text="Due Date" Style="{StaticResource TextBoxHeaderStyle}"/>
+                <telerikInput:RadDatePicker Value="{Binding DueDate, Mode=TwoWay}"/>
+                <telerikInput:RadTimePicker Value="{Binding DueDate, Mode=TwoWay}" />
+
+                <StackPanel x:Name="CategoryFieldsContainer" >
+
+                </StackPanel>
+                <Button Content="more details" Click="ShowAdvancedOptions_Click" Foreground="Black" BorderBrush="Black"/>
+                <StackPanel x:Name="AdvancedFieldsContainer" Visibility="Collapsed" >
+
+                    <TextBlock Text="Priority" Style="{StaticResource ListPickerHeaderStyle}"/>
+                    <telerikInput:RadListPicker ItemsSource="{Binding Source={StaticResource TaskPriorities}, Path=Values}"  SelectedItem="{Binding Priority, Mode=TwoWay}" />
+
+                    <TextBlock Text="Recurrence" Style="{StaticResource ListPickerHeaderStyle}"/>
+                    <telerikInput:RadListPicker ItemsSource="{Binding Source={StaticResource TaskRecurrences}, Path=Values}" SelectedItem="{Binding Recurrence, Mode=TwoWay}"/>
+
+
+                    <Grid x:Name="EmailPicker">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Email" Style="{StaticResource TextBoxHeaderStyle}"/>
+                        <TextBox Grid.Row="1" Text="{Binding Email, Mode=TwoWay}" InputScope="EmailNameOrAddress" />
+                        <Button Grid.Row="1" Grid.Column="1" Content="@" Click="GetEmail_Click" Width="75" Foreground="Black" BorderBrush="Black"/>
+                    </Grid>
+
+                    <TextBlock Text="Phone" Style="{StaticResource TextBoxHeaderStyle}"/>
+                    <Grid x:Name="PhonePicker">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Text="{Binding Phone, Mode=TwoWay}" InputScope="TelephoneNumber" />
+                        <Button Grid.Column="1" Content="#" Click="AddPhoneButton_Click" Width="75" Foreground="Black" BorderBrush="Black"/>
+                    </Grid>
+
+                    <StackPanel x:Name="UrlContainer">
+                        <TextBlock Text="Url" Style="{StaticResource TextBoxHeaderStyle}"/>
+                        <TextBox Text="{Binding Url, Mode=TwoWay}" InputScope="Url"/>
+                    </StackPanel>
+                    <StackPanel x:Name="NotesContainer">
+                        <TextBlock Text="Notes" Style="{StaticResource TextBoxHeaderStyle}"/>
+                        <TextBox AcceptsReturn="True" Height="160" TextWrapping="Wrap" Text="{Binding Notes, Mode=TwoWay}"/>
+                    </StackPanel>
+
+                    <Grid x:Name="RichContent">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Photo Preview -->
+                        <Image Width="99" Height="99" Stretch="Fill" Margin="12,20,25,20" x:Name="PhotoPreviewElement" MouseLeftButtonDown="AddPhoto_Click" Source="/Images/PhotoPreviewPlaceholder.png"/>
+                        <Image Visibility="Collapsed" MouseLeftButtonDown="DeletePhoto_Click" Margin="0,0,25,0" x:Name="DeletePhotoIcon" Source="/Images/RichElementDeleteIcon.png" Stretch="None" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                        <Image Visibility="Collapsed" MouseLeftButtonDown="EditPhoto_Click" Margin="22" x:Name="EditPhotoIcon" Source="/Images/RichElementEditIcon.png" Stretch="None" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        <Image Visibility="Collapsed" MouseLeftButtonDown="AddPhoto_Click"  Margin="22" x:Name="AddPhotoIcon" Source="/Images/RichElementAddIcon.png" Stretch="None" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+
+                        <!-- Voice Preview -->
+                        <Image Width="99" Height="99" Margin="0,20,14,20" Grid.Column="1" Source="/Images/VoicePreviewPlaceholder.png" x:Name="VoicePicker" />
+                        <Image Visibility="Collapsed" MouseLeftButtonDown="DeleteVoiceMemo_Click" Margin="0,0,14,0" x:Name="DeleteVoiceMemoIcon" Grid.Column="1" Source="/Images/RichElementDeleteIcon.png" Stretch="None" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+                        <Image Visibility="Collapsed" MouseLeftButtonDown="StopVoiceMemo_Click" Margin="22" x:Name="StopVoiceMemoIcon" Grid.Column="1" Source="/Images/RichElementStopIcon.png" Stretch="None" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        <Image Visibility="Collapsed" MouseLeftButtonDown="EditVoiceMemo_Click" Margin="22" x:Name="EditVoiceMemoIcon" Grid.Column="1" Source="/Images/RichElementEditIcon.png" Stretch="None" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                        <Image Visibility="Collapsed" MouseLeftButtonDown="AddVoiceMemo_Click" Margin="22" x:Name="AddVoiceMemoIcon" Grid.Column="1" Source="/Images/RichElementAddIcon.png" Stretch="None" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+
+                        <!-- Location Preview -->
+                        <telerikPrimitives:RadPickerBox x:Name="LocationPicker" Grid.Column="2" Background="Transparent">
+                            <telerikPrimitives:RadPickerBox.Content>
+                                <Image Width="99" Height="99" Margin="-9" Source="/Images/LocationPreviewPlaceholder.png"/>
+                            </telerikPrimitives:RadPickerBox.Content>
+                            <telerikPrimitives:RadPickerBox.ApplicationBarInfo>
+                                <telerikPrimitives:ApplicationBarInfo ButtonClick="ApplicationBarInfo_ButtonClick">
+                                    <telerikPrimitives:ApplicationBarButton x:Name="UseCurrentLocationAppButton" Text="Current" IconUri="/Images/Add.png"/>
+                                    <telerikPrimitives:ApplicationBarButton x:Name="GetLocationAppButton" Text="Pick" IconUri="/Images/OK.png"/>
+                                    <telerikPrimitives:ApplicationBarButton x:Name="CancelAppButton" Text="Cancel" IconUri="/Images/Cancel.png"/>
+                                </telerikPrimitives:ApplicationBarInfo>
+                            </telerikPrimitives:RadPickerBox.ApplicationBarInfo>
+                            <phoneMaps:Map x:Name="BingMap1" MouseLeftButtonDown="BingMap1_MouseLeftButtonDown" ZoomBarVisibility="Visible" />
+                        </telerikPrimitives:RadPickerBox>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" BackgroundColor="#8AB331">
+            <shell:ApplicationBarIconButton IconUri="/Images/Save.png" Click="SaveButton_Click" Text="Save"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Cancel.png" Click="CancelButton_Click" Text="Cancel"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

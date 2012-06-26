@@ -1,0 +1,3867 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.Windows.Controls.Chart</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.Charting.ChartElement">
+            <summary>
+            Base class for nodes that may have chidren.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.ChartNode">
+            <summary>
+            Base class for all models that form the ChartArea tree.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.PropertyBagObject">
+            <summary>
+            Represents a <see cref="T:Telerik.Charting.DisposableObject"/> that stores its properties within a property bag.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.DisposableObject">
+            <summary>
+            Represents an object that implements the <see cref="T:System.IDisposable"/> interface and automatically releases any events, attached to this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.DisposableObject.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.DisposableObject"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.DisposableObject.Dispose">
+            <summary>
+            Releases all resources, used by this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.DisposableObject.DisposeManagedResources">
+            <summary>
+            Disposes all managed resources allocated by this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.DisposableObject.DisposeUnmanagedResources">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:Telerik.Charting.DisposableObject.Disposing">
+            <summary>
+            Raised when the object enters its Dispose routine.
+            </summary>
+        </member>
+        <member name="E:Telerik.Charting.DisposableObject.Disposed">
+            <summary>
+            Raised when the object has finished its Dispose routine.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DisposableObject.IsDisposing">
+            <summary>
+            Determines whether the object is currently in a Dispose cycle.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DisposableObject.IsDisposed">
+            <summary>
+            Determines whether the object is already disposed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DisposableObject.Events">
+            <summary>
+            Gets the list of all events, associated with this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.PropertyBagObject.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.PropertyBagObject"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.PropertyBagObject.DisposeManagedResources">
+            <summary>
+            Disposes all managed resources allocated by this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ChartNode.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.ChartNode"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ChartNode.Arrange(Telerik.Charting.RadRect)">
+            <summary>
+            Arranges the node within the specified layout slot.
+            </summary>
+            <param name="rect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ChartNode.Invalidate">
+            <summary>
+            Delegates an "Invalidate" request to the owning <see cref="T:Telerik.Charting.IChartView"/> instance (if any).
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ChartNode.ApplyLayoutRounding">
+            <summary>
+            Performs pixel-snapping and corrects floating-point calculations errors.
+            </summary>
+        </member>
+        <member name="E:Telerik.Charting.ChartNode.PropertyChanged">
+            <summary>
+            Occurs when a value of some property has changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.IsArrangeValid">
+            <summary>
+            Determines whether the node is laid-out on the chart scene.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.NodeState">
+            <summary>
+            Gets the current state of the node.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.Index">
+            <summary>
+            Gets the index of this node in its parent <see cref="T:Telerik.Charting.ChartElement"/> nodes collection.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.CollectionIndex">
+            <summary>
+            Gets the index of this node in its owning typed collection.
+            An <see cref="T:Telerik.Charting.AxisLabelModel"/> for example will have this property set to the index of the label within the <see cref="P:Telerik.Charting.AxisModel.Labels"/> collection.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.IsTreeLoaded">
+            <summary>
+            Determines whether the logical tree this node is part of is loaded.
+            This actually checks for a valid <see cref="T:Telerik.Charting.ChartAreaModel"/> reference and asks whether the area itself is loaded.
+            This value may differ from the current <see cref="P:Telerik.Charting.ChartNode.NodeState"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.LayoutSlot">
+            <summary>
+            Gets the rectangle (in physical coordinates) where this node resides.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.Parent">
+            <summary>
+            Gets the <see cref="T:Telerik.Charting.ChartElement"/> where this node resides.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.Presenter">
+            <summary>
+            Gets the <see cref="T:Telerik.Charting.IChartElementPresenter"/> instance where this node is visualized.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.TrackPropertyChanging">
+            <summary>
+            Determines whether the node will go through the OnPropertyChanging routine when a property is about to be changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartNode.TrackPropertyChanged">
+            <summary>
+            Determines whether the node will go through the OnPropertyChanged routine when a property has changed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ChartElement.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.ChartElement"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ChartElement.FindAncestor``1">
+            <summary>
+            Searches up the parent chain and returns the first parent of type T.
+            </summary>
+            <typeparam name="T">Must be a <see cref="T:Telerik.Charting.ChartElement"/>.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ChartElement.IsAncestorOf(Telerik.Charting.ChartNode)">
+            <summary>
+            Gets a boolean value that determines whether a given element
+            resides in the element hierarchy of this element.
+            </summary>
+            <param name="node">An instance of the <see cref="T:Telerik.Charting.ChartNode"/>
+            class which is checked.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ChartElement.FindDescendant``1">
+            <summary>
+            Searches down the subtree of elements, using breadth-first approach, and returns the first descendant of type T.
+            </summary>
+            <typeparam name="T">Must be a <see cref="T:Telerik.Charting.ChartNode"/>.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ChartElement.FindDescendant(System.Predicate{Telerik.Charting.ChartNode})">
+            <summary>
+            Searches down the subtree of elements, using breadth-first approach, and returns the first descendant of type T.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ChartElement.EnumDescendants">
+            <summary>
+            Provides flexible routine for traversing all descendants of this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ChartElement.EnumDescendants(Telerik.Charting.TreeTraversalMode)">
+            <summary>
+            Provides flexible routine for traversing all descendants of this instance.
+            </summary>
+            <param name="traverseMode">The mode used to traverse the subtree.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ChartElement.EnumDescendants(System.Predicate{Telerik.Charting.ChartNode},Telerik.Charting.TreeTraversalMode)">
+            <summary>
+            Provides flexible routine for traversing all descendants of this instance that match the provided predicate.
+            </summary>
+            <param name="predicate">The predicate that defines the match criteria.</param>
+            <param name="traverseMode">The mode used to traverse the subtree.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ChartElement.DisposeManagedResources">
+            <summary>
+            Disposes all managed resources allocated by this instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartElement.Presenter">
+            <summary>
+            Gets the <see cref="T:Telerik.Charting.IChartElementPresenter"/> instance where this element is presented.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.AxisModel.ApplyLayoutRounding">
+            <summary>
+            Performs pixel-snapping and corrects floating-point calculations errors.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.AxisModel.GetCombineGroupKey(Telerik.Charting.DataPoint)">
+            <summary>
+            Gets the key used to group series when combination mode like Stack is specified.
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.AxisModel.GetStackValue(Telerik.Charting.DataPoint,System.Boolean@)">
+            <summary>
+            Gets the value for a DataPoint used by a CombineStrategy to calculate the stack sum for each stack group.
+            </summary>
+            <param name="point"></param>
+            <param name="positive">Determines whether the point value is positive relative to the plot origin.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.AxisModel.OnAxisArranged(Telerik.Charting.RadRect)">
+            <summary>
+            Notifies the axis that another axis within the cartesian chart area is arranged.
+            Allows the axis to re-arrange its content so that the proper plot area is calculated.
+            This logic may be performed several times until all axes have fit their content in the best possible way.
+            </summary>
+            <param name="remainingRect"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.LabelFormat">
+            <summary>
+            Gets or sets the string that formats the labels of the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.LastLabelVisibility">
+            <summary>
+            Gets or sets the strategy that defines the last axis label visibility.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.LabelFitMode">
+            <summary>
+            Gets or sets a value that determines how the axis labels will be laid out when they are overlapping each other.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.LabelInterval">
+            <summary>
+            Gets or sets the step at which labels are positioned.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.LabelOffset">
+            <summary>
+            Gets or sets index offset from the first label to be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.MajorTickOffset">
+            <summary>
+            Gets or sets index offset of the first tick to be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.MajorTicks">
+            <summary>
+            Gets the collection with all the major ticks, currently present on the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.Labels">
+            <summary>
+            Gets all the labels currently present on the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.TickThickness">
+            <summary>
+            Gets or sets the thickness of a single tick presented on the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.ShowLabels">
+            <summary>
+            Determines whether labels will be displayed on this axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.MajorTickLength">
+            <summary>
+            Gets or sets the length of a single tick presented on the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.LineThickness">
+            <summary>
+            Gets or sets the thickness of the axis line.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.FirstTick">
+            <summary>
+            Gets the first tick present on the axis. Valid when the axis is loaded.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.LastTick">
+            <summary>
+            Gets the first tick present on the axis. Valid when the axis is loaded.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.Type">
+            <summary>
+            Gets the type (X or Y) of this instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.Title">
+            <summary>
+            Gets the <see cref="T:Telerik.Charting.AxisTitleModel"/> instance that represents the title of this axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.ActualPlotMode">
+            <summary>
+            Gets the plot mode actually used by this axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AxisModel.Ticks">
+            <summary>
+            Gets the collection with all the tick currently present on this axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ContentNode.Content">
+            <summary>
+            Gets or sets the content associated with the node.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.AxisType">
+            <summary>
+            Defines the possible type for an axis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisType.X">
+            <summary>
+            X (or horizontal) axis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisType.Y">
+            <summary>
+            Y (or vertical) axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CategoricalAxisModel.MajorTickInterval">
+            <summary>
+            Gets or sets the step at which ticks are positioned.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CategoricalAxisModel.PlotMode">
+            <summary>
+            Gets or sets the plot mode used to position points along the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CategoricalAxisModel.GapLength">
+            <summary>
+            Gets or sets the length of the gap to be applied for each category.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CategoricalAxisModel.ActualPlotMode">
+            <summary>
+            Gets the plot mode actually used by this axis.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Telerik.Charting.AxisLabelFitMode">
+            <summary>
+            Determines the label fit mode of the chart axis labels.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisLabelFitMode.None">
+            <summary>
+            Does not attempt to fit the axis labels.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisLabelFitMode.MultiLine">
+            <summary>
+            Arranges axis labels on multiple lines with each label on a different line
+            than its neighbor labels.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisLabelFitMode.Rotate">
+            <summary>
+            Arranges the axis labels so that they are rotated some degrees around their top left corner.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.AxisLastLabelVisibility">
+            <summary>
+            Defines the strategy that will update the last label of the axis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisLastLabelVisibility.Visible">
+            <summary>
+            The desired space is reserved so that the label is fully visible.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisLastLabelVisibility.Hidden">
+            <summary>
+            The last label is not displayed.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisLastLabelVisibility.Clip">
+            <summary>
+            The last label is displayed but no space if reserved so that it is fully visible.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.AxisModelLayoutStrategy.GetVisibleRange(Telerik.Charting.RadRect)">
+            <summary>
+            Gets the currently visible axis range within the [0, 1] order.
+            We are using decimal here for higher precision; the Double type generates ridiculous floating-point errors - e.g. 1.2 / 0.2 != 6 but rather 5.999999999999991.
+            </summary>
+            <param name="availableRect"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Charting.AxisPlotMode">
+            <summary>
+            Defines how data points are plotted by an axis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisPlotMode.BetweenTicks">
+            <summary>
+            Points are plotted in the middle of the range, defined between each two ticks.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AxisPlotMode.OnTicks">
+            <summary>
+            Points are plotted over each tick.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.DateTimeComponent">
+            <summary>
+            Represents a component of the <see cref="T:System.DateTime"/> structure.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.DateTimeComponent.Year">
+            <summary>
+            The <see cref="P:System.DateTime.Year"/> component.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.DateTimeComponent.Month">
+            <summary>
+            The <see cref="P:System.DateTime.Month"/> component.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.DateTimeComponent.Day">
+            <summary>
+            The <see cref="P:System.DateTime.Day"/> component.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.DateTimeComponent.DayOfWeek">
+            <summary>
+            The <see cref="P:System.DateTime.DayOfWeek"/> component.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.DateTimeComponent.DayOfYear">
+            <summary>
+            The <see cref="P:System.DateTime.DayOfYear"/> component.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.DateTimeComponent.Hour">
+            <summary>
+            The <see cref="P:System.DateTime.Hour"/> component.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.DateTimeComponent.Minute">
+            <summary>
+            The <see cref="P:System.DateTime.Minute"/> component.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.DateTimeComponent.Second">
+            <summary>
+            The <see cref="P:System.DateTime.Second"/> component.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.DateTimeComponent.Millisecond">
+            <summary>
+            The <see cref="P:System.DateTime.Millisecond"/> component.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.TimeInterval">
+            <summary>
+            Specifies the predefined time interval types.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TimeInterval.Year">
+            <summary>
+            1 Year (365 days).
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TimeInterval.Quarter">
+            <summary>
+            1 Quarter (3 months).
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TimeInterval.Month">
+            <summary>
+            1 Month.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TimeInterval.Week">
+            <summary>
+            1 Week (7 days).
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TimeInterval.Day">
+            <summary>
+            1 Day.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TimeInterval.Hour">
+            <summary>
+            1 Hour.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TimeInterval.Minute">
+            <summary>
+            1 Minute.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TimeInterval.Second">
+            <summary>
+            1 Minute.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TimeInterval.Millisecond">
+            <summary>
+            1 Millisecond.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.DateTimeContinuousAxisModel">
+            <summary>
+            Defines a DateTime axis that uses the actual timeline to plot series points.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.PlotMode">
+            <summary>
+            Gets or sets the plot mode used to position points along the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.MajorStep">
+            <summary>
+            Gets or sets custom major step of the axis. The TimeSpan between each tick is calculated by using this value and the MajorStepUnit.
+            Specify double.PositiveInfinity or double.NegativeInfinity to clear the custom value and to generate the step automatically.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.MajorStepUnit">
+            <summary>
+            Gets or sets the unit that defines the custom major step of the axis.
+            If no explicit step is defined, the axis will automatically calculate one, depending on the smallest difference between any two dates.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.Minimum">
+            <summary>
+            Gets or sets the custom minimum of the axis.
+            Specify DateTime.MinValue to clear the property value so that the minimum is auto-generated.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.Maximum">
+            <summary>
+            Gets or sets the custom maximum of the axis.
+            Specify DateTime.MaxValue to clear the property value so that the maximum is auto-generated.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.MonthStep">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.DateTimePoints">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.ActualRange">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.PlotInformation">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.TickInterval">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DateTimeContinuousAxisModel.MinDelta">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.NumericalAxisModel.GetStackValue(Telerik.Charting.DataPoint,System.Boolean@)">
+            <summary>
+            Gets the value for a DataPoint used by a CombineStrategy to calculate the stack sum for each stack group.
+            </summary>
+            <param name="point"></param>
+            <param name="positive">Determines whether the point value is positive relative to the plot origin.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.NumericalAxisModel.OnPropertyChanged(Telerik.Charting.RadPropertyEventArgs)">
+            <summary>
+            Raises the <see cref="E:PropertyChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:Telerik.Charting.RadPropertyEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Telerik.Charting.NumericalAxisModel.RangeExtendDirection">
+            <summary>
+            Gets or sets a value that specifies how the auto-range of this axis will be extended so that each data point is visualized in the best possible way.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.NumericalAxisModel.MajorStep">
+            <summary>
+            Gets or sets the user-defined major step of the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.NumericalAxisModel.Minimum">
+            <summary>
+            Gets or sets the user-defined minimum of the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.NumericalAxisModel.Maximum">
+            <summary>
+            Gets or sets the user-defined maximum of the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.NumericalAxisModel.ActualRange">
+            <summary>
+            Gets the actual range (minimum and maximum values) used by the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.LogarithmicAxisModel.LogarithmBase">
+            <summary>
+            Gets the base of the logarithm used for normalizing data points' values.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.NumericalAxisRangeExtendDirection">
+            <summary>
+            Specifies how a numerical axis auto-range will be extended so that each data point is visualized in the best possible way.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.NumericalAxisRangeExtendDirection.None">
+            <summary>
+            The range minimum is the minimum data point value and the range maximum is the maximum data point value.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.NumericalAxisRangeExtendDirection.Positive">
+            <summary>
+            The range maximum will be extended (if necessary) with one major step.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.NumericalAxisRangeExtendDirection.Negative">
+            <summary>
+            The range minimum will be extended (if necessary) with one major step.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.NumericalAxisRangeExtendDirection.Both">
+            <summary>
+            The range will be extended in both negative and positive direction.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.ValueRange`1">
+            <summary>
+            Represents a structure that defines a range of two IComparable structures - like Single or Double.
+            </summary>
+            <typeparam name="T">Must implement the <see cref="T:System.IComparable"/> interface.</typeparam>
+        </member>
+        <member name="F:Telerik.Charting.ValueRange`1.Empty">
+            <summary>
+            Empty value range where minimum and maximum are set to their default(T) value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ValueRange`1.#ctor(`0,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.ValueRange`1"/> struct.
+            </summary>
+            <param name="min">The min.</param>
+            <param name="max">The max.</param>
+        </member>
+        <member name="M:Telerik.Charting.ValueRange`1.op_Equality(Telerik.Charting.ValueRange{`0},Telerik.Charting.ValueRange{`0})">
+            <summary>
+            Determines whether two ranges are equal.
+            </summary>
+            <param name="r1"></param>
+            <param name="r2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ValueRange`1.op_Inequality(Telerik.Charting.ValueRange{`0},Telerik.Charting.ValueRange{`0})">
+            <summary>
+            Determines whether two ranges are not equal.
+            </summary>
+            <param name="r1"></param>
+            <param name="r2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ValueRange`1.IsInRangeExclusive(`0)">
+            <summary>
+            Determines whether the specified value is within the range, excluding its minimum and maximum values.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ValueRange`1.IsInRangeInclusive(System.Double)">
+            <summary>
+            Determines whether the specified value is within the range, including its minimum and maximum values.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ValueRange`1.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+            	<c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Charting.ValueRange`1.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Telerik.Charting.ValueRange`1.Maximum">
+            <summary>
+            Gets or sets the maximum value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ValueRange`1.Minimum">
+            <summary>
+            Gets or sets the minimum value.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.TickType">
+            <summary>
+            Defines the possible types of an axis tick.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TickType.Major">
+            <summary>
+            Identifies major ticks.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TickType.Minor">
+            <summary>
+            Identifies minor ticks.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.AngleRange">
+            <summary>
+            Represents a structure that defines the starting and sweeping angles of an ellipse Arc.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.AngleRange.Default">
+            <summary>
+            The default structure value with its starting angle set to 0 and its sweep angle set to 360.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.AngleRange.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.AngleRange"/> struct.
+            </summary>
+            <param name="startAngle">The start angle.</param>
+            <param name="sweepAngle">The sweep angle.</param>
+        </member>
+        <member name="M:Telerik.Charting.AngleRange.op_Equality(Telerik.Charting.AngleRange,Telerik.Charting.AngleRange)">
+            <summary>
+            Implements the operator ==.
+            </summary>
+            <param name="r1">The first range.</param>
+            <param name="r2">The second range.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Telerik.Charting.AngleRange.op_Inequality(Telerik.Charting.AngleRange,Telerik.Charting.AngleRange)">
+            <summary>
+            Implements the operator !=.
+            </summary>
+            <param name="r1">The first range.</param>
+            <param name="r2">The second range.</param>
+            <returns>The result of the operator.</returns>
+        </member>
+        <member name="M:Telerik.Charting.AngleRange.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+            	<c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Charting.AngleRange.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Telerik.Charting.AngleRange.StartAngle">
+            <summary>
+            Gets or sets start angle from which the arc starts.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.AngleRange.SweepAngle">
+            <summary>
+            Gets or sets the angle that defines the length of the Arc.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ChartAreaModel.Arrange">
+            <summary>
+            Arranges the area using a rectangle located at (0, 0) and with Size equal to the current view's Viewport.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartAreaModel.PlotArea">
+            <summary>
+            Gets the area where data points are plotted.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartAreaModel.Series">
+            <summary>
+            Gets the collection with all the series currently plotted by this instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartAreaModel.IsTreeLoaded">
+            <summary>
+            Determines whether the node is loaded.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Telerik.Charting.ChartAreaModel.IsSuspended">
+            <summary>
+            Determines whether updates are currently suspended.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartAreaModel.Dispatcher">
+            <summary>
+            Gets the dispatcher used to broadcast messages among tree nodes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CartesianChartAreaModel.Grid">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Charting.CartesianChartGridModel"/> instance that decorates the background of this plot area.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CartesianChartAreaModel.IsTreeLoaded">
+            <summary>
+            Determines whether the plot area is fully loaded and may be visualized.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CartesianChartAreaModel.HorizontalAxis">
+            <summary>
+            Gets or sets the Horizontal (or X) axis of the plot area.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CartesianChartAreaModel.VerticalAxis">
+            <summary>
+            Gets or sets the Vertical (or Y) axis of the plot area.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.ChartPlotAreaModel">
+            <summary>
+            Base class for plot areas in different charts.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.ElementCollection`1">
+            <summary>
+            Represents a typed collection of <see cref="T:Telerik.Charting.ChartNode"/> instances. For example an <see cref="T:Telerik.Charting.AxisModel"/> aggregates two typed collections - Ticks and Labels.
+            </summary>
+            <typeparam name="T">Must be a <see cref="T:Telerik.Charting.ChartNode"/>.</typeparam>
+        </member>
+        <member name="M:Telerik.Charting.ElementCollection`1.#ctor(Telerik.Charting.ChartElement)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.ElementCollection`1"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+        </member>
+        <member name="M:Telerik.Charting.ElementCollection`1.InsertItem(System.Int32,`0)">
+            <summary>
+            Inserts the item at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Telerik.Charting.ElementCollection`1.ClearItems">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ElementCollection`1.RemoveItem(System.Int32)">
+            <summary>
+            Removes the item at the specified index.
+            </summary>
+            <param name="index">The index.</param>
+        </member>
+        <member name="T:Telerik.Charting.EventHandlerList">
+            <summary>
+            Represents a list of delegates.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.EventHandlerList.Clear">
+            <summary>
+            Clears the list.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.EventHandlerList.AddHandler(System.Object,System.Delegate)">
+            <summary>
+            Adds the specified delegate associated with the provided key.
+            </summary>
+            <param name="key"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Telerik.Charting.EventHandlerList.RemoveHandler(System.Object,System.Delegate)">
+            <summary>
+            Removes the specified delegate associated with the provided key.
+            </summary>
+            <param name="key"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="P:Telerik.Charting.EventHandlerList.Item(System.Object)">
+            <summary>
+            Retrieves the delegate, associated with the provided key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Charting.RadMath">
+            <summary>
+            Provides static mathematical functions and constants.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadMath.DegToRadFactor">
+            <summary>
+            The factor used to convert degrees to their radians equivalent.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.RadMath.IsZero(System.Double)">
+            <summary>
+            Determines whether the specified value is close to 0 within the order of EPSILON.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadMath.IsZero(System.Decimal)">
+            <summary>
+            Determines whether the specified value is close to 0 within the order of EPSILON.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadMath.IsOne(System.Double)">
+            <summary>
+            Determines whether the specified value is close to 1 within the order of EPSILON.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadMath.IsOne(System.Decimal)">
+            <summary>
+            Determines whether the specified value is close to 1 within the order of EPSILON.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadMath.AreClose(System.Double,System.Double)">
+            <summary>
+            Determines whether the two specified values are close within the order of EPSILON.
+            </summary>
+            <param name="value1"></param>
+            <param name="value2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadMath.GetPointDistance(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Gets the distance between two points in a plane.
+            </summary>
+            <param name="x1">The x-coordinate of the first point.</param>
+            <param name="x2">The x-coordinate of the second point.</param>
+            <param name="y1">The y-coordinate of the first point.</param>
+            <param name="y2">The y-coordinate of the second point.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Charting.RadRect">
+            <summary>
+            Represents a Rectangle in the Euclidean plane geometry.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadRect.Invalid">
+            <summary>
+            Invalid rectangle, which Width and Height properties are set to (-1).
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadRect.Empty">
+            <summary>
+            Empty rectangle which values are zeroes.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadRect.X">
+            <summary>
+            The X-coordinate of the rectangle.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadRect.Y">
+            <summary>
+            The Y-coordinate of the rectangle.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadRect.Width">
+            <summary>
+            The length of the rectangle along the X-axis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadRect.Height">
+            <summary>
+            The length of the rectangle along the Y-axis.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.RadRect"/> struct.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.RadRect"/> struct.
+            </summary>
+            <param name="x">The x.</param>
+            <param name="y">The y.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.Round(Telerik.Charting.RadRect)">
+            <summary>
+            Rounds the rectangle's values to the closed whole number.
+            </summary>
+            <param name="rect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.Floor(Telerik.Charting.RadRect)">
+            <summary>
+            Rounds the rectangle's value to the closest less than or equal to whole numbers.
+            </summary>
+            <param name="rect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.op_Equality(Telerik.Charting.RadRect,Telerik.Charting.RadRect)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Charting.RadRect"/> structures are equal.
+            </summary>
+            <param name="rect1"></param>
+            <param name="rect2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.op_Inequality(Telerik.Charting.RadRect,Telerik.Charting.RadRect)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Charting.RadRect"/> structures are not equal.
+            </summary>
+            <param name="rect1"></param>
+            <param name="rect2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.Subtract(Telerik.Charting.RadRect,Telerik.Charting.RadRect)">
+            <summary>
+            Gets the difference between two <see cref="T:Telerik.Charting.RadRect"/> structures.
+            </summary>
+            <param name="rect1"></param>
+            <param name="rect2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.IsSizeValid">
+            <summary>
+            Determines whether the size of this rect is valid - that is both Width and Height should be bigger than zero.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+            	<c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.Contains(System.Double,System.Double)">
+            <summary>
+            Determines if this RadRect instance contains the point that is described by the arguments.
+            </summary>
+            <param name="x">The X coordinate of the point to check.</param>
+            <param name="y">The X coordinate of the point to check.</param>
+            <returns>Returns true if this rectangle contains the point from the arguments and false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Charting.RadRect.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:Telerik.Charting.RadRect.Bottom">
+            <summary>
+            Gets the Y-coordinate of the bottom side of the rectangle.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.RadRect.Right">
+            <summary>
+            Gets the X-coordinate of the right side of the rectangle.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.RadSize">
+            <summary>
+            Represents a structure that defines a size in the two-dimensional space.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadSize.Empty">
+            <summary>
+            A <see cref="T:Telerik.Charting.RadSize"/> instance which Width and Height are set to 0.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadSize.Invalid">
+            <summary>
+            A <see cref="T:Telerik.Charting.RadSize"/> instance which Width and Height are set to -1.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadSize.Width">
+            <summary>
+            The length along the horizontal axis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadSize.Height">
+            <summary>
+            The length along the vertical axis.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.RadSize.#ctor(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.RadSize"/> struct.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:Telerik.Charting.RadSize.op_Equality(Telerik.Charting.RadSize,Telerik.Charting.RadSize)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Charting.RadSize"/> structures are equal.
+            </summary>
+            <param name="size1"></param>
+            <param name="size2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadSize.op_Inequality(Telerik.Charting.RadSize,Telerik.Charting.RadSize)">
+            <summary>
+            Determines whether two <see cref="T:Telerik.Charting.RadSize"/> structures are not equal.
+            </summary>
+            <param name="size1"></param>
+            <param name="size2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.RadSize.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+            	<c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Charting.RadSize.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="T:Telerik.Charting.RadThickness">
+            <summary>
+            Represents a structure that defines margins (or padding) of an element.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadThickness.Left">
+            <summary>
+            Left length.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadThickness.Top">
+            <summary>
+            Top length.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadThickness.Right">
+            <summary>
+            Right length.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.RadThickness.Bottom">
+            <summary>
+            Bottom length.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.RadThickness.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.RadThickness"/> struct.
+            </summary>
+            <param name="left">The left.</param>
+            <param name="top">The top.</param>
+            <param name="right">The right.</param>
+            <param name="bottom">The bottom.</param>
+        </member>
+        <member name="T:Telerik.Charting.IDataPointProcessor">
+            <summary>
+            Defines a type that may enrich a <see cref="T:Telerik.Charting.DataPoint"/> with additional properties.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.IDataPointProcessor.Process(Telerik.Charting.DataPoint)">
+            <summary>
+            Performs the core action over the specified point.
+            </summary>
+            <param name="dataPoint"></param>
+        </member>
+        <member name="P:Telerik.Charting.IDataPointProcessor.IsEnabled">
+            <summary>
+            Determines whether the processor is currently enabled.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.CategoricalDataPoint">
+            <summary>
+            Represents a single-value data point, which may be plotted in a <see cref="T:Telerik.Charting.CartesianChartAreaModel"/> and has its second value defined as <see cref="P:Telerik.Charting.CategoricalDataPoint.Category"/>.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.SingleValueDataPoint">
+            <summary>
+            Defines a <see cref="T:Telerik.Charting.DataPoint"/> that has a single <see cref="P:Telerik.Charting.SingleValueDataPoint.Value"/> property, used by numerical axes.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.DataPoint">
+            <summary>
+            Base class for all points that may be plotted by a <see cref="T:Telerik.Charting.ChartPlotAreaModel"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.DataPoint.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.DataPoint"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.DataPoint.GetTooltipValue">
+            <summary>
+            Gets the object that may be displayed for this data point by the chart tooltip.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Charting.DataPoint.IsInPlotRange">
+            <summary>
+            Determines whether the data point may be plotted correctly.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.SingleValueDataPoint.Value">
+            <summary>
+            Gets or sets the core value associated with the point.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CategoricalDataPoint.Category">
+            <summary>
+            Gets or sets the object instance that describes the category of the point.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CategoricalDataPoint.IsInPlotRange">
+            <summary>
+            Determines whether the data point may be plotted correctly.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Telerik.Charting.DataPointCollection`1">
+            <summary>
+            Represents a typed element collection which accepts <see cref="T:Telerik.Charting.DataPoint"/> instances only.
+            </summary>
+            <typeparam name="T">Instances of type <see cref="T:Telerik.Charting.DataPoint"/>.</typeparam>
+        </member>
+        <member name="T:Telerik.Charting.PieDataPoint">
+            <summary>
+            Represents a single-value data point plotted by a pie chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.PieDataPoint.Percent">
+            <summary>
+            Gets the value which indicates the percentage of the total points sum this point's value is.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.PieDataPoint.Label">
+            <summary>
+            Gets or sets the label associated with this point.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.PieDataPoint.OffsetFromCenter">
+            <summary>
+            Gets or sets the offset of the point from the center of the pie.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.PieDataPoint.StartAngle">
+            <summary>
+            Gets the starting angle of this point.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.PieDataPoint.SweepAngle">
+            <summary>
+            Gets the sweep angle of this point.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.ScatterDataPoint">
+            <summary>
+            Represents a data point that may be visualized by a Scatter series in a CartesianChart.
+            Generally this is a point that provides values for both X and Y axes and may be plotted by two numerical axes - Linear or Logarithmic.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ScatterDataPoint.OnPropertyChanged(Telerik.Charting.RadPropertyEventArgs)">
+            <summary>
+            Raises the <see cref="E:PropertyChanged"/> event.
+            </summary>
+            <param name="e">The <see cref="T:Telerik.Charting.RadPropertyEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Telerik.Charting.ScatterDataPoint.XValue">
+            <summary>
+            Gets or sets the value that is provided for the X-axis of the cartesian chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ScatterDataPoint.YValue">
+            <summary>
+            Gets or sets the value that is provided for the X-axis of the cartesian chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ScatterDataPoint.IsInPlotRange">
+            <summary>
+            Determines whether the data point may be plotted correctly.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Telerik.Charting.ChartAreaInvalidateFlags">
+            <summary>
+            Defines the possible impact a chart node property may have over the entire chart area.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartAreaInvalidateFlags.None">
+            <summary>
+            Property does not affect the chart element tree.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartAreaInvalidateFlags.ResetAxes">
+            <summary>
+            Invalidates the visual presentation of the axes.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartAreaInvalidateFlags.InvalidateAxes">
+            <summary>
+            Resets the plot information of the axes.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartAreaInvalidateFlags.InvalidateSeries">
+            <summary>
+            Invalidates the visual presentation of the series.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartAreaInvalidateFlags.InvalidateGrid">
+            <summary>
+            Invalidates the visual presentation of the chart grid (if any).
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartAreaInvalidateFlags.InvalidateAxesAndGrid">
+            <summary>
+            Invalidates each axis plus the chart grid (if any).
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartAreaInvalidateFlags.InvalidateAll">
+            <summary>
+            All invalidate flags are specified.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartAreaInvalidateFlags.All">
+            <summary>
+            All flags are specified.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.ChartSeriesCombineMode">
+            <summary>
+            Defines how multiple series of same type are combined on the plot area.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartSeriesCombineMode.None">
+            <summary>
+            No combining. Each series is plotted independently.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartSeriesCombineMode.Cluster">
+            <summary>
+            Series are combined next to each other.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartSeriesCombineMode.Stack">
+            <summary>
+            Series form stacks.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.ChartSeriesCombineMode.Stack100">
+            <summary>
+            Series for stacks that occupy 100% of the plot area.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.CombineGroup">
+            <summary>
+            Stores one or more data points of combined chartseries within a group.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.ChartSeriesCombineStrategy">
+            <summary>
+            Handles combination of chart series that are <see cref="T:Telerik.Charting.ISupportCombineMode"/> instances and have their <see cref="P:Telerik.Charting.ISupportCombineMode.CombineMode"/> member specified.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.ISupportCombineMode">
+            <summary>
+            Indentifies chart series that can be combined with other <see cref="T:Telerik.Charting.ISupportCombineMode"/> instances of same type.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ISupportCombineMode.CombineMode">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Charting.ChartSeriesCombineMode"/> value for this instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ISupportCombineMode.StackGroupKey">
+            <summary>
+            Gets or sets the key of the stack where this instance is plotted.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.DataPointSeriesModel`1">
+            <summary>
+            Represents chart series that consist of data points.
+            </summary>
+            <typeparam name="T">Must be a <see cref="T:Telerik.Charting.DataPoint"/>.</typeparam>
+        </member>
+        <member name="T:Telerik.Charting.ChartSeriesModel">
+            <summary>
+            Base non-generic class used for non-generic declarations.
+            TODO: We may use an interface here but it will be additional overhead as we need to declare everything twice. People will seldom (if ever) implement their own series.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.ChartSeriesModel.GetCombinedPlotStrategy">
+            <summary>
+            Gets the strategy that will be used when series of this type are combined - for example Stacked - on the plot area.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.ChartSeriesModel.GetCombinedRoundLayoutStrategy">
+            <summary>
+            Gets the strategy that will apply layout rounding for combined series of this type.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Charting.ChartSeriesModel.DataPointProcessors">
+            <summary>
+            Gets a list with all the processors that may perform additional operation over data points.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.DataPointSeriesModel`1.DataPoints">
+            <summary>
+            Gets the collection of data points contained in this instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CategoricalSeriesModel.CombineMode">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Charting.ChartSeriesCombineMode"/> value that specifies whether this instance should be combined with other instances of same type.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.CategoricalSeriesModel.StackGroupKey">
+            <summary>
+            Gets or sets the key that identifies the stack this instance should be put into.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.PieSeriesModel.ShowLabels">
+            <summary>
+            Determines whether pie segment labels are displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.PieSeriesModel.Range">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Charting.AngleRange"/> structure that defines the starting and sweep angles of the pie.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.PieSeriesModel.MaxOffsetFromCenter">
+            <summary>
+            Gets the maximum point offset from the center.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.ScatterSeriesModel">
+            <summary>
+            The model that arranges scatter points on the plot area.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartBehaviorCollection">
+            <summary>
+            This collection contains the behaviors for RadChart.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehaviorCollection.InsertItem(System.Int32,Telerik.Windows.Controls.ChartBehavior)">
+            <summary>
+            Inserts a behavior at the specified index.
+            </summary>
+            <param name="index">The index at which to insert the behavior.</param>
+            <param name="item">The behavior to insert.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehaviorCollection.RemoveItem(System.Int32)">
+            <summary>
+            Removes a behavior at the specified index.
+            </summary>
+            <param name="index">The index at which a behavior will be removed.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehaviorCollection.SetItem(System.Int32,Telerik.Windows.Controls.ChartBehavior)">
+            <summary>
+            Replaces a behavior at the specified index with the specified item.
+            </summary>
+            <param name="index">The index of the behavior to replace.</param>
+            <param name="item">The new behavior.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehaviorCollection.ClearItems">
+            <summary>
+            Removes all behaviors from RadChart.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartHoldAndDragBehavior">
+            <summary>
+            Represents a behavior that recognizes Hold and/or Drag gestures.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartBehavior">
+            <summary>
+            This is the base class for all chart behaviors.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehavior.OnGestureStarted">
+            <summary>
+            This method is called when a manipulation starts.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehavior.OnGesture(Microsoft.Xna.Framework.Input.Touch.GestureSample)">
+            <summary>
+            This method is called when a valid gesture has occurred within the chart plot area.
+            </summary>
+            <param name="gesture">The native Xna gesture.</param>
+            <returns>True if the gesture is handled by the behavior, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehavior.OnGestureCompleted">
+            <summary>
+            This method is called when the current manipulation has completed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehavior.OnUnloaded">
+            <summary>
+            This method is called when the chart owner is removed from the Silverlight element tree.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehavior.OnAttached">
+            <summary>
+            This method is called when this behavior is added to the chart.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartBehavior.OnDetached">
+            <summary>
+            This method is called when this behavior is removed from the chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartBehavior.Chart">
+            <summary>
+            Gets the <see cref="T:Telerik.Windows.Controls.RadChart"/> instance to which this behavior is attached.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartHoldAndDragBehavior.OnGesture(Microsoft.Xna.Framework.Input.Touch.GestureSample)">
+            <summary>
+            This method is called when a valid gesture has occurred within the chart plot area.
+            </summary>
+            <param name="gesture">The native Xna gesture.</param>
+            <returns>
+            True if the gesture is handled by the behavior, false otherwise.
+            </returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartPanAndZoomBehavior">
+            <summary>
+            Represents a chart behavior that handles Pinch and Drag gestures and manipulates the Zoom and PanOffset properties of the associated <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartPanAndZoomBehavior.OnGestureCompleted">
+            <summary>
+            This method is called when the current manipulation has completed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartPanAndZoomBehavior.OnGesture(Microsoft.Xna.Framework.Input.Touch.GestureSample)">
+            <summary>
+            This method is called when a valid gesture has occurred within the chart plot area.
+            </summary>
+            <param name="gesture">The native Xna gesture.</param>
+            <returns>
+            True if the gesture is handled by the behavior, false otherwise.
+            </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartPanAndZoomBehavior.ZoomMode">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Windows.Controls.ChartPanZoomMode"/> value that specifies how the chart will respond to a zoom gesture.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartPanAndZoomBehavior.PanMode">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Windows.Controls.ChartPanZoomMode"/> value that specifies how the chart will respond to a pan gesture.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartPanZoomMode">
+            <summary>
+            Defines how a <see cref="T:Telerik.Windows.Controls.RadChart"/> instance will handle a zoom or a pan gesture.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ChartPanZoomMode.None">
+            <summary>
+            A zoom gesture is not handled.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ChartPanZoomMode.Horizontal">
+            <summary>
+            The chart is zoomed horizontally (along the X-axis).
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ChartPanZoomMode.Vertical">
+            <summary>
+            The chart is zoomed vertically (along the Y-axis).
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ChartPanZoomMode.Both">
+            <summary>
+            Both Horizontal and Vertical flags are valid.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartGestureEventArgs">
+            <summary>
+            Encapsulates the information about a <see cref="E:RadChart.PreviewGesture"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartGestureEventArgs.#ctor(Telerik.Windows.Controls.RadChart,Microsoft.Xna.Framework.Input.Touch.GestureSample)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ChartGestureEventArgs"/> class.
+            </summary>
+            <param name="chart">The chart.</param>
+            <param name="gesture">The gesture.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartGestureEventArgs.GetContext">
+            <summary>
+            Gets the <see cref="T:Telerik.Windows.Controls.ChartDataContext"/>, containing information about the closest to the gesture origin data points.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartGestureEventArgs.PrimaryLocation">
+            <summary>
+            Gets the location (in coordinates, relative to the chart surface) of the primary touch point of the gesture.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartGestureEventArgs.Gesture">
+            <summary>
+            Gets the structure that describes the gesture.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartGestureEventArgs.Handled">
+            <summary>
+            Determines whether the gesture is handled or not.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartTrackBallBehavior">
+            <summary>
+            Represents a behavior that adds two lines in <see cref="T:Telerik.Windows.Controls.RadChart"/>'s render surface. The two lines intersect at the center of the closest data point found.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTrackBallBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ChartTrackBallBehavior"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTrackBallBehavior.OnGestureCompleted">
+            <summary>
+            This method is called when the current manipulation has completed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTrackBallBehavior.OnGesture(Microsoft.Xna.Framework.Input.Touch.GestureSample)">
+            <summary>
+            This method is called when a valid gesture has occurred within the chart plot area.
+            </summary>
+            <param name="gesture">The native Xna gesture.</param>
+            <returns>
+            True if the gesture is handled by the behavior, false otherwise.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTrackBallBehavior.OnAttached">
+            <summary>
+            This method is called when this behavior is added to the chart.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTrackBallBehavior.OnDetached">
+            <summary>
+            This method is called when this behavior is removed from the chart.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.ChartTrackBallBehavior.TrackInfoUpdated">
+            <summary>
+            Occurs when a track info is updated, just before the UI that represents it is updated.
+            Allows custom information to be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTrackBallBehavior.ShowTrackInfo">
+            <summary>
+            Determines whether a visual information for all the closest data points will be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTrackBallBehavior.ShowIntersectionPoints">
+            <summary>
+            Determines whether a visual information for all the closest data points will be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTrackBallBehavior.SnapMode">
+            <summary>
+            Gets or sets the how this behavior should snap to the closest to a physical location data points.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTrackBallBehavior.Line">
+            <summary>
+            Gets the Polyline shape that renders the trackball line. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTrackBallBehavior.InfoControl">
+            <summary>
+            Gets the control used to display the track information. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTrackBallBehavior.IntersectionPoints">
+            <summary>
+            Gets the list with all the content presenters used to visualise intersection points. Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Chart.TrackBallInfoControl">
+            <summary>
+            Represents the control that displays the track information, provided by a <see cref="T:Telerik.Windows.Controls.ChartTrackBallBehavior"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Chart.TrackBallInfoControl.DataPointInfoTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Chart.TrackBallInfoControl.DataPointInfoTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Chart.TrackBallInfoControl.HeaderProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Chart.TrackBallInfoControl.DataPointInfoTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Chart.TrackBallInfoControl.HeaderTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Chart.TrackBallInfoControl.HeaderTemplate"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Chart.TrackBallInfoControl.#ctor(Telerik.Windows.Controls.ChartTrackBallBehavior)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.Chart.TrackBallInfoControl"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Chart.TrackBallInfoControl.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Chart.TrackBallInfoControl.Header">
+            <summary>
+            Gets or sets the object that represents the header content of the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Chart.TrackBallInfoControl.DataPointInfoTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> that defines the appearance of the information about a single <see cref="T:Telerik.Windows.Controls.DataPointInfo"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Chart.TrackBallInfoControl.HeaderTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> that defines the appearance of the header of this control.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.TrackBallInfoEventArgs">
+            <summary>
+            Encapsulates the data associated with a <see cref="E:ChartTrackBallBehavior.TrackInfoUpdated"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.TrackBallInfoEventArgs.#ctor(Telerik.Windows.Controls.ChartDataContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.TrackBallInfoEventArgs"/> class.
+            </summary>
+            <param name="context">The context.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.TrackBallInfoEventArgs.Header">
+            <summary>
+            Gets or sets the header of the info control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.TrackBallInfoEventArgs.Context">
+            <summary>
+            Gets the context associated with the event.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.TrackBallSnapMode">
+            <summary>
+            Defines how a <see cref="T:Telerik.Windows.Controls.ChartTrackBallBehavior"/> or a <see cref="T:Telerik.Windows.Controls.ChartTooltipBehavior"/> instance should snap to the closest to a physical location data points.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.TrackBallSnapMode.None">
+            <summary>
+            The trackball will not be snapped to any of the closests data points.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.TrackBallSnapMode.ClosestPoint">
+            <summary>
+            The behavior will snap to the closest data point, regardless of the chart series that own it.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.TrackBallSnapMode.AllClosePoints">
+            <summary>
+            The behavior will snap to the closest data points from all chart series.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartTooltipBehavior">
+            <summary>
+            Defines the tooltip behavior for RadChart.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTooltipBehavior.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ChartTooltipBehavior"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTooltipBehavior.HideTooltip">
+            <summary>
+            Explicitly hides the tooltip if it is currently displayed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTooltipBehavior.OnGesture(Microsoft.Xna.Framework.Input.Touch.GestureSample)">
+            <summary>
+            This method is called when a valid gesture has occurred within the chart plot area.
+            </summary>
+            <param name="gesture">The native Xna gesture.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTooltipBehavior.OnGestureCompleted">
+            <summary>
+            This method is called when this behavior's gesture is complete.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTooltipBehavior.OnUnloaded">
+            <summary>
+            This method is called when the chart owner is removed from the Silverlight element tree.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartTooltipBehavior.OnDetached">
+            <summary>
+            This method is called when this behavior is removed from the chart.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.ChartTooltipBehavior.ContextNeeded">
+            <summary>
+            Fires before the tool tip of RadChart is shown so that the user can provide
+            a custom view model which he/she can bind to in the ToolTipTemplate.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.ChartTooltipBehavior.PositionUpdated">
+            <summary>
+            Occurs when the tooltip's position has been calculated.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTooltipBehavior.SnapToClosestPoint">
+            <summary>
+            Determines whether the tooltip will snap to the closest to the physical location data point.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTooltipBehavior.PlacementOffset">
+            <summary>
+            Gets or sets the offset between the touch point and the Y value of the tooltip location.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTooltipBehavior.TriggerMode">
+            <summary>
+            Gets or sets the tool tip trigger mode.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartTooltipBehavior.IsTooltipDisplayed">
+            <summary>
+            Gets a value that determines if the tooltip is currently shown.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ToolTipTriggerMode">
+            <summary>
+            Determines the gestures on which the ChartToolTipBehavior should
+            show a tool tip.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ToolTipTriggerMode.Tap">
+            <summary>
+            The tool tip will be shown on the tap gesture.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ToolTipTriggerMode.Hold">
+            <summary>
+            The tool tip will be shown on the hold gesture.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.CartesianSeries">
+            <summary>
+            Represents <see cref="T:Telerik.Windows.Controls.ChartSeries"/> that may be visualized by a <see cref="T:Telerik.Windows.Controls.RadCartesianChart"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartSeries">
+            <summary>
+            Base class for all series of data points, plotted on a <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartElementPresenter">
+            <summary>
+            Base class for all <see cref="T:Telerik.Windows.Controls.PresenterBase"/> instances that visualize a logical chart element.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.PresenterBase">
+            <summary>
+            Base class for all <see cref="T:System.Windows.Controls.Control"/> instances that represent charting engine logical models.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.IChartElementPresenter">
+            <summary>
+            Defines a type which may visualize a logical chart element.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.IChartElementPresenter.RefreshNode(Telerik.Charting.ChartNode)">
+            <summary>
+            Invalidates the visual representation of the specified logical node.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:Telerik.Charting.IChartElementPresenter.MeasureContent(Telerik.Charting.ChartNode,System.Object)">
+            <summary>
+            Retrieves the desired size of the specified logical node's content.
+            </summary>
+            <param name="owner"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="F:Telerik.Windows.Controls.PresenterBase.InfinitySize">
+            <summary>
+            Represents a <see cref="T:System.Windows.Size"/> structure, which Width and Height members are set to double.PositiveInfinity.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.PresenterBase.InfinityPoint">
+            <summary>
+            Represents a <see cref="T:System.Windows.Point"/> structure, which Width and Height members are set to double.PositiveInfinity.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterBase.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.PresenterBase"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterBase.Telerik#Charting#IChartElementPresenter#MeasureContent(Telerik.Charting.ChartNode,System.Object)">
+            <summary>
+            Retrieves the desired size for the specified node's content.
+            </summary>
+            <param name="owner"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterBase.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterBase.RefreshNode(Telerik.Charting.ChartNode)">
+            <summary>
+            Invalidates the visual representation of the specified logical node.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterBase.UpdateUICore(Telerik.Windows.Controls.ChartLayoutContext)">
+            <summary>
+            Updates of all of the chart elements presented by this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterBase.ArrangeUIElement(System.Windows.FrameworkElement,Telerik.Charting.RadRect)">
+            <summary>
+            Updates the layout slot of the specified logical node, presented by the provided <see cref="T:System.Windows.FrameworkElement"/>.
+            </summary>
+            <param name="presenter"></param>
+            <param name="layoutSlot"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterBase.MeasureNodeOverride(Telerik.Charting.ChartNode,System.Object)">
+            <summary>
+            Core entry point for calculating the size of a node's content.
+            </summary>
+            <param name="node"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterBase.RefreshNodeCore(Telerik.Charting.ChartNode)">
+            <summary>
+            Performs the core logic that invalidates the visual representation of the specified logical node.
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterBase.CreateContentPresenter(System.Object,System.Windows.DataTemplate)">
+            <summary>
+            Creates a <see cref="T:System.Windows.Controls.ContentPresenter"/> associated with the specified content and template.
+            </summary>
+            <param name="content"></param>
+            <param name="template"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PresenterBase.RenderSurface">
+            <summary>
+            Gets the <see cref="T:System.Windows.Controls.Canvas"/> instance used as a visual parent for all the child UI elements.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartElementPresenter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ChartElementPresenter"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartElementPresenter.OnAttached">
+            <summary>
+            Occurs when the presenter has been successfully attached to its owning <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartElementPresenter.OnDetached(Telerik.Windows.Controls.RadChart)">
+            <summary>
+            Occurs when the presenter has been successfully detached from its owning <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartElementPresenter.ZIndex">
+            <summary>
+            Gets or sets the Z-index of this series. Useful when adjusting the appearance of multiple series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartElementPresenter.Chart">
+            <summary>
+            Gets the <see cref="T:Telerik.Windows.Controls.RadChart"/> instance to which this <see cref="T:Telerik.Windows.Controls.ChartElementPresenter"/>
+            belongs.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ChartSeries.ClipTopPlotAreaProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ChartSeries.ClipToPlotArea"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ChartSeries.TrackBallTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ChartSeries.TrackBallTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ChartSeries.TrackBallInfoTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ChartSeries.TrackBallInfoTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ChartSeries.ItemsSourceProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ChartSeries.ItemsSource"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ChartSeries"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartSeries.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartSeries.InitDataBinding">
+            <summary>
+            Initializes the data binding upon OnApplyTemplate.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartSeries.OnDataBindingComplete">
+            <summary>
+            Raises the <see cref="E:Telerik.Windows.Controls.ChartSeries.DataBindingComplete"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartSeries.UpdateUICore(Telerik.Windows.Controls.ChartLayoutContext)">
+            <summary>
+            Updates of all of the chart elements presented by this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartSeries.CreateDataSourceInstance">
+            <summary>
+            Creates the concrete data source for this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartSeries.OnAttached">
+            <summary>
+            Occurs when the presenter has been successfully attached to its owning <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ChartSeries.OnDetached(Telerik.Windows.Controls.RadChart)">
+            <summary>
+            Occurs when the presenter has been successfully detached from its owning <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+            <param name="oldChart"></param>
+        </member>
+        <member name="E:Telerik.Windows.Controls.ChartSeries.DataBindingComplete">
+            <summary>
+            Occurs when a databinding operation has been successfully completed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartSeries.DisplayName">
+            <summary>
+            Gets or sets the human-readable name of the series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartSeries.TrackBallTemplate">
+            <summary>
+            Gets or sets the template used to visualize an intersection point between a <see cref="T:Telerik.Windows.Controls.ChartTrackBallBehavior"/> line and a data point that is contained within this series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartSeries.TrackBallInfoTemplate">
+            <summary>
+            Gets or sets the template used to visualize the information about this series in a <see cref="T:Telerik.Windows.Controls.ChartTrackBallBehavior"/> TrackInfo control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartSeries.ClipToPlotArea">
+            <summary>
+            Determines whether this instance will be clipped to the bounds of the plot area.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartSeries.ItemsSource">
+            <summary>
+            Gets or sets the source items to generate data points from.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CartesianSeries.PointTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CartesianSeries.PointTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CartesianSeries.PointTemplateSelectorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CartesianSeries.PointTemplateSelector"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CartesianSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.CartesianSeries"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CartesianSeries.UpdateUICore(Telerik.Windows.Controls.ChartLayoutContext)">
+            <summary>
+            Updates of all of the chart elements presented by this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CartesianSeries.MeasureNodeOverride(Telerik.Charting.ChartNode,System.Object)">
+            <summary>
+            Core entry point for calculating the size of a node's content.
+            </summary>
+            <param name="node"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianSeries.PointTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> property used to visualize each <see cref="T:Telerik.Windows.Controls.CartesianSeries"/> presented.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianSeries.PointTemplateSelector">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Windows.Controls.DataTemplateSelector"/> property used to provide conditional <see cref="T:System.Windows.DataTemplate"/> look-up when visualizing each data point presented.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianSeries.PointTemplates">
+            <summary>
+            Gets the collection that stores index-based templates for each data point.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ScatterAreaSeries">
+            <summary>
+            Represents a chart series which visualize <see cref="T:Telerik.Charting.ScatterDataPoint"/> instances by an area shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ScatterLineSeries">
+            <summary>
+            Represents a chart series, which can visualize <see cref="T:Telerik.Charting.ScatterDataPoint"/> instances by connecting them with straight line segments.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ScatterPointSeries">
+            <summary>
+            Represents a chart series which can visualize <see cref="T:Telerik.Charting.ScatterDataPoint"/> instances.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ScatterPointSeries.XValueBindingProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ScatterPointSeries.XValueBinding"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ScatterPointSeries.YValueBindingProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ScatterPointSeries.YValueBinding"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ScatterPointSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ScatterPointSeries"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ScatterPointSeries.CreateDataSourceInstance">
+            <summary>
+            Creates the concrete data source for this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ScatterPointSeries.InitDataBinding">
+            <summary>
+            Initializes the data binding upon OnApplyTemplate.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ScatterPointSeries.DataPoints">
+            <summary>
+            Gets the collection of data points associated with the series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ScatterPointSeries.XValueBinding">
+            <summary>
+            Gets or sets the binding that will be used to fill the <see cref="P:Telerik.Charting.ScatterDataPoint.XValue"/> member of the contained data points.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ScatterPointSeries.YValueBinding">
+            <summary>
+            Gets or sets the binding that will be used to fill the <see cref="P:Telerik.Charting.ScatterDataPoint.YValue"/> member of the contained data points.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ScatterLineSeries.StrokeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ScatterLineSeries.Stroke"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ScatterLineSeries.StrokeThicknessProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ScatterLineSeries.StrokeThickness"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ScatterLineSeries.DashArrayProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ScatterLineSeries.DashArray"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ScatterLineSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ScatterLineSeries"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ScatterLineSeries.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ScatterLineSeries.UpdateUICore(Telerik.Windows.Controls.ChartLayoutContext)">
+            <summary>
+            Updates of all of the chart elements presented by this instance.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ScatterLineSeries.Stroke">
+            <summary>
+            Gets or setst the <see cref="T:System.Windows.Media.Brush"/> instance that defines the stroke of the <see cref="T:System.Windows.Shapes.Line"/> shape.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ScatterLineSeries.StrokeThickness">
+            <summary>
+            Gets or sets the thickness of the line used to present the series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ScatterLineSeries.DashArray">
+            <summary>
+            Gets or sets the dash pattern to be applied to the <see cref="T:System.Windows.Shapes.Polyline"/> shape used to render the series.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ScatterAreaSeries.FillProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.ScatterAreaSeries.Fill"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ScatterAreaSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ScatterAreaSeries"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ScatterAreaSeries.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ScatterAreaSeries.StrokeMode">
+            <summary>
+            Gets or sets the mode that defines how the area is stroked.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ScatterAreaSeries.Fill">
+            <summary>
+            Gets or sets the style used to draw the <see cref="T:System.Windows.Shapes.Polyline"/> shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.StringToAngleRangeConverter">
+            <summary>
+            Converts a string to an AngleRange object.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.StringToAngleRangeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether the type converter can convert an object from the specified type to the type of this converter.
+            </summary>
+            <param name="context">An object that provides a format context.</param>
+            <param name="sourceType">The type you want to convert from.</param>
+            <returns>
+            true if this converter can perform the conversion; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:Telerik.Charting.StringToAngleRangeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts from the specified value to the intended conversion type of the converter.
+            </summary>
+            <param name="context">An object that provides a format context.</param>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+            <param name="value">The value to convert to the type of this converter.</param>
+            <returns>The converted value.</returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Chart.ChartTooltip">
+            <summary>
+            This class represents the tool tips for RadChart.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Chart.ChartTooltip.OnApplyTemplate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Chart.ChartTooltip.PlacementOffset">
+            <summary>
+            Gets or sets the offset between the touch point and the Y value of the tooltip location.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Chart.ChartTooltip.IsOpen">
+            <summary>
+            Determines whether the tooltip is currently displayed.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.SplineSeries">
+            <summary>
+            Visualizes a collection of data points using a smooth <see cref="T:System.Windows.Shapes.Line"/> shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.CategoricalStrokedSeries">
+            <summary>
+            Represents a series which shape may be stroked (outlined).
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.CategoricalSeries">
+            <summary>
+            Base class for all <see cref="T:Telerik.Windows.Controls.ChartSeries"/> that may contain <see cref="T:Telerik.Charting.CategoricalDataPoint"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CategoricalSeries.ValueBindingProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CategoricalSeries.ValueBinding"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CategoricalSeries.CategoryBindingProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CategoricalSeries.CategoryBinding"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CategoricalSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.CategoricalSeries"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CategoricalSeries.CreateDataSourceInstance">
+            <summary>
+            Creates the concrete data source for this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CategoricalSeries.InitDataBinding">
+            <summary>
+            Initializes the data binding upon OnApplyTemplate.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalSeries.CombineMode">
+            <summary>
+            Gets or sets the combination mode to be used when data points are plotted.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalSeries.StackGroupKey">
+            <summary>
+            Gets or sets the key that defines in which stack group this series will be included if its <see cref="P:Telerik.Windows.Controls.CategoricalSeries.CombineMode"/> equals Stack or Stack100.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalSeries.DataPoints">
+            <summary>
+            Gets the collection of data points associated with the series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalSeries.ValueBinding">
+            <summary>
+            Gets or sets the binding that will be used to fill the <see cref="P:Telerik.Charting.SingleValueDataPoint.Value"/> member of the contained data points.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalSeries.CategoryBinding">
+            <summary>
+            Gets or sets the binding that will be used to fill the <see cref="P:Telerik.Charting.CategoricalDataPoint.Category"/> member of the contained data points.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CategoricalStrokedSeries.StrokeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CategoricalStrokedSeries.Stroke"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CategoricalStrokedSeries.StrokeThicknessProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CategoricalStrokedSeries.StrokeThickness"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CategoricalStrokedSeries.DashArrayProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CategoricalStrokedSeries.DashArray"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CategoricalStrokedSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.CategoricalStrokedSeries"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CategoricalStrokedSeries.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CategoricalStrokedSeries.UpdateUICore(Telerik.Windows.Controls.ChartLayoutContext)">
+            <summary>
+            Updates of all of the chart elements presented by this instance.
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalStrokedSeries.Stroke">
+            <summary>
+            Gets or setst the <see cref="T:System.Windows.Media.Brush"/> instance that defines the stroke of the <see cref="T:System.Windows.Shapes.Line"/> shape.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalStrokedSeries.StrokeThickness">
+            <summary>
+            Gets or sets the thickness of the line used to present the series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalStrokedSeries.DashArray">
+            <summary>
+            Gets or sets the dash pattern to be applied to the <see cref="T:System.Windows.Shapes.Polyline"/> shape used to render the series.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SplineSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.SplineSeries"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ChartDataContext">
+            <summary>
+            An object of this type is used as a data context for chart's behaviors.
+            For example the tool tip behavior can use a chart data context to populate
+            its tool tip template with data.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartDataContext.TouchLocation">
+            <summary>
+            Gets the physical point (in coordinates, relative to the chart surface) this context is associated with.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartDataContext.ClosestDataPoint">
+            <summary>
+            Gets an object that contains the closest data point to the tap location
+            and the series object to which the data point belongs.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ChartDataContext.DataPointInfos">
+            <summary>
+            Gets a list of data point infos each of which contains the closest data
+            point to the tap location and the point's corresponding series.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.TooltipContextNeededEventArgs">
+            <summary>
+            Event arguments for RadChart's DataContextNeeded event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.TooltipContextNeededEventArgs.#ctor(Telerik.Windows.Controls.ChartDataContext)">
+            <summary>
+            Initializes a new instance of the TooltipContextNeededEventArgs class.
+            </summary>
+            <param name="defaultContext">The default context which will be used if no new context is provided.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.TooltipContextNeededEventArgs.DefaultContext">
+            <summary>
+            The default data context that is provided by RadChart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.TooltipContextNeededEventArgs.Context">
+            <summary>
+            A user defined object that will be used as the chart data context if
+            it is not null. The user can create a custom context based on the information
+            in the default context.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GridLineRenderMode">
+            <summary>
+            Defines how grid lines are displayed.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GridLineRenderMode.First">
+            <summary>
+            First line is rendered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GridLineRenderMode.Inner">
+            <summary>
+            Inner lines are rendered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GridLineRenderMode.Last">
+            <summary>
+            Last line is rendered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GridLineRenderMode.FirstAndInner">
+            <summary>
+            First and inner lines are rendered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GridLineRenderMode.InnerAndLast">
+            <summary>
+            Inner and last lines are rendered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GridLineRenderMode.FirstAndLast">
+            <summary>
+            First and last lines are rendered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.GridLineRenderMode.All">
+            <summary>
+            All lines are rendered.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.GridLineVisibility">
+            <summary>
+            Defines the visibility of the major and minor lines within a <see cref="T:Telerik.Charting.CartesianChartGridModel"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.GridLineVisibility.None">
+            <summary>
+            Lines are hidden.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.GridLineVisibility.X">
+            <summary>
+            The lines along the X-axis are visible.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.GridLineVisibility.Y">
+            <summary>
+            The lines along the Y-axis are visible.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.GridLineVisibility.XY">
+            <summary>
+            The lines are visible along both axes.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.NodeCollection">
+            <summary>
+            Represents a collection of a <see cref="T:Telerik.Charting.ChartNode"/> instances.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.NodeCollection.GetEnumerator">
+            <summary>
+            Gets the <see cref="T:System.Collections.IEnumerator"/> instance that allows for traversing all the items.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.NodeCollection.IndexOf(Telerik.Charting.ChartNode)">
+            <summary>
+            Gets the index of the specified node within the collection.
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Charting.NodeCollection.Contains(Telerik.Charting.ChartNode)">
+            <summary>
+            Determines whether the specified node is contained within the collection.
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Charting.NodeCollection.Owner">
+            <summary>
+            Gets the <see cref="T:Telerik.Charting.ChartElement"/> instance that owns this collection.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.NodeCollection.Count">
+            <summary>
+            Gets the count of all the items.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.RadPropertyEventArgs">
+            <summary>
+            Encapsulates all the data associated with a change in a <see cref="T:Telerik.Charting.PropertyBagObject"/> property store.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.RadPropertyEventArgs.#ctor(System.Int32,System.Object,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.RadPropertyEventArgs"/> class.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:Telerik.Charting.RadPropertyEventArgs.#ctor(System.String,System.Object,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Charting.RadPropertyEventArgs"/> class.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="P:Telerik.Charting.RadPropertyEventArgs.Cancel">
+            <summary>
+            Determines whether the property change can be accepted. Valid during the Changing pass.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.RadPropertyEventArgs.Key">
+            <summary>
+            Gets the key of the property associated with the event.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.RadPropertyEventArgs.PropertyName">
+            <summary>
+            Gets the name of the property that has changed. This member is not set if the property is associated with a valid key.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.RadPropertyEventArgs.OldValue">
+            <summary>
+            Gets the old value of the associated property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.RadPropertyEventArgs.NewValue">
+            <summary>
+            Gets or sets the new value of the associated property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartMessage.Handled">
+            <summary>
+            Determines whether the message is handled (processed) by some receiver.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartMessage.StopDispatch">
+            <summary>
+            Determines whether message may continue being dispatched or not.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartMessage.DispatchPhase">
+            <summary>
+            Gets the current phase of the dispatch process.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartMessage.DispatchMode">
+            <summary>
+            Gets the mode which determines how this message is dispatched.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartMessage.Id">
+            <summary>
+            Gets the unique id for this message.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartMessage.Sender">
+            <summary>
+            Gets the <see cref="T:Telerik.Charting.ChartNode"/> instance which generated this message.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartMessage.PreviousReceiver">
+            <summary>
+            Gets the <see cref="T:Telerik.Charting.ChartNode"/> instance that previously received the message.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartMessage.Data">
+            <summary>
+            Gets the raw data associated with the message.
+            </summary>
+        </member>
+        <member name="M:Telerik.Charting.MessageDispatcher.DispatchMessage(Telerik.Charting.ChartMessage)">
+            <summary>
+            Dispatches the provided message to the logical tree, starting from the Sender as a leaf.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="P:Telerik.Charting.MessageDispatcher.IsEnabled">
+            <summary>
+            Determines whether the dispatcher is currently enabled.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.MessageDispatchMode">
+            <summary>
+            Defines how a message should be dispatched in the element tree.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.MessageDispatchMode.Bubble">
+            <summary>
+            Message is dispatched to the direct target and its ancestors.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.MessageDispatchMode.Tunnel">
+            <summary>
+            Message is dispatched to the direct target all its descendants.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.MessageDispatchMode.BubbleAndTunnel">
+            <summary>
+            Message is dispatched to the direct target, its ancestors and all its descendants.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.MessageDispatchPhase">
+            <summary>
+            Defines the possible phases a message dispatch process may enter.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.MessageDispatchPhase.Bubble">
+            <summary>
+            Message is being dispatched up in the parent chain.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.MessageDispatchPhase.Tunnel">
+            <summary>
+            Message is being dispatched down to all descendants.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.NodeState">
+            <summary>
+            Defines the possible states a <see cref="T:Telerik.Charting.ChartNode"/> may enter.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.NodeState.Initial">
+            <summary>
+            The node is created.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.NodeState.Loading">
+            <summary>
+            The node is loading on the visual scene.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.NodeState.Loaded">
+            <summary>
+            The node is loaded and ready to be visualized.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.NodeState.Unloading">
+            <summary>
+            The node is in a process of being unloaded from the visual scene.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.NodeState.Unloaded">
+            <summary>
+            The node is detached from teh visual scene.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.TreeTraversalMode">
+            <summary>
+            Defines possible approaches when traversing a tree.
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TreeTraversalMode.DepthFirst">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Telerik.Charting.TreeTraversalMode.BreadthFirst">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.ChartLegendModel.Items">
+            <summary>
+            Gets the collection, containing all the items present on this legend.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.LegendItemModel.Label">
+            <summary>
+            Gets the label associated with this item.
+            </summary>
+        </member>
+        <member name="T:Telerik.Charting.IChartView">
+            <summary>
+            Defines the root of the whole chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.IChartView.ViewportWidth">
+            <summary>
+            Gets the visible width of the chart view.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.IChartView.ViewportHeight">
+            <summary>
+            Gets the visible height of the chart view.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.IChartView.ZoomX">
+            <summary>
+            Gets the current scale applied along the X direction.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.IChartView.ZoomY">
+            <summary>
+            Gets the current scale applied along the Y direction.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.IChartView.PanOffsetX">
+            <summary>
+            Gets the X-coordinate of the top-left corner where the layout should start from.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.IChartView.PanOffsetY">
+            <summary>
+            Gets the Y-coordinate of the top-left corner where the layout should start from.
+            </summary>
+        </member>
+        <member name="P:Telerik.Charting.IChartView.PlotAreaClip">
+            <summary>
+            Gets the rect that encloses the plot area in view coordinates - that is without the zoom factor applied and with the pan offset calculated.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Axis">
+            <summary>
+            Represents an axis within a <see cref="T:Telerik.Windows.Controls.RadCartesianChart"/> instance.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Axis.MajorTickTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Axis.MajorTickTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Axis.MajorTickStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Axis.MajorTickStyle"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Axis.TitleTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Axis.TitleTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Axis.LabelTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Axis.LabelTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Axis.LabelTemplateSelectorProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Axis.LabelTemplateSelector"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Axis.LabelStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Axis.LabelStyle"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Axis.LineStrokeProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Axis.LineStroke"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Axis.LineDashArrayProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.Axis.LineDashArray"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Axis.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.Axis"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Axis.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Axis.UpdateUICore(Telerik.Windows.Controls.ChartLayoutContext)">
+            <summary>
+            Updates of all of the chart elements presented by this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Axis.MeasureNodeOverride(Telerik.Charting.ChartNode,System.Object)">
+            <summary>
+            Core entry point for calculating the size of a node's content.
+            </summary>
+            <param name="node"></param>
+            <param name="content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Axis.OnAttached">
+            <summary>
+            Occurs when the presenter has been successfully attached to its owning <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Axis.OnDetached(Telerik.Windows.Controls.RadChart)">
+            <summary>
+            Occurs when the presenter has been successfully detached from its owning <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+            <param name="oldChart"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Axis.GetTickTemplate(Telerik.Charting.TickType)">
+            <summary>
+            Gets the <see cref="T:System.Windows.DataTemplate"/> instance used to visualize the a tick with the specified <see cref="T:Telerik.Charting.TickType"/>.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LineDashArray">
+            <summary>
+            Gets or sets the pattern used when drawing axis line.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LastLabelVisibility">
+            <summary>
+            Gets or sets the strategy that defines the last axis label visibility.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LabelFormat">
+            <summary>
+            Gets or sets the format used to format all the labels present on the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.MajorTickOffset">
+            <summary>
+            Gets or sets index-based offset of the first tick to be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LabelOffset">
+            <summary>
+            Gets or sets index-based offset of the first tick to be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.ShowLabels">
+            <summary>
+            Determines whether labels will be displayed on this axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LabelFitMode">
+            <summary>
+            Gets or sets a value that determines how the axis labels will be laid out when they are overlapping each other.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.Title">
+            <summary>
+            Gets or sets the title of the associated logical axis model.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LineStroke">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Media.Brush"/> object that defines the stroke of the <see cref="T:System.Windows.Shapes.Line"/> shape used to display axis' line.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LineThickness">
+            <summary>
+            Gets or sets the thickness of the <see cref="T:System.Windows.Shapes.Line"/> shape used to display axis' line.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LabelTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> used to visualize axis labels.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LabelTemplateSelector">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Windows.Controls.DataTemplateSelector"/> used to provide conditional <see cref="T:System.Windows.DataTemplate"/> look-up when axis labels are visualized.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LabelStyle">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Style"/> to be applied to the default <see cref="T:System.Windows.Controls.TextBlock"/> instance created when <see cref="P:Telerik.Windows.Controls.Axis.LabelTemplate"/> property is not specified.
+            Creating a <see cref="T:System.Windows.Controls.TextBlock"/> instance per label instead of a <see cref="T:System.Windows.Controls.ContentPresenter"/> gives a huge performance boost.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.TitleTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> instance used to visualize the axis's title.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.MajorTickTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> instance used to visualize major ticks on the axis.
+            If this value is not specified ticks will be presented by a <see cref="T:System.Windows.Shapes.Rectangle"/> shape.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.MajorTickStyle">
+            <summary>
+            Gets or sets the style for each <see cref="T:System.Windows.Shapes.Rectangle"/> instance created to represent a major tick when no <see cref="P:Telerik.Windows.Controls.Axis.MajorTickTemplate"/> is specified.
+            Creating a <see cref="T:System.Windows.Shapes.Rectangle"/> instance per tick instead of a <see cref="T:System.Windows.Controls.ContentPresenter"/> gives a huge performance boost.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.TickThickness">
+            <summary>
+            Gets or sets the thickness of a single tick present on the axis. Useful when custom tick templates are specified.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Axis.LabelInterval">
+            <summary>
+            Gets or sets the step at which labels are positioned.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.CategoricalAxis">
+            <summary>
+            Defines an axis that treats distinct points as "Categories" rather than "Values".
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CategoricalAxis.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.CategoricalAxis"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalAxis.MajorTickInterval">
+            <summary>
+            Gets or sets the step at which ticks are positioned.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalAxis.PlotMode">
+            <summary>
+            Gets or sets the plot mode used to position points along the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CategoricalAxis.GapLength">
+            <summary>
+            Gets or sets the gap (in the range [0, 1]) to be applied when calculating each plotted <see cref="T:Telerik.Windows.Controls.CategoricalSeries"/> position.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeCategoricalAxis">
+            <summary>
+            Represents an <see cref="T:Telerik.Windows.Controls.Axis"/> that recognizes DateTime values and organizes all the plotted points in chronologically sorted categories.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeCategoricalAxis.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.DateTimeCategoricalAxis"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeCategoricalAxis.DateTimeComponent">
+            <summary>
+            Gets or sets the <see cref="P:Telerik.Windows.Controls.DateTimeCategoricalAxis.DateTimeComponent"/> used to determine how data points will be grouped.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeContinuousAxis">
+            <summary>
+            Represents an <see cref="T:Telerik.Windows.Controls.Axis"/> which plots points along the actual timeline.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeContinuousAxis.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.DateTimeContinuousAxis"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeContinuousAxis.MajorStep">
+            <summary>
+            Gets or sets the user-defined step between two adjacent ticks on the axis. Specify TimeSpane.Zero to clear the value.
+            If not specified, the step will be automatically determined, depending on the smallest difference between any two dates.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeContinuousAxis.MajorStepUnit">
+            <summary>
+            Gets or sets the unit that defines the custom major step of the axis.
+            If no explicit step is defined, the axis will automatically calculate one, depending on the smallest difference between any two dates.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeContinuousAxis.Minimum">
+            <summary>
+            Gets or sets the custom minimum of the axis.
+            Specify DateTime.MinValue to clear the property value so that the minimum is auto-generated.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeContinuousAxis.Maximum">
+            <summary>
+            Gets or sets the custom maximum of the axis.
+            Specify DateTime.MaxValue to clear the property value so that the maximum is auto-generated.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeContinuousAxis.PlotMode">
+            <summary>
+            Gets or sets the mode which determines how points are plotted by this axis.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.LinearAxis">
+            <summary>
+            Represents a <see cref="T:Telerik.Windows.Controls.NumericalAxis"/> which step is linear.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.NumericalAxis">
+            <summary>
+            Base class for all axes that use numbers to plot associated points.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.NumericalAxis.MinorTickTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.NumericalAxis.MinorTickTemplate"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.NumericalAxis.GetTickTemplate(Telerik.Charting.TickType)">
+            <summary>
+            Gets the <see cref="T:System.Windows.DataTemplate"/> instance used to visualize the a tick with the specified <see cref="T:Telerik.Charting.TickType"/>.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.NumericalAxis.ActualRange">
+            <summary>
+            Gets the actual range used by the axis to plot data points.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.NumericalAxis.MinorTickTemplate">
+            <summary>
+            Gets or sets the template that defines the appearance of all minor ticks present on the axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.NumericalAxis.MajorStep">
+            <summary>
+            Gets or sets the major step between each axis tick.
+            By default the axis itself will calculate the major step, depending on the plotted data points.
+            </summary>
+            <remarks> You can reset this property by setting it to 0 to restore the default behavior.</remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.NumericalAxis.Minimum">
+            <summary>
+            Gets or sets the user-defined minimum of the axis. 
+            By default the axis itself will calculate the minimum, depending on the minimum of the plotted data points.
+            </summary>
+            <remarks> You can reset this property by setting it to double.NegativeInfinity to restore the default behavior.</remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.NumericalAxis.Maximum">
+            <summary>
+            Gets or sets the user-defined maximum of the axis. 
+            By default the axis itself will calculate the maximum, depending on the maximum of the plotted data points.
+            </summary>
+            <remarks> You can reset this property by setting it to double.PositiveInfinity to restore the default behavior.</remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.NumericalAxis.RangeExtendDirection">
+            <summary>
+            Gets or sets a value that specifies how the auto-range of this axis will be extended so that each data point is visualized in the best possible way.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LinearAxis.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.LinearAxis"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.LogarithmicAxis">
+            <summary>
+            Represents an axis that uses the Logarithm function to calculate the values of the plotted points.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LogarithmicAxis.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.LogarithmicAxis"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.LogarithmicAxis.LogarithmBase">
+            <summary>
+            Gets the base of the logarithm used for normalizing data points' values.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.CartesianChartGrid">
+            <summary>
+            Represents a decoration over a <see cref="T:Telerik.Windows.Controls.RadCartesianChart"/> plot area. Adds major and minor lines, connected to each Major and Minor tick of each axis.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CartesianChartGrid.MajorXLineStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CartesianChartGrid.MajorXLineStyle"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CartesianChartGrid.MajorYLineStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CartesianChartGrid.MajorYLineStyle"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CartesianChartGrid.MajorXLineDashArrayProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CartesianChartGrid.MajorXLineDashArray"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.CartesianChartGrid.MajorYLineDashArrayProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.CartesianChartGrid.MajorYLineDashArray"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CartesianChartGrid.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.CartesianChartGrid"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CartesianChartGrid.UpdateUICore(Telerik.Windows.Controls.ChartLayoutContext)">
+            <summary>
+            Updates of all of the chart elements presented by this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CartesianChartGrid.OnAttached">
+            <summary>
+            Occurs when the presenter has been successfully attached to its owning <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.CartesianChartGrid.OnDetached(Telerik.Windows.Controls.RadChart)">
+            <summary>
+            Occurs when the presenter has been successfully detached from its owning <see cref="T:Telerik.Windows.Controls.RadChart"/> instance.
+            </summary>
+            <param name="oldChart"></param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.MajorLinesVisibility">
+            <summary>
+            Determines the visibility of major grid lines.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.MajorXLineDashArray">
+            <summary>
+            Gets or sets the dash array used to define each major X-line StrokeDashArray property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.MajorYLineDashArray">
+            <summary>
+            Gets or sets the dash array used to define each major X-line StrokeDashArray property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.MajorXLinesRenderMode">
+            <summary>
+            Gets or sets the render mode of major X-lines.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.MajorYLinesRenderMode">
+            <summary>
+            Gets or sets the render mode of major X-lines.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.StripLinesVisibility">
+            <summary>
+            Determines the visibility of grid's Stripes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.XStripeBrushes">
+            <summary>
+            Gets the collection of brushes used to display X-axis stripes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.YStripeBrushes">
+            <summary>
+            Gets the collection of styles used to display Y-axis stripes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.MajorXLineStyle">
+            <summary>
+            Gets or sets the style that defines the appearance of the major lines along the X-axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.CartesianChartGrid.MajorYLineStyle">
+            <summary>
+            Gets or sets the style that defines the appearance of the major lines along the Y-axis.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadCartesianChart">
+            <summary>
+            Represents a <see cref="T:Telerik.Windows.Controls.RadChart"/> instance that uses a Cartesian Coordinate System to plot the associated data points.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadChart">
+            <summary>
+            Base class for all different charts. Different chart controls are categorized by mainly the coordinate system used to plot their points.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadChart.TooltipTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadChart.TooltipTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadChart.TrackBallLineStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadChart.TrackBallLineStyle"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadChart.TrackBallInfoStyleProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.RadChart.TrackBallInfoStyle"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadChart"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.UpdateUICore(Telerik.Windows.Controls.ChartLayoutContext)">
+            <summary>
+            Updates of all of the chart elements presented by this instance.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.CreateChartAreaModel">
+            <summary>
+            Creates the model of the plot area.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the Measure pass of Silverlight layout. Classes can override this method to define their own Measure pass behavior.
+            </summary>
+            <param name="availableSize">The available size that this object can give to child objects. Infinity (<see cref="F:System.Double.PositiveInfinity"/>) can be specified as a value to indicate that the object will size to whatever content is available.</param>
+            <returns>
+            The size that this object determines it needs during layout, based on its calculations of the allocated sizes for child objects; or based on other considerations, such as a fixed container size.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.UpdateChartArea">
+            <summary>
+            Prepares the plot area model so that it may be visualized.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.OnManipulationStarted(System.Windows.Input.ManipulationStartedEventArgs)">
+            <summary>
+            Called when the <see cref="E:System.Windows.Controls.Control.ManipulationStarted"/> event occurs. This member overrides <see cref="M:System.Windows.UIElement.OnManipulationStarted(System.Object,System.Windows.Input.ManipulationStartedEventArgs)"/>.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.OnManipulationDelta(System.Windows.Input.ManipulationDeltaEventArgs)">
+            <summary>
+            Called when the <see cref="E:System.Windows.Controls.Control.ManipulationDelta"/> event occurs. This member overrides <see cref="M:System.Windows.UIElement.OnManipulationDelta(System.Object,System.Windows.Input.ManipulationDeltaEventArgs)"/>.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.OnManipulationCompleted(System.Windows.Input.ManipulationCompletedEventArgs)">
+            <summary>
+            Called when the <see cref="E:System.Windows.Controls.Control.ManipulationCompleted"/> event occurs. This member overrides <see cref="M:System.Windows.UIElement.OnManipulationCompleted(System.Object,System.Windows.Input.ManipulationCompletedEventArgs)"/>.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadChart.OnUnloaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Occurs when this object is no longer connected to the main object tree.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.ClipToBounds">
+            <summary>
+            Determines whether the chart content will be clipped to the control's bounds.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.TooltipTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> that defines the appearance of the tooltip displayed by a <see cref="T:Telerik.Windows.Controls.ChartTooltipBehavior"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.TrackBallLineStyle">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Style"/> that defines the appearance of the line displayed by a <see cref="T:Telerik.Windows.Controls.ChartTrackBallBehavior"/> instance.
+            The style should target the <see cref="T:System.Windows.Shapes.Polyline"/> type.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.TrackBallInfoStyle">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.Style"/> that defines the appearance of the TrackInfo control displayed by a <see cref="T:Telerik.Windows.Controls.ChartTrackBallBehavior"/> instance.
+            The style should target the <see cref="T:Telerik.Windows.Controls.Chart.TrackBallInfoControl"/> type.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.Zoom">
+            <summary>
+            Gets or sets the current zoom (scale) of the chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.MaxZoom">
+            <summary>
+            Gets or sets the maximum allowed zoom for this instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.PanOffset">
+            <summary>
+            Gets or sets the origin used to calculate the arrange box of the chart area.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.Telerik#Charting#IChartView#ZoomX">
+            <summary>
+            Gets the current scale applied along the X direction.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.Telerik#Charting#IChartView#ZoomY">
+            <summary>
+            Gets the current scale applied along the Y direction.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.Telerik#Charting#IChartView#PanOffsetX">
+            <summary>
+            Gets the X-coordinate of the top-left corner where the layout should start from.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.Telerik#Charting#IChartView#PanOffsetY">
+            <summary>
+            Gets the Y-coordinate of the top-left corner where the layout should start from.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.Behaviors">
+            <summary>
+            Gets a collection of chart behaviors. For example a ChartToolTipBehavior can
+            be added to this collection which will enable tooltips on certain gestures.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.PlotAreaClip">
+            <summary>
+            Gets the clip that encloses the plot area in view coordinates - that is without the zoom factor applied and with the pan offset calculated.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.Telerik#Charting#IChartView#ViewportWidth">
+            <summary>
+            Gets the actual width of the chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadChart.Telerik#Charting#IChartView#ViewportHeight">
+            <summary>
+            Gets the actual height of the chart.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadChart.PreviewGesture">
+            <summary>
+            Occurs when a gesture, recognized by the chart is processed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCartesianChart.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadCartesianChart"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCartesianChart.CreateChartAreaModel">
+            <summary>
+            Creates the model of the plot area.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCartesianChart.Series">
+            <summary>
+            Gets the collection containing all the series presented by this instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCartesianChart.Grid">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Windows.Controls.CartesianChartGrid"/> used to decorate the chart plot area with major/minor grid and strip lines.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCartesianChart.HorizontalAxis">
+            <summary>
+            Gets or sets the visual <see cref="T:Telerik.Windows.Controls.Axis"/> instance that will be used to plot points along the horizontal (X) axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCartesianChart.VerticalAxis">
+            <summary>
+            Gets or sets the visual <see cref="T:Telerik.Windows.Controls.Axis"/> instance that will be used to plot points along the vertical (Y) axis.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCartesianChart.PlotAreaClip">
+            <summary>
+            Gets the plot area in view coordinates - that is without the zoom factor applied.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.AreaSeries">
+            <summary>
+            Represents a chart series that are visualize like an area figure in the cartesian space.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeries.FillProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.AreaSeries.Fill"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AreaSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.AreaSeries"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AreaSeries.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.AreaSeries.StrokeMode">
+            <summary>
+            Gets or sets the mode that defines how the area is stroked.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.AreaSeries.Fill">
+            <summary>
+            Gets or sets the style used to draw the <see cref="T:System.Windows.Shapes.Polyline"/> shape.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.AreaSeriesStrokeMode">
+            <summary>
+            Defines how an <see cref="T:Telerik.Windows.Controls.AreaSeries"/> shape is outlined.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeriesStrokeMode.None">
+            <summary>
+            No outlining.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeriesStrokeMode.LeftLine">
+            <summary>
+            The left line (from plotline to the first point) is outlined.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeriesStrokeMode.Points">
+            <summary>
+            The line that connects all points is outlined. This is the default mode.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeriesStrokeMode.RightLine">
+            <summary>
+            The right line (from plotline to the last point) is outlined.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeriesStrokeMode.PlotLine">
+            <summary>
+            The plotline is outlines.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeriesStrokeMode.LeftAndPoints">
+            <summary>
+            Left line and points are outlined.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeriesStrokeMode.RightAndPoints">
+            <summary>
+            Right line and points are outlined.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeriesStrokeMode.AllButPlotLine">
+            <summary>
+            All members except the PlotLine are specified.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.AreaSeriesStrokeMode.All">
+            <summary>
+            All enum members are defined and the area is fully outlined.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.BarSeries">
+            <summary>
+            Represents a chart series that plot their points using rectangular shapes, named "Bars".
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.BarSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.BarSeries"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.SplineAreaSeries">
+            <summary>
+            Represents series which define an area with smooth curves among points.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.LineSeries">
+            <summary>
+            Visualizes a collection of data points using a <see cref="T:System.Windows.Shapes.Line"/> shape.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.LineSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.LineSeries"/> class.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.PresenterCollection`1">
+            <summary>
+            Represents a strongly typed collection of <see cref="T:Telerik.Windows.Controls.ChartElementPresenter"/> instances.
+            </summary>
+            <typeparam name="T">Must be <see cref="T:Telerik.Windows.Controls.ChartElementPresenter"/>.</typeparam>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterCollection`1.InsertItem(System.Int32,`0)">
+            <summary>
+            Inserts an element into the collection at the specified index.
+            </summary>
+            <param name="index"></param>
+            <param name="item"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PresenterCollection`1.RemoveItem(System.Int32)">
+            <summary>
+            Removes the element at the specified index of the collection.
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="T:Telerik.Windows.Controls.StackedSeriesContext">
+            <summary>
+            Stores information about stacked series during an UpdateUI pass.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.StringToDataPointBindingConverter">
+            <summary>
+            Converts strings to PropertyNameDataPointBinding objects.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.StringToDataPointBindingConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether the type converter can convert an object to the specified type.
+            </summary>
+            <param name="context">An object that provides a format context.</param>
+            <param name="destinationType">The type you want to convert to.</param>
+            <returns>
+            true if this converter can perform the conversion; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.StringToDataPointBindingConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            Converts the specified value object to the specified type.
+            </summary>
+            <param name="context">An object that provides a format context.</param>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+            <param name="value">The object to convert.</param>
+            <param name="destinationType">The type to convert the object to.</param>
+            <returns>The converted object.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.StringToDataPointBindingConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether the type converter can convert an object from the specified type to the type of this converter.
+            </summary>
+            <param name="context">An object that provides a format context.</param>
+            <param name="sourceType">The type you want to convert from.</param>
+            <returns>
+            true if this converter can perform the conversion; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.StringToDataPointBindingConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts from the specified value to the intended conversion type of the converter.
+            </summary>
+            <param name="context">An object that provides a format context.</param>
+            <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+            <param name="value">The value to convert to the type of this converter.</param>
+            <returns>The converted value.</returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DataPointBinding">
+            <summary>
+            Encapsulates the base functionality for establishing a <see cref="T:Telerik.Charting.DataPoint"/> binding.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DataPointBinding.GetValue(System.Object)">
+            <summary>
+            Retrieves the value for the specified object instance.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DataPointBinding.OnPropertyChanged(System.String)">
+            <summary>
+            Raises the <see cref="E:Telerik.Windows.Controls.DataPointBinding.PropertyChanged"/> event.
+            </summary>
+            <param name="propertyName">The name of the property which value has changed.</param>
+        </member>
+        <member name="E:Telerik.Windows.Controls.DataPointBinding.PropertyChanged">
+            <summary>
+            Occurs when a property value has changed.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.GenericDataPointBinding`2">
+            <summary>
+            Represents a <see cref="T:Telerik.Windows.Controls.DataPointBinding"/> that uses a generic delegate to retrieve the value to be applied for the generated data points.
+            </summary>
+            <typeparam name="TElement">The type of the element.</typeparam>
+            <typeparam name="TResult">The type of the return value of the generic delegate.</typeparam>
+        </member>
+        <member name="M:Telerik.Windows.Controls.GenericDataPointBinding`2.GetValue(System.Object)">
+            <summary>
+            Retrieves the value for the specified object instance.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.GenericDataPointBinding`2.ValueSelector">
+            <summary>
+            Gets or sets the generic delegate used to retrieve bound objects values.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.PropertyNameDataPointBinding">
+            <summary>
+            Represents a <see cref="T:Telerik.Windows.Controls.DataPointBinding"/> that uses reflection to look-up the values for the generated data points.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PropertyNameDataPointBinding.GetValue(System.Object)">
+            <summary>
+            Retrieves the value for the specified object instance.
+            </summary>
+            <param name="instance"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PropertyNameDataPointBinding.PropertyName">
+            <summary>
+            Gets or sets the name of the property which value is bound.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DataPointInfo">
+            <summary>
+            This class contains the closest data point to a tap location
+            as well as the point's corresponding series object.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataPointInfo.Series">
+            <summary>
+            Gets the series object that contains the data point.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataPointInfo.ContainsTouchLocation">
+            <summary>
+            Determines whether the layout slot of the data point contains the touch location.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataPointInfo.DataPoint">
+            <summary>
+            Gets the data point in the series object that is closest to the tap location.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataPointInfo.DisplayHeader">
+            <summary>
+            Gets the name of the series which host the associated data point.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DataPointInfo.DisplayContent">
+            <summary>
+            Gets or sets the object that visually represents the value of the associated point.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PieSegment.Path">
+            <summary>
+            Gets the shape that represents this segment.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.PieSeries">
+            <summary>
+            Represents a chart series that visualize data points using arcs that form a pie.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.PieSeries.LabelTemplateProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.PieSeries.LabelTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.PieSeries.SliceStyleSelectorProperty">
+            <summary>
+            Identifies the <see cref="T:Telerik.Windows.Controls.StyleSelector"/> property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PieSeries.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.PieSeries"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PieSeries.CreateDataSourceInstance">
+            <summary>
+            Creates the concrete data source for this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.PieSeries.UpdateUICore(Telerik.Windows.Controls.ChartLayoutContext)">
+            <summary>
+            Updates of all of the chart elements presented by this instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PieSeries.SliceStyleSelector">
+            <summary>
+            Gets or sets the <see cref="T:Telerik.Windows.Controls.StyleSelector"/> instance used to select the appropriate style for a <see cref="T:Telerik.Charting.PieDataPoint"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PieSeries.LabelOffset">
+            <summary>
+            Gets or sets the offset of labels from the ellipse outline. Defaults to 10 pixels.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PieSeries.LabelTemplate">
+            <summary>
+            Gets or sets the template that presents the labels of each point.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PieSeries.DataPoints">
+            <summary>
+            Gets the collection of data points associated with the series.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PieSeries.SliceStyles">
+            <summary>
+            Gets the collection storing a Style instance for each segment present on the chart.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PieSeries.AngleRange">
+            <summary>
+            Gets or sets the angle range that define the pie.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PieSeries.ShowLabels">
+            <summary>
+            Determines whether the labels associated with each pie segment are visible.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.PieSeries.Segments">
+            <summary>
+            Exposed for testing purposes.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadPieChart">
+            <summary>
+            Represents a special chart that visualizes its data points using arc segments.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadPieChart.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadPieChart"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadPieChart.CreateChartAreaModel">
+            <summary>
+            Creates the model of the plot area.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadPieChart.Series">
+            <summary>
+            Gets all the data points plotted by this chart.
+            </summary>
+        </member>
+    </members>
+</doc>

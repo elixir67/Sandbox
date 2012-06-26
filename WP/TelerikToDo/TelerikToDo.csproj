@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{703C0290-B888-432B-A670-3BE6A7C05A2B}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TelerikToDo</RootNamespace>
+    <AssemblyName>TelerikToDo</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>TelerikToDo.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>TelerikToDo.App</SilverlightAppEntry>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls" />
+    <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="System.Device" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>lib\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>lib\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Primitives">
+      <HintPath>lib\Telerik.Windows.Controls.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Core">
+      <HintPath>lib\Telerik.Windows.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>lib\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Wintellect.Sterling.WindowsPhone">
+      <HintPath>lib\Wintellect.Sterling.WindowsPhone.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converters\CategoryToImageSourceConverter.cs" />
+    <Compile Include="Converters\CategoryCountConverter.cs" />
+    <Compile Include="Converters\ProjectIdTasksLeftConverter.cs" />
+    <Compile Include="Converters\ProjectStatusIdNameConverter.cs" />
+    <Compile Include="Converters\ObjectToVisibilityConverter.cs" />
+    <Compile Include="Converters\TaskDetailsDueDateConverter.cs" />
+    <Compile Include="Converters\ProjectDueDateConverter.cs" />
+    <Compile Include="Converters\ProjectIdNameConverter.cs" />
+    <Compile Include="Converters\TaskIconsConverter.cs" />
+    <Compile Include="Converters\PriorityToImageSourceConverter.cs" />
+    <Compile Include="EnumViewModel.cs" />
+    <Compile Include="Models\AppModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="NonLinearNavigationService.cs" />
+    <Compile Include="Views\AllTasks.xaml.cs">
+      <DependentUpon>AllTasks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AllProjects.xaml.cs">
+      <DependentUpon>AllProjects.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TasksByCategory.xaml.cs">
+      <DependentUpon>TasksByCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateTask.xaml.cs">
+      <DependentUpon>CreateTask.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\ViewProject.xaml.cs">
+      <DependentUpon>ViewProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProject.xaml.cs">
+      <DependentUpon>EditProject.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditTask.xaml.cs">
+      <DependentUpon>EditTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataBase\ToDoDatabase.cs" />
+    <Compile Include="DataBase\IdentityTrigger.cs" />
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TaskPriority.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="ProjectStatus.cs" />
+    <Compile Include="TaskRecurrence.cs" />
+    <Compile Include="Models\TaskCategory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="DataBase\SterlingService.cs" />
+    <Compile Include="Views\ViewTask.xaml.cs">
+      <DependentUpon>ViewTask.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="Views\AllTasks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AllProjects.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TasksByCategory.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewProject.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EditProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ViewTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ApplicationIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="PanoramaBackground.png" />
+    <Content Include="Images\Add.png" />
+    <Content Include="Images\CategoriesPanoramaHeader.png" />
+    <Content Include="Images\HomeItemPanoramaHeader.png" />
+    <Content Include="Images\innerPagesBackground.jpg" />
+    <Content Include="Images\Cancel.png" />
+    <Content Include="Images\Categories\IdeaLarge.png" />
+    <Content Include="Images\Categories\IdeaSmall.png" />
+    <Content Include="Images\Categories\LinkLarge.png" />
+    <Content Include="Images\Categories\LinkSmall.png" />
+    <Content Include="Images\Categories\LocationLarge.png" />
+    <Content Include="Images\Categories\LocationSmall.png" />
+    <Content Include="Images\Categories\MailLarge.png" />
+    <Content Include="Images\Categories\MailSmall.png" />
+    <Content Include="Images\Categories\PhoneLarge.png" />
+    <Content Include="Images\Categories\PhoneSmall.png" />
+    <Content Include="Images\Categories\SailLarge.png" />
+    <Content Include="Images\Categories\SailSmall.png" />
+    <Content Include="Images\Categories\ShoppingLarge.png" />
+    <Content Include="Images\Categories\ShoppingSmall.png" />
+    <Content Include="Images\Categories\ToDoLarge.png" />
+    <Content Include="Images\Categories\ToDoSmall.png" />
+    <Content Include="Images\Delete.png" />
+    <Content Include="Images\Edit.png" />
+    <Content Include="Images\all.png" />
+    <Content Include="Images\JumpListHeader.png" />
+    <Content Include="Images\innerPageLogo.png" />
+    <Content Include="Images\LocationPickerIcon.png" />
+    <Content Include="Images\LocationPreviewPlaceholder.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\menuBullet.png" />
+    <Content Include="Images\newProject.png" />
+    <Content Include="Images\newTask.png" />
+    <Content Include="Images\OK.png" />
+    <Content Include="Images\DateTimePickerCancel.png" />
+    <Content Include="Images\DateTimePickerOK.png" />
+    <Content Include="Images\panorama.jpg" />
+    <Content Include="Images\PhotoPreviewPlaceholder.png" />
+    <Content Include="Images\Priorities\high.png" />
+    <Content Include="Images\Priorities\low.png" />
+    <Content Include="Images\Priorities\medium.png" />
+    <Content Include="Images\Priorities\must.png" />
+    <Content Include="Images\ProjectsPanoramaHeader.png" />
+    <Content Include="Images\RichElementDeleteIcon.png" />
+    <Content Include="Images\RichElementEditIcon.png" />
+    <Content Include="Images\RichElementPlayIcon.png" />
+    <Content Include="Images\RichElementAddIcon.png" />
+    <Resource Include="Images\RichElementStopIcon.png" />
+    <Content Include="Images\Save.png" />
+    <Content Include="Images\Search.png" />
+    <Content Include="Images\TaskIcons\location.png" />
+    <Content Include="Images\TaskIcons\photo.png" />
+    <Content Include="Images\TaskIcons\recurrence.png" />
+    <Content Include="Images\TaskIcons\voiceMemo.png" />
+    <Content Include="Images\taskOverdueWarning.png" />
+    <Content Include="Images\VoiceMemoPlay.png" />
+    <Content Include="Images\VoicePreviewPlaceholder.png" />
+    <Content Include="SplashScreenImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions />
+</Project>

@@ -1,0 +1,46 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="TelerikToDo.ViewProject"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="{StaticResource InnerPageBackground}">
+        <Image Style="{StaticResource InnerPageLogoStyle}"/>
+
+        <StackPanel  Margin="24,83,24,0">
+            <TextBlock Text="Name" Style="{StaticResource TextBlockHeaderStyle}"/>
+            <TextBlock Text="{Binding Name}" Style="{StaticResource TaskNameStyle}"/>
+
+            <TextBlock Text="Status" Style="{StaticResource TextBlockHeaderStyle}"/>
+            <TextBlock Text="{Binding StatusId, Converter={StaticResource ProjectStatusIdNameConverter}}" Style="{StaticResource TaskNameStyle}"/>
+
+            <TextBlock Text="Due Date" Style="{StaticResource TextBlockHeaderStyle}"/>
+            <TextBlock Text="{Binding DueDate}" Style="{StaticResource TaskNameStyle}"/>
+
+            <TextBlock Text="Notes" Style="{StaticResource TextBlockHeaderStyle}"/>
+            <TextBlock Text="{Binding Notes}" TextWrapping="Wrap" Style="{StaticResource NotesTextStyle}"/>
+
+            <Button Content="аdd тask" Click="AddTaskButton_Click" Foreground="Black" BorderBrush="Black"/>
+            <telerikPrimitives:RadDataBoundListBox ItemTap="ProjectTasks_ItemTap" MaxHeight="200" Grid.Row="1" Margin="0" x:Name="ProjectTasks" ItemTemplate="{StaticResource TaskDetailsTemplate}" />
+        </StackPanel>
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="#8AB331">
+            <shell:ApplicationBarIconButton IconUri="/Images/OK.png" Click="CompleteButton_Click" Text="Complete"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Edit.png" Click="EditButton_Click" Text="Edit"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Delete.png" Click="DeleteButton_Click" Text="Delete"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

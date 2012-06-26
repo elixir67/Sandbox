@@ -1,0 +1,2789 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Telerik.Windows.Controls.Input</name>
+    </assembly>
+    <members>
+        <member name="T:Telerik.Windows.Controls.AppointmentSource">
+            <summary>
+            Defines basic logic for retrieving a collection of IAppointment objects.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AppointmentSource.GetAppointments(System.Func{Telerik.Windows.Controls.IAppointment,System.Boolean})">
+            <summary>
+            Creates a collection of IAppointment objects based on an appointment predicate.
+            </summary>
+            <param name="appointmentFilter">A predicate that determines which appointments will be present in the resulting collection.</param>
+            <returns>Returns a collection of IAppointment objects.</returns>
+            <remarks>
+            Inheritors must populate the AllAppointments list, otherwise this method will always return an empty collection.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AppointmentSource.FetchData(System.DateTime,System.DateTime)">
+            <summary>
+            An abstract method that inheritors must implement in order to
+            fetch new appointments from the native appointment source.
+            </summary>
+            <param name="startDate">The start date for the new appointments.</param>
+            <param name="endDate">The end date for the new appointments.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AppointmentSource.OnDataLoaded">
+            <summary>
+            A method that must be called after the FetchData operation is finished.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.AppointmentSource.DataLoaded">
+            <summary>
+            Occurs when appointment data has been loaded.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.AppointmentSource.AllAppointments">
+            <summary>
+            Gets a list of all the appointments from the real data source wrapped in IAppointment objects.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.AppointmentTemplateSelector">
+            <summary>
+            A template selector that is used by the date/time pickers/selectors to
+            select a proper item template for appointment visualization.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.AppointmentTemplateSelector.SelectTemplate(System.Object,System.Windows.DependencyObject)">
+            <summary>
+            Selects a specific template based on some data and the container of the data.
+            </summary>
+            <param name="item">The data based on which to select a template.</param>
+            <param name="container">The container of the data, it can also be used for the template selection logic.</param>
+            <returns>Returns a DataTemplate if the appointments associated with the item argument are more than 0 and null otherwise.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.AppointmentTemplateSelector.AppointmentTemplate">
+            <summary>
+            Gets or sets the template which is returned from the SelectTemplate() method.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeAppointment">
+            <summary>
+            A base Appointment class that implements IAppointment.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.IAppointment">
+            <summary>
+            An interface that defines the minimum properties that an appointment can have.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IAppointment.StartDate">
+            <summary>
+            Gets the start date of the appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IAppointment.EndDate">
+            <summary>
+            Gets the end date of the appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IAppointment.Subject">
+            <summary>
+            Gets or sets the subject.
+            </summary>
+            <value>The subject.</value>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeAppointment.#ctor(System.DateTime,System.DateTime)">
+            <summary>
+            Initializes a new instance of the DateTimeAppointment class.
+            </summary>
+            <param name="start">The start date of the appointment.</param>
+            <param name="end">The end date of the appointment.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeAppointment.#ctor(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            Initializes a new instance of the DateTimeAppointment class.
+            </summary>
+            <param name="start">The start date of the appointment.</param>
+            <param name="end">The end date of the appointment.</param>
+            <param name="description">The appointment description.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeAppointment.StartDate">
+            <summary>
+            Gets the start date of this appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeAppointment.EndDate">
+            <summary>
+            Gets the end date of this appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeAppointment.Description">
+            <summary>
+            Gets the description of this appointment.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeAppointment.Subject">
+            <summary>
+            Gets the description of this appointment.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Calendar.CalendarButtonContentInfo">
+            <summary>
+            The model which holds information about the data presented in the Calendar Button.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Calendar.CalendarButtonContentInfo.Text">
+            <summary>
+            Gets the text.
+            </summary>
+            <value>The text.</value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Calendar.CalendarButtonContentInfo.DetailText">
+            <summary>
+            Gets the detail text.
+            </summary>
+            <value>The detail text.</value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Calendar.CalendarButtonContentInfo.Date">
+            <summary>
+            Gets the date associated with the button.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Calendar.CalendarButton">
+            <summary>
+            The class of the calendar button.
+            </summary>
+            <remarks>
+            The CalendarButton class is not to be used outside the RadCalendar control. If you need a button functionality,
+            use the ButtonBase or Button classes.
+            </remarks>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Calendar.CalendarButton.OnManipulationCompleted(System.Windows.Input.ManipulationCompletedEventArgs)">
+            <summary>
+            Called when the <see cref="E:System.Windows.Controls.Control.ManipulationCompleted"/> event occurs. This member overrides <see cref="M:System.Windows.UIElement.OnManipulationCompleted(System.Object,System.Windows.Input.ManipulationCompletedEventArgs)"/>.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Calendar.CalendarButton.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.Calendar.CalendarButton"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Calendar.CalendarButton.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Calendar.CalendarButton.OnContentChanged(System.Object,System.Object)">
+            <summary>
+            Called when the <see cref="P:System.Windows.Controls.ContentControl.Content"/> property changes.
+            </summary>
+            <param name="oldContent">The old value of the <see cref="P:System.Windows.Controls.ContentControl.Content"/> property.</param>
+            <param name="newContent">The new value of the <see cref="P:System.Windows.Controls.ContentControl.Content"/> property.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Calendar.CalendarButton.ButtonType">
+            <summary>
+            Gets or sets the type of the button. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Calendar.CalendarButton.IsFromCurrentView">
+            <summary>
+            Gets or sets whether the button belongs to the current month. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Calendar.CalendarButton.Appointments">
+            <summary>
+            Gets the appointments that are associated with this
+            date time item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Calendar.CalendarButton.IsSelected">
+            <summary>
+            Gets or sets whether the button is selected. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Calendar.CalendarButton.IsSelectable">
+            <summary>
+            Gets or sets whether the button can be selected. This is a dependency property.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadCalendar">
+            <summary>
+                Represents a selection control that allows you to select date from a calendar.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>Calendar</strong> control allows the user to select a single date.
+                </para>
+                <para>
+                    <strong>Disabling or enabling the selection of dates</strong> can be controlled by the <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateStart"/> 
+                    and <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateEnd"/> properties. If none of the latter 
+                    two has been set, i.e. their value is <strong>null</strong> 
+                    then all the <strong>calendar</strong> dates are selctable. 
+                </para>
+                <para>
+                    The <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/> property holds the <strong>DateTime</strong> value of the selected date. 
+                    The default value is <strong>null</strong> (no date is selected). Adding a handler for the <see cref="E:Telerik.Windows.Controls.RadCalendar.SelectedValueChanged"/> 
+                    event would enable you to be notified whenever a date is selected.
+                </para>
+                <para>
+                    Similarly, to modify which dates the user can navigate to, use the DisplayDateStart and DisplayDateEnd 
+                    properties. Setting the <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDate"/> property navigates the calendar to the month or year 
+                    that contain this date (depending on the current <strong>DisplayMode</strong>).
+                </para>
+            </remarks>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/>
+            <seealso cref="E:Telerik.Windows.Controls.RadCalendar.SelectedValueChanged"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDate"/>
+            <seealso cref="E:Telerik.Windows.Controls.RadCalendar.DisplayDateChanged"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateStart"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnManipulationDelta(System.Windows.Input.ManipulationDeltaEventArgs)">
+            <summary>
+            Handles the manipulation delta.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Input.ManipulationDeltaEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnManipulationCompleted(System.Windows.Input.ManipulationCompletedEventArgs)">
+            <summary>
+            Handles the manipulation completed.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Input.ManipulationCompletedEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.SelectableDateStartProperty">
+            <summary>
+                Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateStart"/> dependency property. 
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.SelectableDateEndProperty">
+            <summary>
+                Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateEnd"/> dependency property.
+            </summary> 
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.SelectedValueProperty">
+            <summary>
+                Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/> dependency property. 
+            </summary> 
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.IsTodayHighlightedProperty">
+            <summary> 
+                Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.IsTodayHighlighted"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.IsReadOnlyProperty">
+            <summary>
+                Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.IsReadOnly"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.FirstDayOfWeekProperty">
+            <summary>
+            Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.FirstDayOfWeek"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.DisplayDateStartProperty">
+            <summary>
+            Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.DisplayDateEndProperty">
+            <summary>
+            Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateEnd"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.DisplayDateProperty">
+            <summary>
+            Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.ItemTemplateSelectorProperty">
+            <summary>
+            Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.ItemTemplateSelector"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.ItemTemplateProperty">
+            <summary>
+            Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.ItemTemplate"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.CultureProperty">
+            <summary>
+            Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.Culture"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.MonthInfoDisplayModeProperty">
+            <summary>
+                Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.MonthInfoDisplayMode"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.CalendarWeekRuleProperty">
+            <summary>
+                Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.CalendarWeekRule"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.DayNamesVisibilityProperty">
+            <summary>
+            Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.DayNamesVisibility"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.WeekNumbersVisibilityProperty">
+            <summary>
+            	Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.WeekNumbersVisibility"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadCalendar.AppointmentSourceProperty">
+            <summary>
+            Identifies the <c cref="P:Telerik.Windows.Controls.RadCalendar.AppointmentSource"/> dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.#ctor">
+            <summary>
+                Initializes a new instance of the RadCalendar class.
+            </summary>
+            <remarks>
+                <para>
+                    Please refer to the <see cref="T:Telerik.Windows.Controls.RadCalendar"/> information examples on 
+                    how to use the control.
+                </para>
+            </remarks>
+            <seealso cref="T:Telerik.Windows.Controls.RadCalendar"/>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes call <see cref="M:System.Windows.FrameworkElement.ApplyTemplate"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnSelectedValueChanged(Telerik.Windows.Controls.ValueChangedEventArgs{System.Object})">
+            <summary>
+            Raises the <see cref="E:SelectionChanged"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnSelectedValueChanging(Telerik.Windows.Controls.ValueChangingEventArgs{System.Object})">
+            <summary>
+            Raises the <see cref="E:SelectedValueChanging"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnDisplayDateChanged(Telerik.Windows.Controls.ValueChangedEventArgs{System.Object})">
+            <summary>
+            Raises the <see cref="E:DisplayDateChanged"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnDisplayDateChanging(Telerik.Windows.Controls.ValueChangingEventArgs{System.Object})">
+            <summary>
+            Raises the <see cref="E:DisplayDateChanging"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.IsDisplayDateValid(Telerik.Windows.Controls.RadCalendar,System.DateTime)">
+            <summary>
+            Checks whether the given date is a valid display date for the calendar.
+            </summary>
+            <param name="calendar">The calendar to check the display date for.</param>
+            <param name="newDisplayDate">The new display date to test.</param>
+            <returns>True if it is a valid display date, flase otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.IsSelectableDateStartValid(Telerik.Windows.Controls.RadCalendar,System.Nullable{System.DateTime})">
+            <summary>
+            Checks whether the date is a valid SelectableDateStart value for the given calendar.
+            </summary>
+            <param name="calendar">The calendar to test for.</param>
+            <param name="newSelectableDateStart">The date to test.</param>
+            <returns>True if it is a valid selectable date start, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.IsSelectableDateEndValid(Telerik.Windows.Controls.RadCalendar,System.Nullable{System.DateTime})">
+            <summary>
+            Checks whether the date is a valid SelectableDateEnd value for the given calendar.
+            </summary>
+            <param name="calendar">The calendar to test for.</param>
+            <param name="newSelectableDateEnd">The date to test.</param>
+            <returns>True if it is a valid selectable date end, false otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.IsDisplayDateStartValid(Telerik.Windows.Controls.RadCalendar,System.Nullable{System.DateTime})">
+            <summary>
+            Checks whether the date is a valid DisplayDateStart value for the given calendar.
+            </summary>
+            <param name="calendar">The calendar for which to test the value.</param>
+            <param name="newDisplayDate">The date to test.</param>
+            <returns>True if it is a valid display date start, flase otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.IsDisplayDateEndValid(Telerik.Windows.Controls.RadCalendar,System.Nullable{System.DateTime})">
+            <summary>
+            Checks whether the date is a valid DisplayDateEnd value for the given calendar.
+            </summary>
+            <param name="calendar">The calendar for which to test the value.</param>
+            <param name="newDisplayDateEnd">The date to test.</param>
+            <returns>True if it is a valid display date end, flase otherwise.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnSelectableDateStartChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary> 
+                SelectableDateStartProperty property changed handler.
+            </summary>
+            <param name="sender">Calendar that changed its SelectableDateStart.</param> 
+            <param name="e">DependencyPropertyChangedEventArgs.</param> 
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnSelectableDateEndChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+                SelectableDateEndProperty property changed handler. 
+            </summary>
+            <param name="sender">Calendar that changed its SelectableDateEnd.</param>
+            <param name="e">DependencyPropertyChangedEventArgs.</param> 
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadCalendar.OnIsTodayHighlightedChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+                IsTodayHighlightedProperty property changed handler.
+            </summary> 
+            <param name="d">Calendar that changed its IsTodayHighlighted.</param> 
+            <param name="e">DependencyPropertyChangedEventArgs.</param>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadCalendar.SelectedValueChanged">
+            <summary>
+            Occurs when the currently selected value has changed.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadCalendar.SelectedValueChanging">
+            <summary>
+            Occurs when the current selected value is about to change.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadCalendar.DisplayDateChanged">
+            <summary>
+            Occurs when the currently displayed date has changed.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadCalendar.DisplayDateChanging">
+            <summary>
+            Occurs when the currently displayed datee is about to change.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.SelectableDateEnd">
+            <summary>
+                Gets or sets the last date that can be selected. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>SelectableDateEnd</strong> specifies the last date that can be selected by the user. 
+                </para>
+                <para>
+                    Please note that the SelectableDateEnd should not be set to a date larger than the 
+                    <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateEnd"/>. The SelectableDate end cannot be set to 
+                    a date smaller than the <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/>.
+                </para>
+                <para>
+                    To specify the range of dates that will be visible to the users, use <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/> 
+                    and <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateEnd"/>.
+                </para>
+            </remarks>
+            <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateStart"/>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.SelectableDateStart">
+            <summary>
+                Gets or sets the first date that can be selected. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>SelectableDateStart</strong> specifies the first date that can be selected by the user. 
+                </para>
+                <para>
+                    Please note that the SelectableDateStart should not be set to a date larger than the 
+                    <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/>. The SelectableDate end cannot be set to a date smaller than 
+                    the <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/>
+                </para>
+                <para>
+                    To specify the range of dates that will be visible to the users, use <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/> 
+                    and <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateEnd"/>.
+                </para>
+            </remarks>
+            <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateEnd"/>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.SelectedValue">
+            <summary>
+                Gets or sets the currently selected date. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>SelectedValue</strong> property identifies the last date that has been selected. 
+                </para>
+                <para>
+                    Setting the <strong>SelectedValue</strong> property to <strong>null</strong> would deselect 
+                    any selection. The <strong>default value is null</strong>.
+                </para>
+                <para>
+                    Selecting a date fires the <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/> event. An example about handling 
+                    events is provided below.
+                </para>
+                <para>
+                    Please note that the user would not be able to select dates outside the <strong>SelctdableDates</strong>
+                    range defined by the <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateStart"/> and <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateEnd"/> properties. 
+                    Setting a date outside this range in 
+                    code would result in an <strong>ArgumentOutOfRangeException</strong>.
+                </para>
+                <para>
+                    Note that all <strong>DateTime</strong> properties of the <strong>RadCalendar</strong> 
+                    discard the time of the DateTime object, i.e. the <strong>time is coerced to 0:0:0</strong>.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.IsReadOnly">
+            <summary>
+                Gets or sets whether the Calendar's selection can be changed. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>IsReadOnly</strong> property specifies whether the current selection can be changed. 
+                    Please note that the IsReadOnly property governs user intaraction, i.e. the selected 
+                    dates can be changed programatically - through a binding or setting the SelectedValue property.
+                </para>
+                <para>
+                    To disable all the interaction with the Calendar, use the <strong>IsEnabled</strong> property.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.IsTodayHighlighted">
+            <summary>
+                Gets or sets whether the today date would be highlighted. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>IsTodayHighlighted</strong> property indicates whether the today date in 
+                    the calendar would be highlighted. The <strong>default value is true</strong>.
+                </para>
+                <para>
+                    Please note that the <strong>IsTodayHighlighted</strong> property does not affect 
+                    whether the today date is selected or not. Use the <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/>
+                    property to specify the selected date.
+                </para>
+            </remarks>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.FirstDayOfWeek">
+            <summary> 
+                Gets or sets the day that is considered the beginning of the week.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>FirstDayOfWeek</strong> property specifies which is the day in the leftmost 
+                    column of the calendar view, i.e. which is the first day of the week. 
+                </para>
+                <para>
+                    If the property is set to <strong>null</strong>, the <see cref="P:Telerik.Windows.Controls.RadCalendar.Culture"/> will be checked, 
+                    if a specific culture is set, its FirstDayOfWeek is considered.
+                    Otherwise the <strong>CurrentCulture</strong> will be used.
+                </para>
+                <para>
+                    Generally, the start of the week varies with different cultures so if you would like 
+                    the <strong>Calendar</strong> to display the dates as you see them, be sure to set the 
+                    FirstDayOfWeek property or the <see cref="P:Telerik.Windows.Controls.RadCalendar.Culture"/> property.
+                    <code><![CDATA[
+                        calendar.FirstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+                    ]]></code>
+                </para>
+            </remarks>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.Culture"/>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.DisplayDateEnd">
+            <summary>
+                Gets or sets the last date that would be able to be displayed. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>DisplayDateEnd</strong> property can limit the dates which can be navigated to. 
+                    The <strong>DisplayDateEnd</strong> is the date furthest away in time that can be displayed. Setting 
+                    the property to <strong>null</strong> would enable all dates to be viewed.
+                </para>
+                <para>
+                    Please note that <strong>ArgumentOutOfRange</strong> exception would be thrown if the 
+                    <strong>DisplayDateEnd</strong> is set to a date earlier than the currently displayed date
+                    (<see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDate"/>).
+                </para>
+                <para>
+                    More information about setting the displayble dates' range and an example can be found 
+                    on the <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/> help page.
+                </para>
+            </remarks>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDate"/>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart">
+            <summary>
+                Gets or sets the first date that would be able to be displayed. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>DisplayDateStart</strong> property together with <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateEnd"/> 
+                    allows you to define a range within which the user would be able to navigate. The 
+                    <strong>DisplayDateStart</strong> does not affect whether a date can be selected or not. 
+                    Please refer to <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateStart"/> for more information on controlling selection. 
+                </para>
+                <para>
+                    Similarly to the other date properties of the Calendar, the time part of the <strong>DateTime</strong> 
+                    object is not only ignored but set to <strong>00:00:00</strong> as well (coerced). See <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/>
+                    for an example and more infromation on that behaviour.
+                </para>
+                <para>
+                    Setting the <strong>DisplayDateStart</strong> to <strong>null</strong> means that 
+                    <strong>DateTime.MinValue</strong>
+                    would be the start of the displayable range. The default values is null.
+                </para>
+            </remarks>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateEnd"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateStart"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateEnd"/>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.AppointmentSource">
+            <summary>
+            Gets or sets an AppointmentSource object that will be used
+            to display appointment data in the visual representation of a date.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.DisplayDate">
+            <summary>
+                Gets or sets the current date to display. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    The <strong>DisplayDate</strong> property specifies the date to display in the <see cref="T:Telerik.Windows.Controls.RadCalendar"/>.
+                    If no display date was set, then the <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/> is used. Alternatively, if no 
+                    date is selected then <strong>DateTime.Today</strong> is used.
+                </para>
+                <para>
+                    Similarly to the other date properties of the Calendar, the time part of the <strong>DateTime</strong> 
+                    object is not only ignored but set to <strong>00:00:00</strong> as well. See <see cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/>
+                    for an example and more infromation on that behaviour.
+                </para>
+                <para>
+                    The <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/> and <see cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateEnd"/> properties defined a range
+                    within which the <strong>DisplayDate</strong> can be set, i.e. a range within which the user 
+                    can navigate. If you try to set a <strong>DisplayDate outside the defined range</strong> an 
+                    <strong>ArgumentOutOfRangeException</strong> would be thrown. Similarly, setting a display 
+                    range that excludes the current DisplayDate would throw an exception.
+                </para>
+                <para>
+                    Please note that unlike the other date properties <strong>DisplayDate cannot be set to null</strong>. 
+                </para>
+            </remarks>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.SelectedValue"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateStart"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.DisplayDateEnd"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateStart"/>
+            <seealso cref="P:Telerik.Windows.Controls.RadCalendar.SelectableDateEnd"/>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.ItemTemplate">
+            <summary>
+                Gets or sets the content templates for the day buttons in the month views of the calendar. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.ItemTemplateSelector">
+            <summary>
+                Gets or sets the DataTemplate selectors for the day buttons in the month views of the calendar. This is a dependency property.
+            </summary>		
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.Culture">
+            <summary>
+                Gets or sets the culture that the Calendar uses. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    Some of the elements in the Calendar are culture-specific, for example: The <strong>day/month names</strong>,
+                    rules for <strong>date formatting</strong>, the <see cref="P:Telerik.Windows.Controls.RadCalendar.FirstDayOfWeek"/>, 
+                    <see cref="P:Telerik.Windows.Controls.RadCalendar.CalendarWeekRule"/>. Some more specific properties like <see cref="P:Telerik.Windows.Controls.RadCalendar.FirstDayOfWeek"/> 
+                    take precedence over the Culture property if they are set.
+                </para>
+                <para>
+                    If no Culture is specified, all the elements that rely on it will fall back to the 
+                    <strong>CultureInfo.CurrentCulture</strong>.
+                </para>
+                <para>
+                    The default value is <strong>null</strong>.
+                </para>
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.WeekNumbersVisibility">
+            <summary>
+            Gets or sets whether WeekNumbers will be displayed.
+            </summary>
+            <remarks>
+                <para>
+                    Please note that if you hide the WeekNumbers it would not automatically change the template of 
+                    the calendar. Depending on the skin, you may need to change the template to visually 
+                    make up for the fewer displayed elements.
+                </para>
+                <para>
+                    The <see cref="P:Telerik.Windows.Controls.RadCalendar.DayNamesVisibility"/> can also be hidden.    
+                </para>
+                <para>
+                    The default value is true.
+                </para>
+            </remarks>
+            <see cref="P:Telerik.Windows.Controls.RadCalendar.WeekNumbersVisibility"/>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.CalendarWeekRule">
+            <summary>
+                Gets or sets how should the first week in the year be counted. This is a dependency property.
+            </summary>
+            <remarks>
+                <para>
+                    By default if no value is set (or is set to null), the CalendarWeek rule will be ta
+                </para>
+            </remarks>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.MonthInfoDisplayMode">
+            <summary>
+                Gets or sets how the month info should be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadCalendar.DayNamesVisibility">
+            <summary>
+                Gets or sets whether Day Names will be displayed.
+            </summary>
+            <remarks>
+                <para>
+                    The <see cref="P:Telerik.Windows.Controls.RadCalendar.WeekNumbersVisibility"/> can also be hidden.    
+                </para>
+                <para>
+                    The default value is visible.
+                </para>
+            </remarks>
+            <see cref="P:Telerik.Windows.Controls.RadCalendar.WeekNumbersVisibility"/>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Calendar.MonthInfoDisplayMode">
+            <summary>
+            Identifies the display mode of the month info text.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Calendar.MonthInfoDisplayMode.Large">
+            <summary>
+            Month info is displayed with large text vertically.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Calendar.MonthInfoDisplayMode.Small">
+            <summary>
+            Month info is displayed with small text horizontally.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Calendar.MonthInfoDisplayMode.None">
+            <summary>
+            Month info is not displayed.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Calendar.InvertedBooleanToVisibilityConverter">
+            <summary>
+            InvertedBooleanToVisibilityConverter.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Calendar.InvertedBooleanToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the source data before passing it to the target for display in the UI.
+            </summary>
+            <param name="value">The source data being passed to the target.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the target dependency property.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the target dependency property.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Calendar.InvertedBooleanToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Modifies the target data before passing it to the source object.  This method is called only in <see cref="F:System.Windows.Data.BindingMode.TwoWay"/> bindings.
+            </summary>
+            <param name="value">The target data being passed to the source.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the source object.
+            </returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Calendar.CalendarButtonType">
+            <summary>
+            Identifies the type of the Calendar Button.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Calendar.CalendarButtonType.TodayDate">
+            <summary>
+            The date button of today's date.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Calendar.CalendarButtonType.Date">
+            <summary>
+            A date button.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Calendar.CalendarButtonType.WeekNumber">
+            <summary>
+            A calendar button with the week number.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.Calendar.CalendarButtonType.WeekName">
+            <summary>
+            A calendar button with the week name.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Calendar.DateTimeTypeConverter">
+            <summary>
+            Provides a converter to convert DateTime objects to and from other representations.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Calendar.DateTimeTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Determines whether this instance [can convert from] the specified context.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="sourceType">Type of the source.</param>
+            <returns>
+            	<c>true</c> if this instance [can convert from] the specified context; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Calendar.DateTimeTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Returns whether the type converter can convert an object to the specified type to the type of this converter.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="destinationType">The type you want to convert to.</param>
+            <returns>
+            True if this converter can perform the conversion; otherwise, false.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            <paramref name="destinationType"/> is null.</exception>
+        </member>
+        <member name="M:Telerik.Windows.Controls.Calendar.DateTimeTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts from the specified value to the type of this converter.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="culture">The culture.</param>
+            <param name="value">The value to convert to the type of this converter.</param>
+            <returns>The converted value.</returns>
+            <exception cref="T:System.NotSupportedException">The conversion cannot be performed.</exception>
+        </member>
+        <member name="T:Telerik.Windows.Controls.NullableEnumConverter`1">
+            <summary>
+            Type converter for nullable enum types.
+            </summary>
+            <typeparam name="T">The type of the enum the type converter is intended for.</typeparam>
+        </member>
+        <member name="M:Telerik.Windows.Controls.NullableEnumConverter`1.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            Determines whether this instance can convert from the specified context.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="sourceType">Type of the source.</param>
+            <returns>
+            	<c>true</c> if this instance can convert from the specified context; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.NullableEnumConverter`1.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            Converts from the specified value to the type of this converter.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="culture">The culture.</param>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.EnumerableToCountConverter">
+            <summary>
+            Converts an IEnumerable of IAppointment to its count.
+            ConvertBack is not valid and throws an InvalidOperationException.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.EnumerableToCountConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts an IEnumerable to its count.
+            </summary>
+            <param name="value">An IEnumrable of IAppointment.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the target dependency property.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the target dependency property.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.EnumerableToCountConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            ConvertBack is not a valid operation.
+            </summary>
+            <param name="value">The count of an IEnumerable of IAppointment.</param>
+            <param name="targetType">The <see cref="T:System.Type"/> of data expected by the source object.</param>
+            <param name="parameter">An optional parameter to be used in the converter logic.</param>
+            <param name="culture">The culture of the conversion.</param>
+            <returns>
+            The value to be passed to the source object.
+            </returns>
+            <remarks>
+            This method always throws an InvalidOperationException.
+            </remarks>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeComponentType">
+            <summary>
+            Defines the possible modifiable components of a
+            date time item in a <see cref="T:Telerik.Windows.Controls.DateTimeList"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeComponentType.Day">
+            <summary>
+            The day part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeComponentType.Month">
+            <summary>
+            The month part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeComponentType.Year">
+            <summary>
+            The year part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeComponentType.Hour">
+            <summary>
+            The hour part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeComponentType.Minute">
+            <summary>
+            The minute part of the <see cref="T:System.DateTime"/> structure is considered.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeComponentType.AMPM">
+            <summary>
+            The time span of a given <see cref="T:System.DateTime"/> value is considered.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeLoopingPanel.DateTimeLoopingPanel">
+            <summary>
+            Represents the <see cref="T:Telerik.Windows.Controls.LoopingList.LoopingPanel"/> used in the date-time picker controls.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.SpecialDayEventArgs">
+            <summary>
+            Event arguments for the IsDaySpecial event of DateTimeList, RadDateSelector and RadDatePicker.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.SpecialDayEventArgs.#ctor(System.DateTime)">
+            <summary>
+            Initializes a new instance of the SpecialDayEventArgs class.
+            </summary>
+            <param name="date">The date which will be checked for being special.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SpecialDayEventArgs.Date">
+            <summary>
+            Gets a date value that users can check if it is special.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.SpecialDayEventArgs.IsDaySpecial">
+            <summary>
+            Gets or sets a value that determines if the value of the Date property is special.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadDateSelector">
+            <summary>
+            A concrete DateTimeSelector that allows for selecting the Date component of a DateTime structure.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeSelector">
+            <summary>
+            Base class for both <see cref="T:Telerik.Windows.Controls.RadDateSelector"/> and <see cref="T:Telerik.Windows.Controls.RadTimeSelector"/>. Defines the commpon properties such as SelectedValue, MinValue, MaxValue and Culture.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.IDateTimeValueProvider">
+            <summary>
+            An interface used in components which provide <see cref="T:System.DateTime"/> values from a given range.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.IDateTimeValueProvider.HandleMinValueChanged(System.DateTime,System.DateTime)">
+            <summary>
+            Handles a change in the MinValue of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.IDateTimeValueProvider.HandleMaxValueChanged(System.DateTime,System.DateTime)">
+            <summary>
+            Handles a change in the MaxValue of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.IDateTimeValueProvider.HandleCultureChanged(System.Globalization.CultureInfo,System.Globalization.CultureInfo)">
+            <summary>
+            Handles a change in the Culture of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue">The old culture.</param>
+            <param name="newValue">The new culture.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.IDateTimeValueProvider.HandleSelectorFormatChanged(System.String,System.String)">
+            <summary>
+            Handles a change in the selector format of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.IDateTimeValueProvider.Culture">
+            <summary>
+            Gets the culture associated with the current <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/> implementation.
+            </summary>
+            <value>The culture.</value>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeSelector.SelectedValueProperty">
+            <summary>
+            Identifies the SelectedValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeSelector.MinValueProperty">
+            <summary>
+            Identifies the MinValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeSelector.MaxValueProperty">
+            <summary>
+            Identifies the MaxValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeSelector.CultureProperty">
+            <summary>
+            Identifies the Culture dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeSelector.SelectorFormatProperty">
+            <summary>
+            Identifies the SelectorFormat dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeSelector.ValueStringProperty">
+            <summary>
+            Identifies the ValueString dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeSelector.ItemTemplateSelectorProperty">
+            <summary>
+            Identifies the ItemTemplateSelector dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeSelector.AppointmentSourceProperty">
+            <summary>
+            Identifies the AppointmentSource dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.DateTimeSelector"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.Telerik#Windows#Controls#IDateTimeValueProvider#HandleCultureChanged(System.Globalization.CultureInfo,System.Globalization.CultureInfo)">
+            <summary>
+            Handles a change in the Culture of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue">The old culture.</param>
+            <param name="newValue">The new culture.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.Telerik#Windows#Controls#IDateTimeValueProvider#HandleMinValueChanged(System.DateTime,System.DateTime)">
+            <summary>
+            Handles a change in the MinValue of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.Telerik#Windows#Controls#IDateTimeValueProvider#HandleMaxValueChanged(System.DateTime,System.DateTime)">
+            <summary>
+            Handles a change in the MaxValue of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.Telerik#Windows#Controls#IDateTimeValueProvider#HandleSelectorFormatChanged(System.String,System.String)">
+            <summary>
+            Handles a change in the selector format of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.UpdateSelectorsOrder">
+            <summary>
+            Updates the order (that is the grid column) of each selector, depending on the current Culture and SelectorFormat.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.CoerceValue(System.DateTime)">
+            <summary>
+            Coerces the given value according to the current value bounds defined by the <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/>
+            and <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> properties.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.IsBoundaryCorrect">
+            <summary>
+            Determines whether the given value can be used as a <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/> or <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> for the control.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.IsValueInRange(System.DateTime)">
+            <summary>
+            Determines whether the given <see cref="T:System.DateTime"/> fits in the range defined by the <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/> and <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> properties.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.OnSelectedValueChanging(Telerik.Windows.Controls.ValueChangingEventArgs{System.DateTime})">
+            <summary>
+            Raises the <see cref="E:SelecteValueChanging"/> event.
+            </summary>
+            <param name="args">An object instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.OnSelectedValueChanged(Telerik.Windows.Controls.ValueChangedEventArgs{System.DateTime})">
+            <summary>
+            Raises the <see cref="E:SelectedValueChanged"/> event.
+            </summary>
+            <param name="args">An object instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.UpdateValueString">
+            <summary>
+            Updates the value string according to the current value format settings.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.OnManipulationStarted(System.Windows.Input.ManipulationStartedEventArgs)">
+            <summary>
+            Called when the <see cref="E:System.Windows.Controls.Control.ManipulationStarted"/> event occurs. This member overrides <see cref="M:System.Windows.UIElement.OnManipulationStarted(System.Object,System.Windows.Input.ManipulationStartedEventArgs)"/>.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeSelector.OnManipulationCompleted(System.Windows.Input.ManipulationCompletedEventArgs)">
+            <summary>
+            Called when the <see cref="E:System.Windows.Controls.Control.ManipulationCompleted"/> event occurs. This member overrides <see cref="M:System.Windows.UIElement.OnManipulationCompleted(System.Object,System.Windows.Input.ManipulationCompletedEventArgs)"/>.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="E:Telerik.Windows.Controls.DateTimeSelector.SelectedValueChanged">
+            <summary>
+            Occurs when the currently selected value has changed.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.DateTimeSelector.SelectedValueChanging">
+            <summary>
+            Occurs when the currently selected value is about to change.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeSelector.AppointmentSource">
+            <summary>
+            Gets or sets an AppointmentSource object that will be used
+            to display appointment data in the visual representation of a date.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeSelector.ValueString">
+            <summary>
+            Gets or sets a string representing the currently
+            selected value formatted according to the current
+            value format settings.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.DateTime"/> struct
+            that represents the upper boundary of the allowed value
+            range for the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeSelector.MinValue">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.DateTime"/> struct that
+            represents the lower boundary of the allowed value range of the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeSelector.SelectedValue">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.DateTime"/> struct
+            representing the currently selected value. This is a dependency property.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeSelector.SelectorFormat">
+            <summary>
+            Defines custom display format of the selected value. This property
+            can be used to reorder the selectable components of the value on the screen.
+            By default the format provided by the current phone culture is used.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeSelector.Culture">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.Globalization.CultureInfo"/> class
+            that represents the current culture of the <see cref="T:Telerik.Windows.Controls.DateTimeSelector"/>.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeSelector.ItemTemplateSelector">
+            <summary>
+            A template selector that used to provide a specific visualization for
+            specific dates.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeSelector.IsProperlyTemplated">
+            <summary>
+            Gets a boolean value determining whether the control template is properly structured.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateSelector.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadDateSelector"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateSelector.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateSelector.IsBoundaryCorrect">
+            <summary>
+            Determines whether the given value can be used as a <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/> or <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> for the control.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateSelector.IsValueInRange(System.DateTime)">
+            <summary>
+            Determines whether the given <see cref="T:System.DateTime"/> fits in the range defined by the <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/> and <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> properties.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateSelector.CoerceValue(System.DateTime)">
+            <summary>
+            Coerces the given value according to the current value bounds defined by the <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/>
+            and <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> properties.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateSelector.UpdateSelectorsOrder">
+            <summary>
+            Updates the order (that is the grid column) of each selector, depending on the current Culture and SelectorFormat.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateSelector.IsProperlyTemplated">
+            <summary>
+            Gets a boolean value determining whether the control template is properly structured.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeHelper">
+            <summary>
+            Provides helper methods for working with <see cref="T:System.DateTime"/> instances in the context of a <see cref="T:Telerik.Windows.Controls.DateTimePicker"/> control.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.IsAM(System.DateTime)">
+            <summary>
+            Gets a boolean value that determines whether a given <see cref="T:System.DateTime"/> value
+            is in the AM part of the day.
+            </summary>
+            <param name="value">The <see cref="T:System.DateTime"/> value which is checked.</param>
+            <returns>True if in the AM part of the day, otherwise false.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.Is24HourFormat(System.Globalization.DateTimeFormatInfo)">
+            <summary>
+            Returns a boolean value that determines whether a given <see cref="T:System.Globalization.DateTimeFormatInfo"/>
+            implies 24 hour time format.
+            </summary>
+            <param name="info">The <see cref="T:System.Globalization.DateTimeFormatInfo"/> instance to check.</param>
+            <returns>True if the <see cref="T:System.Globalization.DateTimeFormatInfo"/> implies 24 hour time format, otherwise false.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.Is24HourFormat(System.String)">
+            <summary>
+            Returns a boolean value that determines whether a given time format string
+            implies 24 hour time format.
+            </summary>
+            <param name="timeFormat">The string to check.</param>
+            <returns>True if the string implies 24 hour time format, otherwise false.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.Is24HourFormat">
+            <summary>
+            Returns a boolean value that determines whether the default <see cref="T:System.Globalization.DateTimeFormatInfo"/>
+            implies 24 hour time format.
+            </summary>
+            <returns>True if the default <see cref="T:System.Globalization.DateTimeFormatInfo"/> implies 24 hour time format, otherwise false.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.GetDefaultShortTimePattern">
+            <summary>
+            Gets a string representing the current culture's default short time pattern.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.GetDefaultLongTimePattern">
+            <summary>
+            Gets a string representing the current culture's default long time pattern.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.GetDefaultShortDatePattern">
+            <summary>
+            Gets a string representing the current culture's default short date pattern.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.GetDefaultLongDatePattern">
+            <summary>
+            Gets a string representing the current culture's default long date pattern.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.GetHourCount">
+            <summary>
+            Gets an integer representing the unique hour count according to the time format.
+            This count can be either 12 or 24.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeHelper.GetHourCount(System.Globalization.CultureInfo)">
+            <summary>
+            Gets an integer representing the unique hour count according to the time format of the passed culture.
+            This count can be either 12 or 24.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeItem">
+            <summary>
+            Represents a data item within a DateTimeList.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeItem.#ctor(Telerik.Windows.Controls.DateTimeList,System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.DateTimeItem"/> class.
+            </summary>
+            <param name="owner">The owner.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeItem.Update(System.DateTime)">
+            <summary>
+            Forces re-evaluation of the HeaderText and ContentText properties.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeItem.HeaderText">
+            <summary>
+            Gets the header of the item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeItem.ContentText">
+            <summary>
+            Gets the content of the item.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeItem.Appointments">
+            <summary>
+            Gets the appointments that are associated with this
+            date time item.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimePicker">
+            <summary>
+            This class represents a control that provides functionality for choosing
+            dates or times. It supports value ranges and value formats.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.IsPopupOpenProperty">
+            <summary>
+            Identifies the <see cref="P:Telerik.Windows.Controls.DateTimePicker.IsPopupOpen"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.HeaderStyleProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Windows.Controls.DateTimePicker.HeaderStyle"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.HeaderProperty">
+            <summary>
+            Identifies the Header dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.HeaderTemplateProperty">
+            <summary>
+            Identifies the Header dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.IsReadOnlyProperty">
+            <summary>
+            Identifies the IsReadOnly dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.MinValueProperty">
+            <summary>
+            Identifies the MinValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.MaxValueProperty">
+            <summary>
+            Identifies the MaxValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.CultureProperty">
+            <summary>
+            Identifies the Culture dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.SelectorFormatProperty">
+            <summary>
+            Identifies the SelectorFormat dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.ValueStringProperty">
+            <summary>
+            Identifies the ValueString dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.ValueProperty">
+            <summary>
+            Identifies the Value dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.DisplayValueFormatProperty">
+            <summary>
+            Identifies the DisplayValueFormat dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.EmptyContentProperty">
+            <summary>
+            Identifies the EmptyContent dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.EmptyContentTemplateProperty">
+            <summary>
+            Identifies the EmptyContentTemplateProperty.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.ItemTemplateSelectorProperty">
+            <summary>
+            Identifies the ItemTemplateSelector dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.AppointmentSourceProperty">
+            <summary>
+            Identifies the AppointmentSource dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.PickerButtonStyleProperty">
+            <summary>
+            Identifies the PickerButtonStyle dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.OkButtonIconUriProperty">
+            <summary>
+            Identifies the OkButtonIconUri dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimePicker.CancelButtonIconUriProperty">
+            <summary>
+            Identifies the CancelButtonIconUri dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.DateTimePicker"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.Telerik#Windows#Controls#IDateTimeValueProvider#HandleMinValueChanged(System.DateTime,System.DateTime)">
+            <summary>
+            Handles a change in the MinValue of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.Telerik#Windows#Controls#IDateTimeValueProvider#HandleMaxValueChanged(System.DateTime,System.DateTime)">
+            <summary>
+            Handles a change in the MaxValue of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.Telerik#Windows#Controls#IDateTimeValueProvider#HandleCultureChanged(System.Globalization.CultureInfo,System.Globalization.CultureInfo)">
+            <summary>
+            Handles a change in the Culture of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue">The old culture.</param>
+            <param name="newValue">The new culture.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.Telerik#Windows#Controls#IDateTimeValueProvider#HandleSelectorFormatChanged(System.String,System.String)">
+            <summary>
+            Handles a change in the selector format of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.GetSelectorFromTemplate">
+            <summary>
+            Returns an instance of the <see cref="T:Telerik.Windows.Controls.DateTimeSelector"/> class
+            that represents the control providing functionality for
+            selecting dates or times. This control is hosted in the popup
+            of this <see cref="T:Telerik.Windows.Controls.DateTimePicker"/>.
+            </summary>
+            <returns>The <see cref="T:Telerik.Windows.Controls.DateTimeSelector"/> instance.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.OnPopupOpening(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            This method fires before the popup is opened.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.OnCreateAutomationPeer">
+            <summary>
+            Creates an RadDateTimePickerAutomationPeer object to support windows UI Automation.
+            </summary>
+            <returns>The automation peer object for DateTimePicker.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.IsValueInRange(System.DateTime)">
+            <summary>
+            Determines whether the given <see cref="T:System.DateTime"/> fits in the range defined by the <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/> and <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> properties.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.OnValueChanging(Telerik.Windows.Controls.ValueChangingEventArgs{System.Object})">
+            <summary>
+            Raises the <see cref="E:ValueChanging"/> event.
+            </summary>
+            <param name="args">An object instance containing the event data.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimePicker.OnValueChanged(Telerik.Windows.Controls.ValueChangedEventArgs{System.Object})">
+            <summary>
+            Called when the selected value of the control has changed.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.DateTimePicker.ValueChanged">
+            <summary>
+            Occurs when the current value has changed.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.DateTimePicker.ValueChanging">
+            <summary>
+            Occurs when the current value is about to change.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.OkButtonIconUri">
+            <summary>
+            Gets or sets the uri that points to the icon of the Ok button in RadTimePicker and RadDatePicker.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.CancelButtonIconUri">
+            <summary>
+            Gets or sets the uri that points to the icon of the Cancel button in RadTimePicker and RadDatePicker.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.PickerButtonStyle">
+            <summary>
+            Gets or sets a style object that is used to define the look and
+            feel of the toggle button that displays the selected value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.AppointmentSource">
+            <summary>
+            Gets or sets an AppointmentSource object that will be used
+            to display appointment data in the visual representation of a date.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.HeaderStyle">
+            <summary>
+            Gets or sets the Style object that defines header visual appearance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.Header">
+            <summary>
+            Gets or sets the content that will represent the header of the inner <see cref="T:Telerik.Windows.Controls.RadPickerBox"/> instance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.HeaderTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> that represents the template of the header content.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.ItemTemplateSelector">
+            <summary>
+            A template selector that used to provide a specific visualization for
+            specific dates.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.IsReadOnly">
+            <summary>
+            Gets or sets a boolean value determining whether the control is in
+            read only mode. If set to true, the control does not allow the user
+            to modify its value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.EmptyContent">
+            <summary>
+            Gets or sets the null text of the control. The null text is displayed when there is no value defined.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.EmptyContentTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> defining the visual appearance of the empty content of the control.
+            </summary>
+            <value>The empty content template.</value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.DisplayValueFormat">
+            <summary>
+            Gets or sets a string representing the value format for the control. The 
+            value format determines how the edited value is displayed on the screen.
+            If not set, the current culture is used.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.SelectorFormat">
+            <summary>
+            Gets or sets the selector format. This selector format
+            defines how the different selector components will be 
+            ordered. By setting this property, you can also define
+            which editable parts of the selector will be visible.
+            </summary>
+            <value>The selector format.</value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.ValueString">
+            <summary>
+            Gets or sets the string representation of the current value. The string representation is the current value
+            formatted according to the settings of the device and the control.
+            </summary>
+            <value>The value string.</value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.Culture">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.Globalization.CultureInfo"/> class that
+            represents the culture which is used to format the values of the control.
+            If no culture is set, the default for the device environment is used.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.MaxValue">
+            <summary>
+            Gets or sets the maximum value of the value range for the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.MinValue">
+            <summary>
+            Gets or sets the minimum value of the value range for the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.Value">
+            <summary>
+            Gets or sets the date value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.IsPopupOpen">
+            <summary>
+            Gets or sets a boolean value determining whether the popup of the control is open.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimePicker.IsProperlyTemplated">
+            <summary>
+            Gets a value indicating whether this control is properly templated.
+            </summary>
+            <value>
+            	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.DateTimeList">
+            <summary>
+            A special <see cref="N:Telerik.Windows.Controls.LoopingList"/> instance that visualizes DateTime values.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeList.ValueProperty">
+            <summary>
+            Identifies the Value dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.DateTimeList.AppointmentSourceProperty">
+            <summary>
+            Identifies the AppointmentSource dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.DateTimeList"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.HandleMinValueChanged(System.DateTime,System.DateTime)">
+            <summary>
+            Handles a change in the MinValue of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.HandleMaxValueChanged(System.DateTime,System.DateTime)">
+            <summary>
+            Handles a change in the MaxValue of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue"></param>
+            <param name="newValue"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.HandleCultureChanged(System.Globalization.CultureInfo,System.Globalization.CultureInfo)">
+            <summary>
+            Handles a change in the Culture of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue">The old culture.</param>
+            <param name="newValue">The new culture.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.HandleSelectorFormatChanged(System.String,System.String)">
+            <summary>
+            Handles a change in the selector format of the <see cref="T:Telerik.Windows.Controls.IDateTimeValueProvider"/>.
+            </summary>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.UpdateSelection(System.Int32,Telerik.Windows.Controls.LoopingListSelectionChangeReason)">
+            <summary>
+            Applies the specified index as currently selected.
+            </summary>
+            <param name="newSelectedIndex">The desired selected index.</param>
+            <param name="reason">The reason of the change.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.CreateDataItem(System.Int32)">
+            <summary>
+            Creates a new <see cref="T:Telerik.Windows.Controls.LoopingListDataItem"/> instance.
+            </summary>
+            <param name="logicalIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.IsItemEnabled(System.Int32)">
+            <summary>
+            Determines whether the logical item, representing the specified logical index should be enabled or not.
+            </summary>
+            <param name="logicalIndex">The logical index that defines the data to check for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.GetLogicalCount">
+            <summary>
+            Retrieves the logical count of the current data source (if any).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.InitData">
+            <summary>
+            Initializes the data.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.UpdateData">
+            <summary>
+            Forces complete data re-evaluation of the currently visualized items.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.UpdateDataItem(Telerik.Windows.Controls.LoopingListDataItem,Telerik.Windows.Controls.LoopingList.LoopingListItem)">
+            <summary>
+            Allows to minimize the overhead of creating new instances whenever a logical index changes by formatting an existing data item instance.
+            </summary>
+            <param name="dataItem"></param>
+            <param name="visualItem"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.DateTimeList.OnAppointmentSourceChanged(Telerik.Windows.Controls.AppointmentSource,Telerik.Windows.Controls.AppointmentSource)">
+            <summary>
+            A virtual method that is called when the AppointmentSource property changes.
+            </summary>
+            <param name="newSource">The new AppointmentSource.</param>
+            <param name="oldSource">The old AppointmentSource.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeList.AppointmentSource">
+            <summary>
+            Gets or sets an AppointmentSource object that will be used
+            to display appointment data in the visual representation of a date.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeList.ComponentType">
+            <summary>
+            Gets or sets the component of the DateTime structure visualized by this list.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeList.Value">
+            <summary>
+            Gets or sets the current DateTime to be displayed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.DateTimeList.Culture">
+            <summary>
+            Gets or sets the culture.
+            </summary>
+            <value>The culture.</value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ValueChangingEventArgs`1">
+            <summary>
+            Contains information about an event which occurs
+            when a given value is about to change. Allows for canceling the change.
+            </summary>
+            <typeparam name="T">The type of the value that is about to change.</typeparam>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ValueChangingEventArgs`1.#ctor(`0,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ValueChangingEventArgs`1"/> class.
+            </summary>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ValueChangingEventArgs`1.OldValue">
+            <summary>
+            Gets an instance of the <see cref="T:System.DateTime"/> struct
+            that represents the previous value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ValueChangingEventArgs`1.NewValue">
+            <summary>
+            Gets an instance of the <see cref="T:System.DateTime"/> struct
+            that represents the new value.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadDatePicker">
+            <summary>
+            Represents a control that enables the user to select time values from a range by tapping
+            on a picker box containing the current value and opening a date selector to select a new value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDatePicker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadDatePicker"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDatePicker.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDatePicker.GetFormatPatternFromCulture(System.Globalization.CultureInfo)">
+            <summary>
+            Gets the format pattern from culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDatePicker.GetSelectorFromTemplate">
+            <summary>
+            Returns an instance of the <see cref="T:Telerik.Windows.Controls.DateTimeSelector"/> class
+            that represents the control providing functionality for
+            selecting dates or times. This control is hosted in the popup
+            of this <see cref="T:Telerik.Windows.Controls.DateTimePicker"/>.
+            </summary>
+            <returns>
+            The <see cref="T:Telerik.Windows.Controls.DateTimeSelector"/> instance.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDatePicker.IsValueInRange(System.DateTime)">
+            <summary>
+            Determines whether the given <see cref="T:System.DateTime"/> fits in the range defined by the <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/> and <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> properties.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadTimePicker">
+            <summary>
+            Represents a control that enables the user to select time values from a range by tapping
+            on a picker box containing the current value and opening a time selector to select a new value.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimePicker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadTimePicker"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimePicker.GetSelectorFromTemplate">
+            <summary>
+            Returns an instance of the <see cref="T:Telerik.Windows.Controls.DateTimeSelector"/> class
+            that represents the control providing functionality for
+            selecting dates or times. This control is hosted in the popup
+            of this <see cref="T:Telerik.Windows.Controls.DateTimePicker"/>.
+            </summary>
+            <returns>The <see cref="T:Telerik.Windows.Controls.DateTimeSelector"/> instance.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimePicker.IsValueInRange(System.DateTime)">
+            <summary>
+            Determines whether the given <see cref="T:System.DateTime"/> fits in the range defined by the <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/> and <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> properties.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadTimeSelector">
+            <summary>
+            A concrete DateTimeSelector providing functionality for selecting time from a range.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimeSelector.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadTimeSelector"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimeSelector.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimeSelector.GetValueFormatStringFromCulture(System.Globalization.CultureInfo)">
+            <summary>
+            Gets the value format string from culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimeSelector.CoerceValue(System.DateTime)">
+            <summary>
+            Coerces the given value according to the current value bounds defined by the <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/>
+            and <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> properties.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimeSelector.IsBoundaryCorrect">
+            <summary>
+            Determines whether the given value can be used as a <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/> or <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> for the control.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimeSelector.IsValueInRange(System.DateTime)">
+            <summary>
+            Determines whether the given <see cref="T:System.DateTime"/> fits in the range defined by the <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MinValue"/> and <see cref="P:Telerik.Windows.Controls.DateTimeSelector.MaxValue"/> properties.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadTimeSelector.UpdateSelectorsOrder">
+            <summary>
+            Updates the order (that is the grid column) of each selector, depending on the current Culture and SelectorFormat.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadTimeSelector.IsProperlyTemplated">
+            <summary>
+            Gets a boolean value determining whether the control template is properly structured.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ValueChangedEventArgs`1">
+            <summary>
+            This class contains information about events which occur when
+            a given value is changed. Here the old and the new values are exposed.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ValueChangedEventArgs`1.#ctor(`0,`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ValueChangedEventArgs`1"/> class.
+            </summary>
+            <param name="oldValue">The old value.</param>
+            <param name="newValue">The new value.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ValueChangedEventArgs`1.OldValue">
+            <summary>
+            Gets an instance of the <see cref="T:System.DateTime"/> struct
+            that represents the previous value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ValueChangedEventArgs`1.NewValue">
+            <summary>
+            Gets an instance of the <see cref="T:System.DateTime"/> struct
+            that represents the new value.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer">
+            <summary>
+            This class enables the Windows UI Automation to interact with DateTimePicker.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.#ctor(Telerik.Windows.Controls.DateTimePicker)">
+            <summary>
+            Initializes a new instance of the RadDateTimePickerAutomationPeer class.
+            </summary>
+            <param name="owner">The DateTimePicker object that owns this automation peer.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.SetValue(System.String)">
+            <summary>
+            Sets the value of a control.
+            </summary>
+            <param name="value">The value to set. The provider is responsible for converting the value to the appropriate data type.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.SetValue(System.Double)">
+            <summary>
+            Sets the value of the control.
+            </summary>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.IsReadOnly">
+            <summary>
+            Gets a value that indicates whether the value of a control is read-only.
+            </summary>
+            <value></value>
+            <returns>true if the value is read-only; false if it can be modified. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.LargeChange">
+            <summary>
+            Gets the value that is added to or subtracted from the <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value"/> property when a large change is made, such as with the PAGE DOWN key.
+            </summary>
+            <value></value>
+            <returns>The large-change value that is supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.Maximum">
+            <summary>
+            Gets the maximum range value that is supported by the control.
+            </summary>
+            <value></value>
+            <returns>The maximum value that is supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.Minimum">
+            <summary>
+            Gets the minimum range value that is supported by the control.
+            </summary>
+            <value></value>
+            <returns>The minimum value that is supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.SmallChange">
+            <summary>
+            Gets the value that is added to or subtracted from the <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value"/> property when a small change is made, such as with an arrow key.
+            </summary>
+            <value></value>
+            <returns>The small-change value supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.Value">
+            <summary>
+            Gets the value of the control.
+            </summary>
+            <value></value>
+            <returns>The value of the control.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimePickerAutomationPeer.System#Windows#Automation#Provider#IValueProvider#Value">
+            <summary>
+            Gets the value of the control.
+            </summary>
+            <value></value>
+            <returns>The value of the control.</returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer">
+            <summary>
+             This class enables the Windows UI Automation to interact with a <see cref="T:Telerik.Windows.Controls.DateTimeSelector"/>.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.#ctor(Telerik.Windows.Controls.DateTimeSelector)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer"/> class.
+            </summary>
+            <param name="owner">The element which this automation peer can automate.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.SetValue(System.String)">
+            <summary>
+            Sets the value of a control.
+            </summary>
+            <param name="value">The value to set. The provider is responsible for converting the value to the appropriate data type.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.SetValue(System.Double)">
+            <summary>
+            Sets the value of the control.
+            </summary>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.IsReadOnly">
+            <summary>
+            Gets a value that indicates whether the value of a control is read-only.
+            </summary>
+            <value></value>
+            <returns>true if the value is read-only; false if it can be modified. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.Value">
+            <summary>
+            Gets the value of the control.
+            </summary>
+            <value></value>
+            <returns>The value of the control.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.LargeChange">
+            <summary>
+            Gets the value that is added to or subtracted from the <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value"/> property when a large change is made, such as with the PAGE DOWN key.
+            </summary>
+            <value></value>
+            <returns>The large-change value that is supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.Maximum">
+            <summary>
+            Gets the maximum range value that is supported by the control.
+            </summary>
+            <value></value>
+            <returns>The maximum value that is supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.Minimum">
+            <summary>
+            Gets the minimum range value that is supported by the control.
+            </summary>
+            <value></value>
+            <returns>The minimum value that is supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.SmallChange">
+            <summary>
+            Gets the value that is added to or subtracted from the <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value"/> property when a small change is made, such as with an arrow key.
+            </summary>
+            <value></value>
+            <returns>The small-change value supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadDateTimeSelectorAutomationPeer.System#Windows#Automation#Provider#IRangeValueProvider#Value">
+            <summary>
+            Gets the value of the control.
+            </summary>
+            <value></value>
+            <returns>The value of the control.</returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.InputLocalizationManager">
+            <summary>
+            A singleton class that represents a localization manager responsible for localizing resources in the Telerik.Windows.Controls.Input assembly.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.InputLocalizationManager.LeapYearKey">
+            <summary>
+            Defines the key for looking-up the "Leap Year" string.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.InputLocalizationManager.EmptyDateContentKey">
+            <summary>
+            Defines the key for looking-up the "Select date" string.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.InputLocalizationManager.EmptyTimeContentKey">
+            <summary>
+            Defines the key for looking-up the "Select time" string.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.InputLocalizationManager.OkButtonTextKey">
+            <summary>
+            Defines the key for looking-up the text for the ok button in the date and time picker's application bar.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.InputLocalizationManager.CancelButtonTextKey">
+            <summary>
+            Defines the key for looking-up the text for the cancel button in the date and time picker's application bar.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.InputLocalizationManager.Instance">
+            <summary>
+            Gets the only instance of the <see cref="T:Telerik.Windows.Controls.InputLocalizationManager"/> class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.InputLocalizationManager.CancelButtonText">
+            <summary>
+            Gets the text for the cancel button in the date and time picker's application bar.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.InputLocalizationManager.OkButtonText">
+            <summary>
+            Gets the text for the ok button in the date and time picker's application bar.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.InputLocalizationManager.EmptyDateContentString">
+            <summary>
+            Gets a string that is displayed in the <see cref="T:Telerik.Windows.Controls.RadDatePicker"/> when there is no date selected in the control.
+            </summary>
+            <value>The empty content of the date.</value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.InputLocalizationManager.EmptyTimeContentString">
+            <summary>
+            Gets a string that is displayed in the <see cref="T:Telerik.Windows.Controls.RadTimePicker"/> when there is no time selected in the control.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadListPickerItem">
+            <summary>
+            Represents an item within a <see cref="T:Telerik.Windows.Controls.RadListPicker"/> control.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPickerItem.ComposeVisualStateName">
+            <summary>
+            Composes the name of the visual state.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ListPickerMode">
+            <summary>
+            Defines the two possible modes for a <see cref="T:Telerik.Windows.Controls.RadListPicker"/>.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ListPickerMode.Inline">
+            <summary>
+            The number of items is up to 5 and the picker operates inline - that is it expands when clicked and collapses when focus is lost or selection is changed.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ListPickerMode.Popup">
+            <summary>
+            The number of items is more than 5 and the picker will display only the currently selected item.
+            When clicked it will open a separate popup <see cref="T:Telerik.Windows.Controls.RadWindow"/> to display all the items.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ListPickerStateChangedEventArgs">
+            <summary>
+            Encasulates the data for a <see cref="E:RadListPicker.StateChanged"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.ListPickerStateChangedEventArgs.#ctor(Telerik.Windows.Controls.ListPickerState)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.ListPickerStateChangedEventArgs"/> class.
+            </summary>
+            <param name="oldState">The old state.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.ListPickerStateChangedEventArgs.PreviousState">
+            <summary>
+            Gets the previous state the <see cref="T:Telerik.Windows.Controls.RadListPicker"/> instance was in.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.ListPickerState">
+            <summary>
+            Defines the possible states a <see cref="T:Telerik.Windows.Controls.RadListPicker"/> instance may enter.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ListPickerState.Expanding">
+            <summary>
+            The control is in a process of being expanded.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ListPickerState.Expanded">
+            <summary>
+            The control is currently expanded.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ListPickerState.Collapsing">
+            <summary>
+            The control is in a process of being collapsed.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.ListPickerState.Collapsed">
+            <summary>
+            The control is currently collapsed.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadListPicker">
+            <summary>
+            A control that allows for selecting an item from a predefined set of items.
+            Two modes are available - if the picker contains up to 5 items they are displayed inline.
+            If items are more than five, they are displayed in a separate popup RadWindow.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadListPicker.InlineModeThresholdProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Windows.Controls.RadListPicker.InlineModeThreshold"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadListPicker.IsExpandedProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Windows.Controls.RadListPicker.IsExpanded"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadListPicker.IsAnimationEnabledProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Windows.Controls.RadListPicker.IsAnimationEnabled"/> dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadListPicker.PopupHeaderStyleProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Windows.Controls.RadListPicker.PopupHeaderStyle"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadListPicker.PopupHeaderProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Windows.Controls.RadListPicker.PopupItemTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadListPicker.PopupHeaderTemplateProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Windows.Controls.RadListPicker.PopupItemTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadListPicker.PopupItemTemplateProperty">
+            <summary>
+            Defines the <see cref="P:Telerik.Windows.Controls.RadListPicker.PopupItemTemplate"/> property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadListPicker.PopupOpenAnimationProperty">
+            <summary>
+            Identifies the PopupOpenAnimation dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadListPicker.PopupCloseAnimationProperty">
+            <summary>
+            Identifies the PopupCloseAnimation dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadListPicker"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.FindVisualItem(System.Object)">
+            <summary>
+            Gets the <see cref="T:Telerik.Windows.Controls.SelectorItem"/> container that represents the specified data item.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.OnItemClick(Telerik.Windows.Controls.SelectorItem)">
+            <summary>
+            Handles a click from a child visual item.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.GetItemIndex(Telerik.Windows.Controls.SelectorItem)">
+            <summary>
+            Gets the index of the item.
+            </summary>
+            <param name="item">The item.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.OnItemsChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+            <summary>
+            Called when the value of the <see cref="P:System.Windows.Controls.ItemsControl.Items"/> property changes.
+            </summary>
+            <param name="e">A <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.GetContainerForItemOverride">
+            <summary>
+            Creates or identifies the element that is used to display the given item.
+            </summary>
+            <returns>
+            The element that is used to display the given item.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.PrepareContainerForItemOverride(System.Windows.DependencyObject,System.Object)">
+            <summary>
+            Prepares the specified element to display the specified item.
+            </summary>
+            <param name="element">The element used to display the specified item.</param>
+            <param name="item">The item to display.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.OnUnloaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Occurs when this object is no longer connected to the main object tree.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.OnLoaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Occurs when a System.Windows.FrameworkElement has been constructed and added to the object tree.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.MeasureOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the Measure pass of Silverlight layout. Classes can override this method to define their own Measure pass behavior.
+            </summary>
+            <param name="availableSize">The available size that this object can give to child objects. Infinity (<see cref="F:System.Double.PositiveInfinity"/>) can be specified as a value to indicate that the object will size to whatever content is available.</param>
+            <returns>
+            The size that this object determines it needs during layout, based on its calculations of the allocated sizes for child objects; or based on other considerations, such as a fixed container size.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.ArrangeOverride(System.Windows.Size)">
+            <summary>
+            Provides the behavior for the Arrange pass of Silverlight layout. Classes can override this method to define their own Arrange pass behavior.
+            </summary>
+            <param name="finalSize">The final area within the parent that this object should use to arrange itself and its children.</param>
+            <returns>
+            The actual size that is used after the element is arranged in layout.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.UpdateSelection(System.Object,System.Object,System.Boolean)">
+            <summary>
+            Updates the current selection.
+            </summary>
+            <param name="oldData">The old data item that was selected.</param>
+            <param name="newData">The new data item that will be selected.</param>
+            <param name="updateIndex">True to set the <see cref="P:SelectedIndex"/> to the index of the new data item, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.OnSelectionChanged(System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Raises the <see cref="E:Telerik.Windows.Controls.RadSelector.SelectionChanged"/> event.
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.SelectItem(Telerik.Windows.Controls.SelectorItem,System.Boolean)">
+            <summary>
+            Updates the IsSelected property of the specified visual item.
+            </summary>
+            <param name="visualItem"></param>
+            <param name="select">True to select the item, false otherwise.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.NormalizeSelectedIndex">
+            <summary>
+            Normalizes the currently selected index due to a change in the Items collection.
+            </summary>
+            <returns>The already normalized index.</returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.ComposeVisualStateName">
+            <summary>
+            Builds the current visual state for this instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.Collapse">
+            <summary>
+            Puts the picker in "Normal" state.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadListPicker.Expand">
+            <summary>
+            Puts the picker in "Expanded" state.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadListPicker.StateChanged">
+            <summary>
+            Occurs when the <see cref="P:Telerik.Windows.Controls.RadListPicker.State"/> property has changed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.InlineModeThreshold">
+            <summary>
+            Gets or sets the maximum number of items that will be allowed for Inline mode before switching to Popup mode.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.IsAnimationEnabled">
+            <summary>
+            Determines whether animations will be used when the picker is expanding/collapsing.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.State">
+            <summary>
+            Gets the current state of the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.PopupOpenAnimation">
+            <summary>
+            Gets or sets the animation with which the popup opens.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.PopupCloseAnimation">
+            <summary>
+            Gets or sets the animation with which the popup closes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.IsExpanded">
+            <summary>
+            Gets or set a value indicating whether the control is in Expanded or Normal state.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.PopupHeaderStyle">
+            <summary>
+            Gets or sets the Style object that defines header visual appearance.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.PopupItemTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> that describes the content within the items in the popup list.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.PopupHeaderTemplate">
+            <summary>
+            Gets or sets the <see cref="T:System.Windows.DataTemplate"/> that describes the header content of the popup list.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.PopupHeader">
+            <summary>
+            Gets or sets the header of the popup list.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.SelectedVisualItem">
+            <summary>
+            Gets the currently selected <see cref="T:Telerik.Windows.Controls.SelectorItem"/> visual item.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadListPicker.Mode">
+            <summary>
+            Gets the current mode in which the picker operates.
+            </summary>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadNumericUpDown">
+            <summary>
+            Represents a control that allows for selecting numeric values from a predefined range.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.HeaderProperty">
+            <summary>
+            Identifies the Header dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.SuffixProperty">
+            <summary>
+            Identifies the Suffix dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.IsReadOnlyProperty">
+            <summary>
+            Identifies the IsReadOnly dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.ValueProperty">
+            <summary>
+            Identifies the Value dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.MinValueProperty">
+            <summary>
+            Identifies the MinValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.MaxValueProperty">
+            <summary>
+            Identifies the MaxValue dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.ChangeProperty">
+            <summary>
+            Identifies the Change dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.ValueStringProperty">
+            <summary>
+            Identifies the ValueString dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.ValueFormatProperty">
+            <summary>
+            Identifies the ValueFormat dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.IncreaseButtonStyleProperty">
+            <summary>
+            Identifies the IncreaseButtonStyle dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.DecreaseButtonStyleProperty">
+            <summary>
+            Identifies the DecreaseButtonStyle dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.RepeatIntervalDecrementStepProperty">
+            <summary>
+            Identifies the RepeatIntervalDecrementStep dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.InitialRepeatIntervalProperty">
+            <summary>
+            Identifies the InitialRepeatInterval dependency property.
+            </summary>
+        </member>
+        <member name="F:Telerik.Windows.Controls.RadNumericUpDown.MinimumRepeatIntervalProperty">
+            <summary>
+            Identifies the MinimumRepeatInterval dependency property.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDown.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadNumericUpDown"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDown.OnApplyTemplate">
+            <summary>
+            When overridden in a derived class, is invoked whenever application code or internal processes (such as a rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate"/>. In simplest terms, this means the method is called just before a UI element displays in an application. For more information, see Remarks.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDown.TryIncrementValue">
+            <summary>
+            Allows for testing value increment.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDown.OnCreateAutomationPeer">
+            <summary>
+            When implemented in a derived class, returns class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> implementations for the Silverlight automation infrastructure.
+            </summary>
+            <returns>
+            The class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> subclass to return.
+            </returns>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDown.OnValueChanging(Telerik.Windows.Controls.ValueChangingEventArgs{System.Double})">
+            <summary>
+            Raises the <see cref="E:ValueChanging"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDown.OnValueChanged(Telerik.Windows.Controls.ValueChangedEventArgs{System.Double})">
+            <summary>
+            Raises the <see cref="E:ValueChanged"/> event.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDown.OnManipulationStarted(System.Windows.Input.ManipulationStartedEventArgs)">
+            <summary>
+            Called when the <see cref="E:System.Windows.Controls.Control.ManipulationStarted"/> event occurs. This member overrides <see cref="M:System.Windows.UIElement.OnManipulationStarted(System.Object,System.Windows.Input.ManipulationStartedEventArgs)"/>.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDown.OnManipulationCompleted(System.Windows.Input.ManipulationCompletedEventArgs)">
+            <summary>
+            Called when the <see cref="E:System.Windows.Controls.Control.ManipulationCompleted"/> event occurs. This member overrides <see cref="M:System.Windows.UIElement.OnManipulationCompleted(System.Object,System.Windows.Input.ManipulationCompletedEventArgs)"/>.
+            </summary>
+            <param name="e">Event data for the event.</param>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadNumericUpDown.ValueChanged">
+            <summary>
+            Occurs when the currently selected value in the control has changed.
+            </summary>
+        </member>
+        <member name="E:Telerik.Windows.Controls.RadNumericUpDown.ValueChanging">
+            <summary>
+            Occurs when the currently selected value in the control is about to change.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.IsReadOnly">
+            <summary>
+            Gets or sets a value indicating whether the controls is in read only mode.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.RepeatIntervalDecrementStep">
+            <summary>
+            Gets or sets a value that determines how fast the repeat interval decreases as any of the buttons stays pressed.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.InitialRepeatInterval">
+            <summary>
+            Gets or sets the start repeat interval of the +/- buttons.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.MinimumRepeatInterval">
+            <summary>
+            Gets or sets a value that determines the minimum interval to which the repeat interval decreases as time passes.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.DecreaseButtonStyle">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.Windows.Style"/> class that represents the style applied to the decrementing button.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.IncreaseButtonStyle">
+            <summary>
+            Gets or sets an instance of the <see cref="T:System.Windows.Style"/> class that represents the style applied to the incrementing button.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.Value">
+            <summary>
+            Gets or sets the value currently selected in the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.ValueFormat">
+            <summary>
+            Gets or sets a string defining the format of the currently selected value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.Header">
+            <summary>
+            Gets or sets a string representing the header of the control. The header is usually displayed
+            before the value and explains it.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.Suffix">
+            <summary>
+            Gets or sets a string representing the suffix of the control. The header is usually displayed
+            after the value and may represent the type of metric represented by the value.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.ValueString">
+            <summary>
+            Gets a string representing the current value formatted
+            according to the value format.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.MinValue">
+            <summary>
+            Gets or sets the minimum value allowed for the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.MaxValue">
+            <summary>
+            Gets or sets the maximum value allowed for the control.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.Change">
+            <summary>
+            Gets or sets the change. The change is used to increment/decrement the currently selected value when tapping on the up/down keys.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDown.IsProperlyTemplated">
+            <summary>
+            Gets a value indicating whether this control is properly templated.
+            </summary>
+            <value>
+            	<c>True</c> if this instance is properly templated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer">
+            <summary>
+            This class enables the Windows UI automation to interact with the <see cref="T:Telerik.Windows.Controls.RadNumericUpDown"/> control.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.#ctor(Telerik.Windows.Controls.RadNumericUpDown)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer"/> class.
+            </summary>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.SetValue(System.Double)">
+            <summary>
+            Sets the value of the control.
+            </summary>
+            <param name="value">The value to set.</param>
+        </member>
+        <member name="M:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.SetValue(System.String)">
+            <summary>
+            Sets the value of a control.
+            </summary>
+            <param name="value">The value to set. The provider is responsible for converting the value to the appropriate data type.</param>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.IsReadOnly">
+            <summary>
+            Gets a value that indicates whether the value of a control is read-only.
+            </summary>
+            <value></value>
+            <returns>true if the value is read-only; false if it can be modified. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.Value">
+            <summary>
+            Gets the value of the control.
+            </summary>
+            <value></value>
+            <returns>The value of the control.</returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.LargeChange">
+            <summary>
+            Gets the value that is added to or subtracted from the <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value"/> property when a large change is made, such as with the PAGE DOWN key.
+            </summary>
+            <value></value>
+            <returns>The large-change value that is supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.Maximum">
+            <summary>
+            Gets the maximum range value that is supported by the control.
+            </summary>
+            <value></value>
+            <returns>The maximum value that is supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.Minimum">
+            <summary>
+            Gets the minimum range value that is supported by the control.
+            </summary>
+            <value></value>
+            <returns>The minimum value that is supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.SmallChange">
+            <summary>
+            Gets the value that is added to or subtracted from the <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value"/> property when a small change is made, such as with an arrow key.
+            </summary>
+            <value></value>
+            <returns>The small-change value supported by the control, or null if the control does not support <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange"/>. </returns>
+        </member>
+        <member name="P:Telerik.Windows.Controls.RadNumericUpDownAutomationPeer.System#Windows#Automation#Provider#IRangeValueProvider#Value">
+            <summary>
+            Gets the value of the control.
+            </summary>
+            <value></value>
+            <returns>The value of the control.</returns>
+        </member>
+        <member name="T:Telerik.Windows.Controls.Input.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Input.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Input.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Input.Resources.CancelButtonText">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Input.Resources.EmptyDateContent">
+            <summary>
+              Looks up a localized string similar to Select date.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Input.Resources.EmptyTimeContent">
+            <summary>
+              Looks up a localized string similar to Select time.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Input.Resources.LeapYear">
+            <summary>
+              Looks up a localized string similar to Leap Year.
+            </summary>
+        </member>
+        <member name="P:Telerik.Windows.Controls.Input.Resources.OkButtonText">
+            <summary>
+              Looks up a localized string similar to Done.
+            </summary>
+        </member>
+    </members>
+</doc>
