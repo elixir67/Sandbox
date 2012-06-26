@@ -36,41 +36,52 @@ def getcloudbakupfolder():
     return bakup
 
 def copysettings(src, dst):
-    print "src:" + src
-    print "dst:" + dst
-    if path.exists(dst) and not filecmp.cmp(src,dst):
-        override = confirm(prompt='Override settings', resp=True)
-        if override:
-            postfix = strftime("-%Y-%m-%d", gmtime())
-            basename = path.basename(dst)
-            pair = path.splitext(basename)
-            bak = path.join(path.split(dst)[0], pair[0] + postfix + pair[1])
-            print 'bakup:' + bak
-            shutil.copyfile(src, bak)
-            shutil.copyfile(src, dst)
+    if not path.exists(src):
+        print src + 'is not found'
+        return
+    
+    bCopy = False
+    if path.exists(dst):
+        if filecmp.cmp(src,dst):
+            print dst + 'is latest with cloud and no need update'
+            return        
+        else:
+            override = confirm(prompt='Override settings', resp=True)
+            if override:
+                postfix = strftime("-%Y-%m-%d", gmtime())
+                basename = path.basename(dst)
+                pair = path.splitext(basename)
+                bak = path.join(path.split(dst)[0], pair[0] + postfix + pair[1])
+                print 'bakup:' + bak
+                shutil.copyfile(dst, bak)
+                bCopy = True
     else:
-        print 'No need update ' + dst
+        bCopy = True
+        dir,filename = path.split(dst)
+        if not path.exists(dir):
+            os.mkdir(dir)               
+    if bCopy:
+        print "src:" + src
+        print "dst:" + dst
+        shutil.copyfile(src, dst)  
 
 ## {{{ http://code.activestate.com/recipes/541096/ (r1)
+# """prompts for yes or no response from the user. Returns True for yes and
+# False for no.
+
+# 'resp' should be set to the default value assumed by the caller when
+# user simply types ENTER.
+
+# >>> confirm(prompt='Create Directory?', resp=True)
+# Create Directory? [y]|n: 
+# True
+# >>> confirm(prompt='Create Directory?', resp=False)
+# Create Directory? [n]|y: 
+# False
+# >>> confirm(prompt='Create Directory?', resp=False)
+# Create Directory? [n]|y: y
+# True
 def confirm(prompt=None, resp=False):
-    """prompts for yes or no response from the user. Returns True for yes and
-    False for no.
-
-    'resp' should be set to the default value assumed by the caller when
-    user simply types ENTER.
-
-    >>> confirm(prompt='Create Directory?', resp=True)
-    Create Directory? [y]|n: 
-    True
-    >>> confirm(prompt='Create Directory?', resp=False)
-    Create Directory? [n]|y: 
-    False
-    >>> confirm(prompt='Create Directory?', resp=False)
-    Create Directory? [n]|y: y
-    True
-
-    """
-    
     if prompt is None:
         prompt = 'Confirm'
 
@@ -92,21 +103,31 @@ def confirm(prompt=None, resp=False):
         if ans == 'n' or ans == 'N':
             return False
      
-def updatenpp():  
-    NPP = 'Notepad++'
-    NPPCONFIG = 'config.xml'  
-    cloudbakup = getcloudbakupfolder()    
-    nppcloud = path.join(path.join(cloudbakup, NPP),NPPCONFIG)
-    # Roam Notepad++ settings
-    npplocal = path.join(path.join(appdata, NPP), NPPCONFIG)    
-    bakuptocloud = confirm(prompt='Bakup local settings to cloud otherwise override local settings from cloud?', resp=True)        
-    if bakuptocloud:
-        copysettings(npplocal, nppcloud)
-    else:
-        copysettings(nppcloud, npplocal)
-        
-updatenpp()
-#print getskydrivefolder()
+def update_npp():  
+    appfoldername = 'Notepad++'   
+    configs = ['config.xml']
+    updateconfig(appfoldername, configs)
+ 
+def updateconfig(appfoldername, configs):  
+    cloudbakup = getcloudbakupfolder()
+    for config in configs:
+        # Roam Notepad++ settings
+        localconfig = path.join(path.join(appdata, appfoldername), config)  
+        cloudconfig = path.join(path.join(cloudbakup, appfoldername),config)
+        msg = 'Bakup ' + appfoldername + ' local settings to cloud otherwise override local settings from cloud?'
+        bakuptocloud = confirm(prompt = msg, resp = True)        
+        if bakuptocloud:
+            copysettings(localconfig, cloudconfig)
+        else:
+            copysettings(cloudconfig, localconfig)
+
+def update_totalcommander():
+    appfoldername = 'GHISLER'   
+    configs = ['wincmd.ini', 'usercmd.ini']
+    updateconfig(appfoldername, configs)
+           
+update_totalcommander()           
+update_npp()
         
 
     
