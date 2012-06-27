@@ -89,8 +89,8 @@
       <m:RssUrl>http://feeds.feedburner.com/thisdeveloperslife</m:RssUrl>
     </m:RssFeed>
     <m:RssFeed>
-      <m:Title>Atom Enabled</m:Title>
-      <m:RssUrl>http://www.atomenabled.org/atom.xml</m:RssUrl>
+      <m:Title>月光博客</m:Title>
+      <m:RssUrl>http://feed.williamlong.info/</m:RssUrl>
     </m:RssFeed>
   </RssFeeds>
 
