@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>It's title.</title>
+		<script type="text/javascript">		
+		function start () {
+		  	document.write("Hello World!\n");
+		  	var day = new Date("July 28,2012");
+		  	var s = "London Olympic";
+		  	var now = new Date();
+		  	var interval = day.getTime() - now.getTime();
+		  	var day = Math.floor(interval / (1000*60*60*60));
+		  	document.write(day + "days from " + s);
+		}	
+		</script>
+	</head>
+	<body onload="start()">
+		
+	</body>
+</html>
