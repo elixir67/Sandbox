@@ -43,7 +43,7 @@ def copysettings(src, dst):
     bCopy = False
     if path.exists(dst):
         if filecmp.cmp(src,dst):
-            print dst + 'is latest with cloud and no need update'
+            print dst + ' is latest with cloud and no need update'
             return        
         else:
             override = confirm(prompt='Override settings', resp=True)
@@ -105,7 +105,7 @@ def confirm(prompt=None, resp=False):
      
 def update_npp():  
     appfoldername = 'Notepad++'   
-    configs = ['config.xml']
+    configs = ['config.xml', 'shortcuts.xml']
     updateconfig(appfoldername, configs)
  
 def updateconfig(appfoldername, configs):  
@@ -114,7 +114,7 @@ def updateconfig(appfoldername, configs):
         # Roam Notepad++ settings
         localconfig = path.join(path.join(appdata, appfoldername), config)  
         cloudconfig = path.join(path.join(cloudbakup, appfoldername),config)
-        msg = 'Bakup ' + appfoldername + ' local settings to cloud otherwise override local settings from cloud?'
+        msg = 'Bakup ' + appfoldername + '-' + config + ' local settings to cloud otherwise override local settings from cloud?'
         bakuptocloud = confirm(prompt = msg, resp = True)        
         if bakuptocloud:
             copysettings(localconfig, cloudconfig)
