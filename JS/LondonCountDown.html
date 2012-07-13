@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+        <script src="LunarCalendar.js"></script>
 		<title>It's title.</title>
 		<script type="text/javascript">		
 		function start () {
@@ -9,8 +10,12 @@
 		  	var s = "London Olympic";
 		  	var now = new Date();
 		  	var interval = day.getTime() - now.getTime();
-		  	var day = Math.floor(interval / (1000*60*60*24));
-		  	document.write(day + "days from " + s);
+		  	var days = Math.floor(interval / (1000*60*60*24));
+		  	document.write(days + "days from " + s, "<br>");
+             
+            var DateString = GetDateString(day); 
+            var cDateString = GetcDateString(day); 
+            document.write(DateString,"<br>",cDateString); 
 		}	
 		</script>
 	</head>
