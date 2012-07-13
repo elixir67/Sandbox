@@ -5,6 +5,7 @@ import re
 
 # Configure settings
 CCCMD = '"C:\Program Files (x86)\Code Collaborator Client\ccollab.exe" actionitems' 
+#CCCMD = '"C:\Program Files\Code Collaborator Client\ccollab.exe" actionitems' 
 CCSERVER = 'http://ccs12376084:8080/go?page=ReviewDisplay&reviewid='
 
 # Review #(ReviewId): "@(ChangeListId) - XXX"
@@ -15,7 +16,7 @@ files_pattern = re.compile(r'Files:', re.I)
 review_by_pattern = re.compile(r'.+!!REVIEWED BY:', re.I)
 
 def getreviewid(changelistid):
-    p = Popen(CCCMD, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+    p = Popen(CCCMD, shell=True, stdin=PIPE, stdout=PIPE, stderr=PIPE)
     count = 0
     reviewId = ''
     for line in p.stdout:
@@ -23,6 +24,11 @@ def getreviewid(changelistid):
         if id != '':
             count = count + 1
             reviewId = id
+    # Print output and error message if any.
+    for line in p.stdout:
+        print line
+    for line in p.stderr:
+        print line
     if count == 1:
         print 'Changelist ' + changelistid + ' has review:' + reviewId
     elif count > 1:
