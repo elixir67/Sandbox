@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+        <script src="jquery-1.7.2.js"></script>
         <script src="LunarCalendar.js"></script>
 		<title>It's title.</title>
 		<script type="text/javascript">		
-		function start () {
-		  	document.write("Hello World!\n");
-		  	var day = new Date("July 28,2012");
-		  	var s = "London Olympic";
-		  	var now = new Date();
-		  	var interval = day.getTime() - now.getTime();
-		  	var days = Math.floor(interval / (1000*60*60*24));
-		  	document.write(days + "days from " + s, "<br>");
-             
-            var DateString = GetDateString(day); 
-            var cDateString = GetcDateString(day); 
-            document.write(DateString,"<br>",cDateString); 
-		}	
+            $(document).ready(function(){         
+                $("#btn").click(function(event) {
+                    var bd = document.getElementById('bday').value;
+                    // var bd = $("#bday").value;
+                    var day,s;
+                    if(bd) {
+                        day = new Date(bd);
+                        var DateString = GetDateString(day); 
+                        var cDateString = GetcDateString(day); 
+                        s = DateString + "<br>" + cDateString;
+                    }
+                    else {
+                        day = new Date("July 28,2012");
+                        s = "London Olympic";
+                    }
+                        
+                    var now = new Date();
+                    var interval = day.getTime() - now.getTime();
+                    var days = Math.floor(interval / (1000*60*60*24));
+                    var s = days + "days from " + s + "<br>";
+                    
+                    // $("#output").innerHTML = s;
+                    var output = document.getElementById('output');
+                    output.innerHTML = s;
+                });
+            });
 		</script>
 	</head>
-	<body onload="start()">
-		
+	<body>
+	<input type="date" id="bday">	
+    <p id="output">This is some text in a paragraph.</p>
+    <input type='button' id="btn" value='ChangeText'/>
 	</body>
 </html>
