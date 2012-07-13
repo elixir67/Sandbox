@@ -1,7 +1,45 @@
-﻿<script src="LunarCalendar.js"></script>
-<script type="text/javascript"> 
-var day = new Date();
-var DateString = GetDateString(day); 
-var cDateString = GetcDateString(day); 
-document.write(DateString,"<br>",cDateString); 
-</script>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="LunarCalendar.js"></script>
+    <link rel="stylesheet" href="jquery-ui/themes/base/jquery.ui.all.css">
+    <script src="./jquery-ui/jquery-1.7.2.js"></script>
+    <script src="./jquery-ui/ui/jquery.ui.core.js"></script>
+    <script src="./jquery-ui/ui/jquery.ui.widget.js"></script>
+    <script src="./jquery-ui/ui/jquery.ui.datepicker.js"></script>
+    <script> 
+	$(function() {
+		$( "#datepicker" ).datepicker();
+	});
+    </script>
+    <script type="text/javascript">		
+        $(document).ready(function(){         
+            $("#btn").click(function(event) {
+                var bd = document.getElementById('datepicker').value;
+                var day,s;
+                if(bd) {
+                    day = new Date(bd);
+                }
+                else {
+                    day = new Date();
+                }
+                    
+                var DateString = GetDateString(day); 
+                var cDateString = GetcDateString(day); 
+                s = DateString + "<br>" + cDateString;
+            
+                // $("#output").innerHTML = s;
+                var output = document.getElementById('output');
+                output.innerHTML = s;
+            });
+        });
+    </script>
+</head>
+<body>
+    <p id="output">This is some text in a paragraph.</p>
+    <input type="text" id="datepicker">
+    <input type='button' id="btn" value='显示农历'/>
+	</body>
+</div><!-- End demo -->
+</body>
+</html>
