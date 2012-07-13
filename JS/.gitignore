@@ -1,0 +1,5 @@
+#ignore .metadata, do not hide .gitignore file
+#.gitignore
+#ignore obj and lib file
+jquery-ui-1.8/
+

@@ -1,14 +1,28 @@
 <!DOCTYPE HTML>
-<html><body>
-    <canvas id="canvas" width="500"height="500">             
-        <p>My Content</p>  
-    </canvas>         
-<script type="text/javascript">    
-    window.onload = function() {            
-         var canvas =document.getElementById("canvas");             
-         var context2D =canvas.getContext("2d");             
-         context2D.font ="30px Times New Roman";             
-         context2D.fillText("HelloCanvas!", 100, 100);    
-     }    
- </script>    
+<html>
+<head>
+    <script src="jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+            $(document).ready(function(){
+                $("#try").click(function(event){
+                    var canvas = document.getElementById("canvas");
+                    var context =canvas.getContext("2d");  
+                    // var context2D =$('#canvas').getContext("2d");             
+                    context.font = "30px Times New Roman";
+                    context.fillText("HelloCanvas!", 100, 100);
+                });
+                
+                $("#reset").click(function(event){
+                    var canvas = document.getElementById("canvas");
+                    var context =canvas.getContext("2d");  
+                    context.clearRect(0, 0, canvas.width, canvas.height);
+                });
+            });  
+    </script>   
+</head>
+<body>
+    <button id="try" type="button">Try</button>
+    <button id="reset" type="button">Reset</button>
+    <canvas id="canvas" width="500" height="500">             
+    </canvas>    
  </body></html>
