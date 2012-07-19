@@ -1,0 +1,73 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+    <title>Jscex Animation--Angry Bird</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <script language="javascript" type="text/javascript" src="lib/uglifyjs-parser.js"></script>
+    <script language="javascript" type="text/javascript" src="src/jscex.js"></script>
+    <script language="javascript" type="text/javascript" src="src/jscex.builderBase.js"></script>
+    <script language="javascript" type="text/javascript" src="src/jscex.async.js"></script>
+    <!--[if IE]>
+    <script language="javascript" type="text/javascript" src="lib/json2.js"></script>
+	<script language="javascript">
+		Jscex.config.codeGenerator = function (code) { return "false || " + code; }
+	</script>
+    <![endif]-->
+    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        function Bird(startPos, speed_X, speed_Y, element) {
+            this.speed_X = speed_X;
+            this.speed_Y = speed_Y;
+            this.startPos = startPos;
+            this.fly = function () {
+                flyAsync(element, startPos, speed_X, speed_Y).start();
+            }
+        }
+        var flyAsync = eval(Jscex.compile("async", function (e, startPos, speed_X, speed_Y) {
+            e.style.left = startPos.x;
+            e.style.top = startPos.y;
+            var maxY = startPos.y;
+            //所用公式:vt=v0+at
+            //重力加速度
+            var a_y = 40;
+            var speed_YTemp = speed_Y;
+            var time = 0;
+            while (true) {
+                $await(Jscex.Async.sleep(1));
+                while (speed_Y > 0 ? (Math.abs(speed_Y) <= speed_YTemp) : (e.offsetTop - (speed_Y - a_y) * 0.05 <= maxY)) {
+                    $await(Jscex.Async.sleep(50));
+                    time = time + 50;
+                    speed_Y = speed_Y - a_y;
+                    startPos.y -= (speed_Y * 0.05);
+                    startPos.x += speed_X * 0.05;
+                    e.style.top = startPos.y + "px";
+                    e.style.left = startPos.x + "px";
+                }
+                //与地面撞击，X轴损失一部分速度，Y轴损失一部分速度并且被弹起
+                speed_X = speed_X / 2;
+                speed_Y = -speed_Y / 3;
+
+                if (speed_X < 6) break;
+            }
+        }));
+        //进了while，就一定要执行    $await(Jscex.Async.sleep(50));   或者   break;
+        function Button1_onclick() {
+            var bird = new Bird({ x: 0, y: 300 }, 400, 700, document.getElementById("birdDiv"));
+            bird.fly();
+
+        }
+    </script>
+    <div style="width: 1000; height: 1000;">
+        <input id="Button1" type="button" value="发射" onclick="return Button1_onclick()" />
+        <div id="birdDiv" style="left: 0px; top: 300px; position: absolute; width: 20px;
+            height: 30px">
+            <img src="bird.png" alt="" />
+        </div>
+        <div id="floorDiv" style="position: absolute; top: 345px">
+            <img src="floor.png" alt="" />
+        </div>
+    </div>
+</body>
+</html>
