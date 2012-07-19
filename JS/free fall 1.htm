@@ -4,45 +4,24 @@
     window.setTimeout(aa, 2000);
     function aa() {
         var i = self.setInterval("bb()", 25);
-
     }
-
     function bb() {
-
         var f = document.getElementById('fall');
-
         var r = parseInt(f.style.right) + h;
-
         var b = parseInt(f.style.bottom) - v;
-
         f.style.right = r + 'px';
-
         f.style.bottom = b + 'px';
-
         if (b > -210) {
-
             v += 2;
-
         } else {
-
             h = (v > 9) ? v * 0.1 : 0;
-
             v *= (v > 9) ? -0.3 : 0;
-
         }
-
     }
-
 </script>
-
 <body>
-
     <div id="fall" style="position: relative; right: -300px; bottom: -46px">
-
        apple
-
     </div>
-
 </body>
-
 </html>

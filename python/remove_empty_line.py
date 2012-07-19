@@ -4,13 +4,16 @@ import os
 from os import path
 import codecs
 
-def remove_empty_line(filename):
-    with codecs.open(filename, encoding='utf-8') as f:
+def remove_empty_line(filepath):
+    with open(filepath, 'r') as f:
         result = ''
         for line in f:
-            if line.strip() != "":
-                result += line
-    print result
+            line = line.rstrip('\n')
+            if line != "":
+                result += line+'\n'
+    #print result
+    with open (filepath, 'w') as f:
+        f.writelines(result)
 
 def showusage():
     print "Usage: python remove_empty_line.py filepath"    
@@ -18,5 +21,5 @@ def showusage():
 if __name__ == '__main__':
     if (len(sys.argv) != 2):
         showusage()
-    filename = sys.argv[1]
-    remove_empty_line(filename)  
+    filepath = sys.argv[1]
+    remove_empty_line(filepath)  
