@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+      <script type="text/javascript" src="../3rdParty/jscex/jscex-0.6.5.js"></script>
+      <script type="text/javascript" src="../3rdParty/jscex/jscex-parser-0.6.5.js"></script>
+      <script type="text/javascript" src="../3rdParty/jscex/jscex-jit-0.6.6
+.js"></script>
+      <script type="text/javascript" src="../3rdParty/jscex/jscex-builderbase-0.6.5.js"></script>
+      <script type="text/javascript" src="../3rdParty/jscex/jscex-async-0.6.5.js"></script>
+      <script type="text/javascript" src="../3rdParty/jscex/jscex-async-powerpack-0.6.5.js"></script>
+  <canvas id="myCanvas" width="600" height="500" style="border:15px solid gray;
+-moz-border-radius-bottomleft:40px;
+-moz-border-radius-bottomright:40px;
+-webkit-border-bottom-left-radius:40px;
+-webkit-border-bottom-right-radius:40px;
+-webkit-border-top-left-radius:40px;
+-webkit-border-top-right-radius:40px;">
+Your browser does not support the canvas element.
+</canvas>
+  <script type="text/javascript">
+      var c = document.getElementById("myCanvas");
+      var cxt = c.getContext("2d");
+      cxt.lineWidth = 16;
+      var startX = 250;
+      var startY = 250;
+      function randomColor() {
+          //16进制方式表示颜色0-F    
+          var arrHex = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"]; var strHex = "#";
+          var index;
+          for (var i = 0; i < 6; i++) {
+              //取得0-15之间的随机整数    
+              index = Math.round(Math.random() * 15);
+              strHex += arrHex[index];
+          }
+          return strHex;
+      }
+      //10 step 0.2
+      function getHeartPoint(c) {
+          var b = c / Math.PI;
+          var a = 10 * (16 * Math.pow(Math.sin(b), 3));
+          var d = 10 * (13 * Math.cos(b) - 5 * Math.cos(2 * b) - 2 * Math.cos(3 * b) - Math.cos(4 * b));
+          return new Array(a, d)
+      }
+      var drawHeart = eval(Jscex.compile("async", function () {
+          for (var z = 10; z < 30; z += 0.2) {
+              cxt.strokeStyle = randomColor();
+              var h = getHeartPoint(z);
+              cxt.lineTo(startX + h[0], startY - h[1]);
+              cxt.stroke();
+              $await(Jscex.Async.sleep(100))
+          }
+      }))
+    
+    </script>
+    <style type="text/css">
+input.css3btn{
+  background: -moz-linear-gradient(270deg, #d2ebf8, #0c8ab5);
+  background: -webkit-linear-gradient(top, #d2ebf8, #0c8ab5);
+  background: -o-linear-gradient(top, #d2ebf8, #0c8ab5);
+  filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#000099CC', EndColorStr='#FF0087B4');
+  border-top: 1px solid #38538c;
+  border-right: 1px solid #1f2d4d;
+  border-bottom: 1px solid #151e33;
+  border-left: 1px solid #1f2d4d;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 10px 1px #5c8bee, 0px 1px 0 #1d2c4d, 0 2px 0px #1f3053, 0 4px 4px 1px #111111;
+  color:#f0f0f0;
+  font: bold 20px "helvetica neue", helvetica, arial, sans-serif;
+  padding: 10px 0 10px 0;
+  text-align: center;
+  text-shadow: 0px -1px 1px #1e2d4d;
+  width: 150px;
+   background-clip: padding-box; }
+  input.css3btn:hover {
+    box-shadow: inset 0 0px 20px 1px #87adff, 0px 1px 0 #1d2c4d, 0 3px 0px #1f3053, 0 4px 4px 1px #111111;
+    cursor: pointer; }
+  input.css3btn:active {
+    box-shadow: inset 0 1px 10px 1px #5c8bee, 0 1px 0 #1d2c4d, 0 2px 0 #1f3053, 0 4px 3px 0 #111111;
+    margin-top: 1px; }
+    </style>
+    
+    
+    <input class="css3btn" value="运行" onclick="drawHeart().start();" type="button" /> 
+</body>
+</html>

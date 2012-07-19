@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta charset='UTF-8' />
+<title>LOVE</title>
+</head>
+<body>
+<canvas id="pad" width='800' height='300'>Your browser does not support the canvas element.</canvas>
+<script type="text/javascript">
+    var $id = function (n) {
+        return document.getElementById(n) || n;
+    }
+    window.addEventListener("load", draw, false);
+    var con = $id("pad").getContext('2d');
+    con.fillStyle = '#f00'
+    con.translate(300, 100);
+    function draw() {
+        var r = 0, a = 20, start = 0, end = 0;
+        con.rotate(Math.PI);
+        for (var q = 0; q < 1000; q++) {
+            start += Math.PI * 2 / 1000;
+            end = start + Math.PI * 2 / 1000;
+            r = a * Math.sqrt(225 / (17 - 16 * Math.sin(start) * Math.sqrt(Math.cos(start) * Math.cos(start))))
+            con.arc(0, 0, r, start, end, false);
+        }
+        con.fill();
+    }
+</script>
+</body>
+</html>
