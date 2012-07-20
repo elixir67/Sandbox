@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="http://api.amap.com/webapi/init?v=1.0"></script>
+<title>搜索经纬度</title>
+</head>
+<body onload="mapInit();">
+<h2>Search Latitude Longitude</h2>
+
+<input style="width:300px;" id="address" type="text" value="上海市浦东新区梅山苑" />
+<br />
+<input type="button" value="计算经纬度" onclick="fun_geocoder_getPoint();"/>
+<br />
+<ol id="result"></ol>
+<div style="width:520px;height:340px;border:1px solid gray;float:left;" id="container"></div>
+</body>
+</html>
+<script type="text/javascript">
+
+    var map;
+    function mapInit() {
+        var opt = {
+            zoom:15,
+            center:new AMap.LngLat(121.487899,31.249162), // Shanghai LongLat
+            doubleClickZoom:true,
+            scrollwheel:true
+        }
+
+        map = new AMap.Map("container", opt);
+
+        map.plugin(["AMap.ToolBar","AMap.OverView","AMap.Scale"],function()  
+        {   
+          toolbar = new AMap.ToolBar();  
+          toolbar.autoPosition=false; //加载工具条   
+          map.addControl(toolbar);     
+
+          overview = new AMap.OverView(); //加载鹰眼  
+          map.addControl(overview);        
+
+          scale = new AMap.Scale(); //加载比例尺  
+          map.addControl(scale);  
+        }); 
+    }
+
+    function fun_geocoder_getPoint() {
+        var address_value = document.getElementById("address").value;
+        var result = document.getElementById("result");
+
+        var gc = new AMap.Geocoder();
+
+        gc.geocode(address_value, function (data) {
+        console.log(data);
+
+        var resultStr="";  
+        if(data.status =="E0")  
+        {  
+                for (var i = 0; i < 1; i++) {  
+                    resultStr += data.list[i].name + ":" + data.list[i].x + "," + data.list[i].y;
+                    var windowsArr = new Array();  
+                    var markerOption = {  
+                    icon:"http://api.amap.com/webapi/static/Images/"+(i+1)+".png",  
+                    position:new AMap.LngLat(data.list[i].x,data.list[i].y)  
+                    };            
+                    var marker =new AMap.Marker(markerOption);  
+                    marker.id=(i+1);  
+                    var infoWindow = new AMap.InfoWindow  
+                    ({  
+                        content:data.list[i].name,  
+                        size:new AMap.Size(150,0),  
+                    });  
+                    windowsArr.push(infoWindow);  
+                    map.addOverlays(marker);  
+                    var aa=function(e){infoWindow.open(map,marker.getPosition());};  
+                    map.bind(marker,"click",aa);  
+                }  
+                map.setFitView();  
+        }       
+        else if(data.status =="E1")  
+        {  
+             resultStr = "未查找到任何结果!<br />建议：<br />1.请确保所有字词拼写正确。<br />2.尝试不同的关键字。<br />3.尝试更宽泛的关键字。";     
+        }  
+        else  
+        {  
+             resultStr= "错误信息："+data.state+"请对照API Server v2.0.0 简明提示码对照表查找错误类型";  
+        }  
+        var li = document.createElement("li");
+        li.innerHTML = resultStr;
+        result.appendChild(li);
+        });
+    }
+</script>

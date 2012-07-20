@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>搜索331路公交</title>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
+</head>
+<body>
+<p><img src="http://map.baidu.com/img/logo-map.gif" /><span style="display:inline-block;width:200px;">&nbsp;</span><input type="text" value="331" id="busId" />路公交&nbsp;<input type="button" value="查询" onclick="busSearch();" /></p>
+<div style="clear:both">&nbsp;</div>
+<div style="float:left;width:600px;height:500px;border:1px solid gray" id="container"></div>
+<div id="results" style="float:left;width:300px;height:500px;font-size:13px;"></div>
+</body>
+</html>
+<script type="text/javascript">
+var map = new BMap.Map("container");
+map.centerAndZoom(new BMap.Point(116.322, 40.003), 12);
+
+var busline = new BMap.BusLineSearch(map,{
+    renderOptions:{map:map,panel:"results"},
+        onGetBusListComplete: function(result){
+           if(result) {
+             var fstLine = result.getBusListItem(0);//获取第一个公交列表显示到map上
+             busline.getBusLine(fstLine);
+           }
+        }
+});
+function busSearch(){
+    var busName = document.getElementById("busId").value;
+    busline.getBusList(busName);
+}
+</script>

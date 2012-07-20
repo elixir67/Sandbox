@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.2"></script>
+<title>搜索经纬度</title>
+</head>
+<body>
+<h2>Search Latitude Longitude</h2>
+
+<input style="width:300px;" id="address" type="text" value="上海市浦东新区梅山苑" />
+<br />
+<input type="button" value="计算经纬度" onclick="fun_geocoder_getPoint();"/>
+<br />
+<ol id="result"></ol>
+<div style="width:520px;height:340px;border:1px solid gray;float:left;" id="container"></div>
+</body>
+</html>
+<script type="text/javascript">
+    var map = new BMap.Map("container");
+    map.centerAndZoom("上海市");
+
+    var gc = new BMap.Geocoder();
+    function fun_geocoder_getPoint() {
+        var address_value = document.getElementById("address").value;
+        var result = document.getElementById("result");
+        gc.getPoint(address_value, function (point) {
+            if (point) {
+                var str = address_value + ":" + point.lng + "," + point.lat;
+                var li = document.createElement("li");
+                li.innerHTML = str;
+                result.appendChild(li);
+
+                map.centerAndZoom(point, 15);
+                map.addOverlay(new BMap.Marker(point));
+            }
+            else {
+                alert("LatLong failed!");
+            }
+        }, "全国");
+    }
+</script>
