@@ -23,8 +23,8 @@ svg {
 
 <script type="text/javascript"> 
     //<![CDATA[
-    var CANVAS_WIDTH = 800;
-    var CANVAS_HEIGHT = 800;
+    var CANVAS_WIDTH = 500;
+    var CANVAS_HEIGHT = 500;
     var LINE_WIDTH = 5;
     var CONTROL_POINT_RADIOUS = 10;
 
@@ -32,20 +32,19 @@ svg {
         this.x = x;
         this.y = y;
         this.paper = paper;
-
+        this.gizmo = null;
         Vertex.prototype.update = function(x, y) {
             this.x = x;
             this.y = y;
         }
 
-        var gizmo;
         Vertex.prototype.startEdit = function () {
-            gizmo = paper.circle(x, y, CONTROL_POINT_RADIOUS);
+              this.gizmo = paper.circle(this.x, this.y, CONTROL_POINT_RADIOUS);
 
-            gizmo.attr({ fill: "yellow" });
-//            gizmo.drag(function (dx, dy) {
+              this.gizmo.attr({ fill: "yellow" });
+//            gizmo.drag(function (dx, dy, redraw) {
 //                // handler for moving  
-//                x = x + dx;
+//                x = x + dx;s
 //                y = y + dy;
 //            },function () {
 //                // handler for drag start
@@ -56,25 +55,23 @@ svg {
 //            });
         }
         Vertex.prototype.endEdit = function () {
-            if(gizmo != null)
-                gizmo.remove();
+            if(this.gizmo != null)
+                this.gizmo.remove();
         }
     }
 
     function Line(startX, startY, endX, endY, paper) {
         var start = new Vertex(startX, startY, paper);
-        var end = new Vertex(startX, startY, paper);
+        var end = new Vertex(endX, endY, paper);
 
         Line.prototype.updateStart = function (x, y) {
-            start.x = x;
-            start.y = y;
+            start.update(x, y);
             redraw();
             return this;
         }
 
         Line.prototype.updateEnd = function (x, y) {
-            end.x = x;
-            end.y = y;
+            end.update(x, y);
             redraw();
             return this;
         }
