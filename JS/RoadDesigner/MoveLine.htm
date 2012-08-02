@@ -4,7 +4,7 @@
 <title>Move Line</title>
 <meta charset = "UTF-8"/>
 
-<!-- Update the path to raphael js -->
+<!-- Update the path to paper js -->
 <script type="text/javascript" src="raphael.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
 
@@ -25,8 +25,10 @@ svg {
     //<![CDATA[
     var CANVAS_WIDTH = 800;
     var CANVAS_HEIGHT = 800;
+    var LINE_WIDTH = 5;
+    var CONTROL_POINT_RADIOUS = 10;
 
-    function Line(startX, startY, endX, endY, raphael) {
+    function Line(startX, startY, endX, endY, paper) {
         var start = {
             x: startX,
             y: startY
@@ -35,35 +37,52 @@ svg {
             x: endX,
             y: endY
         };
+
+        Line.prototype.updateStart = function (x, y) {
+            start.x = x;
+            start.y = y;
+            redraw();
+            return this;
+        }
+
+        Line.prototype.updateEnd = function (x, y) {
+            end.x = x;
+            end.y = y;
+            redraw();
+            return this;
+        }
+
+        Line.prototype.enableEdit = function () {
+            node.mouseover(function () {
+                node.attr("stroke", "blue");
+                // Show the control points
+                controls = paper.set(
+                                paper.circle(start.x, start.y, CONTROL_POINT_RADIOUS),
+                                paper.circle(end.x, end.y, CONTROL_POINT_RADIOUS)
+                                );
+                controls.attr({ fill: "yellow" });
+            });
+            node.mouseout(function () {
+                node.attr("stroke", "red");
+                // Clear the control points
+                controls.remove();
+            });
+
+        }
+
         var getPath = function () {
             return "M" + start.x + " " + start.y + " L" + end.x + " " + end.y;
         };
+
+        var node = paper.path(getPath());
+
+        var controls = paper.set();
+
         var redraw = function () {
             node.attr("path", getPath());
             node.attr("stroke", "red");
-            node.attr("stroke-width", 20);
-            node.hover(function () {
-                node.attr("stroke", "blue");
-            }, function () {
-                node.attr("stroke", "red");
-            })
+            node.attr("stroke-width", LINE_WIDTH);
         }
-
-        var node = raphael.path(getPath());
-        return {
-            updateStart: function (x, y) {
-                start.x = x;
-                start.y = y;
-                redraw();
-                return this;
-            },
-            updateEnd: function (x, y) {
-                end.x = x;
-                end.y = y;
-                redraw();
-                return this;
-            }
-        };
     };
 
     $(document).ready(function () {
@@ -72,16 +91,18 @@ svg {
         $("#canvas").dblclick(function (e) {
             x = e.offsetX;
             y = e.offsetY;
-            line = Line(x, y, x, y, paper);
+            line = new Line(x, y, x, y, paper);
             $("#canvas").bind("mousemove", function (e) {
                 x = e.offsetX;
                 y = e.offsetY;
-                line.updateEnd(x, y);
+                line = line.updateEnd(x, y);
             });
         });
 
         $("#canvas").mouseup(function (e) {
             $("#canvas").unbind("mousemove");
+            if (line != undefined)
+                line.enableEdit();
         });
 
         $("#clearBtn").click(function () {
