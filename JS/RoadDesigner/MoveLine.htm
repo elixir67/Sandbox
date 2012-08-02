@@ -28,15 +28,42 @@ svg {
     var LINE_WIDTH = 5;
     var CONTROL_POINT_RADIOUS = 10;
 
+    function Vertex(x, y, paper) {
+        this.x = x;
+        this.y = y;
+        this.paper = paper;
+
+        Vertex.prototype.update = function(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        var gizmo;
+        Vertex.prototype.startEdit = function () {
+            gizmo = paper.circle(x, y, CONTROL_POINT_RADIOUS);
+
+            gizmo.attr({ fill: "yellow" });
+//            gizmo.drag(function (dx, dy) {
+//                // handler for moving  
+//                x = x + dx;
+//                y = y + dy;
+//            },function () {
+//                // handler for drag start
+
+//            }, function () {
+//                // handler for drag end
+
+//            });
+        }
+        Vertex.prototype.endEdit = function () {
+            if(gizmo != null)
+                gizmo.remove();
+        }
+    }
+
     function Line(startX, startY, endX, endY, paper) {
-        var start = {
-            x: startX,
-            y: startY
-        };
-        var end = {
-            x: endX,
-            y: endY
-        };
+        var start = new Vertex(startX, startY, paper);
+        var end = new Vertex(startX, startY, paper);
 
         Line.prototype.updateStart = function (x, y) {
             start.x = x;
@@ -53,19 +80,17 @@ svg {
         }
 
         Line.prototype.enableEdit = function () {
-            node.mouseover(function () {
-                node.attr("stroke", "blue");
+            gizmo.mouseover(function () {
+                gizmo.attr("stroke", "blue");
                 // Show the control points
-                controls = paper.set(
-                                paper.circle(start.x, start.y, CONTROL_POINT_RADIOUS),
-                                paper.circle(end.x, end.y, CONTROL_POINT_RADIOUS)
-                                );
-                controls.attr({ fill: "yellow" });
+                start.startEdit();
+                end.startEdit();
             });
-            node.mouseout(function () {
-                node.attr("stroke", "red");
+            gizmo.mouseout(function () {
+                gizmo.attr("stroke", "red");
                 // Clear the control points
-                controls.remove();
+                start.endEdit();
+                end.endEdit();
             });
 
         }
@@ -74,14 +99,12 @@ svg {
             return "M" + start.x + " " + start.y + " L" + end.x + " " + end.y;
         };
 
-        var node = paper.path(getPath());
-
-        var controls = paper.set();
+        var gizmo = paper.path(getPath());
 
         var redraw = function () {
-            node.attr("path", getPath());
-            node.attr("stroke", "red");
-            node.attr("stroke-width", LINE_WIDTH);
+            gizmo.attr("path", getPath());
+            gizmo.attr("stroke", "red");
+            gizmo.attr("stroke-width", LINE_WIDTH);
         }
     };
 
