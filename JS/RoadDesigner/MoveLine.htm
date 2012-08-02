@@ -1,9 +1,8 @@
-﻿<!DOCTYPE html>
-<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+﻿<!DOCTYPE HTML>
+<html lang="en">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta http-equiv="edit-Type" edit="text/html; charset=utf-8">
-
+<title>Move Line</title>
+<meta charset = "UTF-8"/>
 
 <!-- Update the path to raphael js -->
 <script type="text/javascript" src="raphael.js"></script>
@@ -18,68 +17,76 @@ svg {
 </head>
 <body>
 <div id="canvas"></div>
-<script type="text/javascript"> 
-    //<![CDATA[
-var CANVAS_WIDTH = 800;
-var CANVAS_HEIGHT = 800;
-
-function Line(startX, startY, endX, endY, raphael) {
-    var start = {
-        x: startX,
-        y: startY
-    };
-    var end = {
-        x: endX,
-        y: endY
-    };
-    var getPath = function() {
-        return "M" + start.x + " " + start.y + " L" + end.x + " " + end.y;
-    };
-    var redraw = function() {
-        node.attr("path", getPath());
-    }
-
-    var node = raphael.path(getPath());
-    return {
-        updateStart: function(x, y) {
-            start.x = x;
-            start.y = y;
-            redraw();
-            return this;
-        },
-        updateEnd: function(x, y) {
-            end.x = x;
-            end.y = y;
-            redraw();
-            return this;
-        }
-    };
-};
-
-
-
-$(document).ready(function() {
-    var paper = Raphael("canvas", CANVAS_WIDTH, CANVAS_HEIGHT);
-    $("#canvas").dblclick(
-
-    function(e) {
-        x = e.offsetX;
-        y = e.offsetY;
-        line = Line(x, y, x, y, paper);
-        $("#canvas").bind("mousemove", function (e) {
-            x = e.offsetX;
-            y = e.offsetY;
-            line.updateEnd(x, y);
-        });
-    });
-
-    $("#canvas").mouseup(
-
-    function(e) {
-        $("#canvas").unbind("mousemove");
-    });
-});
-    //]]> 
-</script>
+<button type="button" id="clearBtn">Clear</button>
 </body>
 </html>
+
+<script type="text/javascript"> 
+    //<![CDATA[
+    var CANVAS_WIDTH = 800;
+    var CANVAS_HEIGHT = 800;
+
+    function Line(startX, startY, endX, endY, raphael) {
+        var start = {
+            x: startX,
+            y: startY
+        };
+        var end = {
+            x: endX,
+            y: endY
+        };
+        var getPath = function () {
+            return "M" + start.x + " " + start.y + " L" + end.x + " " + end.y;
+        };
+        var redraw = function () {
+            node.attr("path", getPath());
+            node.attr("stroke", "red");
+            node.attr("stroke-width", 20);
+            node.hover(function () {
+                node.attr("stroke", "blue");
+            }, function () {
+                node.attr("stroke", "red");
+            })
+        }
+
+        var node = raphael.path(getPath());
+        return {
+            updateStart: function (x, y) {
+                start.x = x;
+                start.y = y;
+                redraw();
+                return this;
+            },
+            updateEnd: function (x, y) {
+                end.x = x;
+                end.y = y;
+                redraw();
+                return this;
+            }
+        };
+    };
+
+    $(document).ready(function () {
+        var paper = Raphael("canvas", CANVAS_WIDTH, CANVAS_HEIGHT);
+        var line;
+        $("#canvas").dblclick(function (e) {
+            x = e.offsetX;
+            y = e.offsetY;
+            line = Line(x, y, x, y, paper);
+            $("#canvas").bind("mousemove", function (e) {
+                x = e.offsetX;
+                y = e.offsetY;
+                line.updateEnd(x, y);
+            });
+        });
+
+        $("#canvas").mouseup(function (e) {
+            $("#canvas").unbind("mousemove");
+        });
+
+        $("#clearBtn").click(function () {
+            paper.clear();
+        })
+    });
+    //]]> 
+</script>
