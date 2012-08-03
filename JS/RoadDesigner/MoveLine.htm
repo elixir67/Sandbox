@@ -28,68 +28,78 @@ svg {
     var LINE_WIDTH = 5;
     var CONTROL_POINT_RADIOUS = 10;
 
-    function Vertex(x, y, paper) {
-        this.x = x;
-        this.y = y;
-        this.paper = paper;
-        this.gizmo = null;
-        Vertex.prototype.update = function(x, y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        Vertex.prototype.startEdit = function () {
-              this.gizmo = paper.circle(this.x, this.y, CONTROL_POINT_RADIOUS);
-
-              this.gizmo.attr({ fill: "yellow" });
-//            gizmo.drag(function (dx, dy, redraw) {
-//                // handler for moving  
-//                x = x + dx;s
-//                y = y + dy;
-//            },function () {
-//                // handler for drag start
-
-//            }, function () {
-//                // handler for drag end
-
-//            });
-        }
-        Vertex.prototype.endEdit = function () {
-            if(this.gizmo != null)
-                this.gizmo.remove();
-        }
-    }
-
     function Line(startX, startY, endX, endY, paper) {
-        var start = new Vertex(startX, startY, paper);
-        var end = new Vertex(endX, endY, paper);
+        var start = {
+            x: startX,
+            y: startY
+        };
+        var end = {
+            x: endX,
+            y: endY
+        };
 
         Line.prototype.updateStart = function (x, y) {
-            start.update(x, y);
+            start.x = x;
+            start.y = y;
             redraw();
             return this;
         }
 
         Line.prototype.updateEnd = function (x, y) {
-            end.update(x, y);
+            end.x = x;
+            end.y = y;
             redraw();
             return this;
         }
 
         Line.prototype.enableEdit = function () {
-            gizmo.mouseover(function () {
+            gizmo.click(function () {
+                var startGizmo;
+                var endGizmo;
+
                 gizmo.attr("stroke", "blue");
                 // Show the control points
-                start.startEdit();
-                end.startEdit();
-            });
-            gizmo.mouseout(function () {
-                gizmo.attr("stroke", "red");
-                // Clear the control points
-                start.endEdit();
-                end.endEdit();
-            });
+                startGizmo = paper.circle(start.x, start.y, CONTROL_POINT_RADIOUS);
+                if (!endGizmo)
+                    endGizmo = paper.circle(end.x, end.y, CONTROL_POINT_RADIOUS);
+                else
+                    endGizmo.attr({ cx: end.x, cy: end.y });
 
+                startGizmo.attr({ fill: "yellow" });
+                endGizmo.attr({ fill: "yellow" });
+
+                var endEdit = function () {
+                    startGizmo.attr({ cx: start.x, cy: start.y });
+                    endGizmo.attr({ cx: end.x, cy: end.y });
+                    gizmo.attr("stroke", "red");
+                    // Clear the control points
+                    startGizmo.remove();
+                    endGizmo.remove();
+                }
+
+                var dragstart = function () {
+                }
+
+                var dragend = function () {
+                    end.x = endGizmo.attr("cx");
+                    end.y = endGizmo.attr("cy");
+
+                    endEdit();
+                }
+
+                var endmove = function (dx, dy) {
+                    end.x += dx;
+                    end.y += dy;
+                    redraw();
+                    endGizmo.attr({ cx: end.x, cy: end.y });
+                    end.x -= dx;
+                    end.y -= dy;
+                    str = dx + ";" + dy;
+                    console.log(dx, dy)
+                }
+
+                endGizmo.drag(endmove, dragstart, dragend);
+            });
         }
 
         var getPath = function () {
@@ -97,6 +107,8 @@ svg {
         };
 
         var gizmo = paper.path(getPath());
+
+        var controls = paper.set();
 
         var redraw = function () {
             gizmo.attr("path", getPath());
