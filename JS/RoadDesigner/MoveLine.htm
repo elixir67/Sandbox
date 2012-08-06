@@ -17,6 +17,8 @@ svg {
 </head>
 <body>
 <div id="canvas"></div>
+<button type="button" id="beginBtn">Begin</button>
+<button type="button" id="finishBtn">Finish</button>
 <button type="button" id="clearBtn">Clear</button>
 </body>
 </html>
@@ -52,54 +54,48 @@ svg {
             return this;
         }
 
-        Line.prototype.enableEdit = function () {
-            gizmo.click(function () {
-                var startGizmo;
-                var endGizmo;
+        var endGizmo;
+        var bEditable = false;
 
-                gizmo.attr("stroke", "blue");
-                // Show the control points
-                startGizmo = paper.circle(start.x, start.y, CONTROL_POINT_RADIOUS);
-                if (!endGizmo)
-                    endGizmo = paper.circle(end.x, end.y, CONTROL_POINT_RADIOUS);
-                else
-                    endGizmo.attr({ cx: end.x, cy: end.y });
+        Line.prototype.startEdit = function () {
+            // Avoid triggering multi-times
+            if (bEditable)
+                return;
+            bEditable = true;
 
-                startGizmo.attr({ fill: "yellow" });
-                endGizmo.attr({ fill: "yellow" });
+            // Change the line attributes
+            gizmo.attr("stroke", "blue");
+            // Show the control points
+            endGizmo = paper.circle(end.x, end.y, CONTROL_POINT_RADIOUS);
+            endGizmo.attr("fill", "yellow");
 
-                var endEdit = function () {
-                    startGizmo.attr({ cx: start.x, cy: start.y });
-                    endGizmo.attr({ cx: end.x, cy: end.y });
-                    gizmo.attr("stroke", "red");
-                    // Clear the control points
-                    startGizmo.remove();
-                    endGizmo.remove();
-                }
+            var dragstart = function () {
+            }
 
-                var dragstart = function () {
-                }
+            var dragend = function () {
+                end.x = endGizmo.attr("cx");
+                end.y = endGizmo.attr("cy");
+            }
 
-                var dragend = function () {
-                    end.x = endGizmo.attr("cx");
-                    end.y = endGizmo.attr("cy");
+            var endmove = function (dx, dy) {
+                end.x += dx;
+                end.y += dy;
+                redraw();
+                endGizmo.attr({ cx: end.x, cy: end.y });
+                end.x -= dx;
+                end.y -= dy;
+            }
 
-                    endEdit();
-                }
+            endGizmo.drag(endmove, dragstart, dragend);
+        }
 
-                var endmove = function (dx, dy) {
-                    end.x += dx;
-                    end.y += dy;
-                    redraw();
-                    endGizmo.attr({ cx: end.x, cy: end.y });
-                    end.x -= dx;
-                    end.y -= dy;
-                    str = dx + ";" + dy;
-                    console.log(dx, dy)
-                }
+        Line.prototype.endEdit = function () {
+            // Recover the line
+            gizmo.attr("stroke", "red");
 
-                endGizmo.drag(endmove, dragstart, dragend);
-            });
+            // Clear the control points
+            endGizmo.remove();
+            bEditable = false;
         }
 
         var getPath = function () {
@@ -107,19 +103,18 @@ svg {
         };
 
         var gizmo = paper.path(getPath());
-
-        var controls = paper.set();
+        gizmo.attr("stroke", "red");
+        gizmo.attr("stroke-width", LINE_WIDTH);
 
         var redraw = function () {
             gizmo.attr("path", getPath());
-            gizmo.attr("stroke", "red");
-            gizmo.attr("stroke-width", LINE_WIDTH);
         }
     };
 
     $(document).ready(function () {
         var paper = Raphael("canvas", CANVAS_WIDTH, CANVAS_HEIGHT);
         var line;
+        var lines = [];
         $("#canvas").dblclick(function (e) {
             x = e.offsetX;
             y = e.offsetY;
@@ -133,12 +128,29 @@ svg {
 
         $("#canvas").mouseup(function (e) {
             $("#canvas").unbind("mousemove");
-            if (line != undefined)
-                line.enableEdit();
+            if (line != undefined) {
+                lines.push(line);
+            }
         });
 
         $("#clearBtn").click(function () {
             paper.clear();
+            lines = [];
+        })
+
+        $("#beginBtn").click(function () {
+            for (var i = 0, len = lines.length; i < len; i++) {
+                var line = lines[i];
+                line.startEdit();
+            }
+        })
+
+        $("#finishBtn").click(function () {
+            // paper.clear();
+            for (var i = 0, len = lines.length; i < len; i++) {
+                var line = lines[i];
+                line.endEdit();
+            }
         })
     });
     //]]> 
