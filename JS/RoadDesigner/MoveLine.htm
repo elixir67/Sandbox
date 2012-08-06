@@ -79,20 +79,13 @@ svg {
 
         // Change the line attributes
         me.gizmo.attr("stroke", "blue");
-
+        me.gizmo.attr("stroke-dasharray", ".");
         // Show the end control point
         me.endGizmo = this.paper.circle(this.end.x, this.end.y, CONTROL_POINT_RADIOUS);
         me.endGizmo.attr("fill", "yellow");
 
-        var dragstart = function () {
-        }
-
-        var dragend = function () {
-            me.end.x = me.endGizmo.attr("cx");
-            me.end.y = me.endGizmo.attr("cy");
-        }
-
-        var endmove = function (dx, dy) {
+        me.endGizmo.drag(function (dx, dy) {
+            // move
             me.end.x += dx;
             me.end.y += dy;
             me.redraw();
@@ -100,9 +93,15 @@ svg {
             me.moveGizmo.attr({ cx: (me.start.x + me.end.x) / 2, cy: (me.start.y + me.end.y) / 2 });
             me.end.x -= dx;
             me.end.y -= dy;
-        }
-
-        me.endGizmo.drag(endmove, dragstart, dragend);
+        },
+        function () {
+            // drag start 
+        },
+        function () {
+            // drag end
+            me.end.x = me.endGizmo.attr("cx");
+            me.end.y = me.endGizmo.attr("cy");
+        });
 
         // Show the start control point
         me.startGizmo = this.paper.circle(this.start.x, this.start.y, CONTROL_POINT_RADIOUS);
@@ -118,7 +117,7 @@ svg {
             me.start.x -= dx;
             me.start.y -= dy;
         },
-        function () { 
+        function () {
             // drag start 
         },
         function () {
@@ -128,7 +127,7 @@ svg {
         });
 
         // Show the move control point
-        me.moveGizmo = me.paper.circle((me.start.x + me.end.x)/2 , (me.start.y + me.end.y)/2,  CONTROL_POINT_RADIOUS);
+        me.moveGizmo = me.paper.circle((me.start.x + me.end.x) / 2, (me.start.y + me.end.y) / 2, CONTROL_POINT_RADIOUS);
         me.moveGizmo.attr("fill", "yellow");
         me.moveGizmo.drag(function (dx, dy) {
             // move
@@ -160,9 +159,12 @@ svg {
     Line.prototype.endEdit = function () {
         // Recover the line
         this.gizmo.attr("stroke", "red");
+        this.gizmo.attr("stroke-dasharray", "");
 
         // Clear the control points
+        this.startGizmo.remove();
         this.endGizmo.remove();
+        this.moveGizmo.remove();
         this.bEditable = false;
     };
 
