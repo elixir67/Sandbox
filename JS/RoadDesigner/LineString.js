@@ -1,6 +1,7 @@
 var LINE_WIDTH = 5;
 var CONTROL_POINT_RADIOUS = 4;
 var ESC_KEYCODE = 27;
+var TOLERANCE = 3;
 
 function Vertex(x, y) {
     this.x = x;
@@ -24,6 +25,13 @@ function LineString(startX, startY, paper) {
 };
 
 LineString.prototype.init = function () {
+    // clear first
+    for (var i = 0, len = this.vertexGizmos.length; i < len; ++i)
+        this.vertexGizmos[i].remove();
+
+    this.vertexGizmos = [];
+
+    // setup control points
     for (var i = 0, len = this.vertices.length; i < len; ++i)
         this.vertexGizmos.push(this.createControlPoint(i));
 }
@@ -43,6 +51,24 @@ LineString.prototype.sketchNext = function (x, y) {
         this.sketchGizmo.attr("path", path);
 }
 
+LineString.prototype.isOnLine = function (x, y, startPos, endPos) {
+    // are they on this segment
+    if (x < startPos.x || x > endPos.x)
+        return false;
+    var f = function (somex) { return (endPos.y - startPos.y) / (endPos.x - startPos.x) * (somex - startPos.x) + startPos.y; };
+    var fx = f(x);
+    var fy = Math.abs(f(x) - y);
+    // return Math.abs(f(x) - y) < TOLERANCE // tolerance, rounding errors
+    return fy < TOLERANCE;
+}
+
+LineString.prototype.getNearestIndex = function (x, y) {
+    for (var i = 1, len = this.vertices.length; i < len; ++i)
+        if (this.isOnLine(x, y, this.vertices[i - 1], this.vertices[i]))
+            return i;
+    return -1;
+}
+
 LineString.prototype.sketchFinish = function () {
     if (this.sketchGizmo) {
         this.sketchGizmo.remove();
@@ -60,15 +86,19 @@ LineString.prototype.sketchFinish = function () {
             newVertexGizmo.attr({ cx: x, cy: y });
     });
     this.gizmo.mouseup(function (e) {
-//        // Add a new vertex now
-//        var x = e.offsetX;
-//        var y = e.offsetY;
-//        // how to compute the nearest index
-//        // var index = me.getNearestIndex();
-//        me.vertices.splice(index, 0, new Vertex(x, y));
-
-//        me.vertexGizmos.splice(index, 0, me.createControlPoint(index));
-//        // update the index info in the vertexGizmos
+        // Add a new vertex now
+        var x = e.offsetX;
+        var y = e.offsetY;
+        // Ccompute the nearest index
+        var index = me.getNearestIndex(x, y);
+        if (-1 == index) {
+            alert("index is  -1");
+            return;
+        }
+        me.vertices.splice(index, 0, new Vertex(x, y));
+        // Rest control points
+        me.init();
+        me.redraw();
     });
     this.gizmo.mouseout(function () {
         if (newVertexGizmo) {
