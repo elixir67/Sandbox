@@ -141,9 +141,9 @@ LineString.prototype.createControlPoint = function (index) {
     control.attr("fill", "yellow");
     control.data("index", index);   // save index as customized data
 
-    control.drag(function (dx, dy) {
+    control.drag(function (dx, dy, event) {
         // move
-        if (me.bEditable) {
+        if (me.bEditable && event.which == 1) {
             var index = this.data("index");
 
             // update the display in screen
@@ -169,6 +169,20 @@ LineString.prototype.createControlPoint = function (index) {
             }
         });
 
+    $(control.node).contextMenu({
+        menu: 'vertexMenu'
+    }, function (action, el, pos) {
+        if (me.bEditable && action == "remove") {
+            // Find the element from node first
+            var s = $(el).get(0).raphael;
+            var index = s.data("index");
+            alert(index);
+            me.vertices.splice(0, index);
+            // Rest control points
+            me.init();
+            me.redraw();
+        }
+    });
     return control;
 }
 
