@@ -1,0 +1,103 @@
+﻿<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Move Line</title>
+<meta charset = "UTF-8"/>
+
+<!-- Update the path to paper js -->
+<script type="text/javascript" src="raphael.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<script type="text/javascript" src="Line.js"></script>
+<script type="text/javascript" src="Test.js"></script>
+
+<style type="text/css">
+svg {
+    border: solid 1px #000;
+}
+</style>
+
+</head>
+<body>
+<div id="canvas"></div>
+<button type="button" id="drawLineBtn">DrawLine</button>
+<button type="button" id="editBtn">Edit</button>
+<button type="button" id="finishBtn">Finish</button>
+<button type="button" id="clearBtn">Clear</button>
+<button type="button" id="testBtn">Test</button>
+</body>
+</html>
+
+<script type="text/javascript"> 
+    //<![CDATA[
+    $(document).ready(function () {
+        var paper = Raphael("canvas", CANVAS_WIDTH, CANVAS_HEIGHT);
+        var line;
+        var lines = [];
+        var bEditable = false;
+
+        $("#drawLineBtn").click(function (e) {
+            $("#canvas").bind("mouseup", function (e) {
+                if (!bEditable) {
+                    bEditable = true;
+                    x = e.offsetX;
+                    y = e.offsetY;
+                    line = new Line(x, y, x, y, paper);
+                    $("#canvas").bind("mousemove", function (e) {
+                        x = e.offsetX;
+                        y = e.offsetY;
+                        line = line.updateEnd(x, y);
+                    });
+                }
+            });
+        });
+
+        $('#canvas').bind('contextmenu', function (e) {
+            e.preventDefault();
+
+            if (e.which === 3 && bEditable) {
+                $("#canvas").unbind("mousemove");
+                if (line != undefined) {
+                    lines.push(line);
+                }
+                bEditable = false;
+            }
+            return false;
+        });
+
+        $("#clearBtn").click(function () {
+            paper.clear();
+            lines = [];
+        });
+
+        $("#editBtn").click(function () {
+            for (var i = 0, len = lines.length; i < len; ++i) {
+                var line = lines[i];
+                line.startEdit();
+            }
+        });
+
+        $("#finishBtn").click(function () {
+            for (var i = 0, len = lines.length; i < len; ++i) {
+                var line = lines[i];
+                line.endEdit();
+            }
+        });
+
+        $("#testBtn").click(function () {
+            var list = [];
+            var t = new Test();
+            t.change();
+            console.log(t.get()); // output true;
+            list.push(t);
+            t = new Test();
+            console.log(t.get()); // output false
+            list.push(t);
+
+            for (var i = 0, len = list.length; i < len; ++i) {
+                var t = list[i];
+                console.log(t.get()); // !!! output true twice 
+            }
+        });
+    });
+    //]]> 
+</script>
