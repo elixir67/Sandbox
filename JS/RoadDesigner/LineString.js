@@ -48,6 +48,34 @@ LineString.prototype.sketchFinish = function () {
         this.sketchGizmo.remove();
         this.bEditable = true;
     }
+
+    var me = this;
+    var newVertexGizmo;
+    this.gizmo.mouseover(function (e) {
+        var x = e.offsetX;
+        var y = e.offsetY;
+        if (!newVertexGizmo)
+            newVertexGizmo = me.paper.circle(x, y, CONTROL_POINT_RADIOUS);
+        else
+            newVertexGizmo.attr({ cx: x, cy: y });
+    });
+    this.gizmo.mouseup(function (e) {
+//        // Add a new vertex now
+//        var x = e.offsetX;
+//        var y = e.offsetY;
+//        // how to compute the nearest index
+//        // var index = me.getNearestIndex();
+//        me.vertices.splice(index, 0, new Vertex(x, y));
+
+//        me.vertexGizmos.splice(index, 0, me.createControlPoint(index));
+//        // update the index info in the vertexGizmos
+    });
+    this.gizmo.mouseout(function () {
+        if (newVertexGizmo) {
+            newVertexGizmo.remove();
+            newVertexGizmo = null;
+        }
+    })
 }
 
 LineString.prototype.addVertex = function (x, y) {
@@ -75,20 +103,13 @@ LineString.prototype.toString = function () {
     return path;
 };
 
-//LineString.prototype.indexOf = function(x, y) {
-//    for (var i = 0, len = this.vertices.length; i < len; ++i)
-//        if(this.vertices[i].x == x && this.vertices[i].y == y)
-//            return i;
-//    return -1;
-//}
-
 LineString.prototype.createControlPoint = function (index) {
     var me = this;  // avoid conflict in drag
     var x = me.vertices[index].x;
     var y = me.vertices[index].y;
     var control = this.paper.circle(x, y, CONTROL_POINT_RADIOUS);
     control.attr("fill", "yellow");
-    control.data("index", index);
+    control.data("index", index);   // save index as customized data
 
     control.drag(function (dx, dy) {
         // move
