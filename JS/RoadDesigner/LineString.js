@@ -2,6 +2,7 @@ var LINE_WIDTH = 5;
 var CONTROL_POINT_RADIOUS = 4;
 var ESC_KEYCODE = 27;
 var TOLERANCE = 2;  // TODO normalize it later.
+var OFFSET = 10;
 
 function Vertex(x, y) {
     this.x = x;
@@ -34,8 +35,10 @@ function LineString(startX, startY, paper) {
 
 LineString.prototype.initVertices = function () {
     // clear first
-    for (var i = 0, len = this.vertexGizmos.length; i < len; ++i)
-        this.vertexGizmos[i].remove();
+    for (var i = 0, len = this.vertexGizmos.length; i < len; ++i) {
+        this.vertexGizmos[i][0].remove();
+        this.vertexGizmos[i][1].remove();
+    }
 
     this.vertexGizmos = [];
 
@@ -127,7 +130,8 @@ LineString.prototype.updateVertex = function (x, y, index) {
     this.vertices[index].x = x;
     this.vertices[index].y = y;
     this.redraw();
-    this.vertexGizmos[index].attr({ cx: x, cy: y });
+    this.vertexGizmos[index][0].attr({ cx: x, cy: y }); // controlGizmo
+    this.vertexGizmos[index][1].attr({ x: x + OFFSET, y: y }); // removeGizmo
 };
 
 LineString.prototype.verticesCount = function () {
@@ -145,11 +149,11 @@ LineString.prototype.createControlPoint = function (index) {
     var me = this;  // avoid conflict in drag
     var x = me.vertices[index].x;
     var y = me.vertices[index].y;
-    var control = this.paper.circle(x, y, CONTROL_POINT_RADIOUS);
-    control.attr("fill", "yellow");
-    control.data("index", index);   // save index as customized data
+    var controlGizmo = this.paper.circle(x, y, CONTROL_POINT_RADIOUS);
+    controlGizmo.attr("fill", "yellow");
+    controlGizmo.data("index", index);   // save index as customized data
 
-    control.drag(function (dx, dy, x, y, event) {
+    controlGizmo.drag(function (dx, dy, x, y, event) {
         // move
         if (me.bEditable && event.which == 1) {
             var index = this.data("index");
@@ -177,21 +181,58 @@ LineString.prototype.createControlPoint = function (index) {
             }
         });
 
-    $(control.node).contextMenu({
-        menu: 'vertexMenu'
-    }, function (action, el, pos) {
-        if (me.bEditable && action == "remove") {
-            // Find the element from node first
-            var s = $(el).get(0).raphael;
-            var index = s.data("index");
-            alert(index);
-            me.vertices.splice(0, index);
+        controlGizmo.hover(function () {
+            if (me.bEditable) {
+                this.attr("cursor", "move");
+            }
+        }, function () {
+            if (me.bEditable) {
+                this.attr("cursor", "default");
+            }
+        });
+
+    ////  The context menu might cause memory leak issue, let's consider it later.
+    //    $(control.node).contextMenu({
+    //        menu: 'vertexMenu'
+    //    }, function (action, el, pos) {
+    //        if (me.bEditable && action == "remove") {
+    //            // Find the element from node first
+    //            // var s = $(el).get(0).raphael;
+    //            var x = pos.docX - pos.x;
+    //            var y = pos.docY - pos.y;
+    //            var s = me.paper.getElementByPoint(x, y)
+    //            var index = s.data("index");
+    //            alert(index);
+    //            me.vertices.splice(index, 1);
+    //            // Rest control points
+    //            me.initVertices();
+    //            me.redraw();
+    //        }
+    //    });
+
+    var removeGizmo = me.paper.text(x + OFFSET, y, "X");
+    removeGizmo.data("index", index);
+    removeGizmo.click(function () {
+        if (me.bEditable) {
+            var index = this.data("index");
+            // Remove the vertex at index
+            me.vertices.splice(index, 1);
             // Rest control points
             me.initVertices();
             me.redraw();
         }
     });
-    return control;
+    removeGizmo.hover(function () {
+        if (me.bEditable) {
+            this.attr("cursor", "pointer");
+        }
+    }, function () {
+        if (me.bEditable) {
+            this.attr("cursor", "default");
+        }
+    });
+
+    return [controlGizmo, removeGizmo];
 }
 
 LineString.prototype.getPath = function () {
