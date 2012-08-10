@@ -21,7 +21,8 @@ svg {
 <div id="canvas"></div>
 <button type="button" id="drawLineBtn">DrawLine</button>
 <button type="button" id="clearBtn">Clear</button>
-<button type="button" id="testBtn">Test</button>
+<button type="button" id="saveBtn">Save</button>
+<button type="button" id="loadBtn">Load</button>
 <ul id="vertexMenu" class="contextMenu">
 	<li class="remove"><a href="#remove">Remove</a></li>
 </ul>
@@ -49,7 +50,7 @@ svg {
                     x = e.offsetX;
                     y = e.offsetY;
                     lineString = new LineString(x, y, paper);
-                    lineString.init();
+                    lineString.initVertices();
 
                     $("#canvas").bind("mousemove", function (e) {
                         x = e.offsetX;
@@ -91,8 +92,15 @@ svg {
             paper.clear();
         });
 
-        $("#testBtn").click(function () {
-            // test
+        $("#saveBtn").click(function () {
+            if (lineString)
+                lineString.save();
+        });
+
+        $("#loadBtn").click(function () {
+            paper.clear();
+            lineString = new LineString(0, 0, paper);
+            lineString.load();
         });
     });
     //]]> 

@@ -1,11 +1,19 @@
 var LINE_WIDTH = 5;
 var CONTROL_POINT_RADIOUS = 4;
 var ESC_KEYCODE = 27;
-var TOLERANCE = 3;
+var TOLERANCE = 2;  // TODO normalize it later.
 
 function Vertex(x, y) {
     this.x = x;
     this.y = y;
+};
+
+Vertex.prototype.toJson = function() {
+    var object = {
+        x: this.x,
+        y: this.y
+    }
+    return object;
 };
 
 function LineString(startX, startY, paper) {
@@ -24,7 +32,7 @@ function LineString(startX, startY, paper) {
     this.bEditable = false;
 };
 
-LineString.prototype.init = function () {
+LineString.prototype.initVertices = function () {
     // clear first
     for (var i = 0, len = this.vertexGizmos.length; i < len; ++i)
         this.vertexGizmos[i].remove();
@@ -72,9 +80,9 @@ LineString.prototype.getNearestIndex = function (x, y) {
 LineString.prototype.sketchFinish = function () {
     if (this.sketchGizmo) {
         this.sketchGizmo.remove();
-        this.bEditable = true;
     }
 
+    this.bEditable = true;
     var me = this;
     var newVertexGizmo;
     this.gizmo.mouseover(function (e) {
@@ -97,7 +105,7 @@ LineString.prototype.sketchFinish = function () {
         }
         me.vertices.splice(index, 0, new Vertex(x, y));
         // Rest control points
-        me.init();
+        me.initVertices();
         me.redraw();
     });
     this.gizmo.mouseout(function () {
@@ -141,7 +149,7 @@ LineString.prototype.createControlPoint = function (index) {
     control.attr("fill", "yellow");
     control.data("index", index);   // save index as customized data
 
-    control.drag(function (dx, dy, event) {
+    control.drag(function (dx, dy, x, y, event) {
         // move
         if (me.bEditable && event.which == 1) {
             var index = this.data("index");
@@ -179,7 +187,7 @@ LineString.prototype.createControlPoint = function (index) {
             alert(index);
             me.vertices.splice(0, index);
             // Rest control points
-            me.init();
+            me.initVertices();
             me.redraw();
         }
     });
@@ -199,3 +207,34 @@ LineString.prototype.redraw = function () {
     this.gizmo.attr("path", this.getPath());
 };
 
+LineString.prototype.save = function () {
+    // save vertices values            
+    if (typeof (Storage) !== "undefined") {
+        var jsonVertices = [];
+        for (var i = 0, len = this.vertices.length; i < len; ++i)
+            jsonVertices.push(this.vertices[i].toJson());
+        localStorage.raphael = JSON.stringify(jsonVertices);
+    }
+    else {
+        alert("HTML5 Web Storage isn't supported.");
+    }
+};
+
+LineString.prototype.load = function () {
+    // load vertices values
+    if (typeof (Storage) !== "undefined") {
+        var json = localStorage.raphael;
+        this.vertices = [];
+        if (typeof (json) == "string") {
+            var jsonVertices = JSON.parse(json); // load it back
+            for (var i = 0, len = jsonVertices.length; i < len; ++i)
+                this.vertices.push(new Vertex(jsonVertices[i].x, jsonVertices[i].y));
+            this.redraw();
+            this.initVertices();
+            this.sketchFinish();
+        }
+    }
+    else {
+        alert("HTML5 Web Storage isn't supported.");
+    }
+};
