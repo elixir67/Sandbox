@@ -191,25 +191,6 @@ LineString.prototype.createControlPoint = function (index) {
             }
         });
 
-    ////  The context menu might cause memory leak issue, let's consider it later.
-    //    $(control.node).contextMenu({
-    //        menu: 'vertexMenu'
-    //    }, function (action, el, pos) {
-    //        if (me.bEditable && action == "remove") {
-    //            // Find the element from node first
-    //            // var s = $(el).get(0).raphael;
-    //            var x = pos.docX - pos.x;
-    //            var y = pos.docY - pos.y;
-    //            var s = me.paper.getElementByPoint(x, y)
-    //            var index = s.data("index");
-    //            alert(index);
-    //            me.vertices.splice(index, 1);
-    //            // Rest control points
-    //            me.initVertices();
-    //            me.redraw();
-    //        }
-    //    });
-
     var removeGizmo = me.paper.text(x + OFFSET, y, "X");
     removeGizmo.data("index", index);
     removeGizmo.click(function () {
