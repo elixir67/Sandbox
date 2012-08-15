@@ -3,7 +3,7 @@ var CANVAS_HEIGHT = 500;
 //<![CDATA[
 $(document).ready(function () {
     var paper = Raphael("canvas", CANVAS_WIDTH, CANVAS_HEIGHT);
-    var lineString;
+    var geometry;
     var bEditable = false;
 
     $("#drawLineBtn").click(function (e) {
@@ -20,21 +20,54 @@ $(document).ready(function () {
                 bEditable = true;
                 x = e.offsetX;
                 y = e.offsetY;
-                lineString = new LineString(x, y, paper);
-                lineString.initVertices();
+                geometry = new LineString(x, y, paper);
+                geometry.initVertices();
 
                 $("#canvas").bind("mousemove", function (e) {
                     x = e.offsetX;
                     y = e.offsetY;
-                    lineString.sketchNext(x, y);
+                    geometry.sketchNext(x, y);
                 });
 
             } else {
                 // Add one more vertex
                 x = e.offsetX;
                 y = e.offsetY;
-                if (lineString)
-                    lineString.addVertex(x, y);
+                if (geometry)
+                    geometry.addVertex(x, y);
+            }
+        });
+    });
+
+    $("#drawPolygonBtn").click(function (e) {
+        // TODO current it only support load/save one line
+        // so we just draw one line, let's enhance it later.
+        paper.clear();
+        $("#canvas").bind("mouseup", function (e) {
+            if (e.which !== 1)
+                return;
+
+            // left mouse up
+            if (!bEditable) {
+                // Begin to draw linestring
+                bEditable = true;
+                x = e.offsetX;
+                y = e.offsetY;
+                geometry = new Polygon(x, y, paper);
+                geometry.initVertices();
+
+                $("#canvas").bind("mousemove", function (e) {
+                    x = e.offsetX;
+                    y = e.offsetY;
+                    geometry.sketchNext(x, y);
+                });
+
+            } else {
+                // Add one more vertex
+                x = e.offsetX;
+                y = e.offsetY;
+                if (geometry)
+                    geometry.addVertex(x, y);
             }
         });
     });
@@ -47,7 +80,7 @@ $(document).ready(function () {
             $("#canvas").unbind("mouseup");
             $("#canvas").unbind("mousemove");
             bEditable = false;
-            lineString.sketchFinish();
+            geometry.sketchFinish();
         }
         return false;
     });
@@ -64,13 +97,12 @@ $(document).ready(function () {
     });
 
     $("#saveBtn").click(function () {
-        if (lineString)
-            lineString.save();
+        if (geometry)
+            geometry.save();
     });
 
     $("#loadBtn").click(function () {
         paper.clear();
-        lineString = new LineString(0, 0, paper);
-        lineString.load();
+        geometry = Geometry.load(paper);
     });
 });
