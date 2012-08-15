@@ -40,7 +40,7 @@ Polygon.prototype.getPath = function () {
     return path;
 };
 
-Geometry.prototype.getNearestIndex = function (x, y) {
+Polygon.prototype.getNearestIndex = function (x, y) {
     for (var i = 1, len = this.vertices.length; i < len; ++i)
         if (Geometry.isOnLine(x, y, this.vertices[i - 1], this.vertices[i]))
             return i;
