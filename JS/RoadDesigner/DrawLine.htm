@@ -1,99 +1,24 @@
 ﻿<!DOCTYPE HTML>
 <html lang="en">
 <head>
-<title>Move Line</title>
+<title>Vector Draw Tool</title>
 <meta charset = "UTF-8"/>
 
 <!-- Update the path to paper js -->
 <script type="text/javascript" src="raphael.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<script type="text/javascript" src="Geometry.js"></script>
 <script type="text/javascript" src="LineString.js"></script>
-<script src="./jquery.contextMenu-1.01/jquery.contextMenu.js" type="text/javascript"></script>
-<link href="./jquery.contextMenu-1.01/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
-<style type="text/css">
-svg {
-    border: solid 1px #000;
-}
-</style>
-
+<script type="text/javascript" src="Polygon.js"></script>
+<script type="text/javascript" src="App.js"></script>
+<link href="VectorDrawTool.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="canvas"></div>
-<button type="button" id="drawLineBtn">DrawLine</button>
+<button type="button" id="drawLineBtn">Line</button>
+<button type="button" id="drawPolygonBtn">Polygon</button>
 <button type="button" id="clearBtn">Clear</button>
-<button type="button" id="testBtn">Test</button>
-<ul id="vertexMenu" class="contextMenu">
-	<li class="remove"><a href="#remove">Remove</a></li>
-</ul>
+<button type="button" id="saveBtn">Save</button>
+<button type="button" id="loadBtn">Load</button>
 </body>
 </html>
-
-<script type="text/javascript"> 
-    var CANVAS_WIDTH = 500;
-    var CANVAS_HEIGHT = 500;
-    //<![CDATA[
-    $(document).ready(function () {
-        var paper = Raphael("canvas", CANVAS_WIDTH, CANVAS_HEIGHT);
-        var lineString;
-        var bEditable = false;
-
-        $("#drawLineBtn").click(function (e) {
-            $("#canvas").bind("mouseup", function (e) {
-                if (e.which !== 1)
-                    return;
-
-                // left mouse up
-                if (!bEditable) {
-                    // Begin to draw linestring
-                    bEditable = true;
-                    x = e.offsetX;
-                    y = e.offsetY;
-                    lineString = new LineString(x, y, paper);
-                    lineString.init();
-
-                    $("#canvas").bind("mousemove", function (e) {
-                        x = e.offsetX;
-                        y = e.offsetY;
-                        lineString.sketchNext(x, y);
-                    });
-
-                } else {
-                    // Add one more vertex
-                    x = e.offsetX;
-                    y = e.offsetY;
-                    if (lineString)
-                        lineString.addVertex(x, y);
-                }
-            });
-        });
-
-        // Right click to finish sketch.
-        $('#canvas').bind('contextmenu', function (e) {
-            e.preventDefault();
-
-            if (e.which === 3 && bEditable) {
-                $("#canvas").unbind("mouseup");
-                $("#canvas").unbind("mousemove");
-                bEditable = false;
-                lineString.sketchFinish();
-            }
-            return false;
-        });
-
-        // Esc key to cancel the sketch.
-        $(document).keyup(function (e) {
-            if (e.which === ESC_KEYCODE) {
-                alert("ESC!");
-            }
-        });
-
-        $("#clearBtn").click(function () {
-            paper.clear();
-        });
-
-        $("#testBtn").click(function () {
-            // test
-        });
-    });
-    //]]> 
-</script>
