@@ -108,11 +108,17 @@ def update_npp():
     configs = ['config.xml', 'shortcuts.xml']
     updateconfig(appfoldername, configs)
  
-def updateconfig(appfoldername, configs):  
+def update_vim():
+    appfoldername = 'Vim'
+    configs = ["_vimrc"]
+    localfolder = 'c:\Program Files (x86)'
+    updateconfig(appfoldername, configs, localfolder)
+
+def updateconfig(appfoldername, configs, localfolder = appdata):  
     cloudbakup = getcloudbakupfolder()
     for config in configs:
         # Roam Notepad++ settings
-        localconfig = path.join(path.join(appdata, appfoldername), config)  
+        localconfig = path.join(path.join(localfolder, appfoldername), config)  
         cloudconfig = path.join(path.join(cloudbakup, appfoldername),config)
         msg = 'Bakup ' + appfoldername + '-' + config + ' local settings to cloud otherwise override local settings from cloud?'
         bakuptocloud = confirm(prompt = msg, resp = True)        
@@ -128,6 +134,5 @@ def update_totalcommander():
            
 update_totalcommander()           
 update_npp()
-        
-
+update_vim()
     
