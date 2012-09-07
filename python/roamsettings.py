@@ -111,7 +111,7 @@ def update_npp():
 def update_vim():
     appfoldername = 'Vim'
     configs = ["_vimrc"]
-    localfolder = 'c:\Program Files (x86)'
+    localfolder = os.environ['ProgramFiles'] #'c:\Program Files (x86)'
     updateconfig(appfoldername, configs, localfolder)
 
 def updateconfig(appfoldername, configs, localfolder = appdata):  
