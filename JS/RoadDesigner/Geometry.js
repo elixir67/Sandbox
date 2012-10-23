@@ -64,8 +64,8 @@ Geometry.prototype.sketchNext = function (x, y) {
 
 Geometry.isOnLine = function (x, y, startPos, endPos) {
     // are they on this segment
-//    if (x < startPos.x || x > endPos.x)
-//        return false;
+    if ((x - startPos.x)*(x - endPos.x) >=0 || (y - startPos.y)*(y - endPos.y) >= 0)
+        return false;
     var f = function (somex) { return (endPos.y - startPos.y) / (endPos.x - startPos.x) * (somex - startPos.x) + startPos.y; };
     var delta = Math.abs(f(x) - y);
     if (delta >= TOLERANCE) {

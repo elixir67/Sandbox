@@ -3,7 +3,7 @@
 import shutil
 import os
 import filecmp
-from os import path 
+from os import path
 from time import gmtime, strftime
 import re
 import codecs
@@ -19,7 +19,7 @@ def getskydrivefolder():
     if path.exists(skydrivesetting):
         with codecs.open(skydrivesetting, encoding='utf-16 LE') as f:
             for line in f:
-                m = re.match(PERSONAL_PATTERN, line)                
+                m = re.match(PERSONAL_PATTERN, line)
                 if m:
                     cloudfolder = m.group(1).strip()
                     cloudfolder = cloudfolder.replace('\"','').strip()
@@ -39,12 +39,12 @@ def copysettings(src, dst):
     if not path.exists(src):
         print src + 'is not found'
         return
-    
+
     bCopy = False
     if path.exists(dst):
         if filecmp.cmp(src,dst):
             print dst + ' is latest with cloud and no need update'
-            return        
+            return
         else:
             override = confirm(prompt='Override settings', resp=True)
             if override:
@@ -59,11 +59,11 @@ def copysettings(src, dst):
         bCopy = True
         dir,filename = path.split(dst)
         if not path.exists(dir):
-            os.mkdir(dir)               
+            os.mkdir(dir)
     if bCopy:
         print "src:" + src
         print "dst:" + dst
-        shutil.copyfile(src, dst)  
+        shutil.copyfile(src, dst)
 
 ## {{{ http://code.activestate.com/recipes/541096/ (r1)
 # """prompts for yes or no response from the user. Returns True for yes and
@@ -73,10 +73,10 @@ def copysettings(src, dst):
 # user simply types ENTER.
 
 # >>> confirm(prompt='Create Directory?', resp=True)
-# Create Directory? [y]|n: 
+# Create Directory? [y]|n:
 # True
 # >>> confirm(prompt='Create Directory?', resp=False)
-# Create Directory? [n]|y: 
+# Create Directory? [n]|y:
 # False
 # >>> confirm(prompt='Create Directory?', resp=False)
 # Create Directory? [n]|y: y
@@ -89,7 +89,7 @@ def confirm(prompt=None, resp=False):
         prompt = '%s [%s]|%s: ' % (prompt, 'y', 'n')
     else:
         prompt = '%s [%s]|%s: ' % (prompt, 'n', 'y')
-        
+
     while True:
         ans = raw_input(prompt)
         if not ans:
@@ -97,37 +97,41 @@ def confirm(prompt=None, resp=False):
         if ans not in ['y', 'Y', 'n', 'N']:
             print 'please enter y or n.'
             continue
-        if ans == 'y' or ans == 'Y':        
-        
+        if ans == 'y' or ans == 'Y':
+
             return True
         if ans == 'n' or ans == 'N':
             return False
-     
-def update_npp():  
-    appfoldername = 'Notepad++'   
+
+def update_npp():
+    appfoldername = 'Notepad++'
     configs = ['config.xml', 'shortcuts.xml']
     updateconfig(appfoldername, configs)
- 
-def updateconfig(appfoldername, configs):  
+
+#def update_vim():
+#    appfoldername = 'Vim'
+#    configs = ["_vimrc"]
+#    localfolder = os.environ['ProgramFiles'] #'c:\Program Files (x86)'
+#    updateconfig(appfoldername, configs, localfolder)
+
+def updateconfig(appfoldername, configs, localfolder = appdata):
     cloudbakup = getcloudbakupfolder()
     for config in configs:
         # Roam Notepad++ settings
-        localconfig = path.join(path.join(appdata, appfoldername), config)  
+        localconfig = path.join(path.join(localfolder, appfoldername), config)
         cloudconfig = path.join(path.join(cloudbakup, appfoldername),config)
         msg = 'Bakup ' + appfoldername + '-' + config + ' local settings to cloud otherwise override local settings from cloud?'
-        bakuptocloud = confirm(prompt = msg, resp = True)        
+        bakuptocloud = confirm(prompt = msg, resp = True)
         if bakuptocloud:
             copysettings(localconfig, cloudconfig)
         else:
             copysettings(cloudconfig, localconfig)
 
 def update_totalcommander():
-    appfoldername = 'GHISLER'   
+    appfoldername = 'GHISLER'
     configs = ['wincmd.ini', 'usercmd.ini']
     updateconfig(appfoldername, configs)
-           
-update_totalcommander()           
-update_npp()
-        
 
-    
+update_totalcommander()
+update_npp()
+
