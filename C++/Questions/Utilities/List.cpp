@@ -11,7 +11,7 @@ ListNode * CreateListNode(int value) {
     return pNode;
 }
 
-void ConnectListNode(ListNode * pCurrent, ListNode * pNext) {
+void ConnectListNodes(ListNode * pCurrent, ListNode * pNext) {
     if(!pCurrent) {
         cout << "Error to connect two nodes\n" << endl;
     }
@@ -32,7 +32,7 @@ void PrintList(ListNode * pHead) {
         cout << pNode->m_nValue << "\t";
         pNode = pNode->m_pNext;
     }
-    cout << "PrintList ends." << endl;
+    cout << endl << "PrintList ends." << endl;
 }
 
 void DestroyList(ListNode * pHead) {
