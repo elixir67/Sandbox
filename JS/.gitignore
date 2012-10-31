@@ -2,4 +2,8 @@
 #.gitignore
 #ignore obj and lib file
 jquery-ui-1.8/
+ui/
+_ReSharper.TempSolution/
+
+
 

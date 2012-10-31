@@ -2,3 +2,5 @@
 #.gitignore
 #ignore pyc file for python
 *.pyc
+*.pylog.txt
+

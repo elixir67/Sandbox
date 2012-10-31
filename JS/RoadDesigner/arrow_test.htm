@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Conforming XHTML 1.0 Transitional Template</title>
+<style type="text/css">
+	html, body { overflow: hidden; }
+	#topMost, #bottomMost {
+		position: absolute;
+		width: 6px;
+		height: 6px;
+		background: #FFF;
+		border: 1px solid #000;
+		z-index: 1000;
+	}
+	#topMost { top: 100px; left: 50px; }
+	#bottomMost { top: 300px; left: 200px; cursor: move; }
+	
+	h1 { font-family: Cambria, serif; }
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<script type="text/javascript" src="raphael-min.js"></script>
+<link type="text/css" href="aristo/jquery-ui-1.8rc3.custom.css" rel="stylesheet" />	
+</head>
+<body>
+<h1>Raphael.fn.arrow() Test</h1>
+<div id="topMost">&nbsp;</div>
+<div id="bottomMost">&nbsp;</div>
+</body>
+<script type="text/javascript">
+	
+	Raphael.fn.arrow = function (x1, y1, x2, y2, size) {
+		var angle = Math.atan2(x1-x2,y2-y1);
+		angle = (angle / (2 * Math.PI)) * 360;
+		var arrowPath = this.path("M" + x2 + " " + y2 + " L" + (x2  - size) + " " + (y2  - size) + " L" + (x2  - size)  + " " + (y2  + size) + " L" + x2 + " " + y2 ).attr("fill","black").rotate((90+angle),x2,y2);
+		var linePath = this.path("M" + x1 + " " + y1 + " L" + x2 + " " + y2);
+		return [linePath,arrowPath];
+	};
+	$(document).ready(function() {
+	
+		$("#bottomMost").draggable({
+			drag: function(event,ui) {
+                    alert("Hello Raphael!");
+					paper.clear();
+					var middleX = ui.position.left + (ui.helper.width())/2;
+					var middleY = ui.position.top + (ui.helper.height())/2;
+					var arrow = paper.arrow(54,104,middleX,middleY,8);
+			}
+		});
+	
+		// Create initial Raphael canvas
+		var paper = new Raphael(0,0,2000,2000);
+		
+		paper.arrow(54,104,204,304,8);
+	});
+	
+</script>
+</html>
