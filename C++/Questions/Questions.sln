@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KLeastNumbers", "KLeastNumbers\KLeastNumbers.vcxproj", "{0745D8D0-152F-4B76-9C28-56AD0F057224}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "30_KLeastNumbers", "KLeastNumbers\KLeastNumbers.vcxproj", "{0745D8D0-152F-4B76-9C28-56AD0F057224}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utilities", "Utilities\Utilities.vcxproj", "{50683686-1A57-42FA-8543-A23DFC6E19E6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PrintListInReversedOrder", "PrintListInReversedOrder\PrintListInReversedOrder.vcxproj", "{4B1114E5-F237-4338-BD4C-D7947042D55C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +21,10 @@ Global
 		{50683686-1A57-42FA-8543-A23DFC6E19E6}.Debug|Win32.Build.0 = Debug|Win32
 		{50683686-1A57-42FA-8543-A23DFC6E19E6}.Release|Win32.ActiveCfg = Release|Win32
 		{50683686-1A57-42FA-8543-A23DFC6E19E6}.Release|Win32.Build.0 = Release|Win32
+		{4B1114E5-F237-4338-BD4C-D7947042D55C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4B1114E5-F237-4338-BD4C-D7947042D55C}.Debug|Win32.Build.0 = Debug|Win32
+		{4B1114E5-F237-4338-BD4C-D7947042D55C}.Release|Win32.ActiveCfg = Release|Win32
+		{4B1114E5-F237-4338-BD4C-D7947042D55C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

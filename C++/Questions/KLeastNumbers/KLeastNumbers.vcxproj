@@ -14,6 +14,7 @@
     <ProjectGuid>{0745D8D0-152F-4B76-9C28-56AD0F057224}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>KLeastNumbers</RootNamespace>
+    <ProjectName>30_KLeastNumbers</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
