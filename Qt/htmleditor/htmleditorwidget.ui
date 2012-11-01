@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HtmlEditorWidget</class>
+ <widget class="QWidget" name="HtmlEditorWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>689</width>
+    <height>415</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Html editor [*]</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="tabPosition">
+      <enum>QTabWidget::South</enum>
+     </property>
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <property name="documentMode">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="tab1_5">
+      <attribute name="title">
+       <string>Html View</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_10">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QWebView" name="theWebView">
+         <property name="url">
+          <url>
+           <string>about:blank</string>
+          </url>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_6">
+      <attribute name="title">
+       <string>HTML Source</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_11">
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QPlainTextEdit" name="thePlainTextEdit">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+  <action name="actionFormatBold">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-text-bold.png</normaloff>:/images/format-text-bold.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Bold</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionFormatItalic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-text-italic.png</normaloff>:/images/format-text-italic.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Italic</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionFormatUnderline">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-text-underline.png</normaloff>:/images/format-text-underline.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Underline</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
+   </property>
+  </action>
+  <action name="actionFormatStrikethrough">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-text-strikethrough.png</normaloff>:/images/format-text-strikethrough.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Strikethrough</string>
+   </property>
+  </action>
+  <action name="actionFormatAlignLeft">
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-justify-left.png</normaloff>:/images/format-justify-left.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align &amp;Left</string>
+   </property>
+  </action>
+  <action name="actionFormatAlignCenter">
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-justify-center.png</normaloff>:/images/format-justify-center.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align &amp;Center</string>
+   </property>
+  </action>
+  <action name="actionFormatAlignRight">
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-justify-right.png</normaloff>:/images/format-justify-right.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align &amp;Right</string>
+   </property>
+  </action>
+  <action name="actionFormatAlignJustify">
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-justify-fill.png</normaloff>:/images/format-justify-fill.png</iconset>
+   </property>
+   <property name="text">
+    <string>Align &amp;Justify</string>
+   </property>
+  </action>
+  <action name="actionFormatIncreaseIndent">
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-indent-more.png</normaloff>:/images/format-indent-more.png</iconset>
+   </property>
+   <property name="text">
+    <string>I&amp;ncrease Indent</string>
+   </property>
+  </action>
+  <action name="actionFormatDecreaseIndent">
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/format-indent-less.png</normaloff>:/images/format-indent-less.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Decrease Indent</string>
+   </property>
+  </action>
+  <action name="actionFormatBulletedList">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/bulleted-list.png</normaloff>:/images/bulleted-list.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bulle&amp;ted List</string>
+   </property>
+  </action>
+  <action name="actionFormatNumberedList">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/numbered-list.png</normaloff>:/images/numbered-list.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Numbered List</string>
+   </property>
+  </action>
+  <action name="actionInsertImage">
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/image-x-generic.png</normaloff>:/images/image-x-generic.png</iconset>
+   </property>
+   <property name="text">
+    <string>Insert &amp;Image...</string>
+   </property>
+  </action>
+  <action name="actionCreateLink">
+   <property name="icon">
+    <iconset resource="htmleditor.qrc">
+     <normaloff>:/images/text-html.png</normaloff>:/images/text-html.png</iconset>
+   </property>
+   <property name="text">
+    <string>Create Link...</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKit/QWebView</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="htmleditor.qrc"/>
+ </resources>
+ <connections/>
+</ui>

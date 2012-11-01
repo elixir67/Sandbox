@@ -12,3 +12,4 @@ ipch/
 *.user
 *.pdb
 ui_*
+Output/
