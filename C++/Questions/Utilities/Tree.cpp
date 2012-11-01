@@ -1,15 +1,7 @@
 #include "StdAfx.h"
 #include "Tree.h"
 #include <iostream>
-
-Tree::Tree(void)
-{
-}
-
-
-Tree::~Tree(void)
-{
-}
+using namespace std;
 
 TreeNode* CreateTreeNode(int value)
 {
@@ -40,7 +32,35 @@ void PrintTreeNode(TreeNode * pNode)
 		cout << endl;
 	}
 	{
-		cout << "this node is null" <<endl;
-	}
+		cout << "this node is null" <<endl;	}
 	cout << endl;
+}
+
+void PrintTree(TreeNode * pRoot)
+{
+    PrintTreeNode(pRoot);
+
+    if(pRoot)
+    {
+       vector<TreeNode*>::iterator i = pRoot->m_vChildren.begin();
+       while(i < pRoot->m_vChildren.end())
+       {
+            PrintTree(*i);
+            ++i;
+       }
+    }
+}
+
+void DestroyTree(TreeNode * pRoot)
+{
+    if(pRoot)
+    {
+        vector<TreeNode*>::iterator it = pRoot->m_vChildren.begin();
+        while(it < pRoot->m_vChildren.end())
+        {
+            DestroyTree(*it);
+            ++it;
+        }
+        delete pRoot;
+    }
 }
