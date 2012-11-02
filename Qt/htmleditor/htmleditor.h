@@ -100,7 +100,9 @@ private slots:
     void changeTab(int);
     void openLink(const QUrl&);
     void changeZoom(int);
-    void provideAuthentication(QNetworkReply *reply, QAuthenticator *auth);
+    void provideAuthentication(QNetworkReply *reply,QAuthenticator *auth);
+    void httpReply(QNetworkReply * reply);
+    void sslErrors(QNetworkReply* reply,const QList<QSslError> & errors);
 
 private:
     Ui_MainWindow *ui;
@@ -111,6 +113,7 @@ private:
     Highlighter *highlighter;
     Ui_Dialog *ui_dialog;
     QDialog *insertHtmlDialog;
+    QNetworkAccessManager * pAM ;
 };
 
 #endif // HTML_EDITOR_H

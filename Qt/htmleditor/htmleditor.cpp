@@ -30,6 +30,8 @@
 
 #include <QtGui>
 #include <QtWebKit>
+#include <qnetworkreply.h>
+#include <SslNetworkAccessManager.h>
 
 #define FORWARD_ACTION(action1, action2) \
     connect(action1, SIGNAL(triggered()), \
@@ -37,6 +39,44 @@
     connect(ui->webView->pageAction(action2), \
             SIGNAL(changed()), SLOT(adjustActions()));
 
+
+void HtmlEditor::provideAuthentication(QNetworkReply *reply,QAuthenticator *auth)
+{
+    qDebug() << reply->readAll(); // this is just to see what we received
+    auth->setUser("ads\\lind");
+    auth->setPassword("Furture673");
+}
+
+void HtmlEditor::httpReply(QNetworkReply *reply)
+{
+    QUrl url = reply->url();
+    QNetworkReply::NetworkError error = reply->error();
+    QString strError = reply->errorString();
+    if (!reply->error()) {
+        qDebug() << reply->readAll();
+        QByteArray bytes(reply->readAll());
+        QString string(bytes);
+        //ui->webView->setHtml(string);
+        //QByteArray response(reply->readAll());
+    }
+    else {
+        qDebug() << "//////////////////////////\n";
+        qDebug() << "//////////////////////////\n";
+        qDebug() << "////HTTP GET Error" << reply->error() <<"\n";
+        qDebug() << "////HTTP GET Error" << reply->errorString() <<"\n";
+    }
+
+    reply->deleteLater();
+}
+
+void HtmlEditor::sslErrors(QNetworkReply* reply,const QList<QSslError> &errors)
+{
+    // show list of all ssl errors
+    foreach (QSslError err, errors)
+        qDebug() << "ssl error: " << err;
+
+    reply->ignoreSslErrors();
+}
 
 HtmlEditor::HtmlEditor(QWidget *parent)
         : QMainWindow(parent)
@@ -70,67 +110,23 @@ HtmlEditor::HtmlEditor(QWidget *parent)
     connect(zoomSlider, SIGNAL(valueChanged(int)), SLOT(changeZoom(int)));
     ui->standardToolBar->insertWidget(ui->actionZoomIn, zoomSlider);
 
-    QNetworkAccessManager * pAM = new QNetworkAccessManager();
-    QWebPage * pPage = new QWebPage();
-    pPage->setNetworkAccessManager(pAM);
-    ui->webView->setPage(pPage);
+//    QNetworkAccessManager * pAM = new QNetworkAccessManager();
+//    QWebPage * pPage = new QWebPage();
+//    pPage->setNetworkAccessManager(pAM);
+//    ui->webView->setPage(pPage);
+    SslNetworkAccessManager * pAM = new SslNetworkAccessManager();
+    ui->webView->page()->setNetworkAccessManager(pAM);
+    // pAM = ui->webView->page()->networkAccessManager();
 
     connect(pAM, SIGNAL(authenticationRequired(QNetworkReply*, QAuthenticator*)),this,
-            SLOT(provideAuthentication(QNetworkReply *reply,QAuthenticator *auth)));
+            SLOT(provideAuthentication(QNetworkReply *,QAuthenticator *)));
+    connect(pAM, SIGNAL(finished(QNetworkReply*)), this, SLOT(httpReply(QNetworkReply*)));
+    connect(pAM, SIGNAL(sslErrors(QNetworkReply*,const QList<QSslError>&)),SLOT(sslErrors(QNetworkReply*,const QList<QSslError>&)));
 
     connect(ui->actionFileNew, SIGNAL(triggered()), SLOT(fileNew()));
-    connect(ui->actionFileOpen, SIGNAL(triggered()), SLOT(fileOpen()));
-    connect(ui->actionFileSave, SIGNAL(triggered()), SLOT(fileSave()));
-    connect(ui->actionFileSaveAs, SIGNAL(triggered()), SLOT(fileSaveAs()));
-    connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
-    connect(ui->actionInsertImage, SIGNAL(triggered()), SLOT(insertImage()));
-    connect(ui->actionCreateLink, SIGNAL(triggered()), SLOT(createLink()));
-    connect(ui->actionInsertHtml, SIGNAL(triggered()), SLOT(insertHtml()));
-    connect(ui->actionZoomOut, SIGNAL(triggered()), SLOT(zoomOut()));
-    connect(ui->actionZoomIn, SIGNAL(triggered()), SLOT(zoomIn()));
-
-    // these are forward to internal QWebView
-    FORWARD_ACTION(ui->actionEditUndo, QWebPage::Undo);
-    FORWARD_ACTION(ui->actionEditRedo, QWebPage::Redo);
-    FORWARD_ACTION(ui->actionEditCut, QWebPage::Cut);
-    FORWARD_ACTION(ui->actionEditCopy, QWebPage::Copy);
-    FORWARD_ACTION(ui->actionEditPaste, QWebPage::Paste);
-    FORWARD_ACTION(ui->actionFormatBold, QWebPage::ToggleBold);
-    FORWARD_ACTION(ui->actionFormatItalic, QWebPage::ToggleItalic);
-    FORWARD_ACTION(ui->actionFormatUnderline, QWebPage::ToggleUnderline);
-
-    // Qt 4.5.0 has a bug: always returns 0 for QWebPage::SelectAll
-    connect(ui->actionEditSelectAll, SIGNAL(triggered()), SLOT(editSelectAll()));
-
-    connect(ui->actionStyleParagraph, SIGNAL(triggered()), SLOT(styleParagraph()));
-    connect(ui->actionStyleHeading1, SIGNAL(triggered()), SLOT(styleHeading1()));
-    connect(ui->actionStyleHeading2, SIGNAL(triggered()), SLOT(styleHeading2()));
-    connect(ui->actionStyleHeading3, SIGNAL(triggered()), SLOT(styleHeading3()));
-    connect(ui->actionStyleHeading4, SIGNAL(triggered()), SLOT(styleHeading4()));
-    connect(ui->actionStyleHeading5, SIGNAL(triggered()), SLOT(styleHeading5()));
-    connect(ui->actionStyleHeading6, SIGNAL(triggered()), SLOT(styleHeading6()));
-    connect(ui->actionStylePreformatted, SIGNAL(triggered()), SLOT(stylePreformatted()));
-    connect(ui->actionStyleAddress, SIGNAL(triggered()), SLOT(styleAddress()));
-    connect(ui->actionFormatFontName, SIGNAL(triggered()), SLOT(formatFontName()));
-    connect(ui->actionFormatFontSize, SIGNAL(triggered()), SLOT(formatFontSize()));
-     connect(ui->actionFormatTextColor, SIGNAL(triggered()), SLOT(formatTextColor()));
-    connect(ui->actionFormatBackgroundColor, SIGNAL(triggered()), SLOT(formatBackgroundColor()));
-
-    // no page action exists yet for these, so use execCommand trick
-    connect(ui->actionFormatStrikethrough, SIGNAL(triggered()), SLOT(formatStrikeThrough()));
-    connect(ui->actionFormatAlignLeft, SIGNAL(triggered()), SLOT(formatAlignLeft()));
-    connect(ui->actionFormatAlignCenter, SIGNAL(triggered()), SLOT(formatAlignCenter()));
-    connect(ui->actionFormatAlignRight, SIGNAL(triggered()), SLOT(formatAlignRight()));
-    connect(ui->actionFormatAlignJustify, SIGNAL(triggered()), SLOT(formatAlignJustify()));
-    connect(ui->actionFormatDecreaseIndent, SIGNAL(triggered()), SLOT(formatDecreaseIndent()));
-    connect(ui->actionFormatIncreaseIndent, SIGNAL(triggered()), SLOT(formatIncreaseIndent()));
-    connect(ui->actionFormatNumberedList, SIGNAL(triggered()), SLOT(formatNumberedList()));
-    connect(ui->actionFormatBulletedList, SIGNAL(triggered()), SLOT(formatBulletedList()));
-
 
     // necessary to sync our actions
     connect(ui->webView->page(), SIGNAL(selectionChanged()), SLOT(adjustActions()));
-
     connect(ui->webView->page(), SIGNAL(contentsChanged()), SLOT(adjustSource()));
     ui->webView->setFocus();
 
@@ -143,21 +139,20 @@ HtmlEditor::HtmlEditor(QWidget *parent)
 
 //    if (!load(initialFile))
 //        fileNew();
+    QUrl url = QUrl("http://www.baidu.com");
+    //QUrl url = QUrl("http://www.baidu.com/img/baidu_sylogo1.gif");
 
-    QNetworkRequest req(QUrl("www.baidu.com"));
-    pAM = ui->webView->page()->networkAccessManager();
-    pAM->get(req);
+    if(url.isValid())
+    {
+        QNetworkRequest req(url);
+        pAM->get(req);
+        ui->webView->load(url);
+    }
 
     adjustActions();
     adjustSource();
     setWindowModified(false);
     changeZoom(100);
-}
-
-void HtmlEditor::provideAuthentication(QNetworkReply *reply, QAuthenticator *auth)
-{
-    auth->setUser("ads\\lind");
-    auth->setPassword("Furture673");
 }
 
 HtmlEditor::~HtmlEditor()
@@ -186,25 +181,11 @@ bool HtmlEditor::maybeSave()
 
 void HtmlEditor::fileNew()
 {
-    if (maybeSave()) {
-        ui->webView->setHtml("<p></p>");
-        ui->webView->setFocus();
-        ui->webView->page()->setContentEditable(true);
-        setCurrentFileName(QString());
-        setWindowModified(false);
-
-        // quirk in QWebView: need an initial mouse click to show the cursor
-        int mx = ui->webView->width() / 2;
-        int my = ui->webView->height() / 2;
-        QPoint center = QPoint(mx, my);
-        QMouseEvent *e1 = new QMouseEvent(QEvent::MouseButtonPress, center,
-                                          Qt::LeftButton, Qt::LeftButton,
-                                          Qt::NoModifier);
-        QMouseEvent *e2 = new QMouseEvent(QEvent::MouseButtonRelease, center,
-                                          Qt::LeftButton, Qt::LeftButton,
-                                          Qt::NoModifier);
-        QApplication::postEvent(ui->webView, e1);
-        QApplication::postEvent(ui->webView, e2);
+    QUrl url = QUrl("http://www.baidu.com");
+    if(url.isValid())
+    {
+        QNetworkRequest req(url);
+        pAM->get(req);
     }
 }
 
