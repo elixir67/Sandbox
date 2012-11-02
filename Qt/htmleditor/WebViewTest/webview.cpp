@@ -3,24 +3,25 @@
 #include <QtDebug>
 #include <QSslError>
 #include <QAuthenticator>
+#include "SslNetworkAccessManager.h"
 
 WebView::WebView(QWidget *parent) :
     QWebView(parent)
 {
-    load(QUrl("https://gmail.com"));
+    //load(QUrl("http://www.baidu.com/img/baidu_sylogo1.gif"));
+    SslNetworkAccessManager * pAM = new SslNetworkAccessManager();
+    page()->setNetworkAccessManager(pAM);
+    //QNetworkAccessManager * pAM = page()->networkAccessManager();
 
-    connect(page()->networkAccessManager(),
+    connect(pAM,
             SIGNAL(sslErrors(QNetworkReply*,QList<QSslError>)),
             this,
             SLOT(handleSslErrors(QNetworkReply*,QList<QSslError>)));
 
-
-    QNetworkAccessManager * pAM = page()->networkAccessManager();
-
     connect(pAM, SIGNAL(authenticationRequired(QNetworkReply*, QAuthenticator*)),
             SLOT(provideAuthentication(QNetworkReply *,QAuthenticator *)));
     connect(pAM, SIGNAL(finished(QNetworkReply*)),  SLOT(httpReply(QNetworkReply*)));
-    connect(pAM, SIGNAL(sslErrors(QNetworkReply*,const QList<QSslError>&)),SLOT(sslErrors(QNetworkReply*,const QList<QSslError>&)));
+    // connect(pAM, SIGNAL(sslErrors(QNetworkReply*,const QList<QSslError>&)),SLOT(sslErrors(QNetworkReply*,const QList<QSslError>&)));
 
 }
 

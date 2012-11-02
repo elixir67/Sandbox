@@ -16,7 +16,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    webview.cpp
+    webview.cpp \
+    SslNetworkAccessManager.cpp
 
 HEADERS += \
-    webview.h
+    webview.h \
+    SslNetworkAccessManager.h
