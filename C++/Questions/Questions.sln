@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02_PrintListInReversedOrder
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CommonParentInTree", "CommonParentInTree\CommonParentInTree.vcxproj", "{0489A59C-5456-437B-A147-B58332600F61}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReverseWordsInSentence", "ReverseWordsInSentence\ReverseWordsInSentence.vcxproj", "{B9F59E4B-A696-48C8-80F9-E236DEAC9306}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -31,6 +33,10 @@ Global
 		{0489A59C-5456-437B-A147-B58332600F61}.Debug|Win32.Build.0 = Debug|Win32
 		{0489A59C-5456-437B-A147-B58332600F61}.Release|Win32.ActiveCfg = Release|Win32
 		{0489A59C-5456-437B-A147-B58332600F61}.Release|Win32.Build.0 = Release|Win32
+		{B9F59E4B-A696-48C8-80F9-E236DEAC9306}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B9F59E4B-A696-48C8-80F9-E236DEAC9306}.Debug|Win32.Build.0 = Debug|Win32
+		{B9F59E4B-A696-48C8-80F9-E236DEAC9306}.Release|Win32.ActiveCfg = Release|Win32
+		{B9F59E4B-A696-48C8-80F9-E236DEAC9306}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
