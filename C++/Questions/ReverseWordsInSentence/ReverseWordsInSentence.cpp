@@ -14,8 +14,8 @@ void ReverseWordsInSentence(char * pData)
     char * pBegin = pData;
     char * pEnd = pData;
     while(*pEnd != '\0')
-        pEnd++;
-    pEnd--;
+        ++pEnd;
+    --pEnd;
 
     Reverse(pBegin, pEnd);
 
@@ -40,14 +40,13 @@ void ReverseWordsInSentence(char * pData)
     }
 }
 
-
 void Test(char * testName, char * pTest, char * pExpected)
 {
 	if(testName)
 		printf("%s begins:\n", testName);
 
 	ReverseWordsInSentence(pTest);
-	if((!pTest && !pExpected) || strcmp(pTest, pExpected))
+	if((!pTest && !pExpected) || strcmp(pTest, pExpected) == 0)
 		printf("Pass!\n\n");
     else
         printf("Failed.\n\n");
@@ -55,8 +54,8 @@ void Test(char * testName, char * pTest, char * pExpected)
 
 void Test1()
 {
-	char * pTest = "I am a student.";
-	char * pExpected = "student. a am I";
+	char pTest[] = "I am a student.";
+	char pExpected[] = "student. a am I";
     Test("Test1", pTest, pExpected);
 }
 
