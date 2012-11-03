@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B9F59E4B-A696-48C8-80F9-E236DEAC9306}</ProjectGuid>
+    <ProjectGuid>{653B73ED-07FA-401D-BFF2-C5AE9BBAA255}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>ReverseWordsInSentence</RootNamespace>
-    <ProjectName>41_ReverseWordsInSentence</ProjectName>
+    <RootNamespace>LeftRotateString</RootNamespace>
+    <ProjectName>42_LeftRotateString</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -84,7 +84,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ReverseWordsInSentence.cpp" />
+    <ClCompile Include="LeftRotateString.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
