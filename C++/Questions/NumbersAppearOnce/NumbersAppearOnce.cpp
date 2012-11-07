@@ -6,7 +6,7 @@
 unsigned int FindFirstBitIs1(int num)
 {
     int indexBit = 0;
-    while((num & 1 == 0) && (indexBit <8 * sizeof(int)))
+    while((num & 1) == 0 && (indexBit <8 * sizeof(int)))
     {
         num = num>> 1;
         ++indexBit;
@@ -20,7 +20,7 @@ bool IsBit1(int num, unsigned int indexOf1)
     return (num & 1);
 }
 
-void FindNumsAppearOnce(int data[], int length, int * num1, int * num2)
+void FindNumsAppearOnce(int data[], int length, int & num1, int & num2)
 {
     if(data == NULL || length < 2)
         return;
@@ -30,14 +30,14 @@ void FindNumsAppearOnce(int data[], int length, int * num1, int * num2)
         resultExclusiveOR ^= data[i];
 
     unsigned int indexOf1 = FindFirstBitIs1(resultExclusiveOR);
-	*num1 = 0;
-	*num2 = 0;
+	num1 = 0;
+	num2 = 0;
     for(int i = 0; i < length; ++i)
     {
         if(IsBit1(data[i], indexOf1))
-            *num1 ^= data[i];
+            num1 ^= data[i];
         else
-            *num2 ^= data[i];
+            num2 ^= data[i];
     }
 }
 
@@ -47,7 +47,7 @@ void Test(char * testName, int data[], int length, int expected1, int expected2)
         printf("%s begins:\n", testName);
 
     int result1, result2;
-    FindNumsAppearOnce(data, length, &result1, &result2);
+    FindNumsAppearOnce(data, length, result1, result2);
     if((expected1 == result1 && expected2 == result2) ||
         (expected1 == result2 && expected2 == result1))
         printf("Passed.\n");
@@ -61,9 +61,23 @@ void Test1()
     Test("Test1", data, sizeof(data)/sizeof(int), 4, 6);
 }
 
+void Test2()
+{
+    int data[] = {4, 6};
+    Test("Test2", data, sizeof(data)/sizeof(int), 4, 6);
+}
+
+void Test3()
+{
+    int data[] = {4, 6, 1, 1, 1, 1};
+    Test("Test3", data, sizeof(data)/sizeof(int), 4, 6);
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	Test1();
+    Test2();
+    Test3();
 	return 0;
 }
 

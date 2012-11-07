@@ -14,6 +14,7 @@
     <ProjectGuid>{9FDBD3D2-8867-4871-BF5F-CF410D962089}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>NumbersAppearOnce</RootNamespace>
+    <ProjectName>40_NumbersAppearOnce</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
