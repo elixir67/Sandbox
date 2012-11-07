@@ -1,6 +1,7 @@
 // PrintListInReversedOrder.cpp : Defines the entry point for the console application.
 //
 
+// TODO: can print the values recursively instead of change the list structure?
 #include "stdafx.h"
 #include "..\Utilities\List.h"
 #include "iostream"

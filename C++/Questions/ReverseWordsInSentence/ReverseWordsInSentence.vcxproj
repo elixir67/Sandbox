@@ -14,7 +14,7 @@
     <ProjectGuid>{B9F59E4B-A696-48C8-80F9-E236DEAC9306}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ReverseWordsInSentence</RootNamespace>
-    <ProjectName>41_ReverseWordsInSentence</ProjectName>
+    <ProjectName>42_1_ReverseWordsInSentence</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
