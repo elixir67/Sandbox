@@ -19,7 +19,7 @@ void ConnectListNodes(ListNode * pCurrent, ListNode * pNext) {
 }
 
 void PrintListNode(ListNode * pNode) {
-    if(pNode)
+    if(!pNode)
         cout << "The node is NULL" << endl;
     else
         cout << "The value in node is " << pNode->m_nValue << endl;
