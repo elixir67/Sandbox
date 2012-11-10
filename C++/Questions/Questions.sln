@@ -44,6 +44,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "18_SubstructureInTree", "Su
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19_MirrorOfTree", "MirrorOfTree\MirrorOfTree.vcxproj", "{54943A1B-6704-4B12-9DAF-5D7798187E08}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "23_PrintTreeFromTopToBottom", "PrintTreeFromTopToBottom\PrintTreeFromTopToBottom.vcxproj", "{3DB7C4A6-C477-4EDA-9B9B-77C3912924B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -118,6 +120,10 @@ Global
 		{54943A1B-6704-4B12-9DAF-5D7798187E08}.Debug|Win32.Build.0 = Debug|Win32
 		{54943A1B-6704-4B12-9DAF-5D7798187E08}.Release|Win32.ActiveCfg = Release|Win32
 		{54943A1B-6704-4B12-9DAF-5D7798187E08}.Release|Win32.Build.0 = Release|Win32
+		{3DB7C4A6-C477-4EDA-9B9B-77C3912924B0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3DB7C4A6-C477-4EDA-9B9B-77C3912924B0}.Debug|Win32.Build.0 = Debug|Win32
+		{3DB7C4A6-C477-4EDA-9B9B-77C3912924B0}.Release|Win32.ActiveCfg = Release|Win32
+		{3DB7C4A6-C477-4EDA-9B9B-77C3912924B0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
