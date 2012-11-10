@@ -27,18 +27,18 @@ void PrintTreeNode(BinaryTreeNode * pNode)
     {
         printf("value of this node is: %d\n", pNode->m_nValue);
 
-        if(pNode->m_pLeft)
-            printf("value of its left child is %d.\n",pNode->m_pLeft->m_nValue);
-        else
-            printf("left child is null.\n");
+        //if(pNode->m_pLeft)
+        //    printf("value of its left child is %d.\n",pNode->m_pLeft->m_nValue);
+        //else
+        //    printf("left child is null.\n");
 
-        if(pNode->m_pRight)
-            printf("value of its right child is %d.\n", pNode->m_pRight->m_nValue);
-        else
-            printf("right child is null.\n");
+        //if(pNode->m_pRight)
+        //    printf("value of its right child is %d.\n", pNode->m_pRight->m_nValue);
+        //else
+        //    printf("right child is null.\n");
     }
-    else
-        printf("this node is null\n");
+    //else
+    //    printf("this node is null\n");
 }
 
 void PrintTree(BinaryTreeNode * pRoot)
