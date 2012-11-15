@@ -46,7 +46,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "19_MirrorOfTree", "MirrorOf
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "23_PrintTreeFromTopToBottom", "PrintTreeFromTopToBottom\PrintTreeFromTopToBottom.vcxproj", "{3DB7C4A6-C477-4EDA-9B9B-77C3912924B0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SequenceOfBST", "SequenceOfBST\SequenceOfBST.vcxproj", "{360F260B-76D9-4CCD-A9F7-A5F4FF25B627}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "24_SequenceOfBST", "SequenceOfBST\SequenceOfBST.vcxproj", "{360F260B-76D9-4CCD-A9F7-A5F4FF25B627}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "25_PathInTree", "PathInTree\PathInTree.vcxproj", "{346E8FB1-5BF4-4503-9CFA-579EC4BB7FA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,6 +132,10 @@ Global
 		{360F260B-76D9-4CCD-A9F7-A5F4FF25B627}.Debug|Win32.Build.0 = Debug|Win32
 		{360F260B-76D9-4CCD-A9F7-A5F4FF25B627}.Release|Win32.ActiveCfg = Release|Win32
 		{360F260B-76D9-4CCD-A9F7-A5F4FF25B627}.Release|Win32.Build.0 = Release|Win32
+		{346E8FB1-5BF4-4503-9CFA-579EC4BB7FA7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{346E8FB1-5BF4-4503-9CFA-579EC4BB7FA7}.Debug|Win32.Build.0 = Debug|Win32
+		{346E8FB1-5BF4-4503-9CFA-579EC4BB7FA7}.Release|Win32.ActiveCfg = Release|Win32
+		{346E8FB1-5BF4-4503-9CFA-579EC4BB7FA7}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
