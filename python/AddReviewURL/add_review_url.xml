@@ -3,9 +3,9 @@
 <CustomToolDefList varName="customtooldeflist">
  <CustomToolDef>
   <Definition>
-   <Name>Add Code Review to Changelist Description</Name>
-   <Command>C:\Python27\python.exe</Command>
-   <Arguments>F:\GITHUB\Sandbox\python\add_review_url.py %c</Arguments>
+   <Name>Create review and add review url</Name>
+   <Command>F:\GITHUB\Sandbox\python\AddReviewURL\createreviews.bat</Command>
+   <Arguments>%c $p $u $c</Arguments>
   </Definition>
   <Console>
    <CloseOnExit>false</CloseOnExit>
