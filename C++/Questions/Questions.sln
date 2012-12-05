@@ -52,6 +52,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "25_PathInTree", "PathInTree
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "26_CopyComplexList", "CopyComplexList\CopyComplexList.vcxproj", "{DFE61A03-25C4-469C-A914-FB4B1532DF50}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "51_ConvertString", "51_ConvertString\51_ConvertString.vcxproj", "{BD284211-3BFC-421C-BB70-34E8BE0F5F4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -142,6 +144,10 @@ Global
 		{DFE61A03-25C4-469C-A914-FB4B1532DF50}.Debug|Win32.Build.0 = Debug|Win32
 		{DFE61A03-25C4-469C-A914-FB4B1532DF50}.Release|Win32.ActiveCfg = Release|Win32
 		{DFE61A03-25C4-469C-A914-FB4B1532DF50}.Release|Win32.Build.0 = Release|Win32
+		{BD284211-3BFC-421C-BB70-34E8BE0F5F4C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BD284211-3BFC-421C-BB70-34E8BE0F5F4C}.Debug|Win32.Build.0 = Debug|Win32
+		{BD284211-3BFC-421C-BB70-34E8BE0F5F4C}.Release|Win32.ActiveCfg = Release|Win32
+		{BD284211-3BFC-421C-BB70-34E8BE0F5F4C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
