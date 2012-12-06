@@ -26,12 +26,14 @@ char * convertString1(char * pStr)
             ++pCur;
         }
         newStr[newIndex++] = *pCur;
-		char * a = "123";
-		int b = 34;
-		char testStr[MAX_SIZE];
-		sprintf(testStr, "%s%c%d", newStr, pCur, num);
-
-		sprintf(newStr, "%s%c%d", newStr, pCur, num);
+        //if(num < 10)
+        //    newStr[newIndex++] = num + '0';
+        //else
+        {
+            newStr[newIndex++] = '\0';
+            sprintf(newStr, "%s%d", newStr, num);
+            newIndex = strlen(newStr);
+        }
         ++pCur;
         num = 0;
     }
@@ -44,10 +46,10 @@ char * convertString1(char * pStr)
 
 void Test(char * testName, char * src, char * expected)
 {
-	if(testName)
-		printf("%s :",testName);
-	
-	char * result = convertString1(src);
+    if(testName)
+        printf("%s :",testName);
+
+    char * result = convertString1(src);
     if(strcmp(result, expected) == 0)
         printf("passed\n");
     else
@@ -56,23 +58,33 @@ void Test(char * testName, char * src, char * expected)
 
 void Test1()
 {
-	char src[] = "abbccdde";
+    char src[] = "abbccdde";
     char expected[] = "a1b2c2d2e1";
-    
-	Test("Test1", src, expected);
+
+    Test("Test1", src, expected);
 }
 
 void Test2()
 {
-	char src[] = "aaaaaaaaaab";
+    char src[] = "aaaaaaaaaab";
     char expected[] = "a10b1";
-    
-	Test("Test1", src, expected);
+
+    Test("Test1", src, expected);
+}
+
+void Test_Others()
+{
+    char str[]="a=";
+    char buff[256];
+    int i=4;
+    sprintf(buff,"%s%d",str,i);
+    printf("%s",buff);
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	Test2();
- 	return 0;
+    Test1();
+    Test2();
+    return 0;
 }
 
