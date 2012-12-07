@@ -3,13 +3,16 @@
 
 #include "stdafx.h"
 
+
 void SharedPtr_WeakPtr();
 void LambdaExamples();
+void RValueTest();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    //SharedPtr_WeakPtr();
+    SharedPtr_WeakPtr();
     LambdaExamples();
+
 	return 0;
 }
 
