@@ -10,9 +10,9 @@ void RValueTest();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    SharedPtr_WeakPtr();
-    LambdaExamples();
-
+    //SharedPtr_WeakPtr();
+    //LambdaExamples();
+    RValueTest();
 	return 0;
 }
 
