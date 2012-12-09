@@ -56,6 +56,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "51_ConvertString", "51_Conv
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "16_ReverseList", "16_ReverseList\16_ReverseList.vcxproj", "{9D11F56C-B15D-4F7A-AB52-F2F9D2803F13}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "17_MergeSortedLists", "17_MergeSortedLists\17_MergeSortedLists.vcxproj", "{16E47402-6A77-4FE4-8046-E895B9AC5129}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -154,6 +156,10 @@ Global
 		{9D11F56C-B15D-4F7A-AB52-F2F9D2803F13}.Debug|Win32.Build.0 = Debug|Win32
 		{9D11F56C-B15D-4F7A-AB52-F2F9D2803F13}.Release|Win32.ActiveCfg = Release|Win32
 		{9D11F56C-B15D-4F7A-AB52-F2F9D2803F13}.Release|Win32.Build.0 = Release|Win32
+		{16E47402-6A77-4FE4-8046-E895B9AC5129}.Debug|Win32.ActiveCfg = Debug|Win32
+		{16E47402-6A77-4FE4-8046-E895B9AC5129}.Debug|Win32.Build.0 = Debug|Win32
+		{16E47402-6A77-4FE4-8046-E895B9AC5129}.Release|Win32.ActiveCfg = Release|Win32
+		{16E47402-6A77-4FE4-8046-E895B9AC5129}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
