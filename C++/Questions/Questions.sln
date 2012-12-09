@@ -58,6 +58,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "16_ReverseList", "16_Revers
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "17_MergeSortedLists", "17_MergeSortedLists\17_MergeSortedLists.vcxproj", "{16E47402-6A77-4FE4-8046-E895B9AC5129}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "45_LastNumberInCircle", "45_LastNumberInCircle\45_LastNumberInCircle.vcxproj", "{AC42722F-5E0B-4FB1-B302-E04649A26ACE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -160,6 +162,10 @@ Global
 		{16E47402-6A77-4FE4-8046-E895B9AC5129}.Debug|Win32.Build.0 = Debug|Win32
 		{16E47402-6A77-4FE4-8046-E895B9AC5129}.Release|Win32.ActiveCfg = Release|Win32
 		{16E47402-6A77-4FE4-8046-E895B9AC5129}.Release|Win32.Build.0 = Release|Win32
+		{AC42722F-5E0B-4FB1-B302-E04649A26ACE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AC42722F-5E0B-4FB1-B302-E04649A26ACE}.Debug|Win32.Build.0 = Debug|Win32
+		{AC42722F-5E0B-4FB1-B302-E04649A26ACE}.Release|Win32.ActiveCfg = Release|Win32
+		{AC42722F-5E0B-4FB1-B302-E04649A26ACE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

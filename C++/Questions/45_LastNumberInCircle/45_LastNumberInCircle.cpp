@@ -10,7 +10,7 @@ using namespace std;
 // Get the last number remaining in the circle
 int LastNumber(int n, int m)
 {
-	if(n < 0 || m < 0 || n < m)
+	if(n <= 0 || m <= 0 || n < m)
 		return -1;
 
 	// Use list to simulate the circle
@@ -21,20 +21,23 @@ int LastNumber(int n, int m)
 	auto it = circle.begin();
 	while(circle.size() > 1)
 	{
-
 		// Finds the m-th number if it hits the end
 		// then moves to the beginning
-		for(auto i = 0; i < m; ++i)
+		for(auto i = 1; i < m; ++i)	// Pay attention i started from 1
 		{
-			if(it != circle.end())
-				++it;
-			else
+			++it;
+			if(it == circle.end())
 				it = circle.begin();
 		}
 
+		// Finds the next one
+		auto next = ++it;
+		if(next == circle.end())
+			next = circle.begin();
+		--it;
 		// Remove the m-th number
 		circle.erase(it);
-		++it;	;
+		it = next;	;
 	}
 
 	return circle.front();
