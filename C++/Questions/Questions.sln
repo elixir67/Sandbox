@@ -60,6 +60,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "17_MergeSortedLists", "17_M
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "45_LastNumberInCircle", "45_LastNumberInCircle\45_LastNumberInCircle.vcxproj", "{AC42722F-5E0B-4FB1-B302-E04649A26ACE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "52_StrStr", "52_StrStr\52_StrStr.vcxproj", "{62152E79-2714-4D9A-8D08-A5AF07E8E6F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -166,6 +168,10 @@ Global
 		{AC42722F-5E0B-4FB1-B302-E04649A26ACE}.Debug|Win32.Build.0 = Debug|Win32
 		{AC42722F-5E0B-4FB1-B302-E04649A26ACE}.Release|Win32.ActiveCfg = Release|Win32
 		{AC42722F-5E0B-4FB1-B302-E04649A26ACE}.Release|Win32.Build.0 = Release|Win32
+		{62152E79-2714-4D9A-8D08-A5AF07E8E6F8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{62152E79-2714-4D9A-8D08-A5AF07E8E6F8}.Debug|Win32.Build.0 = Debug|Win32
+		{62152E79-2714-4D9A-8D08-A5AF07E8E6F8}.Release|Win32.ActiveCfg = Release|Win32
+		{62152E79-2714-4D9A-8D08-A5AF07E8E6F8}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
