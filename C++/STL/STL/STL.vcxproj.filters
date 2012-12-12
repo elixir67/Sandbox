@@ -41,5 +41,11 @@
     <ClCompile Include="RValue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Regex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Iterator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
