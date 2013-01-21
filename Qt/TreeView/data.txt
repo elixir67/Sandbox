@@ -1,0 +1,14 @@
+Road
+    road001
+    road002
+POI
+    poi001
+    poi002
+Building
+    building001
+        roof1
+        door1
+    building002
+        roof2
+        door2
+
