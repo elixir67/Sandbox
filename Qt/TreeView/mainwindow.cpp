@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_tv = new QTreeView(this);
 
 
-    SearchResultTreeModel model()
+    //SearchResultTreeModel model();
 
 }
 

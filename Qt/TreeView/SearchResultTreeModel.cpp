@@ -91,26 +91,28 @@ int SearchResultTreeModel::columnCount(const QModelIndex &parent) const
 struct SearchResult
 {
     std::wstring data;
-    std::vector<SearchResult> details;
+    std::vector<SearchResult> children;
 };
 
 void SearchResultTreeModel::setup(SearchResultTreeItem *parent)
 {
-    std::multimap<QString, QStringList> searchResults;
+//    std::multimap<QString, QStringList> searchResults;
 
-    QStringList roads;
-    roads << "road001" << "road002" << endl;
-    searchResults["Road"] = roads;
 
-    QStringList trees;
-    trees << "tree001" << "tree002" << end;
-    searchResults["Tree"] = trees;
 
-    QStringList buildings;
-    trees << "build001" << "build002" << end;
-    searchResults["Building"] = buildings;
+//    QStringList roads;
+//    roads << "road001" << "road002" << endl;
+//    searchResults["Road"] = roads;
 
-    SearchResultTreeItem *
+//    QStringList trees;
+//    trees << "tree001" << "tree002" << end;
+//    searchResults["Tree"] = trees;
+
+//    QStringList buildings;
+//    trees << "build001" << "build002" << end;
+//    searchResults["Building"] = buildings;
+
+//    SearchResultTreeItem *
 
 }
 
