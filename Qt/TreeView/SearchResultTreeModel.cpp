@@ -92,27 +92,35 @@ struct SearchResult
 {
     std::wstring data;
     std::vector<SearchResult> children;
+
+    SearchResult(std::wstring data)
+    {
+        this->data = data;
+    }
 };
 
 void SearchResultTreeModel::setup(SearchResultTreeItem *parent)
 {
-//    std::multimap<QString, QStringList> searchResults;
+    std::vector<SearchResult> searchResults;
+    SearchResult t1;
+    t1.data = "Road";
+    t1.children.push_back(SearchResult("road1"));
+    t1.children.push_back(SearchResult("road2"));
+    t1.children.push_back(SearchResult("road3"));
+    searchResults.push_back(t1);
 
+    SearchResult t2;
+    t2.data = "Building";
+    t2.children.push_back(SearchResult("Building1"));
+    t2.children.push_back(SearchResult("Building2"));
+    t2.children.push_back(SearchResult("Building3"));
+    searchResults.push_back(t2);
 
-
-//    QStringList roads;
-//    roads << "road001" << "road002" << endl;
-//    searchResults["Road"] = roads;
-
-//    QStringList trees;
-//    trees << "tree001" << "tree002" << end;
-//    searchResults["Tree"] = trees;
-
-//    QStringList buildings;
-//    trees << "build001" << "build002" << end;
-//    searchResults["Building"] = buildings;
-
-//    SearchResultTreeItem *
+    for(auto it = searchResults.begin(); it != SearchResult.end; ++it)
+    {
+        SearchResult t = *it;
+        parent->insertChildren(parent->childCount(), t.children.size());
+    }
 
 }
 
