@@ -1,6 +1,6 @@
 #include "SearchResultTreeItem.h"
 #include "algorithm"
-SearchResultTreeItem::SearchResultTreeItem(const std::wstring data, SearchResultItem * parent)
+SearchResultTreeItem::SearchResultTreeItem(const std::wstring & data, SearchResultTreeItem * parent)
 {
     m_parent = parent;
     m_data = data;
@@ -8,7 +8,7 @@ SearchResultTreeItem::SearchResultTreeItem(const std::wstring data, SearchResult
 
 SearchResultTreeItem::~SearchResultTreeItem()
 {
-    for(auto it = m_children.begin(); it != m_chilren.end(); ++it)
+    for(auto it = m_children.begin(); it != m_children.end(); ++it)
     {
         delete *it;
     }
@@ -19,7 +19,7 @@ SearchResultTreeItem * SearchResultTreeItem::parent()
     return m_parent;
 }
 
-std::wstring & SearchResultTreeItem::data() const
+const std::wstring & SearchResultTreeItem::data() const
 {
     return m_data;
 }
@@ -34,7 +34,7 @@ int SearchResultTreeItem::childCount() const
     return m_children.size();
 }
 
-bool SearchResultTreeItem:setData(const std::wstring & data)
+bool SearchResultTreeItem::setData(const std::wstring & data)
 {
     m_data = data;
     return true;
@@ -42,15 +42,16 @@ bool SearchResultTreeItem:setData(const std::wstring & data)
 
 bool SearchResultTreeItem::insertChildren(int position, int count)
 {
-    if(position < 0 || position > m_children.size())
+    if(position < 0 || position > (int)m_children.size())
         return false;
 
     for(int i = 0; i < count; ++i)
     {
         std::wstring empty(L"");
-        SearchResultItem * item = new SearchResultItem(empty, this);
-        m_children.insert(std::advance(m_children.begin(), position), item);
+        SearchResultTreeItem * item = new SearchResultTreeItem(empty, this);
+        m_children.insert(m_children.begin() + position, item);
     }
+    return true;
 }
 
 int SearchResultTreeItem::childNumber() const
