@@ -1,18 +1,18 @@
-# coding:utf-8 
+# coding:utf-8
 import sys
 from subprocess import Popen, PIPE, STDOUT
 import re
 
 # Configure settings
-CCCMD = '"C:\Program Files (x86)\Code Collaborator Client\ccollab.exe" actionitems' 
-#CCCMD = '"C:\Program Files\Code Collaborator Client\ccollab.exe" actionitems' 
-CCSERVER = 'http://ccs12376084:8080/go?page=ReviewDisplay&reviewid='
+CCCMD = '"C:\Program Files (x86)\Code Collaborator Client\ccollab.exe" actionitems'
+#CCCMD = '"C:\Program Files\Code Collaborator Client\ccollab.exe" actionitems'
+CCSERVER = 'http://aim-cc:8080/go?page=ReviewDisplay&reviewid='
 
 # Review #(ReviewId): "@(ChangeListId) - XXX"
-action_item_pattern = re.compile(r'.+#(.+): "@(.+) - .+', re.I) 
+action_item_pattern = re.compile(r'.+#(.+): "@(.+) - .+', re.I)
 
-desc_pattern = re.compile(r'Description:', re.I) 
-files_pattern = re.compile(r'Files:', re.I) 
+desc_pattern = re.compile(r'Description:', re.I)
+files_pattern = re.compile(r'Files:', re.I)
 review_by_pattern = re.compile(r'.+!!REVIEWED BY:', re.I)
 
 def getreviewid(changelistid):
@@ -39,15 +39,15 @@ def getreviewid(changelistid):
         print 'Changelist ' + changelistid + ' has no review!'
     return reviewId
 
-def getreviewidforline(line, changelistid):    
+def getreviewidforline(line, changelistid):
     m = action_item_pattern.match(line)
     if m:
         clId = m.group(2)
         if clId == changelistid:
-            reviewId = m.group(1)    
+            reviewId = m.group(1)
             return reviewId
     return ''
-    
+
 def getreviewurl(changelistid) :
     id = getreviewid(changelistid)
     url = ''
@@ -80,10 +80,10 @@ def getdescription(changelistid, url):
                 isDesc = False
         desc += line
     return desc
-        
+
 def updatedescription(changelistid):
-    url = getreviewurl(changelistid) 
-    if url != '':       
+    url = getreviewurl(changelistid)
+    if url != '':
         desc = getdescription(changelistid, url)
         if desc != '':
             p4cmd = 'p4 change -i '
@@ -99,11 +99,11 @@ def updatedescription(changelistid):
         print 'Code Review cannot be found!'
 
 def showusage():
-    print "Usage: python add_review_url.py changelistid"        
-        
+    print "Usage: python add_review_url.py changelistid"
+
 if __name__ == '__main__':
     if (len(sys.argv) != 2):
         showusage()
     changelistid = sys.argv[1]
     print 'Update changelist ' + changelistid + ' description...'
-    updatedescription(changelistid)            
+    updatedescription(changelistid)
