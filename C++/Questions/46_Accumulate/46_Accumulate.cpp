@@ -22,7 +22,9 @@ void Test(const int n)
 	int expected = 0;
 	for(int i = 1; i <= n; ++i)
 		expected += i;
+	// Template must use const 
 	const int number = 5;
+	// It cannot debug into the code
 	int result = Accumulate<number>::Value;
 	cout << "Test " << n;
 	if(result == expected)
