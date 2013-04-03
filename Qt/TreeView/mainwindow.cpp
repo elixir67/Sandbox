@@ -9,10 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     m_tv = new QTreeView(this);
-
-
-    SearchResultTreeModel model()
-
+    SearchResultTreeModel * model = new SearchResultTreeModel();
+    m_tv->setModel(model);
 }
 
 MainWindow::~MainWindow()

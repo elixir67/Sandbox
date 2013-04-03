@@ -18,12 +18,12 @@ public:
     ~SearchResultTreeItem();
 
     SearchResultTreeItem * parent();
-    std::wstring & data() const;
+    const std::wstring & data() const;
 
     SearchResultTreeItem * child(int number);
     int childCount() const;
     bool insertChildren(int position, int count);
-    bool setData(const std::wstring & );
+    bool setData(const std::wstring & data);
 
     int childNumber() const;
 
