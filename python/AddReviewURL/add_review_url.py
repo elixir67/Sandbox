@@ -6,10 +6,11 @@ import re
 # Configure settings
 CCCMD = '"C:\Program Files (x86)\Code Collaborator Client\ccollab.exe" actionitems'
 #CCCMD = '"C:\Program Files\Code Collaborator Client\ccollab.exe" actionitems'
-CCSERVER = 'http://aim-cc:8080/go?page=ReviewDisplay&reviewid='
+#CCSERVER = 'http://codereview.autodesk.com/go?page=ReviewDisplay&reviewid='
+CCSERVER = 'http://ussclpdcodeco01.autodesk.com/ui#review:id='
 
 # Review #(ReviewId): "@(ChangeListId) - XXX"
-action_item_pattern = re.compile(r'.+#(.+): "@(.+) - .+', re.I)
+action_item_pattern = re.compile(r'.+#(.+): "@(.+?) - .+', re.I)
 
 desc_pattern = re.compile(r'Description:', re.I)
 files_pattern = re.compile(r'Files:', re.I)
