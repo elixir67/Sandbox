@@ -8,21 +8,31 @@ using namespace std;
 
 char * fun() {return "Hello";}
 
+int GetBig(int & a, int & b)
+{
+	return a > b ? a : b;
+}
+
 void RValueTest()
 {
-    //vector<string> v;
-    //string s("meow");
-    //v.push_back(s);
-    //v.push_back(move(s));
-    //v.push_back("Dan");
-    //cout << "Meow" << endl;
+	//int a = 5;
+	//int b = 7;
+	//const int & c = GetBig(a, b);
+	// int & d = GetBig(a, b);
 
-    //set<string> meow;
-    //const string c("other stuff");
-    //string lv("stuff");
+    vector<string> v;
+    string s("meow");
+    v.push_back(s);
+    v.push_back(move(s));
+    v.push_back("Dan");
+    cout << "Meow" << endl;
 
-    //meow.insert(c);
-    //meow.insert(lv);
+    set<string> meow;
+    const string c("other stuff");
+    string lv("stuff");
+
+    meow.insert(c);
+    meow.insert(lv);
 
     int n, *p;
     p= &n;
