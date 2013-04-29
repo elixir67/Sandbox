@@ -1,0 +1,16 @@
+{
+   "app": {
+      "launch": {
+         "container": "tab",
+         "web_url": "http://mail.qq.com"
+      },
+      "urls": [ "http://mail.qq.com" ]
+   },
+   "manifest_version": 2,
+   "description": "A shortcut to access QQ Mail",
+   "icons": {
+      "128": "qq.png"
+   },
+   "name": "QQ Mail",
+   "version": "2"
+}
