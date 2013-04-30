@@ -35,5 +35,14 @@
     <ClCompile Include="CType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Errno.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Float.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Limits.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

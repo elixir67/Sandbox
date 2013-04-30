@@ -4,10 +4,13 @@
 #include "stdafx.h"
 
 extern void testCType();
+extern void TestErrno();
+extern void TestFloat();
+extern void TestLimits();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	testCType();
+	TestLimits();
 	return 0;
 }
 
