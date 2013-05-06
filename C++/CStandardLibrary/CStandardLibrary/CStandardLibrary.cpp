@@ -7,10 +7,11 @@ extern void testCType();
 extern void TestErrno();
 extern void TestFloat();
 extern void TestLimits();
+extern void TestDiv();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	TestLimits();
+	TestDiv();
 	return 0;
 }
 
