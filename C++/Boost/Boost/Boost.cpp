@@ -2,16 +2,11 @@
 //
 
 #include "stdafx.h"
+void testCh02();
 
-#include <boost/timer.hpp>
-using namespace boost;
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char * argvs)
 {
-	timer t;
-	cout << "max timespan:" << t.elapsed_max()/3600 << "h" << endl;
-	cout << "min timespan:" << t.elapsed_min() << "s" << endl;
-
-	cout << "now time elapsed:" << t.elapsed() << "s" << endl;
+	testCh02();
 	return 0;
 }
 
