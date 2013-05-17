@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Xml.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -31,10 +33,13 @@ namespace Riddle
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             RiddleManager riddleMgr = new RiddleManager();
-            riddleMgr.GetRiddles();
+            XDocument doc = riddleMgr.GetRiddleRssContents();
+            //XDocument doc = await RiddleManager.LoadXml();
+            List<RiddleItem> riddles = await RiddleManager.ParseRiddles(doc);
+            Debug.Assert(riddles.Count > 0);
         }
     }
 }
