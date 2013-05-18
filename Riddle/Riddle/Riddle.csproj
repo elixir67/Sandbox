@@ -133,6 +133,7 @@
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Common\ReadMe.txt" />
+    <Content Include="Test\TestRiddleLink.html" />
     <Content Include="Test\TestRss.xml" />
   </ItemGroup>
   <ItemGroup>

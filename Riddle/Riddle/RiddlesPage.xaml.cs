@@ -40,13 +40,15 @@ namespace Riddle
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
-            RiddleManager riddleMgr = new RiddleManager();
-            XDocument doc = await riddleMgr.GetRiddleRssContents();
-            //XDocument doc = await RiddleManager.LoadXml();
+            //string testHtml = await RiddleManager.LoadTestRiddleLink();
+            //string answer = RiddleManager.ParseRiddleHTMLContent(testHtml);
+
+            XDocument doc = await RiddleManager.GetRiddleRssContents();
+            //XDocument doc = await RiddleManager.LoadTestRssXml();
             if (doc != null)
             {
                 List<RiddleItem> riddles = await RiddleManager.ParseRiddles(doc);
+                bool success = await RiddleManager.FetchAnswers(riddles);
                 Debug.Assert(riddles.Count > 0);
                 DefaultViewModel["Items"] = riddles;
             }
