@@ -10,6 +10,7 @@ using System.Xml.Linq;
 using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.Data.Xml.Dom;
+using System.Net.Http;
 //using System.Xml.Linq;
 
 namespace Riddle
@@ -26,36 +27,32 @@ namespace Riddle
     {
         const string RiddleRSS = "http://www.xhxsw88.cn/data/rss/80.xml"; 
 
-        public XDocument GetRiddleRssContents()
-        { 
-            string content = string.Empty;
-            var req = (HttpWebRequest)WebRequest.Create(RiddleRSS);
-            req.BeginGetResponse((callback) =>
+        public async Task<XDocument> GetRiddleRssContents()
+        {
+            string responseBody = string.Empty;
+            try
             {
-                try
-                {
-                    Encoding encode = Encoding.GetEncoding("gb2312");
-                    var request = callback.AsyncState as HttpWebRequest;
-                    var response = request.EndGetResponse(callback) as HttpWebResponse;
-                    try
-                    {
-                        var responseStream = new StreamReader(response.GetResponseStream(), encode);
-                        content = responseStream.ReadToEnd();
-                        Debug.WriteLine(content);
-
-                    }
-                    catch (IOException ex) { }
-                    catch (OutOfMemoryException ex) { }
-
-                }
-                catch (WebException ex) { }
-                catch (IOException ex) { }
-                catch (OutOfMemoryException ex) { }
-                catch (Exception ex) { }
-            },req);
-            return string.IsNullOrWhiteSpace(content) ? null :XDocument.Parse(content);
+                HttpClient client = new HttpClient();
+                
+                HttpResponseMessage response = await client.GetAsync(RiddleRSS);
+                response.EnsureSuccessStatusCode();
+                // Do not ReadAsString directly because the string is not encoded correctly
+                // responseBody = await response.Content.ReadAsStringAsync();
+                Encoding encode = Encoding.GetEncoding("gb2312");
+                var responseStream = await response.Content.ReadAsStreamAsync();
+                var encodedStream = new StreamReader(responseStream, encode);
+                responseBody = encodedStream.ReadToEnd();
+            }
+            catch (HttpRequestException e)
+            {
+                Debug.WriteLine("Message:{0}", e.Message);
+            }
+            XDocument doc = string.IsNullOrEmpty(responseBody) ? null : XDocument.Parse(responseBody);
+            var rtnTask = Task.Factory.StartNew(() => doc);
+            return await rtnTask;
         }
 
+        // Stub function for testing
         public static async Task<XDocument> LoadXml()
         {
             StorageFolder storageFolder = await Package.Current.InstalledLocation.GetFolderAsync("Test");
