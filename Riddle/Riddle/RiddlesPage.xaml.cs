@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -29,6 +31,15 @@ namespace Riddle
             this.InitializeComponent();
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -42,6 +53,7 @@ namespace Riddle
         {
             //string testHtml = await RiddleManager.LoadTestRiddleLink();
             //string answer = RiddleManager.ParseRiddleHTMLContent(testHtml);
+            ObservableCollection<RiddleItem> riddleObservable = new ObservableCollection<RiddleItem>();
 
             busyIndicator.IsActive = true;
             busyIndicator.Visibility = Visibility.Visible;
@@ -51,13 +63,17 @@ namespace Riddle
             if (doc != null)
             {
                 List<RiddleItem> riddles = await RiddleManager.ParseRiddles(doc);
-                // Show the riddles without answers at first to give better user experience
-                DefaultViewModel["Items"] = riddles;
-
-                bool success = await RiddleManager.FetchAnswers(riddles);
                 Debug.Assert(riddles.Count > 0);
                 DefaultViewModel["Items"] = riddles;
 
+                bool success = await RiddleManager.FetchAnswers(riddles);
+
+                foreach (var riddle in riddles)
+                    riddleObservable.Add(riddle);
+                // Show the riddles without answers at first to give better user experience
+                DefaultViewModel["Items"] = riddleObservable;
+                
+                //RaisePropertyChanged("DefaultViewModel");
             }
 
             busyIndicator.IsActive = false;

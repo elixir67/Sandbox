@@ -12,6 +12,7 @@ using Windows.Storage;
 using Windows.Data.Xml.Dom;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 //using System.Xml.Linq;
 
 namespace Riddle
@@ -23,7 +24,26 @@ namespace Riddle
         public string PubDate { get; set; }
         public string Link { get; set; }
         public string Category { get; set; }
-        public string Answer { get; set; }
+
+        private string _answer;
+        public string Answer
+        {
+            get { return _answer; }
+            set 
+            {
+                _answer = value; 
+                RaisePropertyChanged("Answer"); 
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void RaisePropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
     }
 
     class RiddleManager
@@ -109,11 +129,12 @@ namespace Riddle
 
         internal static async Task<bool> FetchAnswers(List<RiddleItem> riddles)
         {
-            //riddles.ForEach(riddle => FetchAnswer(riddle));
             foreach (var riddle in riddles)
             {
                 riddle.Answer = await FetchAnswer(riddle.Link);
             }
+
+            // Parallel.ForEach(riddles, async (riddle) => { riddle.Answer = await FetchAnswer(riddle.Link); });
 
             var result = true;
             var rtnTask = Task.Factory.StartNew(() => result);
@@ -134,13 +155,23 @@ namespace Riddle
         {
             var answer = string.Empty;
             // <strong>谜底</strong>：喜从天降</p>
-            string ANSWER_PATTERN = @"<strong>谜底</strong>：(.+)</p>";
-            Regex rgx = new Regex(ANSWER_PATTERN, RegexOptions.IgnoreCase);
+            // <strong>谜底：</strong>肥皂</p>
+            // <strong>谜底：</strong>峠[qiǎ]<span style="display: none">&nbsp;</span></p>
+            string ANSWER_PATTERN_1 = @"<strong>谜底</strong>：(.+)<";
+            string ANSWER_PATTERN_2 = @"<strong>谜底：</strong>(.+)<";
+            answer = RegexQuery(linkText, ANSWER_PATTERN_1);
+            if(string.IsNullOrWhiteSpace(answer))
+                answer = RegexQuery(linkText, ANSWER_PATTERN_2);
+            return answer;
+        }
+
+        private static string RegexQuery(string linkText, string pattern)
+        {
+            var answer = string.Empty;
+            Regex rgx = new Regex(pattern, RegexOptions.IgnoreCase);
             Match match = rgx.Match(linkText);
             if (match.Success)
             {
-
-                //Console.WriteLine("{0} ({1} matches):", input, matches.Count);
                 answer = match.Groups[1].Value;
                 Debug.WriteLine(answer);
             }
