@@ -43,16 +43,46 @@ namespace Riddle
             //string testHtml = await RiddleManager.LoadTestRiddleLink();
             //string answer = RiddleManager.ParseRiddleHTMLContent(testHtml);
 
+            busyIndicator.IsActive = true;
+            busyIndicator.Visibility = Visibility.Visible;
+
             XDocument doc = await RiddleManager.GetRiddleRssContents();
             //XDocument doc = await RiddleManager.LoadTestRssXml();
             if (doc != null)
             {
                 List<RiddleItem> riddles = await RiddleManager.ParseRiddles(doc);
+                // Show the riddles without answers at first to give better user experience
+                DefaultViewModel["Items"] = riddles;
+
                 bool success = await RiddleManager.FetchAnswers(riddles);
                 Debug.Assert(riddles.Count > 0);
                 DefaultViewModel["Items"] = riddles;
+
             }
 
+            busyIndicator.IsActive = false;
+            busyIndicator.Visibility = Visibility.Collapsed;
+        }
+
+        private async void itemGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Click the RiddleItem will open web browser to show the web content
+
+            // Get the link first
+            RiddleItem riddle = e.ClickedItem as RiddleItem;
+
+            if (riddle == null)
+                return;
+
+            // The URI to launch
+            string uriToLaunch = riddle.Link;
+
+            // Create a Uri object from a URI string 
+            var uri = new Uri(uriToLaunch);
+
+            // Launch the URI
+            await Windows.System.Launcher.LaunchUriAsync(uri);
         }
     }
+
 }

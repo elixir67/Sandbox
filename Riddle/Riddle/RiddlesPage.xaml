@@ -42,7 +42,7 @@
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
             ItemTemplate="{StaticResource RiddleItemTemplate}"
             SelectionMode="None"
-            IsSwipeEnabled="false"/>
+            IsSwipeEnabled="false" IsItemClickEnabled="True" ItemClick="itemGridView_ItemClick"/>
 
         <!-- Vertical scrolling list only used when snapped -->
         <ListView
@@ -67,6 +67,7 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
+            <ProgressRing x:Name="busyIndicator"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
