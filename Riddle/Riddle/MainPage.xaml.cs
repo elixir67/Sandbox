@@ -35,11 +35,6 @@ namespace Riddle
         /// property is typically used to configure the page.</param>
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            RiddleManager riddleMgr = new RiddleManager();
-            XDocument doc =  await riddleMgr.GetRiddleRssContents();
-            //XDocument doc = await RiddleManager.LoadXml();
-            List<RiddleItem> riddles = await RiddleManager.ParseRiddles(doc);
-            Debug.Assert(riddles.Count > 0);
         }
     }
 }
