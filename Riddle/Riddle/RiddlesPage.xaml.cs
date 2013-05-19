@@ -78,6 +78,9 @@ namespace Riddle
 
             busyIndicator.IsActive = false;
             busyIndicator.Visibility = Visibility.Collapsed;
+
+            CsvExport<RiddleItem> exporter = new CsvExport<RiddleItem>(riddleObservable);
+            exporter.ExportToFile("Riddles.csv");
         }
 
         private async void itemGridView_ItemClick(object sender, ItemClickEventArgs e)
