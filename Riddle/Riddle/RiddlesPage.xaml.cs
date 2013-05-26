@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -51,10 +52,9 @@ namespace Riddle
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            //string testHtml = await RiddleManager.LoadTestRiddleLink();
-            //string answer = RiddleManager.ParseRiddleHTMLContent(testHtml);
             ObservableCollection<RiddleItem> riddleObservable = new ObservableCollection<RiddleItem>();
-
+            //CsvExport<RiddleItem> exporter = new CsvExport<RiddleItem>(riddleObservable);
+            //exporter.ExportToFile("test.csv");
             busyIndicator.IsActive = true;
             busyIndicator.Visibility = Visibility.Visible;
 
@@ -72,7 +72,7 @@ namespace Riddle
                     riddleObservable.Add(riddle);
                 // Show the riddles without answers at first to give better user experience
                 DefaultViewModel["Items"] = riddleObservable;
-                
+
                 //RaisePropertyChanged("DefaultViewModel");
             }
 
@@ -80,7 +80,20 @@ namespace Riddle
             busyIndicator.Visibility = Visibility.Collapsed;
 
             CsvExport<RiddleItem> exporter = new CsvExport<RiddleItem>(riddleObservable);
-            exporter.ExportToFile("Riddles.csv");
+            string outputFile = GetOutputFileName();
+            exporter.ExportToFile(outputFile);
+        }
+
+        private static string GetOutputFileName()
+        {
+            CultureInfo enUS = new CultureInfo("en-US");
+            DateTimeFormatInfo dtfi = enUS.DateTimeFormat;
+            dtfi.ShortDatePattern = "yyyy-MM-dd";
+            DateTime date = DateTime.Today;
+            string strDate = date.ToString("d", enUS);
+
+            string outputFile = "Riddles_" + strDate + ".csv";
+            return outputFile;
         }
 
         private async void itemGridView_ItemClick(object sender, ItemClickEventArgs e)
