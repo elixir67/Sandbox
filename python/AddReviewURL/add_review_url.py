@@ -4,8 +4,8 @@ from subprocess import Popen, PIPE, STDOUT
 import re
 
 # Configure settings
-CCCMD = '"C:\Program Files (x86)\Code Collaborator Client\ccollab.exe" actionitems'
-#CCCMD = '"C:\Program Files\Code Collaborator Client\ccollab.exe" actionitems'
+#CCCMD = '"C:\Program Files (x86)\Code Collaborator Client\ccollab.exe" actionitems'
+CCCMD = '"C:\Program Files\Collaborator Client\ccollab.exe" actionitems'
 #CCSERVER = 'http://codereview.autodesk.com/go?page=ReviewDisplay&reviewid='
 CCSERVER = 'http://ussclpdcodeco01.autodesk.com/ui#review:id='
 
