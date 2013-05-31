@@ -4,10 +4,11 @@
 #include "stdafx.h"
 void testCh02();
 void testCh05();
+void testCh12();
 
 int main(int argc, char * argvs)
 {
-	testCh05();
+	testCh12();
 	return 0;
 }
 
