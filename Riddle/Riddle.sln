@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riddle", "Riddle\Riddle.csproj", "{82083F7C-0016-4DB1-91B2-2E4563797758}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RiddleRegex", "RiddleRegex\RiddleRegex.csproj", "{091308FA-F196-4E1E-B969-0500681D1F89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,16 @@ Global
 		{82083F7C-0016-4DB1-91B2-2E4563797758}.Release|x86.ActiveCfg = Release|x86
 		{82083F7C-0016-4DB1-91B2-2E4563797758}.Release|x86.Build.0 = Release|x86
 		{82083F7C-0016-4DB1-91B2-2E4563797758}.Release|x86.Deploy.0 = Release|x86
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Release|ARM.ActiveCfg = Release|Any CPU
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Release|x64.ActiveCfg = Release|Any CPU
+		{091308FA-F196-4E1E-B969-0500681D1F89}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

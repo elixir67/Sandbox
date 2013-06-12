@@ -157,8 +157,8 @@ namespace Riddle
             // <strong>谜底</strong>：喜从天降</p>
             // <strong>谜底：</strong>肥皂</p>
             // <strong>谜底：</strong>峠[qiǎ]<span style="display: none">&nbsp;</span></p>
-            string ANSWER_PATTERN_1 = @"<strong>谜底</strong>：(.+)<";
-            string ANSWER_PATTERN_2 = @"<strong>谜底：</strong>(.+)<";
+            string ANSWER_PATTERN_1 = @"<strong>谜底</strong>：(.+?)<"; // Add ? for non-greedy match
+            string ANSWER_PATTERN_2 = @"<strong>谜底：</strong>(.+?)<";
             answer = RegexQuery(linkText, ANSWER_PATTERN_1);
             if(string.IsNullOrWhiteSpace(answer))
                 answer = RegexQuery(linkText, ANSWER_PATTERN_2);

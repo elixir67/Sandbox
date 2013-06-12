@@ -18,7 +18,7 @@
             Source="{Binding Items}"/>
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">我爱谜语</x:String>
+        <x:String x:Key="AppName">小梅爱谜语</x:String>
     </Page.Resources>
     <!--
         This grid acts as a root panel for the page that defines two rows:
