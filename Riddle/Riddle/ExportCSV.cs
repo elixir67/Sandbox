@@ -58,7 +58,15 @@ namespace Riddle
         {
             var storageFolder = KnownFolders.DocumentsLibrary;
             var file = await storageFolder.CreateFileAsync(path, CreationCollisionOption.OpenIfExists);
-            await FileIO.WriteTextAsync(file, Export());
+            string content = Export();
+
+            // Add BOM flag in the beginning of the file to output CSV correctly
+            // http://www.haogongju.net/art/1778905
+            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(content); 
+            byte[] outBuffer = new byte[buffer.Length + 3]; 
+            outBuffer[0] = (byte)0xEF; outBuffer[1] = (byte)0xBB; outBuffer[2] = (byte)0xBF; Array.Copy(buffer, 0, outBuffer, 3, buffer.Length);
+
+            await FileIO.WriteBytesAsync(file, outBuffer);
         }
 
         //export as binary data. 
