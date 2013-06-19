@@ -82,8 +82,7 @@ void ForwardTest()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	MoveTest();
-	ForwardTest();
+	RegexTest();
 	return 0;
 }
 

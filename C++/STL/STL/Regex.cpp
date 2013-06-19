@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-void RegexTest()
+void RegexTest1()
 {
     vector<wstring> ss;
     ss.push_back(L"2008-12-09");
@@ -42,5 +42,59 @@ void RegexTest()
     t.tm_mon -= 1;  /* months since January - [0,11] */
     time_t time = _mkgmtime(&t);
     
+}
+
+void RegexTest2()
+{
+    // one typical case of IFC schema version is like: FILE_SCHEMA (('IFC2X3'));
+    // note it could have space between the brackets, so the expression has some space escape sequence
+    // note in c++ the escapse character need double back slash
+    std::regex expression("FILE_SCHEMA\\s*\\(\\s*\\(\\s*'IFC(.+)'\\s*\\)\\s*\\)\\s*;", regex_constants::icase);  
+
+    std::vector<std::string> testArrays = std::vector<std::string>();
+    testArrays.push_back("FILE_SCHEMA(('ifc2X_PLATFORM'));");
+    testArrays.push_back("FILE_SCHEMA (('IFC2X2_FINAL'));");
+    testArrays.push_back("FILE_SCHEMA (('IFC2X_FINAL'));");
+    testArrays.push_back("FILE_SCHEMA(('IFC2X3'));");
+    testArrays.push_back("FILE_SCHEMA(('IFCinvalid'));");
+    testArrays.push_back("FILE_SCHEMA (('IFC2X_final'));");
+    testArrays.push_back("FILE_SCHEMA ((  'IFC2X2_final' )); ");
+    testArrays.push_back("FILE_SCHEMA ((  'IFC4' )); ");
+
+    // Currently Translation Engine(NavisWorks)supported those versions
+    std::vector<std::string> supportedVersions;
+    supportedVersions.push_back("2X_PLATFORM");
+    supportedVersions.push_back("2X_FINAL");
+    supportedVersions.push_back("2X2_FINAL");
+    supportedVersions.push_back("2X3");
+
+    for(auto it = testArrays.begin(); it != testArrays.end(); ++it)
+    {
+        std::string line = *it;
+        std::smatch match;
+        //boost::trim(line);
+        if(std::regex_match(line, match, expression))
+        {      
+            // std::string schemaVersion = boost::to_upper_copy(match[1].str());
+            std::string schemaVersion = match[1].str();
+            cout << schemaVersion << ":";
+            if(supportedVersions.cend() != std::find(supportedVersions.cbegin(), supportedVersions.cend(), schemaVersion))
+            {
+                // Find in default supported versions
+                cout << "pass" << endl;
+            }
+            else
+            {
+                // let's check whether it's the latest supported version
+                cout << "fail" << endl;
+            }
+        }
+    }
+}
+
+void RegexTest()
+{
+    RegexTest1();
+    RegexTest2();
 }
 
