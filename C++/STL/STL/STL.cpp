@@ -12,6 +12,7 @@ void SharedPtr_WeakPtr();
 void LambdaExamples();
 void RValueTest();
 void RegexTest();
+void IOTest();
 
 struct foo
 {
