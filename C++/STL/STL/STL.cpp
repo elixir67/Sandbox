@@ -12,6 +12,7 @@ void SharedPtr_WeakPtr();
 void LambdaExamples();
 void RValueTest();
 void RegexTest();
+void IOTest();
 
 struct foo
 {
@@ -82,8 +83,7 @@ void ForwardTest()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	MoveTest();
-	ForwardTest();
+	RegexTest();
 	return 0;
 }
 
