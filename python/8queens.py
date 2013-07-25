@@ -23,5 +23,7 @@ def prettyprint(solution):
         
 if __name__ == '__main__':
     import random
+    print len(list(queens()))
+    print list(queens())
     prettyprint(random.choice(list(queens())))
         
