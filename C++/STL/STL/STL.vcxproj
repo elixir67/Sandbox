@@ -73,6 +73,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="ints.dat" />
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +81,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Ifstream.cpp" />
     <ClCompile Include="IO.cpp" />
     <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="Lambda.cpp" />
