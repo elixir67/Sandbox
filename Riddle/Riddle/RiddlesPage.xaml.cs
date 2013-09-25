@@ -58,11 +58,12 @@ namespace Riddle
             busyIndicator.IsActive = true;
             busyIndicator.Visibility = Visibility.Visible;
 
-            XDocument doc = await RiddleManager.GetRiddleRssContents();
+            //XDocument doc = await RiddleManager.GetRiddleRssContents();
             //XDocument doc = await RiddleManager.LoadTestRssXml();
-            if (doc != null)
+            //if (doc != null)
             {
-                List<RiddleItem> riddles = await RiddleManager.ParseRiddles(doc);
+                //List<RiddleItem> riddles = await RiddleManager.ParseRiddles(doc);
+                List<RiddleItem> riddles = await RiddleManager.GetFeedAsync();
                 Debug.Assert(riddles.Count > 0);
                 DefaultViewModel["Items"] = riddles;
 

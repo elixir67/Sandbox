@@ -13,6 +13,7 @@ using Windows.Data.Xml.Dom;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.ComponentModel;
+using Windows.Web.Syndication;
 //using System.Xml.Linq;
 
 namespace Riddle
@@ -49,13 +50,90 @@ namespace Riddle
     class RiddleManager
     {
         const string RiddleRSS = "http://www.xhxsw88.cn/data/rss/80.xml"; 
-
         public static async Task<XDocument> GetRiddleRssContents()
         {
             string riddleRss = await GetReponseTextFromURL(RiddleRSS);
             XDocument doc = string.IsNullOrEmpty(riddleRss) ? null : XDocument.Parse(riddleRss);
             var rtnTask = Task.Factory.StartNew(() => doc);
             return await rtnTask;
+        }
+
+        public static async Task<List<RiddleItem>> GetFeedAsync()
+        {
+            string feedUriString = RiddleRSS;
+            Windows.Web.Syndication.SyndicationClient client = new SyndicationClient();
+            Uri feedUri = new Uri(feedUriString);
+
+            try
+            {
+                SyndicationFeed feed = await client.RetrieveFeedAsync(feedUri);
+
+                // This code is executed after RetrieveFeedAsync returns the SyndicationFeed.
+                // Process the feed and copy the data you want into the FeedData and FeedItem classes.
+                //FeedData feedData = new FeedData();
+                List<RiddleItem> riddles = new List<RiddleItem>();
+
+                //if (feed.Title != null && feed.Title.Text != null)
+                //{
+                //    feedData.Title = feed.Title.Text;
+                //}
+                //if (feed.Subtitle != null && feed.Subtitle.Text != null)
+                //{
+                //    feedData.Description = feed.Subtitle.Text;
+                //}
+                if (feed.Items != null && feed.Items.Count > 0)
+                {
+                    // Use the date of the latest post as the last updated date.
+                    //feedData.PubDate = feed.Items[0].PublishedDate.DateTime;
+
+                    foreach (SyndicationItem item in feed.Items)
+                    {
+                        RiddleItem feedItem = new RiddleItem();
+                        if (item.Title != null && item.Title.Text != null)
+                        {
+                            feedItem.Title = item.Title.Text;
+                        }
+                        if (item.PublishedDate != null)
+                        {
+                            feedItem.PubDate = item.PublishedDate.DateTime.ToString();
+                        }
+                        if (item.Authors != null && item.Authors.Count > 0)
+                        {
+                            feedItem.Category = item.Categories[0].Label.ToString();
+                        }
+                        // Handle the differences between RSS and Atom feeds.
+                        if (feed.SourceFormat == SyndicationFormat.Atom10)
+                        {
+                            //if (item.Content != null && item.Content.Text != null)
+                            //{
+                            //    feedItem.Content = item.Content.Text;
+                            //}
+                            if (item.Id != null)
+                            {
+                                feedItem.Link = new Uri(item.Id).ToString();
+                            }
+                        }
+                        else if (feed.SourceFormat == SyndicationFormat.Rss20)
+                        {
+                            //if (item.Summary != null && item.Summary.Text != null)
+                            //{
+                            //    feedItem.Content = item.Summary.Text;
+                            //}
+                            if (item.Links != null && item.Links.Count > 0)
+                            {
+                                feedItem.Link = item.Links[0].Uri.ToString();
+                            }
+                        }
+                        riddles.Add(feedItem);
+                    }
+                }
+                return riddles;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
         }
 
         public static async Task<string> GetReponseTextFromURL(string url)
