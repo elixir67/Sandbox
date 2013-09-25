@@ -16,6 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
+    <None Include="ints.dat">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -51,6 +54,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Hash.cpp">
+    <ClCompile Include="Ifstream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
