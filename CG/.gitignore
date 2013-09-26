@@ -1,0 +1,14 @@
+#ignore .metadata, do not hide .gitignore file
+#.gitignore
+bin/
+Debug/
+ipch/
+!*.obj
+*.sdf
+*.suo
+*.exe
+*.cachefile
+*.user
+_ReSharper.*
+*.opensdf
+

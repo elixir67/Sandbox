@@ -1,0 +1,694 @@
+#
+# o.mtl
+#
+newmtl 06300100124
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010075
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010093
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010064
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010037
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010070
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100109
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010011
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010001
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100125
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010036
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010039
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010041
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010040
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010045
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010050
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100114
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010081
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010035
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010077
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010020
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010017
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100130
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010031
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010012
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100121
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010005
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010006
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100104
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100123
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010018
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010043
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010025
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010032
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010094
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010076
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010015
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100116
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010034
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010089
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100100
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010051
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010057
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010084
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010098
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010009
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010024
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010054
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010085
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010013
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100103
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010042
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010026
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100127
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010078
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010016
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100129
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100107
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010055
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010063
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010061
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010083
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010088
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100105
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010058
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010002
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010014
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010068
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100102
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010080
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010008
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010074
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010053
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010079
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010066
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100111
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100108
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010007
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010023
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100136
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100122
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100120
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010027
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010033
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010090
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010019
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010087
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010056
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100118
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010097
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010086
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010028
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010052
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010092
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010059
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010047
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010072
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100115
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010062
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100101
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010010
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010030
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010065
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010096
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100131
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010038
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010060
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010004
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100128
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010095
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010022
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010048
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010029
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100133
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100119
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010003
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010069
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010071
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010067
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100132
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010044
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010099
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010049
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010000
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100134
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100126
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010073
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100110
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010021
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100135
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100113
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010046
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010082
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100117
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 0630010091
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100112
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+newmtl 06300100106
+Kd 1 1 1
+Ks 0.333333 0.333333 0.333333
+map_Kd -clamp on .\obj_textures\06300100124.jpg
+
+ 
