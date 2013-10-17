@@ -32,12 +32,12 @@ void FuncTest()
     std::function<void()> f3 = [](){print_num(3);};
     f3();
     
-    // why it cannot use const Foo& in VC10
-    std::function<void(Foo&)> f4 = &Foo::print_num;
-    Foo foo(4);
-    f4(foo);
-    
-    // why it cannot use const Foo& in VC10
-    std::function<void(Foo&, int)> f5 = &Foo::print_add;
-    f5(foo, 1);
+    //// why it cannot use const Foo& in VC10
+    //std::function<void(Foo&)> f4 = &Foo::print_num;
+    //Foo foo(4);
+    //f4(foo);
+    //
+    //// why it cannot use const Foo& in VC10
+    //std::function<void(Foo&, int)> f5 = &Foo::print_add;
+    //f5(foo, 1);
 }
