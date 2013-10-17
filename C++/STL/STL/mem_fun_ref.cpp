@@ -1,4 +1,4 @@
-// mem_fun_ref example
+#include "stdafx.h"
 #include <iostream>
 #include <functional>
 #include <vector>
@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-int main () {
+int mem_fun_refTest () {
   vector<string> numbers;
 
   // populate vector:

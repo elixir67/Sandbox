@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -10,7 +11,7 @@ void output(const std::vector<T> & vec)
     std::cout << std::endl;
 }
 
-int main()
+int TestVector()
 {
     // VC10 doesn't support initialize list
     // std::vector<std::string> words1 {"the", "frought", "is", "also", "cursed"};

@@ -81,11 +81,12 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Algorithm.cpp" />
     <ClCompile Include="Hash.cpp" />
-    <ClCompile Include="Ifstream.cpp" />
     <ClCompile Include="IO.cpp" />
     <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="Lambda.cpp" />
+    <ClCompile Include="mem_fun_ref.cpp" />
     <ClCompile Include="Ptr.cpp" />
     <ClCompile Include="Regex.cpp" />
     <ClCompile Include="RValue.cpp" />
@@ -94,6 +95,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="STL.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

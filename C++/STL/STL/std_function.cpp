@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include <functional>
 #include <iostream>
 
@@ -20,7 +21,7 @@ struct Foo {
     int _num;
 };
 
-int main()
+void FuncTest()
 {
     std::function<void(int)> f1 = print_num;
     f1(1);
