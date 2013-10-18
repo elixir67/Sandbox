@@ -6,14 +6,9 @@
 #include <algorithm>
 #include <ctime>
 #include <numeric>  // for iota
+#include "Utility.h"
 using namespace std;
 
-template<class T>
-void output(const std::vector<T> & vec)
-{
-    std::copy(vec.cbegin(), vec.cend(), std::ostream_iterator<T>(std::cout, " "));
-    std::cout << std::endl;
-}
 
 int TestVectorInit()
 {

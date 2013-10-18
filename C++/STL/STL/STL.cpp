@@ -15,6 +15,7 @@ void RegexTest();
 void IOTest();
 void HashTest();
 void VectorTest();
+void AlgoTest();
 
 struct foo
 {
@@ -85,7 +86,7 @@ void ForwardTest()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    VectorTest();
+    AlgoTest();
 	return 0;
 }
 
