@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Algorithm.cpp" />
+    <ClCompile Include="DataTypeConvert.cpp" />
     <ClCompile Include="Hash.cpp" />
     <ClCompile Include="IO.cpp" />
     <ClCompile Include="Iterator.cpp" />

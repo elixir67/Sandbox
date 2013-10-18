@@ -16,6 +16,7 @@ void IOTest();
 void HashTest();
 void VectorTest();
 void AlgoTest();
+void ConvertTest();
 
 struct foo
 {
@@ -87,6 +88,7 @@ void ForwardTest()
 int _tmain(int argc, _TCHAR* argv[])
 {
     AlgoTest();
+    ConvertTest();
 	return 0;
 }
 

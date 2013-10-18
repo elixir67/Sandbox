@@ -14,6 +14,7 @@
     <ClCompile Include="mem_fun_ref.cpp" />
     <ClCompile Include="Vector.cpp" />
     <ClCompile Include="std_function.cpp" />
+    <ClCompile Include="DataTypeConvert.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
