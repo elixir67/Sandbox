@@ -14,7 +14,9 @@ void RValueTest();
 void RegexTest();
 void IOTest();
 void HashTest();
-void IfstreamTest();
+void VectorTest();
+void AlgoTest();
+void ConvertTest();
 
 struct foo
 {
@@ -85,8 +87,8 @@ void ForwardTest()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	HashTest();
-	IfstreamTest();
+    AlgoTest();
+    ConvertTest();
 	return 0;
 }
 
