@@ -1,5 +1,5 @@
 ﻿using BabyKit.Data;
-
+using BabyKit.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,10 +59,19 @@ namespace BabyKit
             // by passing required information as a navigation parameter
             var groupId = ((SampleDataGroup)e.ClickedItem).UniqueId;
 
-            if (groupId == SampleDataSource.GROUP_DATE)
-                this.Frame.Navigate(typeof(ShowDate), groupId);
-            else
-                this.Frame.Navigate(typeof(SplitPage), groupId);
+            switch(groupId)
+            {
+                case SampleDataSource.GROUP_DATE:
+                    this.Frame.Navigate(typeof(ShowDate), groupId);
+                    break;
+                case SampleDataSource.GROUP_SETTING:
+                    this.Frame.Navigate(typeof(InputInfoPage), groupId);
+                    break;
+                default:
+                    this.Frame.Navigate(typeof(SplitPage), groupId);
+                    break;
+                   
+            }                
         }
     }
 }

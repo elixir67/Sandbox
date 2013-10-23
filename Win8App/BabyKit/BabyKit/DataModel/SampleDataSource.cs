@@ -223,8 +223,8 @@ namespace BabyKit.Data
     /// </summary>
     public sealed class SampleDataSource
     {
-        public static string GROUP_DATE = "Group_Date";
-        public static string GROUP_SETTING = "Group_Setting";
+        public const string GROUP_DATE = "Group_Date";
+        public const string GROUP_SETTING = "Group_Setting";
 
         private static SampleDataSource _sampleDataSource = new SampleDataSource();
 
