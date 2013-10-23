@@ -43,15 +43,18 @@ namespace BabyKit.UI
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             var storageFolder = KnownFolders.DocumentsLibrary;
-            var file = storageFolder.GetFileAsync(BABYINFO_PATH);
-            if (null == file)
-                tbName.Text = "千万别忘记宝宝名字哟";
-            else
+            try
             {
+                var file = storageFolder.GetFileAsync(BABYINFO_PATH);
+
                 babyInfo = await FileHelper.LoadData<BabyInfo>(BABYINFO_PATH);
                 tbName.Text = babyInfo.Name;
                 tbNickname.Text = babyInfo.NickName;
                 tbBirthday.Text = babyInfo.Birthday.ToString();
+            }
+            catch (FileNotFoundException ex)
+            {
+                tbName.Text = "千万别忘记宝宝名字哟";
             }
         }
 
@@ -63,20 +66,17 @@ namespace BabyKit.UI
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void Button_Click_Save(object sender, RoutedEventArgs e)
+        {
             babyInfo.Name = tbName.Text;
             babyInfo.NickName = tbNickname.Text;
             DateTime dt;
             if (DateTime.TryParse(tbBirthday.Text, out dt))
                 babyInfo.Birthday = dt;
             FileHelper.SaveData(BABYINFO_PATH, babyInfo);
-
-            // Add BOM flag in the beginning of the file to output CSV correctly
-            // http://www.haogongju.net/art/1778905
-            //byte[] buffer = System.Text.Encoding.UTF8.GetBytes(content);
-            //byte[] outBuffer = new byte[buffer.Length + 3];
-            //outBuffer[0] = (byte)0xEF; outBuffer[1] = (byte)0xBB; outBuffer[2] = (byte)0xBF; Array.Copy(buffer, 0, outBuffer, 3, buffer.Length);
-
-            //await FileIO.WriteBytesAsync(file, outBuffer);
         }
+
     }
 }
