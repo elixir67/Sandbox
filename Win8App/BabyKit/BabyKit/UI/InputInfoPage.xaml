@@ -52,10 +52,10 @@
             <TextBlock HorizontalAlignment="Right" Grid.Row="1" Margin="0,0,50,0" Text="昵称:" VerticalAlignment="Center" FontSize="50"/>
             <TextBlock HorizontalAlignment="Right" Grid.Row="2" Margin="0,0,50,0" Text="出生日期:" VerticalAlignment="Center" FontSize="50"/>
             <TextBlock HorizontalAlignment="Right" Grid.Row="3" Margin="0,0,50,0" Text="照片:" VerticalAlignment="Center" FontSize="50"/>
-            <TextBox Name="tbName" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="50,0,50,0" Text="" VerticalAlignment="Center" FontSize="50"/>
-            <TextBox Name="tbNickname" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Margin="50,0,50,0" Text="" VerticalAlignment="Center" FontSize="50"/>
-            <TextBox Name="tbBirthday" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" Margin="50,0,50,0" Text="" VerticalAlignment="Center" FontSize="50"/>
-            <TextBox Name="tbPhoto" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1" Margin="50,0,50,0" Text="" VerticalAlignment="Center" FontSize="50"/>
+            <TextBox Name="tbName" HorizontalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Margin="50,0,50,0" Height="70" Text="" VerticalAlignment="Center" FontSize="50"/>
+            <TextBox Name="tbNickname" HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Margin="50,0,50,0" Height="70" Text="" VerticalAlignment="Center" FontSize="50"/>
+            <TextBox Name="tbBirthday" HorizontalAlignment="Stretch" Grid.Row="2" Grid.Column="1" Margin="50,0,50,0" Height="70" Text="" VerticalAlignment="Center" FontSize="50"/>
+            <TextBox Name="tbPhoto" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1" Margin="50,0,50,0" Height="70" Text="" VerticalAlignment="Center" FontSize="50"/>
             <Button Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="Auto" Height="Auto" Content="Save" Click="Button_Click_Save"/>
         </Grid>
 

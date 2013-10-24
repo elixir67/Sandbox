@@ -34,12 +34,22 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageName" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
-        <TextBlock x:Name="tbDays" HorizontalAlignment="Left" Margin="10,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Days" VerticalAlignment="Top" Height="186" Width="1356" FontFamily="Global User Interface" FontSize="160" Foreground="Red" TextAlignment="Center"/>
-        <TextBlock x:Name="tbHours" HorizontalAlignment="Left" Margin="10,191,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Hours" VerticalAlignment="Top" Height="186" Width="1356" FontFamily="Global User Interface" FontSize="160" TextAlignment="Center" Foreground="Red"/>
-        <TextBlock x:Name="tbMinutes" HorizontalAlignment="Left" Margin="10,358,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Minutes" VerticalAlignment="Top" Height="186" Width="1356" FontFamily="Global User Interface" FontSize="160" TextAlignment="Center" Foreground="Red"/>
 
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="tbDays" Grid.Row="0" HorizontalAlignment="Left" Margin="10,0,10,0" TextWrapping="Wrap" Text="Days" VerticalAlignment="Center" Height="186" Width="1356" FontFamily="Global User Interface" FontSize="160" Foreground="Red" TextAlignment="Center"/>
+            <TextBlock x:Name="tbHours" Grid.Row="1"  HorizontalAlignment="Left" Margin="10,0,10,0" TextWrapping="Wrap" Text="Hours" VerticalAlignment="Center" Height="186" Width="1356" FontFamily="Global User Interface" FontSize="160" TextAlignment="Center" Foreground="Red"/>
+            <TextBlock x:Name="tbMinutes" Grid.Row="2" HorizontalAlignment="Left" Margin="10,0,10,0" TextWrapping="Wrap" Text="Minutes" VerticalAlignment="Center" Height="186" Width="1356" FontFamily="Global User Interface" FontSize="160" TextAlignment="Center" Foreground="Red"/>
+            <TextBlock x:Name="tbSeconds" Grid.Row="3" HorizontalAlignment="Left" Margin="10,0,10,0" TextWrapping="Wrap" Text="Seconds" VerticalAlignment="Center" Height="186" Width="1356" FontFamily="Global User Interface" FontSize="160" TextAlignment="Center" Foreground="Red"/>
+
+        </Grid>
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->

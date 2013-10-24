@@ -25,7 +25,6 @@ namespace BabyKit.UI
     public sealed partial class InputInfoPage : BabyKit.Common.LayoutAwarePage
     {
         private BabyInfo babyInfo;
-        private readonly string BABYINFO_PATH = "BabyInfo.json";
         public InputInfoPage()
         {
             this.InitializeComponent();
@@ -42,17 +41,15 @@ namespace BabyKit.UI
         /// session.  This will be null the first time a page is visited.</param>
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            var storageFolder = KnownFolders.DocumentsLibrary;
             try
             {
-                var file = storageFolder.GetFileAsync(BABYINFO_PATH);
+                babyInfo = await BabyManager.Load();
 
-                babyInfo = await FileHelper.LoadData<BabyInfo>(BABYINFO_PATH);
                 tbName.Text = babyInfo.Name;
                 tbNickname.Text = babyInfo.NickName;
                 tbBirthday.Text = babyInfo.Birthday.ToString();
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException)
             {
                 tbName.Text = "千万别忘记宝宝名字哟";
             }
@@ -75,7 +72,7 @@ namespace BabyKit.UI
             DateTime dt;
             if (DateTime.TryParse(tbBirthday.Text, out dt))
                 babyInfo.Birthday = dt;
-            FileHelper.SaveData(BABYINFO_PATH, babyInfo);
+            BabyManager.Save();
         }
 
     }
