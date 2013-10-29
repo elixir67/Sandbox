@@ -21,11 +21,11 @@ namespace BabyKit
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class ShowDate : BabyKit.Common.LayoutAwarePage
+    public sealed partial class ShowDatePage : BabyKit.Common.LayoutAwarePage
     {
         private DispatcherTimer _timer;
         private BabyInfo _baby;
-        public ShowDate()
+        public ShowDatePage()
         {
             this.InitializeComponent();
             //Init();
@@ -37,9 +37,6 @@ namespace BabyKit
             //await BabyManager.Load();
             //_baby = BabyManager.BabyInstance();
             _baby = await BabyManager.Load();
-
-            if (null == _baby)
-                return;
 
             if (string.IsNullOrEmpty(_baby.Name))
             {

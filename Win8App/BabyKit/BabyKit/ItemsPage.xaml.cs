@@ -62,7 +62,7 @@ namespace BabyKit
             switch(groupId)
             {
                 case SampleDataSource.GROUP_DATE:
-                    this.Frame.Navigate(typeof(ShowDate), groupId);
+                    this.Frame.Navigate(typeof(ShowDatePage), groupId);
                     break;
                 case SampleDataSource.GROUP_SETTING:
                     this.Frame.Navigate(typeof(InputInfoPage), groupId);

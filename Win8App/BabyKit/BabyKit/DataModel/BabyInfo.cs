@@ -1,6 +1,7 @@
 ﻿using BabyKit.Utility;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -28,7 +29,7 @@ namespace BabyKit.DataModel
     {
         private static readonly string BABYINFO_PATH = "BabyInfo.json";
 
-        internal static BabyInfo _baby;
+        internal static BabyInfo _baby = new BabyInfo();
 
         // TODO implement the singletion
         //public static BabyInfo BabyInstance()
@@ -51,7 +52,11 @@ namespace BabyKit.DataModel
             }
             catch (FileNotFoundException)
             {
-                return null;
+                //return null;
+            }
+            catch (Exception ex)
+            {
+                Debug.Assert(false, ex.Message);
             }
             return _baby;
         }

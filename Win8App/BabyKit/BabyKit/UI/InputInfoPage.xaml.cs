@@ -24,7 +24,7 @@ namespace BabyKit.UI
     /// </summary>
     public sealed partial class InputInfoPage : BabyKit.Common.LayoutAwarePage
     {
-        private BabyInfo babyInfo;
+        private BabyInfo _baby;
         public InputInfoPage()
         {
             this.InitializeComponent();
@@ -41,18 +41,16 @@ namespace BabyKit.UI
         /// session.  This will be null the first time a page is visited.</param>
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            try
-            {
-                babyInfo = await BabyManager.Load();
+            _baby = await BabyManager.Load();
 
-                tbName.Text = babyInfo.Name;
-                tbNickname.Text = babyInfo.NickName;
-                tbBirthday.Text = babyInfo.Birthday.ToString();
-            }
-            catch (FileNotFoundException)
+            if (!string.IsNullOrWhiteSpace(_baby.Name))
             {
-                tbName.Text = "千万别忘记宝宝名字哟";
+                tbName.Text = _baby.Name;
+                tbNickname.Text = _baby.NickName;
+                tbBirthday.Text = _baby.Birthday.ToString();
             }
+            else
+                tbName.Text = "千万别忘记宝宝名字哟";
         }
 
         /// <summary>
@@ -67,12 +65,15 @@ namespace BabyKit.UI
 
         private void Button_Click_Save(object sender, RoutedEventArgs e)
         {
-            babyInfo.Name = tbName.Text;
-            babyInfo.NickName = tbNickname.Text;
+            _baby.Name = tbName.Text;
+            _baby.NickName = tbNickname.Text;
             DateTime dt;
             if (DateTime.TryParse(tbBirthday.Text, out dt))
-                babyInfo.Birthday = dt;
+                _baby.Birthday = dt;
             BabyManager.Save();
+
+            // save and go back
+            this.Frame.GoBack();
         }
 
     }

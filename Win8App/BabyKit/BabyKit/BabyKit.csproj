@@ -110,7 +110,7 @@
     <Compile Include="ItemsPage.xaml.cs">
       <DependentUpon>ItemsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ShowDatePage.xaml.cs">
+    <Compile Include="UI\ShowDatePage.xaml.cs">
       <DependentUpon>ShowDatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SplitPage.xaml.cs">
@@ -159,7 +159,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ShowDatePage.xaml">
+    <Page Include="UI\ShowDatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
