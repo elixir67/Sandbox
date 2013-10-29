@@ -7,6 +7,9 @@
     xmlns:local="using:BabyKit.UI"
     xmlns:common="using:BabyKit.Common"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    xmlns:Series="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+    xmlns:datavis="using:WinRTXamlToolkit.Controls.DataVisualization"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -43,21 +46,35 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <TextBlock Text="选择日期" FontSize="50"/>
+                <TextBlock Text="选择日期" Margin="10" FontSize="50"/>
                 <controls:Calendar
-            Grid.Column="1"
-            Grid.Row="1"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center" />
-            <TextBlock Text="输入体重（kg）" FontSize="50"/>
-            <controls:NumericUpDown
-            Width="200"
-            Value="8"
-            Minimum="3"
-            Maximum="100"
-            SmallChange="0.1"
-            LargeChange="10" />
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center" />
+                <TextBlock Text="输入体重（kg）" Margin="10" FontSize="50"/>
+                <controls:NumericUpDown
+                    Width="200"
+                    Margin="10" 
+                    Value="8"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" 
+                    Minimum="3"
+                    Maximum="100"
+                    SmallChange="0.1"
+                    LargeChange="10" />
+                <Button Content="保存记录" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Height="Auto" Click="Button_Click_SaveWeightRecord"/>
             </StackPanel>
+            <charting:Chart
+                Grid.Column="1"
+                x:Name="LineChartWithAxes"
+                Title="体重增长图"
+                Margin="70,0">
+                <charting:LineSeries
+                    Title="体重"
+                    IndependentValueBinding="{Binding Name}"
+                    DependentValueBinding="{Binding Value}"
+                    IsSelectionEnabled="True" />
+            </charting:Chart>
         </Grid>
         <VisualStateManager.VisualStateGroups>
 

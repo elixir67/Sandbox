@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using WinRTXamlToolkit.Controls.DataVisualization.Charting;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -51,6 +52,7 @@ namespace BabyKit.UI
             {
                 string title = string.Format("{0}的体重是:", _baby.NickName);
                 this.pageTitle.Text = title;
+                UpdateCharts();
             }
         }
 
@@ -62,6 +64,38 @@ namespace BabyKit.UI
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void UpdateCharts()
+        {
+            List<NameValueItem> items = new List<NameValueItem>();
+            items.Add(new NameValueItem { Name = "2013-06-30", Value = 3.5 });
+            items.Add(new NameValueItem { Name = "2013-08-01", Value = 4.5 });//?TODO
+            items.Add(new NameValueItem { Name = "2013-09-01", Value = 6.0 });//?TODO
+            items.Add(new NameValueItem { Name = "2013-10-14", Value = 8.0 });
+            items.Add(new NameValueItem { Name = "2013-10-28", Value = 8.7 });
+
+            ((LineSeries)LineChartWithAxes.Series[0]).ItemsSource = items;
+            //((LineSeries)LineChartWithAxes.Series[0]).DependentRangeAxis =
+            //    new LinearAxis
+            //    {
+            //        Minimum = 0,
+            //        Maximum = 100,
+            //        Orientation = AxisOrientation.Y,
+            //        Interval = 1,
+            //        ShowGridLines = true
+            //    };
+        }
+
+        public class NameValueItem
+        {
+            public string Name { get; set; }
+            public double Value { get; set; }
+        }
+
+        private void Button_Click_SaveWeightRecord(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
