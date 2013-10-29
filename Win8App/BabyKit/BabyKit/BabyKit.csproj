@@ -127,9 +127,9 @@
     <Compile Include="UI\InputInfoPage.xaml.cs">
       <DependentUpon>InputInfoPage.xaml</DependentUpon>
     </Compile>
-    <None Include="UI\WeightPage.xaml.cs">
+    <Compile Include="UI\WeightPage.xaml.cs">
       <DependentUpon>WeightPage.xaml</DependentUpon>
-    </None>
+    </Compile>
     <Compile Include="UI\ZodiacPage.xaml.cs">
       <DependentUpon>ZodiacPage.xaml</DependentUpon>
     </Compile>
@@ -181,14 +181,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <None Include="UI\WeightPage.xaml">
+    <Page Include="UI\WeightPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </None>
+    </Page>
     <Page Include="UI\ZodiacPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="WinRTXamlToolkit">
+      <HintPath>3rdParty\Release\WinRTXamlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit.Controls.Calendar">
+      <HintPath>3rdParty\Release\WinRTXamlToolkit.Controls.Calendar.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit.Controls.DataVisualization">
+      <HintPath>3rdParty\Release\WinRTXamlToolkit.Controls.DataVisualization.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

@@ -74,7 +74,7 @@ namespace BabyKit
                     this.Frame.Navigate(typeof(ZodiacPage), groupId);
                     break;
                 case SampleDataSource.GROUP_WEIGHT:
-                    //this.Frame.Navigate(typeof(WeightPage), groupId);
+                    this.Frame.Navigate(typeof(WeightPage), groupId);
                     break;
                 default:
                     this.Frame.Navigate(typeof(SplitPage), groupId);
