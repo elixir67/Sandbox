@@ -38,6 +38,9 @@ namespace BabyKit
             //_baby = BabyManager.BabyInstance();
             _baby = await BabyManager.Load();
 
+            if (null == _baby)
+                return;
+
             if (string.IsNullOrEmpty(_baby.Name))
             {
                 this.pageName.Text = "请输入宝宝信息";

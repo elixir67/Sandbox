@@ -1,6 +1,7 @@
 ﻿using BabyKit.Utility;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -43,9 +44,15 @@ namespace BabyKit.DataModel
         {
             var storageFolder = KnownFolders.DocumentsLibrary;
 
-            var file = storageFolder.GetFileAsync(BABYINFO_PATH);
-
-            _baby = await FileHelper.LoadData<BabyInfo>(BABYINFO_PATH);
+            try
+            {
+                var file = storageFolder.GetFileAsync(BABYINFO_PATH);
+                _baby = await FileHelper.LoadData<BabyInfo>(BABYINFO_PATH);
+            }
+            catch (FileNotFoundException)
+            {
+                return null;
+            }
             return _baby;
         }
 
