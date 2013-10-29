@@ -67,6 +67,15 @@ namespace BabyKit
                 case SampleDataSource.GROUP_SETTING:
                     this.Frame.Navigate(typeof(InputInfoPage), groupId);
                     break;
+                case SampleDataSource.GROUP_CONSTELLATION:
+                    this.Frame.Navigate(typeof(ConstellationPage), groupId);
+                    break;
+                case SampleDataSource.GROUP_ZODIAC:
+                    this.Frame.Navigate(typeof(ZodiacPage), groupId);
+                    break;
+                case SampleDataSource.GROUP_WEIGHT:
+                    //this.Frame.Navigate(typeof(WeightPage), groupId);
+                    break;
                 default:
                     this.Frame.Navigate(typeof(SplitPage), groupId);
                     break;

@@ -4,18 +4,22 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8BB20DE6-5D57-45F4-B584-3D36DA5E8F89}</ProjectGuid>
-    <OutputType>AppContainerExe</OutputType>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{742397B6-DDD3-4620-88B6-339F41D9BD41}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BabyKit</RootNamespace>
-    <AssemblyName>BabyKit</AssemblyName>
+    <RootNamespace>WinRTXamlToolkit</RootNamespace>
+    <AssemblyName>WinRTXamlToolkit.Controls.Calendar</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>BabyKit_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +29,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -100,100 +103,114 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Common\DateTimeExtensions.cs">
+      <Link>Common\DateTimeExtensions.cs</Link>
     </Compile>
-    <Compile Include="DataModel\BabyInfo.cs" />
-    <Compile Include="ItemsPage.xaml.cs">
-      <DependentUpon>ItemsPage.xaml</DependentUpon>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\Calendar.cs">
+      <Link>Controls\Calendar\Calendar.cs</Link>
     </Compile>
-    <Compile Include="UI\ConstellationPage.xaml.cs">
-      <DependentUpon>ConstellationPage.xaml</DependentUpon>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarAutomationPeer.cs">
+      <Link>Controls\Calendar\CalendarAutomationPeer.cs</Link>
     </Compile>
-    <Compile Include="UI\ShowDatePage.xaml.cs">
-      <DependentUpon>ShowDatePage.xaml</DependentUpon>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarBlackoutDatesCollection.cs">
+      <Link>Controls\Calendar\CalendarBlackoutDatesCollection.cs</Link>
     </Compile>
-    <Compile Include="SplitPage.xaml.cs">
-      <DependentUpon>SplitPage.xaml</DependentUpon>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarButton.cs">
+      <Link>Controls\Calendar\CalendarButton.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataModel\SampleDataSource.cs" />
-    <Compile Include="Common\BindableBase.cs" />
-    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Common\BooleanNegationConverter.cs" />
-    <Compile Include="Common\LayoutAwarePage.cs" />
-    <Compile Include="Common\RichTextColumns.cs" />
-    <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="UI\InputInfoPage.xaml.cs">
-      <DependentUpon>InputInfoPage.xaml</DependentUpon>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarButtonAutomationPeer.cs">
+      <Link>Controls\Calendar\CalendarButtonAutomationPeer.cs</Link>
     </Compile>
-    <None Include="UI\WeightPage.xaml.cs">
-      <DependentUpon>WeightPage.xaml</DependentUpon>
-    </None>
-    <Compile Include="UI\ZodiacPage.xaml.cs">
-      <DependentUpon>ZodiacPage.xaml</DependentUpon>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarDateChangedEventArgs.cs">
+      <Link>Controls\Calendar\CalendarDateChangedEventArgs.cs</Link>
     </Compile>
-    <Compile Include="Utility\JsonHelper.cs" />
-    <Compile Include="Utility\FileHelper.cs" />
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarDateRange.cs">
+      <Link>Controls\Calendar\CalendarDateRange.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarDayButton.cs">
+      <Link>Controls\Calendar\CalendarDayButton.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarDayButtonAutomationPeer.cs">
+      <Link>Controls\Calendar\CalendarDayButtonAutomationPeer.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarExtensions.cs">
+      <Link>Controls\Calendar\CalendarExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarItem.cs">
+      <Link>Controls\Calendar\CalendarItem.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarMode.cs">
+      <Link>Controls\Calendar\CalendarMode.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarModeChangedEventArgs.cs">
+      <Link>Controls\Calendar\CalendarModeChangedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarSelectionMode.cs">
+      <Link>Controls\Calendar\CalendarSelectionMode.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\DateTimeHelper.cs">
+      <Link>Controls\Calendar\DateTimeHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\DateTimeTypeConverter.cs">
+      <Link>Controls\Calendar\DateTimeTypeConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\Properties.cs">
+      <Link>Controls\Calendar\Properties.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\SelectedDatesCollection.cs">
+      <Link>Controls\Calendar\SelectedDatesCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Common\InteractionHelper.cs">
+      <Link>Controls\Common\InteractionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Common\IUpdateVisualState.cs">
+      <Link>Controls\Common\IUpdateVisualState.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Common\VisualStates.cs">
+      <Link>Controls\Common\VisualStates.cs</Link>
+    </Compile>
+    <Compile Include="..\WinRTXamlToolkit.Controls.Calendar\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest">
+    <Page Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\Calendar.xaml">
+      <Link>Controls\Calendar\Calendar.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </AppxManifest>
-    <None Include="Common\ReadMe.txt" />
-    <None Include="BabyKit_TemporaryKey.pfx" />
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Logo.png" />
-    <Content Include="Assets\SmallLogo.png" />
-    <Content Include="Assets\SplashScreen.png" />
-    <Content Include="Assets\StoreLogo.png" />
-    <Content Include="Assets\LightGray.png" />
-    <Content Include="Assets\MediumGray.png" />
-    <Content Include="Assets\DarkGray.png" />
+    <Page Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarButton.xaml">
+      <Link>Controls\Calendar\CalendarButton.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="Common\StandardStyles.xaml">
+    <Page Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarDayButton.xaml">
+      <Link>Controls\Calendar\CalendarDayButton.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ItemsPage.xaml">
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarItem.xaml">
+      <Link>Controls\Calendar\CalendarItem.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\ConstellationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\ShowDatePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SplitPage.xaml">
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="..\WinRTXamlToolkit.Controls.Calendar\Themes\Generic.xaml">
+      <Link>Themes\Generic.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\InputInfoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <None Include="UI\WeightPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <Page Include="UI\ZodiacPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
-  <PropertyGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
