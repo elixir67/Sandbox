@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabyKit", "BabyKit\BabyKit.csproj", "{8BB20DE6-5D57-45F4-B584-3D36DA5E8F89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit 8.0", "BabyKit\3rdParty\WinRTXamlToolkit 8.0\WinRTXamlToolkit 8.0.csproj", "{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRTXamlToolkit.Controls.Calendar 8.0", "BabyKit\3rdParty\WinRTXamlToolkit.Controls.Calendar 8.0\WinRTXamlToolkit.Controls.Calendar 8.0.csproj", "{742397B6-DDD3-4620-88B6-339F41D9BD41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,38 @@ Global
 		{8BB20DE6-5D57-45F4-B584-3D36DA5E8F89}.Release|x86.ActiveCfg = Release|x86
 		{8BB20DE6-5D57-45F4-B584-3D36DA5E8F89}.Release|x86.Build.0 = Release|x86
 		{8BB20DE6-5D57-45F4-B584-3D36DA5E8F89}.Release|x86.Deploy.0 = Release|x86
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Debug|ARM.ActiveCfg = Debug|ARM
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Debug|ARM.Build.0 = Debug|ARM
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Debug|x64.ActiveCfg = Debug|x64
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Debug|x64.Build.0 = Debug|x64
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Debug|x86.ActiveCfg = Debug|x86
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Debug|x86.Build.0 = Debug|x86
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Release|ARM.ActiveCfg = Release|ARM
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Release|ARM.Build.0 = Release|ARM
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Release|x64.ActiveCfg = Release|x64
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Release|x64.Build.0 = Release|x64
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Release|x86.ActiveCfg = Release|x86
+		{FCD0FA8F-ACB5-4C55-B3D5-6FF982F44AC9}.Release|x86.Build.0 = Release|x86
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Debug|ARM.ActiveCfg = Debug|ARM
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Debug|ARM.Build.0 = Debug|ARM
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Debug|x64.ActiveCfg = Debug|x64
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Debug|x64.Build.0 = Debug|x64
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Debug|x86.ActiveCfg = Debug|x86
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Debug|x86.Build.0 = Debug|x86
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Release|ARM.ActiveCfg = Release|ARM
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Release|ARM.Build.0 = Release|ARM
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Release|x64.ActiveCfg = Release|x64
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Release|x64.Build.0 = Release|x64
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Release|x86.ActiveCfg = Release|x86
+		{742397B6-DDD3-4620-88B6-339F41D9BD41}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

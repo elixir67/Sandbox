@@ -24,6 +24,7 @@ namespace BabyKit.UI
     public sealed partial class WeightPage : BabyKit.Common.LayoutAwarePage
     {
         private BabyInfo _baby;
+        private List<Record> _weights;
 
         public WeightPage()
         {
@@ -42,6 +43,7 @@ namespace BabyKit.UI
         protected override async void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             _baby = await BabyManager.Load();
+            _weights = await WeightManager.Load();
 
             if (string.IsNullOrEmpty(_baby.Name))
             {
@@ -52,6 +54,16 @@ namespace BabyKit.UI
             {
                 string title = string.Format("{0}的体重是:", _baby.NickName);
                 this.pageTitle.Text = title;
+            }
+
+            if (0 == _weights.Count)
+            {
+                //_weights = MockWeights();
+            }
+
+            if (_weights.Count > 0)
+            {
+                listWeight.ItemsSource = _weights;
                 UpdateCharts();
             }
         }
@@ -64,18 +76,12 @@ namespace BabyKit.UI
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+            WeightManager.Save();
         }
 
         private void UpdateCharts()
         {
-            List<NameValueItem> items = new List<NameValueItem>();
-            items.Add(new NameValueItem { Name = "2013-06-30", Value = 3.5 });
-            items.Add(new NameValueItem { Name = "2013-08-01", Value = 4.5 });//?TODO
-            items.Add(new NameValueItem { Name = "2013-09-01", Value = 6.0 });//?TODO
-            items.Add(new NameValueItem { Name = "2013-10-14", Value = 8.0 });
-            items.Add(new NameValueItem { Name = "2013-10-28", Value = 8.7 });
-
-            ((LineSeries)LineChartWithAxes.Series[0]).ItemsSource = items;
+            ((LineSeries)LineChartWithAxes.Series[0]).ItemsSource = _weights;
             //((LineSeries)LineChartWithAxes.Series[0]).DependentRangeAxis =
             //    new LinearAxis
             //    {
@@ -87,6 +93,17 @@ namespace BabyKit.UI
             //    };
         }
 
+        private static List<Record> MockWeights()
+        {
+            List<Record> items = new List<Record>();
+            items.Add(new Record { Date = DateTime.Parse("2013-06-30"), Value = 3.5 });
+            items.Add(new Record { Date = DateTime.Parse("2013-08-01"), Value = 4.5 });//?TODO
+            items.Add(new Record { Date = DateTime.Parse("2013-09-01"), Value = 6.0 });//?TODO
+            items.Add(new Record { Date = DateTime.Parse("2013-10-14"), Value = 8.0 });
+            items.Add(new Record { Date = DateTime.Parse("2013-10-28"), Value = 8.7 });
+            return items;
+        }
+
         public class NameValueItem
         {
             public string Name { get; set; }
@@ -95,7 +112,17 @@ namespace BabyKit.UI
 
         private void Button_Click_SaveWeightRecord(object sender, RoutedEventArgs e)
         {
+            DateTime dt = calendar.DisplayDate;
+            double value = numWeight.Value;
+            _weights.Add(new Record { Date = dt, Value = value });
+        }
 
+        private void Button_Click_RemoveWeightRecord(object sender, RoutedEventArgs e)
+        {
+            Record record = this.listWeight.SelectedItem as Record;
+            _weights.Remove(record);
         }
     }
+
+    // TODO Record Converter
 }
