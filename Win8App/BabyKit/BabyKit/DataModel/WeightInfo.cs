@@ -1,6 +1,7 @@
 ﻿using BabyKit.Utility;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -31,15 +32,15 @@ namespace BabyKit.DataModel
     {
         private static readonly string WEIGHTINFO_PATH = "WeightInfo.json";
 
-        internal static List<Record> _records = new List<Record>();
+        internal static ObservableCollection<Record> _records = new ObservableCollection<Record>();
 
-        public static async Task<List<Record>> Load()
+        public static async Task<ObservableCollection<Record>> Load()
         {
             var storageFolder = KnownFolders.DocumentsLibrary;
 
             try
             {
-                _records = await FileHelper.LoadData<List<Record>>(WEIGHTINFO_PATH);
+                _records = await FileHelper.LoadData<ObservableCollection<Record>>(WEIGHTINFO_PATH);
             }
             catch (FileNotFoundException)
             {

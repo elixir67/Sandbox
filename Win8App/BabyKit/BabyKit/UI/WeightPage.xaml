@@ -68,8 +68,8 @@
                 <Button Content="保存记录" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="Auto" Height="Auto" Click="Button_Click_SaveWeightRecord"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
-                <ListView x:Name="listWeight" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto"/>
                 <Button Content="删除记录" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="Auto" Height="Auto" Click="Button_Click_RemoveWeightRecord"/>
+                <ListView x:Name="listWeight" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto"/>
             </StackPanel>
             <charting:Chart
                 Grid.Column="2"

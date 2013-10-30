@@ -1,6 +1,7 @@
 ﻿using BabyKit.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -24,7 +25,7 @@ namespace BabyKit.UI
     public sealed partial class WeightPage : BabyKit.Common.LayoutAwarePage
     {
         private BabyInfo _baby;
-        private List<Record> _weights;
+        private ObservableCollection<Record> _weights;
 
         public WeightPage()
         {
@@ -58,7 +59,7 @@ namespace BabyKit.UI
 
             if (0 == _weights.Count)
             {
-                //_weights = MockWeights();
+                _weights = MockWeights();
             }
 
             if (_weights.Count > 0)
@@ -93,12 +94,12 @@ namespace BabyKit.UI
             //    };
         }
 
-        private static List<Record> MockWeights()
+        private static ObservableCollection<Record> MockWeights()
         {
-            List<Record> items = new List<Record>();
+            ObservableCollection<Record> items = new ObservableCollection<Record>();
             items.Add(new Record { Date = DateTime.Parse("2013-06-30"), Value = 3.5 });
-            items.Add(new Record { Date = DateTime.Parse("2013-08-01"), Value = 4.5 });//?TODO
-            items.Add(new Record { Date = DateTime.Parse("2013-09-01"), Value = 6.0 });//?TODO
+            items.Add(new Record { Date = DateTime.Parse("2013-08-01"), Value = 4.0 });//?TODO
+            items.Add(new Record { Date = DateTime.Parse("2013-09-01"), Value = 5.5 });//?TODO
             items.Add(new Record { Date = DateTime.Parse("2013-10-14"), Value = 8.0 });
             items.Add(new Record { Date = DateTime.Parse("2013-10-28"), Value = 8.7 });
             return items;
@@ -112,9 +113,12 @@ namespace BabyKit.UI
 
         private void Button_Click_SaveWeightRecord(object sender, RoutedEventArgs e)
         {
-            DateTime dt = calendar.DisplayDate;
-            double value = numWeight.Value;
-            _weights.Add(new Record { Date = dt, Value = value });
+            DateTime? dt = calendar.SelectedDate;
+            if (dt.HasValue)
+            {
+                double value = numWeight.Value;
+                _weights.Add(new Record { Date = dt.Value, Value = value });
+            }
         }
 
         private void Button_Click_RemoveWeightRecord(object sender, RoutedEventArgs e)
