@@ -15,9 +15,10 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="BabyKit.App">
-      <VisualElements DisplayName="BabyKit" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="BabyKit" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+      <VisualElements DisplayName="BabyKit" Logo="Assets\Logo.jpg" SmallLogo="Assets\SmallLogo.png" Description="BabyKit" ForegroundText="light" BackgroundColor="#464646">
+        <LockScreen Notification="badgeAndTileText" BadgeLogo="Assets\badge.png" />
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.jpg" />
+        <SplashScreen Image="Assets\SplashScreen.jpg" />
       </VisualElements>
       <Extensions>
         <Extension Category="windows.fileTypeAssociation">
@@ -26,6 +27,11 @@
               <FileType>.json</FileType>
             </SupportedFileTypes>
           </FileTypeAssociation>
+        </Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundTasks.TileUpdater">
+          <BackgroundTasks>
+            <Task Type="timer" />
+          </BackgroundTasks>
         </Extension>
       </Extensions>
     </Application>
