@@ -228,6 +228,7 @@ namespace BabyKit.Data
         public const string GROUP_WEIGHT = "Group_Weight";
         public const string GROUP_CONSTELLATION = "Group_Constellation";//星座
         public const string GROUP_ZODIAC = "Group_Zodiac";  //生肖
+        public const string GROUP_HISTORY = "Group_History";  //历史上同一天
 
         private static SampleDataSource _sampleDataSource = new SampleDataSource();
 
@@ -299,6 +300,13 @@ namespace BabyKit.Data
                             "Assets/DarkGray.png",
                             "baby生肖信息");
             this.AllGroups.Add(groupZodiac);
+
+            var groupHistory = new SampleDataGroup(GROUP_HISTORY,
+                            "历史上同一天",
+                            "显示同一天名人大事",
+                            "Assets/DarkGray.png",
+                            "同一天名人大事记");
+            this.AllGroups.Add(groupHistory);
 
             var group1 = new SampleDataGroup("Group-1",
                     "Group Title: 1",

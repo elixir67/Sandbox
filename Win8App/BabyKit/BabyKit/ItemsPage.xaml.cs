@@ -76,6 +76,15 @@ namespace BabyKit
                 case SampleDataSource.GROUP_WEIGHT:
                     this.Frame.Navigate(typeof(WeightPage), groupId);
                     break;
+                case SampleDataSource.GROUP_HISTORY:
+                    {
+                        string uriToLaunch = "http://zh.wikipedia.org/wiki/06%E6%9C%8830%E6%97%A5";//TODO
+                        var uri = new Uri(uriToLaunch);
+
+                        // Launch the URI
+                        Windows.System.Launcher.LaunchUriAsync(uri);
+                    }
+                    break;
                 default:
                     this.Frame.Navigate(typeof(SplitPage), groupId);
                     break;
