@@ -49,32 +49,36 @@ namespace BabyKit
         }
 
         private const string TASK_NAME = "TileUpdater"; 
-        private const string TASK_ENTRY = "BackgroundTasks.TileUpdater"; 
+        private const string TASK_ENTRY = "BackgroundTasks.TileUpdater";
 
-        ///// <summary> 
-        ///// Invoked when this page is about to be displayed in a Frame. 
-        ///// </summary> 
-        ///// <param name="e">Event data that describes how this page was reached.  The Parameter 
-        ///// property is typically used to configure the page.</param> 
-        //protected async override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-        //    var result = await BackgroundExecutionManager.RequestAccessAsync();
-        //    if (result == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
-        //        result == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity)
-        //    {
-        //        foreach (var task in BackgroundTaskRegistration.AllTasks)
-        //        {
-        //            if (task.Value.Name == TASK_NAME)
-        //                task.Value.Unregister(true);
-        //        }
+        /// <summary> 
+        /// Invoked when this page is about to be displayed in a Frame. 
+        /// </summary> 
+        /// <param name="e">Event data that describes how this page was reached.  The Parameter 
+        /// property is typically used to configure the page.</param> 
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (BackgroundExecutionManager.GetAccessStatus() == BackgroundAccessStatus.Unspecified)
+            {
+                var result = await BackgroundExecutionManager.RequestAccessAsync();
+                if (result == BackgroundAccessStatus.AllowedMayUseActiveRealTimeConnectivity ||
+                    result == BackgroundAccessStatus.AllowedWithAlwaysOnRealTimeConnectivity)
+                {
+                    foreach (var task in BackgroundTaskRegistration.AllTasks)
+                    {
+                        if (task.Value.Name == TASK_NAME)
+                            task.Value.Unregister(true);
+                    }
 
-        //        BackgroundTaskBuilder builder = new BackgroundTaskBuilder();
-        //        builder.Name = TASK_NAME;
-        //        builder.TaskEntryPoint = TASK_ENTRY;
-        //        builder.SetTrigger(new TimeTrigger(15, false));
-        //        var registration = builder.Register();
-        //    }
-        //}
+                    BackgroundTaskBuilder builder = new BackgroundTaskBuilder();
+                    builder.Name = TASK_NAME;
+                    builder.TaskEntryPoint = TASK_ENTRY;
+                    builder.SetTrigger(new TimeTrigger(15, false));
+                    var registration = builder.Register();
+                }
+            }
+        }
 
         /// <summary>
         /// Invoked when an item is clicked.
