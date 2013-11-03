@@ -104,6 +104,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModel\BabyInfo.cs" />
+    <Compile Include="DataModel\ConstellationInfo.cs" />
     <Compile Include="DataModel\WeightInfo.cs" />
     <Compile Include="ItemsPage.xaml.cs">
       <DependentUpon>ItemsPage.xaml</DependentUpon>
@@ -141,11 +142,15 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\Constellation\巨蟹座.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Common\ReadMe.txt" />
     <None Include="BabyKit_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\badge.png" />
+    <Content Include="Assets\Constellation\巨蟹座.jpg" />
     <Content Include="Assets\Logo.jpg" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />

@@ -5,15 +5,24 @@ using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 
 namespace BabyKit.Utility
 {
     class FileHelper
     {
-        public static async Task<string> ReadFile(string filename)
+        public static async Task<string> ReadFile(string filename, string folderPath="DataCache", bool isInstallationFolder = false)
         {
-            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            var folder = await localFolder.GetFolderAsync("DataCache");
+            StorageFolder localFolder;
+            if(isInstallationFolder)
+                localFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            else
+                localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+                
+            var folder = await localFolder.GetFolderAsync(folderPath);
+
+            //var folder = await installFolder.GetFolderAsync("Assets/Constellation");
+
             var file = await folder.GetFileAsync(filename);
             var fs = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
             var inStream = fs.GetInputStreamAt(0);
@@ -38,17 +47,6 @@ namespace BabyKit.Utility
             await outStream.FlushAsync();
         }
 
-        public static void SaveData(string filename, object objectGraph, bool overwriteIfNull = true)
-        {
-            string json = null;
-            if (objectGraph != null)
-                json = SerializeObjectGraph(objectGraph);
-            if (json != null || overwriteIfNull)
-            {
-                WriteFile(filename, json);
-            }
-        }
-
         private static string SerializeObjectGraph(object graph)
         {
             if (graph == null) return null;
@@ -59,13 +57,24 @@ namespace BabyKit.Utility
             return UTF8Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
 
-        public static async Task<T> LoadData<T>(string filename)
+        public static async Task<T> LoadData<T>(string filename, string folderPath = "DataCache", bool isInstallationFolder = false)
         {
-            var json = await ReadFile(filename);
+            var json = await ReadFile(filename, folderPath, isInstallationFolder);
             MemoryStream ms = new MemoryStream(UTF8Encoding.UTF8.GetBytes(json));
             DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(T));
             T result = (T)ser.ReadObject(ms);
             return result;
+        }
+
+        public static void SaveData(string filename, object objectGraph, bool overwriteIfNull = true)
+        {
+            string json = null;
+            if (objectGraph != null)
+                json = SerializeObjectGraph(objectGraph);
+            if (json != null || overwriteIfNull)
+            {
+                WriteFile(filename, json);
+            }
         }
     }
 }

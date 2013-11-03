@@ -1,6 +1,8 @@
 ﻿using BabyKit.DataModel;
+using BabyKit.Utility;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -11,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -49,9 +52,15 @@ namespace BabyKit.UI
             }
             else
             {
-                string constellation = GetAtomFromBirthday(_baby.Birthday);
+                ConstellationType type = GetConstellationType(_baby.Birthday);
+                string constellation = GetConstellationName(type);
                 string title = string.Format("{0}的星座是{1}",_baby.NickName, constellation);
                 this.pageTitle.Text = title;
+                BitmapImage image = new BitmapImage(new Uri(@"ms-appx:/Assets/Constellation/巨蟹座.jpg"));
+                this.image.Source = image;
+
+                ConstellationInfo info = await FileHelper.LoadData<ConstellationInfo>("巨蟹座.json","Assets\\Constellation",true);
+                this.description.Text = info.Description;
             }
         }
 
@@ -65,32 +74,56 @@ namespace BabyKit.UI
         {
         }
 
-        public string GetAtomFromBirthday(DateTime birthday)
+        public static ConstellationType GetConstellationType(DateTime birthday)
+        {
+            float birthdayF = 0.00F;
+
+            if (birthday.Month == 1 && birthday.Day < 20)
+            {
+                birthdayF = float.Parse(string.Format("13.{0}", birthday.Day));
+            }
+            else
+            {
+                birthdayF = float.Parse(string.Format("{0}.{1}", birthday.Month, birthday.Day));
+            }
+            float[] atomBound = { 1.20F, 2.20F, 3.21F, 4.21F, 5.21F, 6.22F, 7.23F, 8.23F, 9.23F, 10.23F, 11.21F, 12.22F, 13.20F };
+
+            //string ret = "靠！外星人啊。";
+            ConstellationType type = ConstellationType.Invalid;
+            for (int i = 0; i < atomBound.Length - 1; i++)
+            {
+                if (atomBound[i] <= birthdayF && atomBound[i + 1] > birthdayF)
+                {
+                    type = (ConstellationType)i;
+                    break;
+                }
+            }
+            Debug.Assert(type != ConstellationType.Invalid);
+            return type;
+        }
+
+        public string GetConstellationName(ConstellationType type)
 	    {
-	        float birthdayF = 0.00F;
-	
-	        if (birthday.Month == 1 && birthday.Day < 20)
-	        {
-	            birthdayF = float.Parse(string.Format("13.{0}", birthday.Day));
-	        }
-	        else
-	        {
-	            birthdayF = float.Parse(string.Format("{0}.{1}", birthday.Month, birthday.Day));
-	        }
-	        float[] atomBound ={ 1.20F, 2.20F, 3.21F, 4.21F, 5.21F, 6.22F, 7.23F, 8.23F, 9.23F, 10.23F, 11.21F, 12.22F, 13.20F };
-	        string[] atoms = { "水瓶座", "双鱼座", "白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "魔羯座" };
-	
-	        string ret = "靠！外星人啊。";
-	        for (int i = 0; i < atomBound.Length - 1; i++)
-	        {
-	            if (atomBound[i] <= birthdayF && atomBound[i + 1] > birthdayF)
-	            {
-	                ret = atoms[i];
-	                break;
-	            }
-	        }
-	        return ret;
+            string[] atoms = { "水瓶座", "双鱼座", "白羊座", "金牛座", "双子座", "巨蟹座", "狮子座", "处女座", "天秤座", "天蝎座", "射手座", "魔羯座" };
+            return atoms[(int)type];
 	    } 
 
+    }
+
+    public enum ConstellationType
+    {
+        Aquarius = 0,   //水瓶座
+        Pisces,         //双鱼座
+        Aries,          //白羊座
+        Taurus,         //金牛座
+        Gemini,         //双子座
+        Cancer,         //巨蟹座
+        Leo,            //狮子座
+        Virgo,          //处女座
+        Libra,          //天平座
+        Scorpio,        //天蝎座
+        Sagittarius,    //射手座
+        Capricom,       //山羊座，魔蝎座
+        Invalid
     }
 }

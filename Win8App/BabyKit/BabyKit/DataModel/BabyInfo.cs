@@ -47,7 +47,6 @@ namespace BabyKit.DataModel
 
             try
             {
-                var file = storageFolder.GetFileAsync(BABYINFO_PATH);
                 _baby = await FileHelper.LoadData<BabyInfo>(BABYINFO_PATH);
             }
             catch (FileNotFoundException)
