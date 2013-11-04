@@ -56,10 +56,13 @@ namespace BabyKit.UI
                 string constellation = GetConstellationName(type);
                 string title = string.Format("{0}的星座是{1}",_baby.NickName, constellation);
                 this.pageTitle.Text = title;
-                BitmapImage image = new BitmapImage(new Uri(@"ms-appx:/Assets/Constellation/巨蟹座.jpg"));
+                //BitmapImage image = new BitmapImage(new Uri(@"ms-appx:/Assets/Constellation/巨蟹座.jpg"));
+                string imagePath = string.Format(@"ms-appx:/Assets/Constellation/{0}.jpg", constellation);
+                BitmapImage image = new BitmapImage(new Uri(imagePath));
                 this.image.Source = image;
 
-                ConstellationInfo info = await FileHelper.LoadData<ConstellationInfo>("巨蟹座.json","Assets\\Constellation",true);
+                string jsonPath = constellation + ".json";
+                ConstellationInfo info = await FileHelper.LoadData<ConstellationInfo>(jsonPath, "Assets\\Constellation", true);
                 this.description.Text = info.Description;
             }
         }
