@@ -1,12 +1,11 @@
 #include "stdafx.h" 
 #include <vector>
-#include <numeric>
 #include <algorithm>
 #include <iterator>
 #include <iostream>
 #include <functional>
 #include <string>
-#include <numeric>  // for iota
+#include <numeric>  // for iota, partial_sum
 #include "Utility.h"
 using namespace std;
 
