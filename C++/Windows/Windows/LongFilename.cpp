@@ -57,9 +57,9 @@ bool ShortPath()
     return true;
 }
 
-int _tmain(int argc, _TCHAR* argv[])
+void TestLongFilename()
 {
     UnicodeAPI();
-	return 0;
 }
+
 
