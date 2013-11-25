@@ -17,6 +17,7 @@ void HashTest();
 void VectorTest();
 void AlgoTest();
 void ConvertTest();
+void StringTest();
 
 struct foo
 {
@@ -89,7 +90,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
     //AlgoTest();
     //ConvertTest();
-    RegexTest();
+    StringTest();
 	return 0;
 }
 
