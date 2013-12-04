@@ -94,9 +94,61 @@ void EraseTest()
     output(values);
 }
 
+void SwapTest1()
+{
+    //http://baike.baidu.com/view/674171.htm?fromtitle=%E5%BC%82%E6%88%96%E8%BF%90%E7%AE%97&fromid=720417&type=syn
+    int a = 3;  //11
+    int b = 2;  //10
+    cout << "before a,b:\t" << a << "," << b << endl;
+    a^=b; // =>  a = a^b 
+    b^=a; // =>  b = b^(a^b) = a
+    a^=b; //  =>  a = a^b^a = b
+
+    cout << "after a,b:\t" << a << "," << b << endl;
+}
+
+void SwapTest2()
+{
+    int a = 3;  //11
+    int b = 2;  //10
+    cout << "before a,b:\t" << a << "," << b << endl;
+    
+    a^=b^=a^=b;
+
+    cout << "after a,b:\t" << a << "," << b << endl;
+}
+
+void SwapTest3()
+{
+    int a = 3;  //11
+    int b = 2;  //10
+    cout << "before a,b:\t" << a << "," << b << endl;
+    
+    std::swap(a, b);
+
+    cout << "after a,b:\t" << a << "," << b << endl;
+}
+
+void SwapTest4()
+{
+    // http://blog.csdn.net/lpt19832003/article/details/5334688
+    int a = 3;  //11
+    int b = 2;  //10
+    cout << "before a,b:\t" << a << "," << b << endl;
+    
+    a += b;
+    b = a - b;
+    a = a - b;
+
+    cout << "after a,b:\t" << a << "," << b << endl;
+}
+
 void AlgoTest()
 {
-    EraseTest();
-    MinMaxTest();
+    //EraseTest();
+    //MinMaxTest();
+
+    SwapTest4();
 }
+
 
