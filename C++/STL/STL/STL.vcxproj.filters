@@ -16,6 +16,7 @@
     <ClCompile Include="std_function.cpp" />
     <ClCompile Include="DataTypeConvert.cpp" />
     <ClCompile Include="String.cpp" />
+    <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
