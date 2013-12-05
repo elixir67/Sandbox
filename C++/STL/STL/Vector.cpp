@@ -58,8 +58,34 @@ void TestVectorFillWithRange()
     cout << endl;
 }
 
+void TestEmplace()
+{
+    //Have a look at these innocent looking pieces of code:.
+    // 
+    //vec.emplace_back(vec.front()); // potential crash!.
+    // 
+    //vec.emplace_back(vec.back());  // potential crash!.
+    // 
+    //vec.emplace_back(vec[i]);      // potential crash!.
+    // 
+    //All can lead to crashes since vec.front(), vec.back(), and vec[i] return a reference to the corresponding element of the vector which is just a “hidden pointer” to it; if the vector has not enough capacity to append a new element at the end of the allocated memory it reallocates a larger chunk of memory somewhere else and moves/copies over all existing objects of it; this invalidates the reference/pointer to the referenced element making it a dangling pointer; and then the new element is constructed via the copy-ctor using this dangling reference pointing into an invalid memory location, which might either use random values or crash the application!.
+    // 
+    //In order to fix this you need to call push_back() instead since that method is required by the standard to work even for this special case:.
+    // 
+    //vec.push_back(vec.front());
+
+    vector<string> v;
+    v.emplace_back("Hello");
+    for(size_t i = 0; i < 100; ++i)
+    {
+        //v.emplace_back(v.front());  // crash;
+        v.push_back(v.front());
+    }
+}
+
 void VectorTest()
 {
     //TestVectorFillWithRandomNum();
-    TestVectorFillWithRange();
+    //TestVectorFillWithRange();
+    TestEmplace();
 }

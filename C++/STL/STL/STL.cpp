@@ -88,7 +88,8 @@ void ForwardTest()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    AlgoTest();
+    VectorTest();
+    //AlgoTest();
     //ConvertTest();
     //StringTest();
 	return 0;
