@@ -56,8 +56,8 @@ def main() :
 		print usage
 		print 'Uses "C:/temp/out" as SFF output folder'
 	else:
-		output_root = sys.argv[0]
+		output_root = sys.argv[1]
 
 	createSFF(output_root)
-
+	
 main()
