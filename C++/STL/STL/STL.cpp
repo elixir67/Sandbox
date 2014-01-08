@@ -90,12 +90,12 @@ void ForwardTest()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    ListTest();
+    //ListTest();
     //TimeTest();
     //VectorTest();
     //AlgoTest();
     //ConvertTest();
-    //StringTest();
+    StringTest();
 	return 0;
 }
 

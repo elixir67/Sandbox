@@ -88,7 +88,9 @@
     <ClCompile Include="IO.cpp" />
     <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="Lambda.cpp" />
-    <ClCompile Include="List.cpp" />
+    <ClCompile Include="List.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="mem_fun_ref.cpp" />
     <ClCompile Include="Ptr.cpp" />
     <ClCompile Include="Regex.cpp" />
