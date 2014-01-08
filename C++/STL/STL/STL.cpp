@@ -19,6 +19,7 @@ void AlgoTest();
 void ConvertTest();
 void StringTest();
 void TimeTest();
+void ListTest();
 
 struct foo
 {
@@ -89,7 +90,8 @@ void ForwardTest()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    TimeTest();
+    ListTest();
+    //TimeTest();
     //VectorTest();
     //AlgoTest();
     //ConvertTest();

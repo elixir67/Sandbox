@@ -17,6 +17,7 @@
     <ClCompile Include="DataTypeConvert.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="List.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

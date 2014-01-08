@@ -27,6 +27,13 @@ static inline std::string &trim(std::string &s) {
     return ltrim(rtrim(s));
 }
 
+
+#define ALX_APP_NAME_SUFFIX  "2014 R4"
+void SplitTest()
+{
+    
+}
+
 void StringTest()
 {
     std::string s = " \tHello  ";

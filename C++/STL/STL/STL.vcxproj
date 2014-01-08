@@ -88,6 +88,7 @@
     <ClCompile Include="IO.cpp" />
     <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="Lambda.cpp" />
+    <ClCompile Include="List.cpp" />
     <ClCompile Include="mem_fun_ref.cpp" />
     <ClCompile Include="Ptr.cpp" />
     <ClCompile Include="Regex.cpp" />
