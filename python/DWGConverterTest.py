@@ -3,13 +3,15 @@ import sys
 import shutil
 import subprocess
 
-cmd_pattern = r'"G:\p4root\AIM\Main\Output\x64\Debug\AIM_DwgConvertor.exe" "{0}"  "{1}"'
+cmd_pattern = r'"c:\Program Files\Autodesk\AutoCAD Longbow\DWGTranslator.exe" "{0}"  "{1}"'
 
 TestFiles = {
 	'2013_ACAD_Sheboygan_Roads.dwg': r'\\shamapqa4\MapGuide\Data\Jedi\DWG on Server\2013_ACAD_Sheboygan_Roads.dwg'
 	,'2013_SDF_Sheboygan_Trees.dwg': r'\\shamapqa4\MapGuide\Data\Jedi\DWG on Server\2013_SDF_Sheboygan_Trees.dwg'
 	,'2010_object_data_realtor_neighborhoods_more_properties.dwg': r'\\shamapqa4\MapGuide\Data\Jedi\DWG on Server\DWG\2010_object_data_realtor_neighborhoods_more_properties.dwg'
 	,'2000_Lines.dwg': r'\\shamapqa4\MapGuide\Data\Jedi\DWG on Server\DWG\2000_Lines.dwg'
+	,'Basemap.dwg': r'\\shaaud1\AIMShare\Data\Volans\2d DWG\AUD Drawing\Basemap.dwg'
+	,'LandBase.dwg': r'\\shaaud1\AIMShare\Data\Volans\2d DWG\AUD Drawing\LandBase.dwg'
 	#,'Sandi.rvt': r'\\shaaud1\aimshare\data\Volans\Revit\Defects\Sandi.rvt'
 	#,'Training Office': r'\\shaaud1\aimshare\data\Volans\Revit\Defects\Training Office.rvt'
 	#,'Petrol Station-Structure': r'\\shaaud1\aimshare\data\Volans\Revit\Defects\Petrol Station-Structure.rvt'	
