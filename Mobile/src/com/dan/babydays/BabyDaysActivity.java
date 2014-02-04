@@ -5,11 +5,14 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,14 +20,15 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+@SuppressLint("SimpleDateFormat")
 public class BabyDaysActivity  extends Activity implements OnClickListener {
 
 	private static String MY_PREFS = "BABY_INFO";
 	private SimpleDateFormat m_dfDate;
 	private String m_name;
 	private String m_date;
+	private Boolean m_initialized = false;
 	
 	public void save()
 	{
@@ -46,20 +50,52 @@ public class BabyDaysActivity  extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baby_days);
-        Button btnDate = (Button)findViewById(R.id.btnDate);
-        btnDate.setOnClickListener(this);
         
         m_dfDate = new SimpleDateFormat("yyyy-MM-dd");  
         Load();
         refresh();
+        
+        // register events
+        Button btnDate = (Button)findViewById(R.id.btnDate);
+        btnDate.setOnClickListener(this);
+        
+        EditText edName = (EditText)findViewById(R.id.editTextName);
+        edName.addTextChangedListener(new TextWatcher(){
+
+			@Override
+			public void afterTextChanged(Editable s) {										
+				if(m_initialized){
+					m_name = s.toString();
+					refresh();
+					save();
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
+					int arg3) {
+				// TODO Auto-generated method stub
+				
+			}    	
+        });
+        m_initialized = true;
     }
 
     private void refresh() {
-    	TextView tvDays = (TextView)findViewById(R.id.textViewDays);   	
-    	EditText edName = (EditText)findViewById(R.id.editTextName);
-    	TextView tvDate = (TextView)findViewById(R.id.textViewDate);
-    	edName.setText(m_name);
-    	tvDate.setText(m_date);
+    	TextView tvDays = (TextView)findViewById(R.id.textViewDays);  
+    	if(!m_initialized) {    		
+    		EditText edName = (EditText)findViewById(R.id.editTextName);
+    		TextView tvDate = (TextView)findViewById(R.id.textViewDate);
+    		edName.setText(m_name);
+    		tvDate.setText(m_date);
+    	}
     	if(m_name.isEmpty() || m_date.isEmpty())
     	{
     		tvDays.setText(getResources().getString(R.string.require_input));
@@ -106,11 +142,7 @@ public class BabyDaysActivity  extends Activity implements OnClickListener {
 			       Date d = c.getTime();
 			       m_date = m_dfDate.format(d);
 			       TextView tvDate = (TextView)findViewById(R.id.textViewDate);
-			       tvDate.setText(m_date);
-			       
-			       // TODO: better handle it maybe in another event listener
-			       EditText edName = (EditText)findViewById(R.id.editTextName);
-			       m_name = edName.getText().toString();
+			       tvDate.setText(m_date);			   
 			       
 			       save();
 			       refresh();
