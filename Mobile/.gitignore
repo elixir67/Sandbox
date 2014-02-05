@@ -1,6 +1,6 @@
 #ignore .metadata, do not hide .gitignore file
 #.gitignore
-#ignore obj and lib file
+!bin/BabyDays.apk
 bin/
 gen/
 
