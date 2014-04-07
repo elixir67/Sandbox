@@ -5,16 +5,14 @@ import shutil
 
 KindleDir = "F:/documents"
 namepattern = re.compile(r'(.+)(\.sdr)$', re.I)
-
     
 def cleanKindles():    
     # Find folder with .sdr post fix and the file name before .sdr
     # check the file exist or not
 
     for dirname, dirnames, filenames in os.walk(KindleDir):
-        #for subdirname in dirnames:
-        #    print os.path.join(dirname, subdirname)
-        if dirname == KindleDir:
+        # Root folder
+        if dirname == KindleDir or not namepattern.match(dirname):
             cachedFileBaseNames = map(lambda f: path.splitext(f)[0], filenames)
             #for f in cachedFileBaseNames:
             #    print "Cached :" + f
