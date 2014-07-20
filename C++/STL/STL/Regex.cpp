@@ -92,9 +92,27 @@ void RegexTest2()
     }
 }
 
+void RegexTest3()
+{
+    std::string line = "<app:imageURI>textures/meinBaum.png</app:imageURI>";
+    std::regex expression("\\s*<app:imageURI>\\s*(.+)\\s*</app:imageURI>\\s*", regex_constants::icase); 
+    std::smatch match;
+    if(std::regex_match(line, match, expression))
+    {
+        std::string name = match[1].str();
+        cout << "pass: " << name << endl;
+    }
+    else
+    {
+        cout << "fail" << endl;
+    }
+}
+
+
 void RegexTest()
 {
-    RegexTest1();
-    RegexTest2();
+    //RegexTest1();
+    //RegexTest2();
+    RegexTest3();
 }
 

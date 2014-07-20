@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">天天宝贝</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="input_date">宝宝生日：</string>
+    <string name="input_nickname">宝宝昵称：</string>
+    <string name="require_input">需要输入信息才能计算宝宝出生天数</string>
+ 	<string name="ouput_days">%1$s出生%2$d天了</string>
+ 	<string name="require_click">点击左边按钮</string>
+</resources>

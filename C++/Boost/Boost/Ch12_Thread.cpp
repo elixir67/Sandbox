@@ -35,8 +35,21 @@ void testCreateThreadWithParameter()
 	boost::thread(printing, boost::ref(x), "hello");
 	boost::thread(printing, boost::ref(x), "boost");
 }
+
+void helloworld()
+{
+	cout << "hello world" << endl;
+}
+
+void testJoin()
+{
+	boost::thread thrd(&helloworld);
+	thrd.join();
+}
+
 void testCh12()
 {
 	testCreateThreadWithParameter();
 	testThreadSleep();
+	testJoin();
 }
