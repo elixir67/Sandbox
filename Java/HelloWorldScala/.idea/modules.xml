@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Hello/.idea/modules/hello.iml" filepath="$PROJECT_DIR$/Hello/.idea/modules/hello.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hello/.idea/modules/hello-build.iml" filepath="$PROJECT_DIR$/Hello/.idea/modules/hello-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/helloworldscala.iml" filepath="$PROJECT_DIR$/.idea/modules/helloworldscala.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/helloworldscala-build.iml" filepath="$PROJECT_DIR$/.idea/modules/helloworldscala-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-lyricdownloader.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-lyricdownloader.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scala-lyricdownloader-build.iml" filepath="$PROJECT_DIR$/.idea/modules/scala-lyricdownloader-build.iml" />
+    </modules>
+  </component>
+</project>
+
