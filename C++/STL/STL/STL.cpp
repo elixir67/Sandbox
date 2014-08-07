@@ -20,6 +20,7 @@ void ConvertTest();
 void StringTest();
 void TimeTest();
 void ListTest();
+void NumericTest();
 
 struct foo
 {
@@ -95,7 +96,8 @@ int _tmain(int argc, _TCHAR* argv[])
     //VectorTest();
     //AlgoTest();
     //ConvertTest();
-    StringTest();
+    //StringTest();
+    NumericTest();
 	return 0;
 }
 

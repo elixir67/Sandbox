@@ -18,6 +18,7 @@
     <ClCompile Include="String.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="List.cpp" />
+    <ClCompile Include="Numeric.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />

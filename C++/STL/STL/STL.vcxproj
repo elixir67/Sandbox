@@ -92,6 +92,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="mem_fun_ref.cpp" />
+    <ClCompile Include="Numeric.cpp" />
     <ClCompile Include="Ptr.cpp" />
     <ClCompile Include="Regex.cpp" />
     <ClCompile Include="RValue.cpp" />
