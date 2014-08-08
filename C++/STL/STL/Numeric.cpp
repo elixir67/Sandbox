@@ -5,14 +5,23 @@ double roundNumeric(double dValue, int iRoundTo = 4)
     return double(int(dValue*iRoundTo + (dValue >= 0? 0.5:-0.5)))/iRoundTo;
 }
 
+float roundFloat(float dValue, int iRoundTo = 4)
+{
+    return float(int(dValue*iRoundTo + (dValue >= 0? 0.5:-0.5)))/iRoundTo;
+}
 void NumericTest()
 {
     float value = 37.777779;
     float rounded = roundNumeric(value, 4);
-
     printf("%.2f\n", rounded);
 
     rounded = roundNumeric(1.99, 4);
+    printf("%.2f\n", rounded);
+
+    int a = 315151;
+    int b = 44412;
+
+    rounded = roundFloat((float)a/b, 4);
     printf("%.2f\n", rounded);
 
     char number[24]; // dummy size, you should take care of the size!
