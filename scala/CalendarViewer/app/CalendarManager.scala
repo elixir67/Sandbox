@@ -3,13 +3,24 @@ import java.io.{FileWriter, FileInputStream}
 import scala.collection.JavaConversions._
 import net.fortuna.ical4j.data.CalendarBuilder
 import net.fortuna.ical4j.model.{Property, Component, Calendar}
+
+import play.api.libs.json._
+import play.api.libs.functional.syntax._
+
 import org.joda.time.DateTime
 
 /**
  * Created by lind on 10/31/2014.
  */
-class CalendarModel {
+class CalendarManager {
   def getCalendars: Boolean = {
+//    case class CalendarModel (summary: String, dtStart: String, dtEnd: String, description: String)
+//    implicit val calendarWrites: Writes[CalendarModel] = {
+//        (JsPath \ "summary").write[String] and
+//        (JsPath \ "start").write[String] and
+//        (JsPath \ "end").write[String] and
+//        (JsPath \ "description").write[String]
+//    }(unlift(CalendarModel.unapply))
 
     val pcName = System.getenv("COMPUTERNAME")
     val calendarFolder = pcName.toUpperCase() match  {
@@ -36,7 +47,7 @@ class CalendarModel {
           val name = property.getName()
 
           name match {
-            case "SUMMARY" | "DTSTART" =>  {
+            case "SUMMARY" | "DTSTART" | "DTEND" |"DESCRIPTION"=>  {
               val s = name + ": " + property.getValue()
               println(s)
               fw.write(s + "\n")
@@ -51,6 +62,7 @@ class CalendarModel {
         }
 
       }
+      fw.write("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
 
     }
     fw.close()

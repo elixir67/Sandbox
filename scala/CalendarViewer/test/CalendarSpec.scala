@@ -7,7 +7,7 @@ import org.scalatest.{Matchers, FlatSpec}
  */
 class CalendarSpec extends FlatSpec with Matchers{
   "Calendar" should "more than one item" in{
-    val cal = new CalendarModel()
+    val cal = new CalendarManager()
     val cals = cal.getCalendars
     //cals should be true
   }
