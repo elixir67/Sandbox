@@ -1,4 +1,4 @@
-import java.io.FileInputStream
+import java.io.{FileWriter, FileInputStream}
 
 import scala.collection.JavaConversions._
 import net.fortuna.ical4j.data.CalendarBuilder
@@ -25,6 +25,8 @@ class CalendarModel {
 
     val calendar: Calendar  = builder.build(fin);
 
+    val fw = new FileWriter("calendar.txt")
+
     for(cc <- calendar.getComponents()) {
       //println(cal.toString())
       if(cc.isInstanceOf[Component]){
@@ -34,7 +36,11 @@ class CalendarModel {
           val name = property.getName()
 
           name match {
-            case "SUMMARY" | "DTSTART" =>  println("Property [" + name + ", " + property.getValue() + "]")
+            case "SUMMARY" | "DTSTART" =>  {
+              val s = name + ": " + property.getValue()
+              println(s)
+              fw.write(s + "\n")
+            }
 //            case "DTSTART" => {
 //              val s = property.getValue()
 //              val dt = new DateTime(s)
@@ -47,6 +53,7 @@ class CalendarModel {
       }
 
     }
+    fw.close()
     true
   }
 
