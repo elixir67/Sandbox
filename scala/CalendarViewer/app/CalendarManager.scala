@@ -24,19 +24,20 @@ class CalendarManager {
 
     val pcName = System.getenv("COMPUTERNAME")
     val calendarFolder = pcName.toUpperCase() match  {
-      case "SHA575R422" => "D:\\OneDrive\\Private"
-      case "SHACNU332C7QX" => "C:\\Users\\lind\\SkyDrive\\Private"
+      case "SHA575R422" => "D:\\OneDrive\\Private\\"
+      case "SHACNU332C7QX" => "C:\\Users\\lind\\SkyDrive\\Private\\"
       case _ => // Require resolve if happened
     }
 
-    val calendarPath = calendarFolder + "\\Calendar_20140824.ics"
+    val calendarFile = "Calendar_20140824.ics"
+    val calendarPath = calendarFolder + calendarFile
     val fin: FileInputStream = new FileInputStream(calendarPath);
 
     val builder: CalendarBuilder = new CalendarBuilder();
 
     val calendar: Calendar  = builder.build(fin);
-
-    val fw = new FileWriter("calendar.txt")
+    val outputFile = calendarFile.replace(".ics", ".txt")
+    val fw = new FileWriter(outputFile)
 
     for(cc <- calendar.getComponents()) {
       //println(cal.toString())
