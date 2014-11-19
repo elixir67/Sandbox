@@ -14,14 +14,6 @@ import org.joda.time.DateTime
  */
 class CalendarManager {
   def getCalendars: Boolean = {
-//    case class CalendarModel (summary: String, dtStart: String, dtEnd: String, description: String)
-//    implicit val calendarWrites: Writes[CalendarModel] = {
-//        (JsPath \ "summary").write[String] and
-//        (JsPath \ "start").write[String] and
-//        (JsPath \ "end").write[String] and
-//        (JsPath \ "description").write[String]
-//    }(unlift(CalendarModel.unapply))
-
     val pcName = System.getenv("COMPUTERNAME")
     val calendarFolder = pcName.toUpperCase() match  {
       case "SHA575R422" => "D:\\OneDrive\\Private\\"

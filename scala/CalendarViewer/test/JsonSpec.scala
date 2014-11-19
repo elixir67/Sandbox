@@ -14,15 +14,18 @@ class JsonSpec extends FlatSpec with Matchers {
 
    it should "use the writer of play.api.libs.json" in {
      // Convert model to Json
-     val e = Event("TestSummary", "TestStart")
+     val e = Event("TestSummary", "TestStart", "TestEnd", "")
      val json: JsValue = EventUtil.ToJson(e)
      val readableString = Json.prettyPrint(json)
      println(readableString)
 
      // Convert Json to model
      //TODO: use json.Parse to create JsValue
-     val event = EventUtil.FromJson(json)
-     println(event.summary)
-     println(event.dtStart)
+     val event = EventUtil.FromJson(json).get
+
+     event.summary should equal("TestSummary")
+     event.start should equal("TestStart")
+     event.end should equal("TestEnd")
+     event.description should equal("")
    }
 }
