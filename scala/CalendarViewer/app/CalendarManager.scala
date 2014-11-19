@@ -9,6 +9,8 @@ import play.api.libs.functional.syntax._
 
 import org.joda.time.DateTime
 
+import scala.collection.mutable.ListBuffer
+
 /**
  * Created by lind on 10/31/2014.
  */
@@ -31,8 +33,11 @@ class CalendarManager {
     val outputFile = calendarFile.replace(".ics", ".txt")
     val fw = new FileWriter(outputFile)
 
+    var events: ListBuffer[Event] = ListBuffer()
+
     for(cc <- calendar.getComponents()) {
-      //println(cal.toString())
+//      val event = Event("dummy", "", "", "")
+      var (summary, start, end, description) = ("", "", "", "")
       if(cc.isInstanceOf[Component]){
         val component = cc.asInstanceOf[Component];
         for(cp <- component.getProperties()){
@@ -40,26 +45,38 @@ class CalendarManager {
           val name = property.getName()
 
           name match {
-            case "SUMMARY" | "DTSTART" | "DTEND" |"DESCRIPTION"=>  {
-              val s = name + ": " + property.getValue()
-              println(s)
-              fw.write(s + "\n")
+            case "SUMMARY" =>  {
+              summary = property.getValue()
+              output(fw,  name, summary)
             }
-//            case "DTSTART" => {
-//              val s = property.getValue()
-//              val dt = new DateTime(s)
-//              println(dt.toString())
-//            }
+            case "DTSTART" => {
+              start = property.getValue()
+              output(fw, name, start)
+            }
+            case "DTEND" => {
+              end = property.getValue()
+              output(fw, name, end)
+            }
+            case "DESCRIPTION" => {
+              description = property.getValue()
+              output(fw, name, description)
+            }
             case _ => //do nothing
           }
         }
-
       }
+      val event = Event(summary, start, end, description)
+      events += event
       fw.write("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
-
     }
     fw.close()
     true
+  }
+
+  def output(fw: FileWriter, name: String, value: String) {
+    val s = name + ": " + value
+    println(s)
+    fw.write(s + "\n")
   }
 
   def parseCalendar {
