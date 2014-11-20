@@ -3,11 +3,7 @@ import java.io.{FileWriter, FileInputStream}
 import scala.collection.JavaConversions._
 import net.fortuna.ical4j.data.CalendarBuilder
 import net.fortuna.ical4j.model.{Property, Component, Calendar}
-
 import play.api.libs.json._
-import play.api.libs.functional.syntax._
-
-import org.joda.time.DateTime
 
 import scala.collection.mutable.ListBuffer
 
@@ -36,40 +32,56 @@ class CalendarManager {
     var events: ListBuffer[Event] = ListBuffer()
 
     for(cc <- calendar.getComponents()) {
-//      val event = Event("dummy", "", "", "")
       var (summary, start, end, description) = ("", "", "", "")
-      if(cc.isInstanceOf[Component]){
+      var hasValue = false;
+      if (cc.isInstanceOf[Component]) {
         val component = cc.asInstanceOf[Component];
-        for(cp <- component.getProperties()){
+        for (cp <- component.getProperties()) {
           val property = cp.asInstanceOf[Property]
           val name = property.getName()
 
           name match {
-            case "SUMMARY" =>  {
+            case "SUMMARY" => {
               summary = property.getValue()
-              output(fw,  name, summary)
+              hasValue = true
+              output(fw, name, summary)
             }
             case "DTSTART" => {
               start = property.getValue()
+              hasValue = true
               output(fw, name, start)
             }
             case "DTEND" => {
               end = property.getValue()
+              hasValue = true
               output(fw, name, end)
             }
             case "DESCRIPTION" => {
               description = property.getValue()
+              hasValue = true
               output(fw, name, description)
             }
             case _ => //do nothing
           }
         }
       }
-      val event = Event(summary, start, end, description)
-      events += event
+      if (hasValue) {
+        val event = Event(summary, start, end, description)
+        events += event
+      }
       fw.write("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n")
     }
     fw.close()
+
+    val json = EventUtil.ConvertEventsToJson(events.toSeq)
+    val content = Json.prettyPrint(json)
+    println(content)
+
+    val outputJsonFile = calendarFile.replace(".ics", ".json")
+    val fwJson = new FileWriter(outputJsonFile)
+    fwJson.write(content)
+    fwJson.close
+
     true
   }
 
