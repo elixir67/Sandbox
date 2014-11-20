@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="..\assets\jquery.min.js"></script>
+    <script src="..\assets\angular.min.js"></script>
+    <link rel="stylesheet" href="..\assets\bootstrap.min.css"></script>
+    <script>
+    $(document).ready(function(){
+    	document.write("Hello 你好");
+        $.getJSON("http://localhost:8080/Calendar_sample.json"), function(data) {
+            //console.log(data);
+            alert(data)
+        }
+    });
+</script>
+    <title>My Events</title>
+</head>
+<body>
+
+</body>
+</html>
