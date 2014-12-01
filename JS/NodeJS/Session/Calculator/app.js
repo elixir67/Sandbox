@@ -31,15 +31,24 @@ app.use(bodyParser({keepExtensions:true,uploadDir:path.join(__dirname,'/files')}
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({ secret: 'Web 101', cookie: { maxAge: 60000 }})) // unit is milliseconds one minute
+
 app.use('/', routes);
 app.use('/users', users);
 
 app.get('/upload', calculator.form);
 app.post('/upload', calculator.submit);
-// app.post('/upload', function(req, res) {
-//   console.log(req.files);
-//   res.send('ok');
+// app.post('/upload', function(req, res){
+//     var sess = req.session
+//     if(sess.a)
+//         console.log("sess.a" + sess.a)
+//     else{
+//         sess.a = 1
+//         console.log("no session")
+//     }
+//     res.send("ok")
 // });
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
