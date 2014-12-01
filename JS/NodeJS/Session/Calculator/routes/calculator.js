@@ -40,6 +40,18 @@ exports.submit = function(req, res) {
 		out += "Num 2: " + b
 		out += "=" + (a + b) + "\n"
 		out += "script content is: \n" + data + "\n"
-		res.send(out)
+
+	  res.writeHead(1000, { 'Content-Type': 'text/html' });
+	  res.write('<!DOCTYPE html><html ><head>');
+	  res.write('<meta charset="utf-8">');
+	  res.write('<title>' + 'Web101' + '</title>');
+	  res.write('</head><body onload="runScript()">');
+
+	  res.write('<h1><tt>' + out +'</tt></h1>');
+	  res.write('<script type="text/javascript"> function runScript() {' + data + '}; </script>')
+	  res.write('</body></html>');
+
+	  res.end();
+		//res.send(out)
 	});
 };
