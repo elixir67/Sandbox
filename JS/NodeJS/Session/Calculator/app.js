@@ -4,6 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var multer = require('multer')
+var session = require('express-session');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -18,8 +21,13 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(express.methodOverride());
+app.use(methodOverride());
+app.use(multer());                                   // parse multipart/form-data
+app.use(bodyParser({keepExtensions:true,uploadDir:path.join(__dirname,'/files')}));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,6 +36,10 @@ app.use('/users', users);
 
 app.get('/upload', calculator.form);
 app.post('/upload', calculator.submit);
+// app.post('/upload', function(req, res) {
+//   console.log(req.files);
+//   res.send('ok');
+// });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
