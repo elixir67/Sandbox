@@ -1,1 +1,1 @@
-console.log("Hello world")
+alert("Uploaded js is running on client side");
