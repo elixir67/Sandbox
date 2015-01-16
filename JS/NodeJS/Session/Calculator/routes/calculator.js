@@ -45,9 +45,7 @@ var getCaluculteResult = function(req)
 	return out
 }
 
-exports.form = function(req, res) {
-	console.log("received upload get request")
-
+var setHeader = function(req, res) {
 	var sessData = getSessionData(req)
 	var a = sessData.a
 	var b = sessData.b
@@ -57,6 +55,12 @@ exports.form = function(req, res) {
 	res.set("Num1", a)
 	res.set("Num2", b)
 	res.set("Op", op)
+}
+
+exports.form = function(req, res) {
+	console.log("received upload get request")
+
+	setHeader(req, res)
 
 	res.render('upload', {
 		title: 'Web Exercise 101 - Calculator with session'
@@ -91,7 +95,8 @@ exports.submit = function(req, res) {
 exports.calculate = function(req, res) {
 	console.log("calculate begin ");
 
-	var out = getCaluculteResult(req)
-	console.log("calculate send " + out);
-	res.send(out);
+	setHeader(req, res)
+	//var out = getCaluculteResult(req)
+	//console.log("calculate send " + out);
+	res.send(200);
 }

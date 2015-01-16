@@ -21,9 +21,6 @@ app.set('view engine', 'ejs');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(express.methodOverride());
 app.use(methodOverride());
 app.use(multer());                                   // parse multipart/form-data
 app.use(bodyParser({keepExtensions:true,uploadDir:path.join(__dirname,'/files')}));
@@ -36,16 +33,11 @@ app.use(session({ secret: 'Web 101', cookie: { maxAge: 60000 }})) // unit is mil
 app.use('/', routes);
 app.use('/users', users);
 
-app.get('/upload', calculator.form);
-app.post('/upload', calculator.submit);
-app.get('/calculate',calculator.calculate);
-
-// TODO: why head doesn't work
-app.head('/upload', function(req, res){
-    console.log("begin head upload")
-    res.send("ok")
-});
-
+// My route
+app.route('/upload')
+.get(calculator.form)
+.post(calculator.submit)
+.head(calculator.calculate)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
