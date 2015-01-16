@@ -38,16 +38,13 @@ app.use('/users', users);
 
 app.get('/upload', calculator.form);
 app.post('/upload', calculator.submit);
-// app.post('/upload', function(req, res){
-//     var sess = req.session
-//     if(sess.a)
-//         console.log("sess.a" + sess.a)
-//     else{
-//         sess.a = 1
-//         console.log("no session")
-//     }
-//     res.send("ok")
-// });
+app.get('/calculate',calculator.calculate);
+
+// TODO: why head doesn't work
+app.head('/upload', function(req, res){
+    console.log("begin head upload")
+    res.send("ok")
+});
 
 
 // catch 404 and forward to error handler
