@@ -2,29 +2,68 @@ var express = require('express');
 var fs = require('fs');
 var session = require('express-session');
 
+var ops = ['+','-','*','/']
+
+var getSessionData = function(req)
+{
+	var sess = req.session
+	console.log(sess)
+	var a, b, op
+	if(sess.a && sess.b){
+		a = sess.a
+		b = sess.b
+		op = sess.op
+	}
+	else{
+		// console.log("No data in session or session expired")
+		a = Math.random()*100
+		b = Math.random()*100
+		op = ops[Math.floor(Math.random()*4)]
+		sess.a = a
+		sess.b = b
+		sess.op = op
+	}
+	return {
+		a: a,
+		b: b,
+		op: op
+	};
+}
+
+var getCaluculteResult = function(req)
+{
+	var sessData = getSessionData(req)
+	var a = sessData.a
+	var b = sessData.b
+	var op = sessData.op
+
+	var out = a
+	out += op
+	out += b
+	out += "=" + eval(out) + "\n"
+
+	return out
+}
+
 exports.form = function(req, res) {
 	console.log("received upload get request")
+
+	var sessData = getSessionData(req)
+	var a = sessData.a
+	var b = sessData.b
+	var op = sessData.op
+
+	// set fields to the header
+	res.set("Num1", a)
+	res.set("Num2", b)
+	res.set("Op", op)
+
 	res.render('upload', {
 		title: 'Web Exercise 101 - Calculator with session'
 	});
 };
 
 exports.submit = function(req, res) {
-	var sess = req.session
-	console.log(sess)
-	var a, b
-	if(sess.a && sess.b){
-		a = sess.a
-		b = sess.b
-	}
-	else{
-		console.log("No data in session or session expired")
-		a = Math.round(Math.random()*100)
-		b = Math.round(Math.random()*100)
-		sess.a = a
-		sess.b = b
-	}
-
 	console.log("req.files:" + req.files)
 	var filePath = req.files.script.path
 	console.log("filePath:" + filePath)
@@ -35,7 +74,6 @@ exports.submit = function(req, res) {
 			return;
 		}
 	  //console.log("content:" + data)
-
 	  res.writeHead(200, { 'Content-Type': 'text/html' });
 	  res.write('<!DOCTYPE html><html ><head>');
 	  res.write('<meta charset="utf-8">');
@@ -52,25 +90,8 @@ exports.submit = function(req, res) {
 
 exports.calculate = function(req, res) {
 	console.log("calculate begin ");
-	var sess = req.session
-	console.log(sess)
-	var a, b
-	if(sess.a && sess.b){
-		a = sess.a
-		b = sess.b
-	}
-	else{
-		console.log("No data in session or session expired")
-		a = Math.round(Math.random()*100)
-		b = Math.round(Math.random()*100)
-		sess.a = a
-		sess.b = b
-	}
 
-	var out = a
-	out += " + "
-	out += b
-	out += "=" + (a + b) + "\n"
+	var out = getCaluculteResult(req)
 	console.log("calculate send " + out);
-	res.status(200).send(out);
+	res.send(out);
 }
