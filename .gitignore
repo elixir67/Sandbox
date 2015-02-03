@@ -14,3 +14,7 @@ ipch/
 _ReSharper.*
 *.opensdf
 
+*.metaproj
+*.tmp
+*.tlog
+*.lastbuildstate
