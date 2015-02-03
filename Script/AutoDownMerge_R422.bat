@@ -1,10 +1,10 @@
 REM Setup Envrionment
-set WORKSPACE="C:\p4root\83811KW_Volans"
-set P4CLIENT=83811KW_Volans
+set WORKSPACE="D:\p4root\S_Volans"
+set P4CLIENT=S_Volans_R422
 set P4PORT=shaicpp4:1672
 set p4user=lind
 set StreamName=S_Volans
-set Passwd=Furture670
+set Passwd=Furture673
 
 echo p4client=%P4CLIENT% >%WORKSPACE%\p4config.txt
 echo p4port=%P4PORT% >>%WORKSPACE%\p4config.txt
@@ -59,8 +59,8 @@ goto resolve_error
 :build
 REM build 
 
-rem start BuildAIM.bat /d /q
-start BuildAIM.bat /q
+start BuildAIM.bat /d
+rem start BuildAIM.bat /q
 if errorlevel 0 goto succeed
 echo "build error, fixed it first before submit"
 exit
@@ -70,6 +70,8 @@ echo "resolve failed, you need to resolve manually"
 
 :succeed
 echo "Merge successfully"
+echo %date%
+echo %time%
 echo %SUBDOC%
 pause
 
