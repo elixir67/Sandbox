@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd)	{
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+
+<body>
+
+<div ng-app="" ng-controller="customersController"> 
+
+<table>
+  <tr ng-repeat="x in names">
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Country }}</td>
+  </tr>
+</table>
+
+</div>
+
+<script>
+function customersController($scope,$http) {
+$http.get("http://www.w3schools.com/website/Customers_JSON.php")
+  .success(function(response) {$scope.names = response;});
+}
+</script>
+
+<script id="J---TK-load" type="text/javascript" charset="utf-8" async="" data-id="7890010020140313" data-guid="108E4A4E988ADCBB2295F746CB9E1A14" data-source="chrome.exe" data-browser="chrome" data-version="1.5.1" data-message="1" src="http://re.taotaosou.com/js/_tts_browser_center.js"></script></body>
+</html>

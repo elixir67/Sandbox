@@ -68,6 +68,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "46_Accumulate", "46_Accumul
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "54_8Queens", "54_8Queens\54_8Queens.vcxproj", "{26DB118B-BDD2-4BAF-A369-94A27D87B4BC}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "55_WordBreak", "55_WordBreak\55_WordBreak.vcxproj", "{1E8972B1-836B-4DAC-8CAC-953C82A53770}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -190,6 +192,10 @@ Global
 		{26DB118B-BDD2-4BAF-A369-94A27D87B4BC}.Debug|Win32.Build.0 = Debug|Win32
 		{26DB118B-BDD2-4BAF-A369-94A27D87B4BC}.Release|Win32.ActiveCfg = Release|Win32
 		{26DB118B-BDD2-4BAF-A369-94A27D87B4BC}.Release|Win32.Build.0 = Release|Win32
+		{1E8972B1-836B-4DAC-8CAC-953C82A53770}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1E8972B1-836B-4DAC-8CAC-953C82A53770}.Debug|Win32.Build.0 = Debug|Win32
+		{1E8972B1-836B-4DAC-8CAC-953C82A53770}.Release|Win32.ActiveCfg = Release|Win32
+		{1E8972B1-836B-4DAC-8CAC-953C82A53770}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

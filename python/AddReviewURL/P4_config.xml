@@ -4,7 +4,7 @@
  <CustomToolDef>
   <Definition>
    <Name>Create review and add review url</Name>
-   <Command>F:\GITHUB\Sandbox\python\AddReviewURL\createreviews.bat</Command>
+   <Command>D:\GITHUB\Sandbox\python\AddReviewURL\createreviews.bat</Command>
    <Arguments>%c $p $u $c</Arguments>
   </Definition>
   <Console>
