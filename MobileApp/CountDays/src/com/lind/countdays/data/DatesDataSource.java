@@ -53,7 +53,16 @@ public class DatesDataSource {
 		}
 		
 		return true;
+	}	
+	
+	public boolean remove(String key) {
+		
+		if (notePrefs.contains(key)) {
+			SharedPreferences.Editor editor = notePrefs.edit();
+			editor.remove(key);
+			editor.commit();
+		}
+		
+		return true;
 	}
-	
-	
 }

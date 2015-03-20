@@ -12,6 +12,7 @@ public class DateItem {
 	
 	public static final String TEXT = "text";
 	public static final String KEY = "key";
+	public static final String DatePattern = "yyyy-MM-dd";
 	
 	public String getKey() {
 		return key;
@@ -32,8 +33,8 @@ public class DateItem {
 		Locale locale = new Locale("en_US");
 		Locale.setDefault(locale);
 
-		String pattern = "yyyy-MM-dd HH:mm:ss Z";
-		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+		//String pattern = "yyyy-MM-dd HH:mm:ss Z";
+		SimpleDateFormat formatter = new SimpleDateFormat(DatePattern);
 		String key = formatter.format(new Date());
 		
 		DateItem note = new DateItem();

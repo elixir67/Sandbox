@@ -83,11 +83,21 @@ public class MainActivity extends ListActivity{
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == EDITOR_ACTIVITY_REQUEST && resultCode == RESULT_OK) {
-			DateItem note = new DateItem();
-			note.setKey(data.getStringExtra(DateItem.KEY));
-			note.setText(data.getStringExtra(DateItem.TEXT));
-			datasource.update(note);
-			refreshDisplay();
+			String key = data.getStringExtra(DateItem.KEY);
+			String text = data.getStringExtra(DateItem.TEXT);
+			String oldkey = data.getStringExtra("oldkey");
+			if(!text.isEmpty())
+			{				
+				
+				DateItem note = new DateItem();
+				note.setKey(key);
+				note.setText(text);
+				datasource.update(note);
+				if(!oldkey.equals(key))
+					datasource.remove(oldkey);
+				
+				refreshDisplay();
+			}
 		}
 	}
 	
