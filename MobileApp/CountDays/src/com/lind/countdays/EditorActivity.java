@@ -35,7 +35,7 @@ public class EditorActivity extends Activity {
 		Intent intent = this.getIntent();
 		
 		// Date is key at the moment
-		String key = intent.getStringExtra("key");
+		final String key = intent.getStringExtra("key");
 		String note = intent.getStringExtra("text");
 		date = new DateItem();
 		date.setKey(key);
@@ -58,6 +58,23 @@ public class EditorActivity extends Activity {
 
 		dt.setOnClickListener(new View.OnClickListener() {  
 		    public void onClick(View v) {  
+		    	Calendar c = Calendar.getInstance();
+				SimpleDateFormat formatter = new SimpleDateFormat(DateItem.DatePattern);
+				int year, month, day;
+				try {
+					Date memorialDay = formatter.parse(key);
+					Calendar cl = Calendar.getInstance();
+					cl.setTime(memorialDay);
+
+					year = cl.get(cl.YEAR);
+					month = cl.get(cl.MONTH);
+					day = cl.get(cl.DAY_OF_MONTH);
+					
+				}catch(Exception ex){
+					ex.printStackTrace();
+					year = month = day = 0;
+				}
+		    	
 				DatePickerDialog datePicker=new DatePickerDialog(EditorActivity.this, new OnDateSetListener() {
 				    
 				    @Override
@@ -73,7 +90,7 @@ public class EditorActivity extends Activity {
 				       TextView tv = (TextView) findViewById(R.id.summaryText);
 				       diffDate(newDate, tv);
 				    }
-				}, 2013, 5, 30);
+				}, year, month, day);
 				datePicker.show();
 		    }             
 		});
