@@ -6,6 +6,86 @@ import java.util.*;
  * Created by lind on 4/18/2015.
  */
 public class HelloString {
+    public static void Test() {
+//        HelloString.URLEncodeAmpersands();
+//        HelloString.ReverseCharactersOfString();
+//        HelloString.ReverseWordsOfString();
+//        HelloString.TextWrapping();
+        int i = StringToInt("123");
+        System.out.println(i);
+
+        i = StringToInt("-123");
+        System.out.println(i);
+
+        i = StringToInt("0");
+        System.out.println(i);
+
+        i = StringToInt("-1230");
+        System.out.println(i);
+
+
+        // i = StringToInt("");
+        String s = IntToString(321);
+        System.out.println(s);
+
+        s = IntToString(-321);
+        System.out.println(s);
+
+        s = IntToString(0);
+        System.out.println(s);
+
+        s = IntToString(120);
+        System.out.println(s);
+
+        s = IntToString(-120);
+        System.out.println(s);
+    }
+
+    public static int StringToInt(String s) throws IllegalArgumentException {
+        if(s == null || s.isEmpty())
+            throw new IllegalArgumentException();
+
+        boolean isNegative = false;
+        int i = 0;
+        switch(s.charAt(0)){
+            case '+':
+                isNegative = false;
+                ++i;
+                break;
+            case '-':
+                isNegative = true;
+                ++i;
+            default:
+                break;
+        }
+        int num = 0;
+        for(; i < s.length(); ++i)
+        {
+            int digital = s.charAt(i) - '0';
+            if(digital >= 0 && digital < 9 )
+                num = num * 10 + digital;
+            else
+                throw new IllegalArgumentException();
+        }
+        return num*(isNegative? -1: 1);
+    }
+
+    public static String IntToString(int i){
+        StringBuilder s = new StringBuilder();
+        if(i == 0)
+            return "0";
+        boolean isNegative = i < 0? true: false;
+        i = Math.abs(i);
+        while(i != 0){
+            int digital = i%10;
+            i = i/10;
+            s.insert(0,digital);
+        }
+        if(isNegative)
+            s.insert(0, '-');
+        return s.toString();
+    }
+
     public static void TextWrapping() {
         // Way One
         StringBuilder builder = new StringBuilder();

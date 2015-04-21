@@ -6,12 +6,10 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-//        HelloString.URLEncodeAmpersands();
-//        HelloString.ReverseCharactersOfString();
-//        HelloString.ReverseWordsOfString();
-//        HelloString.TextWrapping();
+        HelloString.Test();
         // HelloMath.Round();
-        HelloSort.Test();
+        // HelloSort.Test();
+        // HelloDateTime.Test();
     }
 
 
