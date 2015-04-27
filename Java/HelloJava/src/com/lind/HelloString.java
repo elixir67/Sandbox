@@ -39,6 +39,8 @@ public class HelloString {
 
         s = IntToString(-120);
         System.out.println(s);
+
+        System.out.println(Reverse("I am a student."));
     }
 
     public static int StringToInt(String s) throws IllegalArgumentException {
@@ -84,6 +86,40 @@ public class HelloString {
         if(isNegative)
             s.insert(0, '-');
         return s.toString();
+    }
+
+    public static String Reverse(String s){
+//        Use String Builder
+//        int len = s.length();
+//        StringBuilder sb = new StringBuilder(len);
+//        for(int i = len - 1; i >=0; --i)
+//            sb.append(s.charAt(i));
+//        return sb.toString();
+
+        // Use the raw chars array
+        char[] chars = s.toCharArray();
+        int start = 0;
+        int end = s.length() - 1;
+        while(start < end)
+        {
+           char temp = chars[start];
+            chars[start] = chars[end];
+            chars[end] = temp;
+            ++start;
+            --end;
+        }
+        return new String(chars);
+    }
+
+    public static String ReverseWordsInSentence(String s)
+    {
+        if(s == null || s.isEmpty())
+            return "";
+
+        StringBuilder r = new StringBuilder(s);
+        r.reverse();
+
+       return "UnImplementedYet";
     }
 
     public static void TextWrapping() {

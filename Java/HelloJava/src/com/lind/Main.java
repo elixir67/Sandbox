@@ -6,10 +6,10 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        HelloString.Test();
+        //HelloString.Test();
         // HelloMath.Round();
         // HelloSort.Test();
-        // HelloDateTime.Test();
+         HelloDateTime.Test();
     }
 
 
