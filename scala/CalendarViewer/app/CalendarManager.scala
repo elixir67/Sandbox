@@ -14,12 +14,12 @@ class CalendarManager {
   def getCalendars: Boolean = {
     val pcName = System.getenv("COMPUTERNAME")
     val calendarFolder = pcName.toUpperCase() match  {
-      case "SHA575R422" => "D:\\OneDrive\\Private\\"
-      case "SHACNU332C7QX" => "C:\\Users\\lind\\SkyDrive\\Private\\"
+      case "SHA575R422" => "D:\\OneDrive\\Private\\Calendar\\"
+      case "SHACNU332C7QX" => "C:\\Users\\lind\\SkyDrive\\Private\\Calendar\\"
       case _ => // Require resolve if happened
     }
 
-    val calendarFile = "Calendar_20140824.ics"
+    val calendarFile = "Calendar_20150506.ics"
     val calendarPath = calendarFolder + calendarFile
     val fin: FileInputStream = new FileInputStream(calendarPath);
 
