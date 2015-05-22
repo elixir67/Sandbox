@@ -1,0 +1,53 @@
+
+
+    <div class="row" ng-controller="ClubCtrl as cc">
+        &NonBreakingSpace;
+
+        <div class="row">
+            <div class="form-group">
+                <h3>
+                    Clubs
+                    <a ng-href="/#/clubs/create" class="btn btn-primary pull-right" id="btn_club_create">Create Club</a>
+                </h3>
+                <hr>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter Clubs...">
+                <hr>
+            </div>
+
+
+            <table id="club_list" class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Rating</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="club in cc.clubs | filter:searchText">
+                    <td>
+                        {{ club.Name }}
+                    </td>
+                    <td>
+                        {{ club.Description }}
+                    </td>
+                    <td>
+                        {{ club.Rating }}
+                    </td>
+                </tr>
+                <tr ng-hide="cc.clubs.length">
+                    <td colspan="3">
+                        <p class="text-center">No Clubs Found</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <hr>
+            <h4>Debug:</h4>
+            <pre>{{ cc.clubs | json }}</pre>
+        </div>
+
+    </div>

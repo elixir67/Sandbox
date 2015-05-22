@@ -1,0 +1,51 @@
+<div class="row">
+    <div ng-controller="CreateClubCtrl as ccc">
+        <h1>Create Club</h1>
+
+        <form id="CreateClubForm" name="CreateClubForm" class="form-horizontal" role="form"
+              ng-submit="ccc.createClub()">
+            <legend class="sm-col-12">Basic Information</legend>
+
+            <div class="form-group">
+                <label id="lbl_name" for="name" class="col-sm-4 control-label">Name</label>
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="name" id="name" placeholder=""
+                           ng-model="ccc.club.name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label id="lbl_description" for="description" class="col-sm-4 control-label">Description</label>
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="description" id="description" placeholder=""
+                           ng-model="ccc.club.description">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label id="lbl_limits" for="limits" class="col-sm-4 control-label">Limits</label>
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="limits" id="limits" placeholder=""
+                           ng-model="ccc.club.limits" ng-pattern="/^\d+$/">
+                </div>
+                <span class="error" ng-show="CreateClubForm.limits.$error">Integer only!</span>
+            </div>
+
+            <pre>{{ ccc.club | json }}</pre>
+
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8 text-right">
+                    <a ng-href="/#/" id="btn_cancel" class="btn btn-warning">Cancel</a>
+
+                    <button type="submit" class="btn btn-success" id="btn_create">Create Club</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,41 @@
+<div class="row">
+    <div ng-controller="CreateActivityCtrl as ccc">
+        <h1>Create Activity</h1>
+
+        <form id="CreateActivityForm" name="CreateActivityForm" class="form-horizontal" role="form"
+              ng-submit="ccc.createActivity()">
+            <legend class="sm-col-12">Basic Information</legend>
+
+            <div class="form-group">
+                <label id="lbl_name" for="name" class="col-sm-4 control-label">Name</label>
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="name" id="name" placeholder=""
+                           ng-model="ccc.activity.name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label id="lbl_place" for="place" class="col-sm-4 control-label">Place</label>
+
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" name="place" id="place" placeholder=""
+                           ng-model="ccc.activity.place">
+                </div>
+            </div>
+
+            <pre>{{ ccc.activity | json }}</pre>
+
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8 text-right">
+                    <a ng-href="/#/activities" id="btn_cancel" class="btn btn-warning">Cancel</a>
+
+                    <button type="submit" class="btn btn-success" id="btn_create">Create Activity</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
