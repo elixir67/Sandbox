@@ -1,0 +1,10 @@
+.idea
+*.iml
+*.class
+
+.classpath
+.gradle
+.project
+.settings
+_eclipse_
+target
