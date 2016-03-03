@@ -2,4 +2,9 @@
 #.gitignore
 #ignore target folder
 *.class
+*.metadata
+build/
+.idea/
+.settings/
+.gradle/
 
