@@ -1,4 +1,5 @@
 package com.lind;
+
 import java.net.URLEncoder;
 import java.util.*;
 
@@ -44,12 +45,12 @@ public class HelloString {
     }
 
     public static int StringToInt(String s) throws IllegalArgumentException {
-        if(s == null || s.isEmpty())
+        if (s == null || s.isEmpty())
             throw new IllegalArgumentException();
 
         boolean isNegative = false;
         int i = 0;
-        switch(s.charAt(0)){
+        switch (s.charAt(0)) {
             case '+':
                 isNegative = false;
                 ++i;
@@ -61,34 +62,33 @@ public class HelloString {
                 break;
         }
         int num = 0;
-        for(; i < s.length(); ++i)
-        {
+        for (; i < s.length(); ++i) {
             int digital = s.charAt(i) - '0';
-            if(digital >= 0 && digital < 9 )
+            if (digital >= 0 && digital < 9)
                 num = num * 10 + digital;
             else
                 throw new IllegalArgumentException();
         }
-        return num*(isNegative? -1: 1);
+        return num * (isNegative ? -1 : 1);
     }
 
-    public static String IntToString(int i){
+    public static String IntToString(int i) {
         StringBuilder s = new StringBuilder();
-        if(i == 0)
+        if (i == 0)
             return "0";
-        boolean isNegative = i < 0? true: false;
+        boolean isNegative = i < 0 ? true : false;
         i = Math.abs(i);
-        while(i != 0){
-            int digital = i%10;
-            i = i/10;
-            s.insert(0,digital);
+        while (i != 0) {
+            int digital = i % 10;
+            i = i / 10;
+            s.insert(0, digital);
         }
-        if(isNegative)
+        if (isNegative)
             s.insert(0, '-');
         return s.toString();
     }
 
-    public static String Reverse(String s){
+    public static String Reverse(String s) {
 //        Use String Builder
 //        int len = s.length();
 //        StringBuilder sb = new StringBuilder(len);
@@ -100,9 +100,8 @@ public class HelloString {
         char[] chars = s.toCharArray();
         int start = 0;
         int end = s.length() - 1;
-        while(start < end)
-        {
-           char temp = chars[start];
+        while (start < end) {
+            char temp = chars[start];
             chars[start] = chars[end];
             chars[end] = temp;
             ++start;
@@ -111,15 +110,14 @@ public class HelloString {
         return new String(chars);
     }
 
-    public static String ReverseWordsInSentence(String s)
-    {
-        if(s == null || s.isEmpty())
+    public static String ReverseWordsInSentence(String s) {
+        if (s == null || s.isEmpty())
             return "";
 
         StringBuilder r = new StringBuilder(s);
         r.reverse();
 
-       return "UnImplementedYet";
+        return "UnImplementedYet";
     }
 
     public static void TextWrapping() {
@@ -127,16 +125,14 @@ public class HelloString {
         StringBuilder builder = new StringBuilder();
         String words = "The quick brown fox jumps over the lazy dog. ";
 
-        for (int i = 0; i < 10; i++)
-        {
+        for (int i = 0; i < 10; i++) {
             builder.append(words);
         }
 
         String toWrap = builder.toString();
         int width = 76;
-        while (toWrap!=null && toWrap.length()>0)
-        {
-            String first = toWrap.length() > width ? toWrap.substring(0, width+1) : toWrap;
+        while (toWrap != null && toWrap.length() > 0) {
+            String first = toWrap.length() > width ? toWrap.substring(0, width + 1) : toWrap;
             toWrap = (!toWrap.equals(first)) ? toWrap.substring(width + 1).trim() : null;
             System.out.println("> " + first);
         }
@@ -152,16 +148,15 @@ public class HelloString {
         String text = "This is an end, my only friend!";
         // Way One
         List list = new ArrayList();
-        StringTokenizer st = new StringTokenizer(text, " ")  ;
-        while(st.hasMoreTokens()) {
+        StringTokenizer st = new StringTokenizer(text, " ");
+        while (st.hasMoreTokens()) {
             list.add(0, st.nextToken());
         }
         StringBuilder sb = new StringBuilder();
-        for(Iterator it = list.iterator(); it.hasNext();)
-        {
-            String word = (String)it.next();
+        for (Iterator it = list.iterator(); it.hasNext(); ) {
+            String word = (String) it.next();
             sb.append(word);
-            if(it.hasNext())
+            if (it.hasNext())
                 sb.append(" ");
         }
         String reversed1 = sb.toString();
@@ -170,7 +165,7 @@ public class HelloString {
         List<String> ls = Arrays.asList(text.split("\\s"));
         Collections.reverse(ls);
         sb = new StringBuilder(32);
-        for(String s: ls)
+        for (String s : ls)
             sb.append(" ").append(s);
         String reverse2 = sb.toString().trim();
         System.out.println(reverse2);
@@ -196,7 +191,7 @@ public class HelloString {
         System.out.println(buffer.toString());
     }
 
-    public static void ReverseCharactersOfString(){
+    public static void ReverseCharactersOfString() {
         String reverse = new StringBuffer("reverse me").reverse().toString();
         System.out.println(reverse);
 
