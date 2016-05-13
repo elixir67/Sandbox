@@ -6,7 +6,7 @@ apply plugin: 'application'
 
 //sourceCompatibility = 1.5
 
-mainClassName = 'LearnHelper'
+mainClassName = 'Main'
 
 //applicationDefaultJvmArgs = ["-Dlog4j.debug"]
 
