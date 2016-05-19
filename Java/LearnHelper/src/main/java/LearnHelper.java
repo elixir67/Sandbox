@@ -2,12 +2,16 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.SystemDefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
@@ -108,7 +112,7 @@ public class LearnHelper {
             //String host = "https://learn-pf-saas01.blackboard.com";
             String loginUrl = "https://" + host + "/webapps/login/";
 
-            HttpClient client = new DefaultHttpClient();
+            CloseableHttpClient client = HttpClients.createDefault();
             HttpPost post = new HttpPost(loginUrl);
 
             post.setHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -121,32 +125,35 @@ public class LearnHelper {
 
             post.setEntity(new UrlEncodedFormEntity(urlParameters));
 
-            HttpResponse res = client.execute(post);
+            CloseableHttpResponse res = client.execute(post);
             log.debug(res.getStatusLine().getStatusCode());
             String productName = res.getFirstHeader("X-Blackboard-product").getValue();
             log.debug(productName); // sample output: Blackboard Learn &#8482; 3000.3.0-rel.45+a7bf6a1
 
+            res.close();
             String version = productName.substring(productName.indexOf("; ") + 2);
             log.debug(version);
 
 
 
-//            String infoUrl = "https://" + host + "/learn/api/v1/utilities/systemInfo";
-//            HttpGet get = new HttpGet(infoUrl);
-//            res = client.execute(get);
-//
-//            log.debug(res.getStatusLine().getStatusCode());
-//            BufferedReader rd = new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
-//
-//            StringBuffer result = new StringBuffer();
-//            String line = "";
-//            while ((line = rd.readLine()) != null) {
-//                result.append(line);
-//            }
-//
-//            log.debug(result.toString());
-            //JSONObject o = new JSONObject(result.toString());
+            String infoUrl = "https://" + host + "/learn/api/v1/utilities/systemInfo";
+            HttpGet get = new HttpGet(infoUrl);
+            res = client.execute(get);
 
+            log.debug(res.getStatusLine().getStatusCode());
+            BufferedReader rd = new BufferedReader(new InputStreamReader(res.getEntity().getContent()));
+
+            StringBuffer result = new StringBuffer();
+            String line = "";
+            while ((line = rd.readLine()) != null) {
+                result.append(line);
+            }
+
+            //log.debug(result.toString());
+            res.close();
+            JSONObject o = new JSONObject(result.toString());
+            log.debug("ultraUiEnabled:" + o.get("ultraUiEnabled"));
+            log.debug("adminPanel:" + o.getJSONObject("classicUrls").get("adminPanel"));
             return version;
 
         } catch (IOException e) {
