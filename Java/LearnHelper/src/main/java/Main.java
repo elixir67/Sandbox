@@ -11,6 +11,9 @@ public class Main {
         LearnHelper learnHelper = new LearnHelper("learn-pf-saas01_user_config.properties");
         learnHelper.ParseConfigInfo();
         log.debug(learnHelper.GetLearnVersion(learnHelper.GetHost()));
+        log.debug(learnHelper.GetLearnVersionREST(learnHelper.GetHost()));
+        log.debug(learnHelper.GetLearnVersionHttpClient(learnHelper.GetHost()));
+
         log.debug(learnHelper.GetUsersNum());
     }
 }
